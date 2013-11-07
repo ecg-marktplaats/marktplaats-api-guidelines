@@ -16,10 +16,10 @@ Guidelines for externally visible APIs.
     * Naming
         * Document names should be a singular noun.
         * Collections names should be a plural noun.
-        * Forward slash separator (/) must be used to indicate a hierarchical relationship.
-        * URIs should not have a trailing forward slash (/).
-        * Hyphens (-) should be used to improve the readability of URIs. Not underscores (_).
-        * Lowercase letters should be preferred in URI paths.
+        * Forward slash separator (`/`) must be used to indicate a hierarchical relationship.
+        * URIs should not have a trailing forward slash (`/`).
+        * Hyphens (`-`) should be used to improve the readability of URIs, not underscores (`_`).
+        * URI paths must use lowercase letters
 * [Resource representation format](docs/resource-representation-format.md)
     * Syntax
         * Serialization format: hal+json;charset=UTF-8

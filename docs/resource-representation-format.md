@@ -1,10 +1,10 @@
 Resource representation format
 ==============================
 
-Serialization format: hal+json;charset=UTF-8
---------------------------------------------
+### Serialization format: hal+json;charset=UTF-8
 
-Resources should use the [HAL](http://stateless.co/hal_specification.html) JSON mediatype as the serialization format and responses should be [UTF-8](http://en.wikipedia.org/wiki/UTF-8) encoded
+Non binary resources should use the [HAL](http://stateless.co/hal_specification.html) JSON mediatype as the
+serialization format and responses should be [UTF-8](http://en.wikipedia.org/wiki/UTF-8) encoded.
 
 Example HAL representation:
 
@@ -28,8 +28,7 @@ Example HAL representation:
 }
 ```
 
-Each resource should contain a 'self' link
-------------------------------------------
+### Each resource should contain a 'self' link
 
 Each resource should have a self link :
 
@@ -43,23 +42,30 @@ Example :
 }
 ```
 
-When available IANA registered relation types should be used as link relations 
-------------------------------------------------------------------------------
+Binary resources have a self link in the form of a http header:
 
-A link relation is a descriptive attribute attached to a hyperlink in order to define the type of the link, or the relationship between the source and destination resources.
-
-A [standardized link relation](http://www.iana.org/assignments/link-relations/link-relations.xhtml) should be used when such a relation is available
-
-Examples of commonly used IANA relation types are : self, first, prev, next, and last
+    TODO
 
 
-Custom link relation types should be uri's that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page
-----------------------------------------------------------------------------------------------------------------------------------------------
+### When available IANA registered relation types should be used as link relations
 
-In accordance with the [web linking RFC](http://tools.ietf.org/html/rfc5988) custom  link relation types should be uri's that when 
-dereferenced in a web browser provide relevant documentation, in the form of an HTML page
+A link relation is a descriptive attribute attached to a hyperlink in order to define the type of the link, or the
+relationship between the source and destination resources.
+
+A [standardized link relation](http://www.iana.org/assignments/link-relations/link-relations.xhtml) should be used when
+such a relation is available.
+
+Examples of commonly used IANA relation types are : `self`, `first`, `prev`, `next`, and `last`.
+
+
+### Custom link relation types should be uri's that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page
+
+In accordance with the [web linking RFC](http://tools.ietf.org/html/rfc5988) custom link relation types should be uri's
+that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page.
 
 Example HTML Page :
+
+TODO: why is this here?
 
 ```html
 <html>
@@ -136,61 +142,110 @@ Example HTML Page :
 </html>
 ```
 
-Field names are in English unless they represent a product or company name.
----------------------------------------------------------------------------
+Field names
+-----------
 
-The consumers of the API will almost certainly not all be dutch so field names should be in English unless they represent a product or company name.
+### Field names are in English unless they represent a product or company name.
 
+The consumers of the API will almost certainly not all be Dutch so field names should be in English unless they
+represent a product or company name.
 
-Field names are in camelCase, contain only latin characters 'a' - 'z', 'A' - 'Z', '0' - '9'.
---------------------------------------------------------------------------------------------
+### Field names have consistent semantics and representation
 
-Fields should only use alphanumeric characters and should use the camelCase notation
+When two fields have the same name (even if they are in different entities), they must mean the same thing and they must
+use the same representation.
 
-correct : { "asqEnabled" : true }
-incorrect : { "asq_enabled" : true }
-incorrect : { "asq_enabled?" : true }
+This rule does not apply to deprecated fields.
 
+### Field names are in camelCase, contain only latin characters `a` - `z`, `A` - `Z`, `0` - `9`.
 
-Field names start with a lowercase letter, 'a' - 'z'.
------------------------------------------------------
+Fields should only use alphanumeric characters and should use the camelCase notation.
 
-Fields should start with a lower case letter
+    { "asqEnabled" : true }    // correct
+    { "asq_enabled" : true }   // NOT correct
+    { "asq_enabled?" : true }  // NOT correct
 
-Field names starting with underscore '\_' are reserved for external standards, e.g. Hal.
-----------------------------------------------------------------------------------------
+### Field names start with a lowercase letter, `a` - `z`.
 
-While HAL only reserves the names detailed in the specification (_links and _embedded) properties that represent the resource's state should not
-start with an underscore to prevent collisions with future versions of the standard
+Fields should start with a lower case letter.
 
-Field values that represent a date are in ISO 8601 
---------------------------------------------------
- 
-Date values are represented using the [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format full syntax in UTC ('Z') with milliseconds (e.g. 2013-20-02T18:02:24.000Z). 
-Clients should be prepared to see dates truncated in responses, for example to the second or minute.
+### Field names starting with underscore '\_' are reserved for external standards, e.g. Hal.
 
-Field values that represent a currency are in ISO 4217
-------------------------------------------------------
+While HAL only reserves the names detailed in the specification (`_links` and `_embedded`) properties that represent
+the resource's state should not start with an underscore to prevent collisions with future versions of the standard.
 
-Currencies are encoded using the [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency format
+### Field deprecation
 
-Field values that represent countries are in ISO 3166-1 alpha-2 format
-----------------------------------------------------------------------
-
-Country codes are defined by the ISO 3166-1-alpha-2 code standard. You can find the complete list [here](http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements)
-
-All money types are integers and conform to its smallest currency unit.
------------------------------------------------------------------------
-
-All money types are integers and conform to its smallest currency unit. For example, if the currency of a payment is euros (EUR), the values of money fields conform to euro cents. So an amount of EUR 9,95 is represented as 995.
+TODO
+See versioning.
 
 
+Field values
+------------
 
+TODO: incorporate <https://developers.google.com/discovery/v1/type-format>.
 
+### Structure field values
 
+You are encouraged to represent complex fields with a JSON object. This allows for better composability, the struct
+might later move to a separate entity.
 
+TODO: discuss, this might make it harder for clients??
 
+### Field values that represent a date or timestamp are in ISO 8601
 
+Date values are represented using the [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format full syntax in UTC (`Z`)
+with milliseconds (e.g. `2013-20-02T18:02:24.000Z`).
+
+Some systems will store dates in a lower precision. For consistency even those dates are represented in the full format.
+However, clients should be prepared to see dates rounded, for example to the second or to the day.
+
+### Field values that represent countries are in ISO 3166-1 alpha-2 format
+
+Country codes are defined by the ISO 3166-1-alpha-2 code standard. You can find the complete list
+[here](http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements). For example `NL`.
+
+The codes are case sensitive.
+
+### Field values that represent a currency are in ISO 4217
+
+Currencies are encoded using the [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency format. For example `EUR`,
+and not `€`.
+
+The codes are case sensitive.
+
+### All money types are integers and conform to its smallest currency unit
+
+All money types are integers and conform to its smallest *commonly used* currency unit. For example, if the currency of
+a payment is in euros (EUR), the values of money fields conform to euro cents. So an amount of EUR 9,95 is represented
+as `995`.
+
+See the currency exponent as defined by [ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) to find the smallest commonly
+used currency unit for a given currency.
+
+### All numbers are integers unless precision is not important
+
+Most numbers need to be precise, rounding due to using a floating point (64-bit IEEE754, or 32-bit IEEE754) can lead to
+weird errors. There are two options:
+
+* represent the number in some exponent (e.g. in cm instead of m), this is required with a monetary amount
+  (see previous rule),
+* represent the precise number as a string.
+
+The first option is preferred. However, for larger numbers (JSON does not support number above 2^52), the second option
+must be selected.
+
+There are few exceptions to this rule. Here is the list of known and allowed exceptions:
+
+* WGS84 coordinates
+
+See also the list of supported field types: <https://developers.google.com/discovery/v1/type-format>.
+
+TODO: copy the list from google to our own docs
+
+### Binary field values
+
+See also the list of supported field types: <https://developers.google.com/discovery/v1/type-format>.
 
 
 

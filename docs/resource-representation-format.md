@@ -11,21 +11,21 @@ Example HAL representation:
 ```json
 {
  "_links": {
-	"self": { "href": "/categories/92" },
-	"http://api.marktplaats.nl/v1/rels/parent_category": { "href": "/categories/91" }
+    "self": { "href": "/categories/92" },
+    "http://api.marktplaats.nl/v1/rels/parent_category": { "href": "/categories/91" }
  },
  "_embedded": {
-	"http://api.marktplaats.nl/v1/rels/parent_category": {
-		 "_links": {
-			"self": { "href": "/categories/91" }
-		 },		 	
-		 "name": "Auto's",
-		 "shortName": "Auto's"
-	}
- },		 
+    "http://api.marktplaats.nl/v1/rels/parent_category": {
+         "_links": {
+            "self": { "href": "/categories/91" }
+         },
+         "name": "Auto's",
+         "shortName": "Auto's"
+    }
+ },
  "name": "Alpha romeo",
  "shortName": "Alpha romeo"
-}	   		
+}
 ```
 
 Each resource should contain a 'self' link
@@ -54,7 +54,7 @@ Examples of commonly used IANA relation types are : self, first, prev, next, and
 
 
 Custom link relation types should be uri's that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page
-----------------------------------------------------------------------------------------------------------------------------------------------		
+----------------------------------------------------------------------------------------------------------------------------------------------
 
 In accordance with the [web linking RFC](http://tools.ietf.org/html/rfc5988) custom  link relation types should be uri's that when 
 dereferenced in a web browser provide relevant documentation, in the form of an HTML page
@@ -64,74 +64,74 @@ Example HTML Page :
 ```html
 <html>
 <body>
-	<h1 class="page-header">favorites<small>relation</h1>
+    <h1 class="page-header">favorites<small>relation</h1>
 
-	<div class="method">
-	  <h2>GET</h2>
-	  <p class="description">Show a list of a users favorite ads</p>
+    <div class="method">
+      <h2>GET</h2>
+      <p class="description">Show a list of a users favorite ads</p>
 
-	  <div class="response">
-		<h3>Responses</h3>
-		<div class="code">
-		  <h4>200 OK</h4>
-		  <div class="body">
-			<h5>Body</h5>
-			<div class="links">
-			  <h6>Links</h6>
-			  <ul>
-				<li><a href="/rels/user">http://api.marktplaats.nl/v1/rels/user</a> - the user that owns the favorites (REQUIRED)</li>
-				<li>next (OPTIONAL)</li>
-				<li>prev (OPTIONAL)</li>
-			  </ul>
-			</div>
-			<div class="embedded">
-			  <h6>Embedded Resources</h6>
-			  <p>Each <a href="/rels/favorite">http://api.marktplaats.nl/v1/rels/favorite</a> is embedded in this resource via a relation of the same name. For example:</p>
-			  <pre>
-	{
-	  "_embedded": {
-		"http://api.marktplaats.nl/v1/rels/favorite": [{
-		  ... individual favorite resource ...
-		},{
-		  ... individual favorite resource ...
-		}]
-	  }
-	}
-			  </pre>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	</div>
+      <div class="response">
+        <h3>Responses</h3>
+        <div class="code">
+          <h4>200 OK</h4>
+          <div class="body">
+            <h5>Body</h5>
+            <div class="links">
+              <h6>Links</h6>
+              <ul>
+                <li><a href="/rels/user">http://api.marktplaats.nl/v1/rels/user</a> - the user that owns the favorites (REQUIRED)</li>
+                <li>next (OPTIONAL)</li>
+                <li>prev (OPTIONAL)</li>
+              </ul>
+            </div>
+            <div class="embedded">
+              <h6>Embedded Resources</h6>
+              <p>Each <a href="/rels/favorite">http://api.marktplaats.nl/v1/rels/favorite</a> is embedded in this resource via a relation of the same name. For example:</p>
+              <pre>
+    {
+      "_embedded": {
+        "http://api.marktplaats.nl/v1/rels/favorite": [{
+          ... individual favorite resource ...
+        },{
+          ... individual favorite resource ...
+        }]
+      }
+    }
+              </pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-	<div class="method">
-	  <h2>POST</h2>
-	  <p class="description">Create a new favorite for a user</p>
+    <div class="method">
+      <h2>POST</h2>
+      <p class="description">Create a new favorite for a user</p>
 
-	  <div class="request">
-		<h3>Request</h3>
-		<div class="headers">
-		  <h4>Headers</h4>
-		  <div class="type">
-			The request should have the Content-Type application/json
-		  </div>
-		</div>
-		<div class="body">
-		  <h4>Body</h4>
-		  <div class="required">
-			<h5>Required properties</h5>
-			<ul>
-			  <li><strong>advertisement</strong> : String containing link to the advertisement</li>
-			</ul>
-			<h5>Example</h5>
-			<pre>
-	  {
-		"advertisement": "http://api.marktplaats.nl/v1/advertisements/m134",
-	  }
-			</pre>
-		  </div>
-		</div>
-	  </div>
+      <div class="request">
+        <h3>Request</h3>
+        <div class="headers">
+          <h4>Headers</h4>
+          <div class="type">
+            The request should have the Content-Type application/json
+          </div>
+        </div>
+        <div class="body">
+          <h4>Body</h4>
+          <div class="required">
+            <h5>Required properties</h5>
+            <ul>
+              <li><strong>advertisement</strong> : String containing link to the advertisement</li>
+            </ul>
+            <h5>Example</h5>
+            <pre>
+      {
+        "advertisement": "http://api.marktplaats.nl/v1/advertisements/m134",
+      }
+            </pre>
+          </div>
+        </div>
+      </div>
 </body>
 </html>
 ```

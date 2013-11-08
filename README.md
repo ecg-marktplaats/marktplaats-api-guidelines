@@ -35,6 +35,9 @@ Guidelines for externally visible APIs.
         * Field values that represent countries are in ISO 3166-1 alpha-2 format, eg : NL
         * All money types are integers and conform to its smallest currency unit.
 
+    * Error handling
+        * error messages follow a standard format
+
     * Response status codes
         * 200 (“OK”) should be used to indicate nonspecific success
         * 201 (“Created”) must be used to indicate successful resource creation
@@ -53,8 +56,6 @@ Guidelines for externally visible APIs.
         * 500 (“Internal Server Error”) should be used to indicate API malfunction
     * Semantics
         * TODO: naming standards, camelCase (e.g. postcode vs zipcode, etc.)
-
-* [Response status codes](docs/response-status-codes.md)
 
 * [Versioning](docs/versioning.md)
 

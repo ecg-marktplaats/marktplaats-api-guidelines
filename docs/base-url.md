@@ -28,6 +28,26 @@ The version in the URL is the escape route to introduce breaking changes to the 
 and therefore a single digit should be enough for a long time. There is no need to prepend a `v` therefore (for
 consistency) this is not allowed.
 
+### The base URL is a HAL resource
+
+For example:
+
+    GET http://api.marktplaats.nl/v1 HTTP/1.1
+    Host: api.marktplaats.nl
+
+    HTTP/1.1 200 OK
+    Content-Type: application/hal+json;charset=UTF8
+    ETag: "d9087df677dgh"
+
+    {
+        "_links": {
+            "self": { "href": "/" },
+            "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
+            "http://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" },
+            "http://api.marktplaats.nl/v1/docs/resources/listings": { "href": "/v1/listings" },
+            "http://api.marktplaats.nl/v1/docs/resources/users": { "href": "/v1/users" }
+        }
+    }
 
 URL and URI naming
 ------------------

@@ -92,7 +92,7 @@ Guidelines for externally visible APIs.
 * [Versioning](docs/versioning.md)
     * Resource versioning
         * Change the major version in the base URL only as a last resort
-        * Clients should be able to cope with new link relations to existing resources
+        * Clients should be able to cope with new link relations added to existing resources
         * Deprecate old links when replacing them with newer non backwards compatible versions
     * Field versioning
         * Clients should be able to cope with new attributes added to existing resources

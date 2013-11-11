@@ -19,7 +19,7 @@ After
 Changing the major version SHOULD be done as little as possible. The old URL SHOULD be available for some time to allow
 all clients to update their code.
 
-### Clients should be able to cope with new link relations to existing resources
+### Clients should be able to cope with new link relations added to existing resources
 
 Clients should be liberal in what they accept and conservative in what they send. And they should not break when a new
 link relation is added to an existing resource

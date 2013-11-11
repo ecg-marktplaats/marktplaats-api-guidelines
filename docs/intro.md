@@ -11,6 +11,10 @@ behavior and continuity in our APIs.
     We have no idea what our customers are using to talk to our API and if or when they are going to adapt to a change.
     This means that changes must be communicated properly and must be backwards compatible.
 
+*   *Discovery*
+    Having just the base URL, it should be possible to discover all resources and their documentation.
+    (Level 3 of the Richardson Maturity Model).
+
 *   *Consistency*
     These guidelines make it possible to make all our APIs consistent. Consistency should be found in all of these
     aspects:
@@ -32,3 +36,6 @@ behavior and continuity in our APIs.
     Though we can give some recommendations on tools and libraries for implementing the APIs, API implementers are not
     limited a specific language or tool chain. The APIs must be implementable (both client and server) with multiple
     different tool chains.
+
+*   *Safe*
+    Any API should be safe, both for Ebay and its clients.

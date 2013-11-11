@@ -28,10 +28,12 @@ Guidelines for externally visible APIs.
         * Each resource should contain a 'self' link
         * When available IANA registered relation types should be used as link relations
         * Custom link relation types should be uri's that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page
+    * Field names
         * Field names are in English unless they represent a product or company name.
         * Field names are in camelCase, contain only latin characters 'a' - 'z', 'A' - 'Z', '0' - '9'.
         * Field names start with a lowercase letter, 'a' - 'z'.
         * Field names starting with underscore '\_' are reserved for external standards, e.g. Hal.
+    * Field values
         * Field values that represent a date are in ISO 8601
         * Field values that represent a currency are in ISO 4217
         * Field values that represent countries are in ISO 3166-1 alpha-2 format, eg : NL
@@ -64,6 +66,9 @@ Guidelines for externally visible APIs.
         * 409 (“Conflict”) should be used to indicate a violation of resource state
         * 412 (“Precondition Failed”) should be used to support conditional operations
         * 500 (“Internal Server Error”) should be used to indicate API malfunction
+
+    * Semantics
+        * TODO: naming standards, camelCase (e.g. postcode vs zipcode, etc.)
 
 * [Documentation](docs/documentation.md)
 

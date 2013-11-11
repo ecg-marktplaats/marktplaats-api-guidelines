@@ -13,13 +13,13 @@ Example document :
 
     {
      "_links": {
-        "self": { "href": "/categories/92" },
-        "http://api.marktplaats.nl/v1/rels/parent_category": { "href": "/categories/91" }
+        "self": { "href": "/v1/categories/92" },
+        "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
      },
      "_embedded": {
-        "http://api.marktplaats.nl/v1/rels/parent_category": {
+        "http://api.marktplaats.nl/v1/docs/rels/parent_category": {
              "_links": {
-                "self": { "href": "/categories/91" }
+                "self": { "href": "/v1/categories/91" }
              },
              "name": "Auto's",
              "shortName": "Auto's"
@@ -29,6 +29,7 @@ Example document :
      "shortName": "Alpha romeo"
     }
 
+Also see this [HAL introduction](http://www.mwop.net/blog/2013-02-11-restful-apis-with-zf2-part-1.html).
 
 ### Each resource should contain a 'self' link
 
@@ -38,7 +39,7 @@ Example :
 
     {
         "_links": {
-            "self": { "href": "/categories/1" }
+            "self": { "href": "/v1/categories/1" }
         }
     }
 

@@ -188,42 +188,80 @@ See also the list of supported field types: <https://developers.google.com/disco
 Errors
 ------
 
-### error messages follow a standard format
+This section was inspired by the article
+[Error handling considerations and best practices](http://soabits.blogspot.dk/2013/05/error-handling-considerations-and-best.html)
+and [vnd.error](https://github.com/blongden/vnd.error) format.
 
-Error messages take the following form :
+### Error messages follow a standard format
+
+Here is an example request that produces an error response:
+
+    POST http://api.marktplaats.nl/v1/categories/95 HTTP/1.1
+    Host: api.marktplaats.nl
+    Accept-Language: nl, en
+    If-Match: "qg7968osihugw"
 
     {
-        "_links": {
-            "describes": { "href":  "http://...", "title": "Error description" }
-        },
-        "logref": 42,
-        "errorCode" : "VALIDATION_FAILURE",
-        "message": "Validation failed",
-        "errors": [
-            { "field": "email", "message": "Not a valid email address" },
-            { "field": "password", "message": "Passwords should be at least 8 characters" }
-        ]
+        "id": "abc",
+        "parentCategoryId": 91,
+        "shortName": "Walnoot"
     }
 
 
-It is inspired by [vnd.error](https://github.com/blongden/vnd.error) format but adds the ability to add field-by-field messages
+    HTTP/1.1 400 Bad Request
+    Content-Type: application/hal+json
+    Content-Language: nl
 
-#### error document attributes
+    {
+        "_links": {
+            "help": {
+              "href": "http://api.marktplaats.nl/v1/docs/errors/validation-failure"
+            }
+        },
+        "logref": "4298asfpohsa98yasohq97q3yff22",
+        "errorCode" : "validation-failure",
+        "message": "Validatie mislukt",
+        "messages": [
+            { "field": "is", "message": "Is geen geldig getal." },
+            { "field": "name", "message": "Een waarde is verplicht." },
+            { "field": "shortName", "message": "Is geen auto-merk." },
+            { "message": "Some error over multiple fields." }
+        ]
+    }
 
-*logref* **(required)** : For expressing a (numeric/alpha/alphanumeric) identifier to refer to the specific error on the server side for logging purposes (e.g. RequestData.uniqueRequestId).
+`$._link.help.href` *(required)* : A URL that refers to a help page. (See [documentation](documentation.md).)
 
-*message* **(required)** : For expressing a human readable message related to the current error which may be displayed to the user of the api.
+`$.logref` *(required)* : An identifier that refers to the specific error on the server side for logging purposes
+(e.g. `RequestData.uniqueRequestId`).
 
-*errorCode* **(required)** : an error code
+`$.message` *(required)* : A human readable message related to the current error which may be displayed to the user of
+the api.
 
-*errors* **(optional)** : Field by field error messages
+`$.errorCode` *(required)* : An error code. The error code SHOULD be same as the last part of the help url and MUST
+consist (mostly) out of lower case letters. (Letters allow for easier documentation-lookup then just a numeric code.)
 
-### an appropriate status code should be used when serving an error resource
+`$.details` *(optional)* : Field by field error messages.
 
-When serving an error resource an appropriate status code should be used. E.g. 4xx for client errors and 5xx for processing errors
-To determine which error code is appropriate, refer to the status codes section of this document
+`$.details[*].field` *(required)* : Name of the field that did not validate. Is only required when the error can be
+subscribed to a particular field.
+
+`$.details[*].message` *(required)* : A human readable description of the message for the given field in error. Please
+make sure field contains a full sentence.
+
+All fields are string values.
+
+Both `message` fields are in the language as negotiated with the `Accept-Language` HTTP header.
+
+### An appropriate status code should be used when serving an error resource
+
+When serving an error resource an appropriate status code MUST be used. E.g. 4xx for client errors and 5xx for
+processing errors.
+
+To determine which error code is appropriate, refer to the status codes section of this [image](whhD1.png). (Copied
+from <http://i.stack.imgur.com/whhD1.png>.)
 
 ### Do not include stacktraces in the error message
 
-It may be tempting to include a stack trace for easier support when something goes wrong. Don't do it! This kind of information is too valuable for hackers and should be avoided.
+It may be tempting to include a stack trace for easier support when something goes wrong. Don't do it! This kind of
+information is too valuable for hackers and MUST be avoided.
 

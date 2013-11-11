@@ -61,6 +61,7 @@ Example:
 
     POST http://api.marktplaats.nl/v1/categories HTTP/1.1
     Host: api.marktplaats.nl
+    Accept-Language: nl, en
 
     {
         "parentCategoryId": 91,
@@ -98,6 +99,7 @@ Example:
 
     POST http://api.marktplaats.nl/v1/categories/95 HTTP/1.1
     Host: api.marktplaats.nl
+    Accept-Language: nl, en
     If-Match: "qg7968osihugw"
 
     {
@@ -139,6 +141,7 @@ Example:
 
     PATCH http://api.marktplaats.nl/v1/categories/95 HTTP/1.1
     Host: api.marktplaats.nl
+    Accept-Language: nl, en
     Content-Type: application/json-patch+json
     If-Match: "qg7968osihugw"
 
@@ -191,6 +194,7 @@ Example:
 
     DELETE http://api.marktplaats.nl/v1/categories/92
     Host: api.marktplaats.nl
+    Accept-Language: nl, en
     If-Match: "9iurffjkqe"
 
     HTTP/1.1 204 No Content

@@ -6,7 +6,7 @@ This document describes the allowed ways of changing an existing API.
 Resource versioning
 -------------------
 
-### Change the major version in the base URL:
+### Change the major version in the base URL only as a last resort
 
 Before:
 
@@ -16,12 +16,15 @@ After
 
     http://api.marktplaats.nl/v2/categories/96
 
-Changing the major version SHOULD be done as less as possible. The old URL SHOULD be available for some time to allow
+Changing the major version SHOULD be done as little as possible. The old URL SHOULD be available for some time to allow
 all clients to update their code.
 
-### Add another resource
+### Clients should be able to cope with new link relations to existing resources
 
-It is always possible to add another link to an existing resource.
+Clients should be liberal in what they accept and conservative in what they send. And they should not break when a new
+link relation is added to an existing resource
+
+### Deprecate old links when replacing them with newer non backwards compatible versions
 
 In case the link replaces an older link, the old link MUST be deprecated. The old link SHOULD stay around until all
 clients got the change to update their code.
@@ -50,15 +53,17 @@ After:
         }
     }
 
-The deprecation URL MUST point to a developer document that describes when and why the relation is deprecated.
+The deprecation attribute value of the link relation MUST point to a developer document that describes when and why
+the relation is deprecated.
 
 
 Field versioning
 ----------------
 
-### Add another field
+### Clients should be able to cope with new attributes added to existing resources
 
-It is always allowed to add more fields to an existing resource.
+Clients should be liberal in what they accept and conservative in what they send. And they should not break when a new
+attribute is added to an existing resource
 
 In case the new field replaces another field, the old field SHOULD stay around until existing clients got a chance to
 change their code. Before the the older field is removed it SHOULD be deprecated.
@@ -78,28 +83,3 @@ Deprecation example:
         "short-name": "http://api.marktplaats.nl/v1/docs/resources/category/short-name-deprecation"
       }
     }
-
-Alternative ways of versioning, DO NOT USE
-------------------------------------------
-
-* Major/minor version number in base URL
-
-  `http://api.marktplaats.nl/1.1/categories/96`
-
-* Version in entity url
-  http://api.marktplaats.nl/categories/96
-  http://api.marktplaats.nl/categories.2/96
-  http://userapi.marktplaats.nl/users/1234
-  http://casapi.marktplaats.nl/ads.2/
-  http://casapi.marktplaats.nl/v2/ads/
-
-* Version in HTTP header `Accept`
-
-  request: `Accept: application/hal+json`
-  response: `Content-Type: application/hal+json;content_version=1`
-
-  request: `Accept: application/hal+json;content_version=2`
-  response: `Content-Type: application/hal+json;content_version=2`
-
-  Optionally values comes from URL parameter.
-  `http://base.url/entity?params&content_version=2`

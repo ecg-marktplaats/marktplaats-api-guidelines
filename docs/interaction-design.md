@@ -90,7 +90,7 @@ Example:
 Body in the response is included by default. This can be overridden with the
 [`_body` parameter](/docs/base-url.md#_body).
 
-### Use `PUT` to completely update a resource
+### `PUT` must be used to completely update a resource
 
 Clients use `PUT` when attempting to update all fields of an existing resource. The request body contains the
 **suggested** state representation of the resource.
@@ -134,7 +134,7 @@ Body in the response is included by default. This can be overridden with the
 
 Clients that do not support the `PUT` method may use the [`_method` parameter](/docs/base-url.md#_method).
 
-### Use `PATCH` to partially update a resource
+### `PATCH` must be used to partially update a resource
 
 Clients use `PATCH` when attempting to partially update an existing resource. The request body contains values according
 to [RFC 6902](http://tools.ietf.org/html/rfc6902).
@@ -204,8 +204,6 @@ Example:
 The `If-Match` header is required.
 
 Clients that do not support the `DELETE` method may use the [`_method` parameter](/docs/base-url.md#_method).
-
-### The query component of a URI should be used to paginate collection or store results
 
 
 Status codes

@@ -119,37 +119,8 @@ as URIs one and two, which may give unnecessary confusion.
 
 Parameters inside the URI path are excluded from this rule.
 
-
-### <a name="_callback"></a> Use `_callback` parameter to return a jsonp response
-
-You can send a `?_callback` parameter to any `GET` call to have the results wrapped in a JSON function.
-This is typically used when browsers want to embed marktplaats content in web pages by getting around cross domain
-issues. The response includes the same data output as the regular API, plus the relevant HTTP Header information.
-
-Example :
-
-    GET /v1/users?_callback=foo HTTP/1.1
-    Host: api.marktplaats.nl
-
-    HTTP/1.1 200 OK
-    Content-Type: application/javascript
-    foo({
-        "_links": {
-            "self": { "href": "/users" },
-        },
-        "_embedded": {
-            "http://api.marktplaats.nl/v1/rels/user": [{
-               "_links": {
-                 "self": { "href": "/users/2" },
-               },
-               "name": "Richard",
-               "email": "2@marktplaats.nl",
-               "casUser" : true
-            }]
-        },
-        "totalResults": 10
-    })
-
+Query parameters
+----------------
 
 ### The query component of a URI should be used to filter collections or stores
 
@@ -221,7 +192,7 @@ Example :
     }
 
 
-### <a name="_body"></a> Use `_body` parameter to include/exclude a response body
+### <a name="_body"></a> Use the `_body` parameter to include/exclude a response body
 
 By default responses contain a body, even if it is mostly the same as what was posted. The `_body` parameter can be
 used to change this behavior.
@@ -261,3 +232,34 @@ Example:
     ]
 
 is interpreted as a `PATCH` request.
+
+### <a name="_callback"></a> Use the `_callback` parameter to return a jsonp response
+
+You can send a `?_callback` parameter to any `GET` call to have the results wrapped in a JSON function.
+This is typically used when browsers want to embed marktplaats content in web pages by getting around cross domain
+issues. The response includes the same data output as the regular API, plus the relevant HTTP Header information.
+
+Example :
+
+    GET /v1/users?_callback=foo HTTP/1.1
+    Host: api.marktplaats.nl
+
+    HTTP/1.1 200 OK
+    Content-Type: application/javascript
+    foo({
+        "_links": {
+            "self": { "href": "/users" },
+        },
+        "_embedded": {
+            "http://api.marktplaats.nl/v1/rels/user": [{
+               "_links": {
+                 "self": { "href": "/users/2" },
+               },
+               "name": "Richard",
+               "email": "2@marktplaats.nl",
+               "casUser" : true
+            }]
+        },
+        "totalResults": 10
+    })
+

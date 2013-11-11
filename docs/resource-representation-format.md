@@ -124,7 +124,6 @@ the resource's state should not start with an underscore to prevent collisions w
 
 ### Field deprecation
 
-TODO
 See versioning.
 
 

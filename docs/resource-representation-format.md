@@ -59,6 +59,15 @@ Example :
         }
     }
 
+### Keep collections homogeneous
+
+Depending on use cases, you can group resources into collections by using similarities (e.g. different types of
+listings in a single collection). However, no matter what criteria you choose for any collection, it is important to
+keep the representation homogeneous so that it is easy to use by clients.
+
+Design the representation of the collection such that members in a collection are structurally and syntactically
+similar.
+
 ### When available IANA registered relation types should be used as link relations
 
 A link relation is a descriptive attribute attached to a hyperlink in order to define the type of the link, or the

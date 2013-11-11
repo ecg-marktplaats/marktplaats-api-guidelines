@@ -132,7 +132,7 @@ Example :
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
-    Content-Type: application/hal+json
+    Content-Type: application/javascript
     foo({
         "_links": {
             "self": { "href": "/users" },

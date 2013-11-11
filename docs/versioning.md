@@ -44,7 +44,7 @@ After:
             "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
             "http://api.marktplaats.nl/v1/docs/resources/categories": {
               "href": "/v1/categories",
-              "deprecation": "http://api.marktplaats.nl/v1/docs/resources/categories-deprecation"
+              "deprecation": "http://api.marktplaats.nl/v1/docs/resources/categories/deprecation"
             },
             "http://api.marktplaats.nl/v1/docs/resources/tags": { "href": "/v1/tags" }
         }

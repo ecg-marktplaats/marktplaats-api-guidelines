@@ -140,13 +140,18 @@ might later move to a separate entity.
 
 TODO: discuss, this might make it harder for clients??
 
-### Field values that represent a date or timestamp are in ISO 8601
+### Field values that represent a timestamp are in ISO 8601
 
-Date values are represented using the [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format full syntax in UTC (`Z`)
+Timestamp values are represented using the [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format full syntax in UTC (`Z`)
 with milliseconds (e.g. `2013-20-02T18:02:24.000Z`).
 
 Some systems will store dates in a lower precision. For consistency even those dates are represented in the full format.
-However, clients should be prepared to see dates rounded, for example to the second or to the day.
+However, clients should be prepared to see timestamps rounded, for example to the second.
+
+### Field values that represent a date are in ISO 8601
+
+Date values are represented using the [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) in the format YYYY-MM-DD
+(eg. 2013-01-20 to represent january 20th 2013)
 
 ### Field values that represent countries are in ISO 3166-1 alpha-2 format
 

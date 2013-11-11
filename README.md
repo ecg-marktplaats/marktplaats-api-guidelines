@@ -71,7 +71,7 @@ Guidelines for externally visible APIs.
     * Semantics
         * TODO: naming standards, camelCase (e.g. postcode vs zipcode, etc.)
 
-* [Documentation](docs/documentation.md)
+* [Documentation](docs/documentation-requirements.md)
 
     * Document link relations
     * Getting started guide

@@ -77,9 +77,9 @@ that when dereferenced in a web browser provide relevant documentation, in the f
 
 This page should contain the following information
 
-*   A list of request methods (GET, PUT, POST etc) supported for this URI and for each method
+*   A list of request methods (GET, PUT, POST etc) supported for this URI and for each method.
 *   A description of the responses you can expect from any of the given request methods. This description should contain
-    the status code and a description of the links and embedded resources included in the response
+    the status code and a description of the links and embedded resources included in the response.
 
 Field names
 -----------

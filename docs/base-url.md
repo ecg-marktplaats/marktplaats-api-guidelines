@@ -6,8 +6,8 @@ Base URL
 
 Examples of good base URLs:
 
-    https://api.marktplaats.nl/1
-    https://api.marktplaats.nl/subsystem/1
+    https://api.marktplaats.nl/v1
+    https://api.marktplaats.nl/subsystem/v1
 
 Not so good example:
 
@@ -25,8 +25,7 @@ Https must be used. This solves a great deal of otherwise hard to tackle securit
 ### Base URL includes a major version in path
 
 The version in the URL is the escape route to introduce breaking changes to the API. This should not be taken lightly
-and therefore a single digit should be enough for a long time. There is no need to prepend a `v` therefore (for
-consistency) this is not allowed.
+and therefore a single digit should be enough for a long time. For clarity, the version MUST be preceded by a `v`.
 
 ### The base URL is a HAL resource
 
@@ -93,6 +92,8 @@ Therefore, a REST API must generate and communicate clean URIs and should be int
 identify a resource imprecisely.
 Redirects (e.g. 301 Moved Permanently) from one version to the other are not allowed. Some clients don't support
 redirects and we need to keep this consistent over our separate APIs.
+
+The root resource `/` is excluded from this rule.
 
 ### Hyphens (`-`) should be used to improve the readability of URIs ,not underscores (`_`)
 

@@ -30,7 +30,10 @@ Example document :
      "shortName": "Alpha romeo"
     }
 
-Also see this [HAL introduction](http://www.mwop.net/blog/2013-02-11-restful-apis-with-zf2-part-1.html).
+Also see these articles:
+* [HAL introduction](http://www.mwop.net/blog/2013-02-11-restful-apis-with-zf2-part-1.html)
+* [JSON linking with HAL](http://blog.stateless.co/post/13296666138/json-linking-with-hal)
+
 
 ### Each resource should contain a 'self' link
 

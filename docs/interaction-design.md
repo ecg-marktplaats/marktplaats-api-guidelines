@@ -24,7 +24,7 @@ Example :
     {
         "_links": {
             "self": { "href": "/v1/categories/92" },
-            "describedby": "http://api.marktplaats.nl/v1/docs/resources/category",
+            "describedby": { "href": "http://api.marktplaats.nl/v1/docs/resources/category" },
             "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
         },
         "id": 92,
@@ -78,7 +78,7 @@ Example:
     {
         "_links": {
             "self": { "href": "/v1/categories/95" },
-            "describedby": "http://api.marktplaats.nl/v1/docs/resources/category",
+            "describedby": { "href": "http://api.marktplaats.nl/v1/docs/resources/category" },
             "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
         },
         "id": 95,
@@ -118,7 +118,7 @@ Example:
     {
         "_links": {
             "self": { "href": "/v1/categories/95" },
-            "describedby": "http://api.marktplaats.nl/v1/docs/resources/category",
+            "describedby": { "href": "http://api.marktplaats.nl/v1/docs/resources/category" },
             "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
         },
         "id": 95,
@@ -161,7 +161,7 @@ Example:
     {
         "_links": {
             "self": { "href": "/v1/categories/95" },
-            "describedby": "http://api.marktplaats.nl/v1/docs/resources/category",
+            "describedby": { "href": "http://api.marktplaats.nl/v1/docs/resources/category" },
             "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
         },
         "id": 95,

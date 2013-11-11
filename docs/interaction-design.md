@@ -90,14 +90,14 @@ Example:
 Body in the response is included by default. This can be overridden with the
 [`_body` parameter](/docs/base-url.md#_body).
 
-### Use `POST` to completely update a resource
+### Use `PUT` to completely update a resource
 
-Clients use `POST` when attempting to update all fields of an existing resource. The request body contains the
+Clients use `PUT` when attempting to update all fields of an existing resource. The request body contains the
 **suggested** state representation of the resource.
 
 Example:
 
-    POST http://api.marktplaats.nl/v1/categories/95 HTTP/1.1
+    PUT http://api.marktplaats.nl/v1/categories/95 HTTP/1.1
     Host: api.marktplaats.nl
     Accept-Language: nl, en
     If-Match: "qg7968osihugw"

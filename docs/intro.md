@@ -12,8 +12,8 @@ behavior and continuity in our APIs.
     This means that changes must be communicated properly and must be backwards compatible.
 
 *   *Discovery*
-    Having just the base URL, it should be possible to discover all resources and their documentation.
-    (Level 3 of the Richardson Maturity Model).
+    Having just the base URL, it should be possible *for a programmer* to discover all resources and their
+    documentation. (Level 3 of the Richardson Maturity Model). We do not believe in automatic discovery.
 
 *   *Consistency*
     These guidelines make it possible to make all our APIs consistent. Consistency should be found in all of these

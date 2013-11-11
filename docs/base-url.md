@@ -168,3 +168,43 @@ Example :
     }
 
 
+### <a name="_body"></a> Use `_body` parameter to include/exclude a response body
+
+By default responses contain a body, even if it is mostly the same as what was posted. The `_body` parameter can be
+used to change this behavior.
+
+Parameter `_body` takes values `true` (the default) or `false`.
+
+Example:
+
+    POST http://api.marktplaats.nl/v1/categories?_body=false
+    Host: api.marktplaats.nl
+
+    {
+        "parentCategoryId": 91,
+        "name": "BMW",
+        "shortName": "BMW"
+    }
+
+
+    HTTP/1.1 201 Created
+    Location: http://api.marktplaats.nl/v1/categories/95
+
+### <a name="_method"></a> Use `POST` with a `_method` url parameter to mimic other request methods
+
+Some clients do not support all methods (e.g. `DELETE` or `PATCH` is not supported from Javascript in the browser), the
+`_method` url parameter can be used to mimic any request method.
+
+Example:
+
+    POST http://api.marktplaats.nl/v1/categories/95?_method=PATCH HTTP/1.1
+    Host: api.marktplaats.nl
+    Content-Type: application/json-patch+json
+    If-Match: "abc123"
+
+    [
+        { "op": "replace", "path": "/name", "value": "BMW" },
+        { "op": "replace", "path": "/hostName", "value": "BMW" }
+    ]
+
+is interpreted as a `PATCH` request.

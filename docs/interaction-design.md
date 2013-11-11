@@ -4,70 +4,196 @@ Interaction design
 Request methods
 ---------------
 
+Resources can support one or more of the following methods.
+
 ### GET must be used to retrieve a representation of a resource
 
-A REST API client uses the GET method in a request message to retrieve the state of a resource, in some representational form.
+A REST API client uses the GET method in a request message to retrieve the state of a resource, in some representational
+form.
 A client’s GET request message may contain headers but no body.
 
 Example :
 
-    GET http://api.marktplaats.nl/v1/categories/92
+    GET http://api.marktplaats.nl/v1/categories/92 HTTP/1.1
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
-    Content-Type: application/hal+json
+    Content-Type: application/hal+json;charset=UTF8
+    ETag: "9asoaljnssyd"
 
     {
         "_links": {
-            "self": { "href": "/categories/92" },
-            "http://api.marktplaats.nl/v1/rels/parent_category": { "href": "/categories/91" }
+            "self": { "href": "/v1/categories/92" },
+            "describedby": "http://api.marktplaats.nl/v1/docs/resources/category",
+            "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
         },
+        "id": 92,
+        "parentCategoryId": 91,
         "name": "Alpha romeo",
         "shortName": "Alpha romeo"
     }
 
+The `ETag` header should be sent in response to `GET` requests.
 
-### POST must be used to create a new resource in a collection
+The value of `ETag` is an opaque string that identifies a specific “version” of the representational state contained in
+the response’s entity (HTTP headers and body). The entity tag can be any string value, so long as it changes along with
+the resource’s representation.
 
-Clients use POST when attempting to create a new resource within a collection.
-The POST request’s body contains the **suggested** state representation of the new resource to be added to the server-owned collection.
+Clients may choose to save an `ETag` header’s value for use in future `GET` requests, as the value of the conditional
+`If-None-Match` request header. If the REST API concludes that the entity tag hasn’t changed, then it can save time and
+bandwidth by not sending the representation again.
 
-Example :
+Clients must save the `ETag` header’s value (if present) for use in future `POST`, `PUT` and `Patch` requests, as the
+value of the conditional `If-Match` request header. If the REST API concludes that the entity tag hasn’t changed, then
+it can process the requested change.
 
-    POST http://api.marktplaats.nl/v1/categories
+### `POST` must be used to create a new resource in a collection
+
+Clients use `POST` when attempting to create a new resource within a collection.
+The `POST` request’s body contains the **suggested** state representation of the new resource to be added to the
+server-owned collection.
+
+Example:
+
+    POST http://api.marktplaats.nl/v1/categories HTTP/1.1
     Host: api.marktplaats.nl
 
     {
-        "_links": {
-            "http://api.marktplaats.nl/v1/rels/parent_category": { "href": "/categories/91" }
-        },
-        "name": "Alpha romeo",
-        "shortName": "Alpha romeo"
+        "parentCategoryId": 91,
+        "name": "BMW",
+        "shortName": "BMW"
     }
 
 
-HTTP/1.1 201 Created
-Location: http://api.marktplaats.nl/v1/categories/92
+    HTTP/1.1 201 Created
+    Location: http://api.marktplaats.nl/v1/categories/95
+    Content-Type: application/hal+json;charset=UTF8
+    E-Tag: "qg7968osihugw"
+
+    {
+        "_links": {
+            "self": { "href": "/v1/categories/95" },
+            "describedby": "http://api.marktplaats.nl/v1/docs/resources/category",
+            "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
+        },
+        "id": 95,
+        "parentCategoryId": 91,
+        "name": "BMV",
+        "shortName": "BMV"
+    }
+
+Body in the response is included by default. This can be overridden with the
+[`_body` parameter](/docs/base-url.md#_body).
+
+### Use `POST` to completely update a resource
+
+Clients use `POST` when attempting to update all fields of an existing resource. The request body contains the
+**suggested** state representation of the resource.
+
+Example:
+
+    POST http://api.marktplaats.nl/v1/categories/95 HTTP/1.1
+    Host: api.marktplaats.nl
+    If-Match: "qg7968osihugw"
+
+    {
+        "id": 95,
+        "parentCategoryId": 91,
+        "name": "BMW",
+        "shortName": "BMW"
+    }
 
 
-### TODO how do we do updates? PATCH, POST, PUT
+    HTTP/1.1 200 OK
+    Location: http://api.marktplaats.nl/v1/categories/95
+    Content-Type: application/hal+json;charset=UTF8
+    E-Tag: "723nfhjasc"
+
+    {
+        "_links": {
+            "self": { "href": "/v1/categories/95" },
+            "describedby": "http://api.marktplaats.nl/v1/docs/resources/category",
+            "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
+        },
+        "id": 95,
+        "parentCategoryId": 91,
+        "name": "BMW",
+        "shortName": "BMW"
+    }
+
+The `If-Match` header is required.
+
+Body in the response is included by default. This can be overridden with the
+[`_body` parameter](/docs/base-url.md#_body).
+
+### Use `PATCH` to partially update a resource
+
+Clients use `PATCH` when attempting to partially update an existing resource. The request body contains values according
+to [RFC 6902](http://tools.ietf.org/html/rfc6902).
+
+Example:
+
+    PATCH http://api.marktplaats.nl/v1/categories/95 HTTP/1.1
+    Host: api.marktplaats.nl
+    Content-Type: application/json-patch+json
+    If-Match: "qg7968osihugw"
+
+    [
+        { "op": "replace", "path": "/name", "value": "BMW" },
+        { "op": "replace", "path": "/hostName", "value": "BMW" }
+    ]
 
 
+    HTTP/1.1 200 OK
+    Location: http://api.marktplaats.nl/v1/categories/95
+    Content-Type: application/hal+json;charset=UTF8
+    E-Tag: "723nfhjasc"
+
+    {
+        "_links": {
+            "self": { "href": "/v1/categories/95" },
+            "describedby": "http://api.marktplaats.nl/v1/docs/resources/category",
+            "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
+        },
+        "id": 95,
+        "parentCategoryId": 91,
+        "name": "BMW",
+        "shortName": "BMW"
+    }
+
+The `If-Match` header is required.
+
+The response codes for the `PATCH` method are similar to other HTTP methods except for `422 (Unprocessable Entity)`.
+Return this when the server cannot honor the request because it might result in a bad state for the resource.
+
+Body in the response is included by default. This can be overridden with the
+[`_body` parameter](/docs/base-url.md#_body).
+
+Clients that do not support the `PATCH` method may use the [`_method` parameter](/docs/base-url.md#_method).
 
 ### DELETE must be used to remove a resource from its parent
 
-A client uses DELETE to request that a resource be completely removed from its parent, which is often a collection or store.
+A client uses DELETE to request that a resource be completely removed from its parent, which is often a collection or
+store.
 
 Once a DELETE request has been processed for a given resource, the resource can no longer be found by clients.
-Therefore, any future attempt to retrieve the resource’s state representation, using either GET or HEAD, must result in a 404 (“Not Found”) status returned by the API.
-The DELETE method is idempotent. This implies that the server must return a response indicating success even if the server deleted the resource in a previous request
+Therefore, any future attempt to retrieve the resource’s state representation, using either GET or HEAD, must result in
+a 404 (“Not Found”) status returned by the API.
+
+The DELETE method is idempotent. This implies that the server must return a response indicating success even if the
+server deleted the resource in a previous request.
 
 Example:
 
     DELETE http://api.marktplaats.nl/v1/categories/92
+    Host: api.marktplaats.nl
+    If-Match: "9iurffjkqe"
 
     HTTP/1.1 204 No Content
 
+The `If-Match` header is required.
+
+Clients that do not support the `DELETE` method may use the [`_method` parameter](/docs/base-url.md#_method).
 
 ### The query component of a URI should be used to paginate collection or store results
 

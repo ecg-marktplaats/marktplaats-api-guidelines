@@ -14,6 +14,7 @@ Example document :
     {
      "_links": {
         "self": { "href": "/v1/categories/92" },
+        "describedby": "http://api.marktplaats.nl/v1/docs/resources/category",
         "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
      },
      "_embedded": {
@@ -40,6 +41,18 @@ Example :
     {
         "_links": {
             "self": { "href": "/v1/categories/1" }
+        }
+    }
+
+### Each resource should contain a 'describedby' link
+
+Each resource should have a `describedby` link :
+
+Example :
+
+    {
+        "_links": {
+          "describedby": "http://api.marktplaats.nl/v1/docs/resources/category"
         }
     }
 

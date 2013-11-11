@@ -1,23 +1,73 @@
 Versioning
 ==========
 
-Options for versioning:
+This document describes the allowed ways of changing an existing API.
 
-* Major version number in base URL
+Resource versioning
+-------------------
 
-  `http://api.marktplaats.nl/1/categories/96`
+### Change the major version in the base URL:
+
+Before:
+
+    http://api.marktplaats.nl/v1/categories/96
+
+After
+
+    http://api.marktplaats.nl/v2/categories/96
+
+Changing the major version SHOULD be done as less as possible. The old URL SHOULD be available for some time to allow
+all clients to update their code.
+
+### Add another resource
+
+It is always possible to add another link to an existing resource.
+
+In case the link replaces an older link, the old link MUST be deprecated. The old link SHOULD stay around until all
+clients got the change to update their code.
+
+Before:
+
+    {
+        "_links": {
+            "self": { "href": "/" },
+            "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
+            "http://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" }
+        }
+    }
+
+After:
+
+    {
+        "_links": {
+            "self": { "href": "/" },
+            "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
+            "http://api.marktplaats.nl/v1/docs/resources/categories": {
+              "href": "/v1/categories",
+              "deprecation": "http://api.marktplaats.nl/v1/docs/resources/categories-deprecation"
+            },
+            "http://api.marktplaats.nl/v1/docs/resources/tags": { "href": "/v1/tags" }
+        }
+    }
+
+The deprecation URL MUST point to a developer document that describes when and why the relation is deprecated.
 
 
-* New resource name, deprecate old version
+Field versioning
+----------------
 
-  before: `http://api.marktplaats.nl/1/attributes/96`
-  after: 
-    `http://api.marktplaats.nl/1/attributes/96`, relation deprecated (see HAL spec)
-    `http://api.marktplaats.nl/1/ad_attributes/96`
+### Add another field
+
+It is always allowed to add more fields to an existing resource.
+
+In case the new field replaces another field, the old field SHOULD stay around until existing clients got a chance to
+change their code.
+
+Before the the older field is removed it should be deprecated. TODO: how?
 
 
-Alternatives, DO NOT USE
-------------------------
+Alternative ways of versioning, DO NOT USE
+------------------------------------------
 
 * Major/minor version number in base URL
 

@@ -9,7 +9,7 @@ Resources
 Non binary resources should use the [HAL](http://stateless.co/hal_specification.html) JSON mediatype as the
 serialization format and responses should be [UTF-8](http://en.wikipedia.org/wiki/UTF-8) encoded.
 
-Example HAL representation:
+Example document :
 
     {
      "_links": {

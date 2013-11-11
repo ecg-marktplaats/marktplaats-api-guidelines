@@ -122,7 +122,8 @@ Example :
                "email": "2@marktplaats.nl",
                "casUser" : true
             }]
-        }
+        },
+        "totalResults": 10
     }
 
 ### The query component of a URI should be used to paginate collection or store results
@@ -134,7 +135,7 @@ The pageStartIndex parameter specifies the zero-based index of the first element
 
 Example :
 
-    GET http://api.marktplaats.nl/v1/users?pageSize=10&pageStartIndex=0
+    GET http://api.marktplaats.nl/v1/users?pageSize=2&pageStartIndex=0
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
@@ -143,7 +144,7 @@ Example :
     {
         "_links": {
             "self": { "href": "/users" },
-            "next": { "href": "/users?pageSize=10&page1" },
+            "next": { "href": "/users?pageSize=2&page1" },
             "find": { "href": "/users{?id}", "templated": true }
         },
         "_embedded": {
@@ -162,7 +163,8 @@ Example :
                "email": "2@marktplaats.nl",
                "casUser" : true
             }]
-        }
+        },
+        "totalResults": 10
     }
 
 

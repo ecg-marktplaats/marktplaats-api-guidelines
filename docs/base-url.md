@@ -31,7 +31,7 @@ and therefore a single digit should be enough for a long time. For clarity, the 
 
 For example:
 
-    GET http://api.marktplaats.nl/v1 HTTP/1.1
+    GET /v1 HTTP/1.1
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
@@ -128,7 +128,7 @@ issues. The response includes the same data output as the regular API, plus the 
 
 Example :
 
-    GET http://api.marktplaats.nl/v1/users?_callback=foo HTTP/1.1
+    GET /v1/users?_callback=foo HTTP/1.1
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
@@ -157,7 +157,7 @@ A URI’s query component is a natural fit for supplying search criteria to a co
 
 Example :
 
-    GET http://api.marktplaats.nl/v1/users?casUser=true HTTP/1.1
+    GET /v1/users?casUser=true HTTP/1.1
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
@@ -188,7 +188,7 @@ The pageStartIndex parameter specifies the zero-based index of the first element
 
 Example :
 
-    GET http://api.marktplaats.nl/v1/users?pageSize=2&pageStartIndex=0 HTTP/1.1
+    GET /v1/users?pageSize=2&pageStartIndex=0 HTTP/1.1
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK

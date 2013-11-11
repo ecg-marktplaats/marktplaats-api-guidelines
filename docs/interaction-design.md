@@ -14,7 +14,7 @@ A client’s GET request message may contain headers but no body.
 
 Example :
 
-    GET http://api.marktplaats.nl/v1/categories/92 HTTP/1.1
+    GET /v1/categories/92 HTTP/1.1
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK

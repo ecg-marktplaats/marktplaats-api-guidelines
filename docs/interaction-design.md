@@ -47,6 +47,10 @@ Clients must save the `ETag` header’s value (if present) for use in future `PO
 value of the conditional `If-Match` request header. If the REST API concludes that the entity tag hasn’t changed, then
 it can process the requested change.
 
+The `ETag` header (and `If-match` headers for other methods) are required even though the resource might not support
+versioning. The major reason for this is that these headers can not be added later on while there are clients that do
+not support it. Secondly, it is always possible to calculate the etag value based on the content of the resource.
+
 ### `POST` must be used to create a new resource in a collection
 
 Clients use `POST` when attempting to create a new resource within a collection.

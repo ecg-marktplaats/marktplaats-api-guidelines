@@ -61,10 +61,23 @@ Field versioning
 It is always allowed to add more fields to an existing resource.
 
 In case the new field replaces another field, the old field SHOULD stay around until existing clients got a chance to
-change their code.
+change their code. Before the the older field is removed it SHOULD be deprecated.
 
-Before the the older field is removed it should be deprecated. TODO: how?
+Deprecation example:
 
+    {
+      "_links": {
+         "self": { "href": "/v1/categories/92" },
+         "describedby": { "href": "http://api.marktplaats.nl/v1/docs/categories" },
+         "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
+      },
+      "name": "Alpha romeo",
+      "short-name": "Alpha romeo",
+      "shortName": "Alpha romeo",
+      "_deprecation": {
+        "short-name": "http://api.marktplaats.nl/v1/docs/resources/category/short-name-deprecation"
+      }
+    }
 
 Alternative ways of versioning, DO NOT USE
 ------------------------------------------

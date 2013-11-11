@@ -119,13 +119,45 @@ as URIs one and two, which may give unnecessary confusion.
 
 Parameters inside the URI path are excluded from this rule.
 
+
+### <a name="_callback"></a> Use `_callback` parameter to return a jsonp response
+
+You can send a ?_callback parameter to any GET call to have the results wrapped in a JSON function.
+This is typically used when browsers want to embed marktplaats content in web pages by getting around cross domain issues.
+The response includes the same data output as the regular API, plus the relevant HTTP Header information.
+
+Example :
+
+    GET http://api.marktplaats.nl/v1/users?_callback=foo HTTP/1.1
+    Host: api.marktplaats.nl
+
+    HTTP/1.1 200 OK
+    Content-Type: application/hal+json
+    foo({
+        "_links": {
+            "self": { "href": "/users" },
+        },
+        "_embedded": {
+            "http://api.marktplaats.nl/v1/rels/user": [{
+               "_links": {
+                 "self": { "href": "/users/2" },
+               },
+               "name": "Richard",
+               "email": "2@marktplaats.nl",
+               "casUser" : true
+            }]
+        },
+        "totalResults": 10
+    })
+
+
 ### The query component of a URI should be used to filter collections or stores
 
 A URI’s query component is a natural fit for supplying search criteria to a collection or store.
 
 Example :
 
-    GET http://api.marktplaats.nl/v1/users?casUser=true
+    GET http://api.marktplaats.nl/v1/users?casUser=true HTTP/1.1
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
@@ -156,7 +188,7 @@ The pageStartIndex parameter specifies the zero-based index of the first element
 
 Example :
 
-    GET http://api.marktplaats.nl/v1/users?pageSize=2&pageStartIndex=0
+    GET http://api.marktplaats.nl/v1/users?pageSize=2&pageStartIndex=0 HTTP/1.1
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
@@ -198,7 +230,7 @@ Parameter `_body` takes values `true` (the default) or `false`.
 
 Example:
 
-    POST http://api.marktplaats.nl/v1/categories?_body=false
+    POST http://api.marktplaats.nl/v1/categories?_body=false HTTP/1.1
     Host: api.marktplaats.nl
 
     {

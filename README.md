@@ -13,6 +13,7 @@ Guidelines for externally visible APIs.
         * https.
         * Short.
         * Includes major version (single digit) in path.
+        * The base URL is a HAL resource.
     * Naming
         * Document names should be a singular noun.
         * Collections names should be a plural noun.

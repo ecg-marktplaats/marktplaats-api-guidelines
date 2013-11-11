@@ -122,9 +122,9 @@ Parameters inside the URI path are excluded from this rule.
 
 ### <a name="_callback"></a> Use `_callback` parameter to return a jsonp response
 
-You can send a ?_callback parameter to any GET call to have the results wrapped in a JSON function.
-This is typically used when browsers want to embed marktplaats content in web pages by getting around cross domain issues.
-The response includes the same data output as the regular API, plus the relevant HTTP Header information.
+You can send a `?_callback` parameter to any `GET` call to have the results wrapped in a JSON function.
+This is typically used when browsers want to embed marktplaats content in web pages by getting around cross domain
+issues. The response includes the same data output as the regular API, plus the relevant HTTP Header information.
 
 Example :
 

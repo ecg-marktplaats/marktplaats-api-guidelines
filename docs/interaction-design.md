@@ -132,6 +132,8 @@ The `If-Match` header is required.
 Body in the response is included by default. This can be overridden with the
 [`_body` parameter](/docs/base-url.md#_body).
 
+Clients that do not support the `PUT` method may use the [`_method` parameter](/docs/base-url.md#_method).
+
 ### Use `PATCH` to partially update a resource
 
 Clients use `PATCH` when attempting to partially update an existing resource. The request body contains values according

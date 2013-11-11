@@ -97,3 +97,72 @@ The first URL is fine and RFC3986 considers the second url to be identical to UR
 as URIs one and two, which may give unnecessary confusion.
 
 Parameters inside the URI path are excluded from this rule.
+
+### The query component of a URI should be used to filter collections or stores
+
+A URI’s query component is a natural fit for supplying search criteria to a collection or store.
+
+Example :
+
+    GET http://api.marktplaats.nl/v1/users?casUser=true
+    Host: api.marktplaats.nl
+
+    HTTP/1.1 200 OK
+    Content-Type: application/hal+json
+    {
+        "_links": {
+            "self": { "href": "/users" },
+        },
+        "_embedded": {
+            "http://api.marktplaats.nl/v1/rels/user": [{
+               "_links": {
+                 "self": { "href": "/users/2" },
+               },
+               "name": "Richard",
+               "email": "2@marktplaats.nl",
+               "casUser" : true
+            }]
+        }
+    }
+
+### The query component of a URI should be used to paginate collection or store results
+
+A REST API client should use the query component to paginate collection and store results with the pageSize and pageStartIndex parameters.
+
+The pageSize parameter specifies the maximum number of contained elements to return in the response.
+The pageStartIndex parameter specifies the zero-based index of the first element to return in the response.
+
+Example :
+
+    GET http://api.marktplaats.nl/v1/users?pageSize=10&pageStartIndex=0
+    Host: api.marktplaats.nl
+
+    HTTP/1.1 200 OK
+    Content-Type: application/hal+json
+
+    {
+        "_links": {
+            "self": { "href": "/users" },
+            "next": { "href": "/users?pageSize=10&page1" },
+            "find": { "href": "/users{?id}", "templated": true }
+        },
+        "_embedded": {
+            "http://api.marktplaats.nl/v1/rels/user": [{
+               "_links": {
+                 "self": { "href": "/users/1" },
+               },
+               "sellername": "Robin",
+               "email": "1@marktplaats.nl",
+               "casUser" : false
+             },{
+               "_links": {
+                 "self": { "href": "/users/2" },
+               },
+               "name": "Richard",
+               "email": "2@marktplaats.nl",
+               "casUser" : true
+            }]
+        }
+    }
+
+

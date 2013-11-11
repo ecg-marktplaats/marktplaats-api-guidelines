@@ -7,6 +7,7 @@ Options for versioning:
 
   `http://api.marktplaats.nl/1/categories/96`
 
+
 * New resource name, deprecate old version
 
   before: `http://api.marktplaats.nl/1/attributes/96`

@@ -263,3 +263,52 @@ Example :
         "totalResults": 10
     })
 
+### <a name="_expand"></a> Use the `_expand` parameter for zooming
+
+Zooming is an optional technique that allows linked resources to be embedded. The embedded resources are serializes as
+described by [HAL](http://stateless.co/hal_specification.html).
+
+Example :
+
+    GET /v1/categories/92?_expand=parent-category HTTP/1.1
+    Host: api.marktplaats.nl
+
+    HTTP/1.1 200 OK
+    Content-Type: application/hal+json;charset=UTF8
+    ETag: "7dsyiuh44aa"
+
+    {
+        "_links": {
+            "self": { "href": "/v1/categories/92" },
+            "describedby": { "href": "http://api.marktplaats.nl/v1/docs/resources/category" },
+            "http://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
+        },
+        "_embedded": {
+            "http://api.marktplaats.nl/v1/rels/parent-category": [{
+               "_links": {
+                 "self": { "href": "/v1/categories/91" },
+               },
+               "id": 91,
+               "name": "Auto's, motors en andere voertuigen",
+               "shortName": "Auto's"
+            }]
+        },
+        "id": 92,
+        "parentCategoryId": 91,
+        "name": "Alpha romeo",
+        "shortName": "Alpha romeo"
+    }
+
+TODO: look into <http://www.etsy.com/developers/documentation/getting_started/resources> to allow pagination
+
+
+### <a name="_include_exclude"></a> Use the `_include` and `_exclude` parameters for selecting fields
+
+The `_include` and `_exclude` parameters can be used to select fields. If both parameters are present, only the
+`_include` parameter is used.
+
+TODO: look into <http://www.etsy.com/developers/documentation/getting_started/resources> to allow pagination
+
+Example :
+
+    TODO

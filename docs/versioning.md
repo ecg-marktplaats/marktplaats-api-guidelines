@@ -74,7 +74,7 @@ Deprecation example:
       "_links": {
          "self": { "href": "/v1/categories/92" },
          "describedby": { "href": "http://api.marktplaats.nl/v1/docs/categories" },
-         "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
+         "http://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
       },
       "name": "Alpha romeo",
       "short-name": "Alpha romeo",

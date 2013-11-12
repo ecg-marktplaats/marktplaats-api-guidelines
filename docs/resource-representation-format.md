@@ -15,10 +15,10 @@ Example document :
      "_links": {
         "self": { "href": "/v1/categories/92" },
         "describedby": "http://api.marktplaats.nl/v1/docs/resources/category",
-        "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
+        "http://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
      },
      "_embedded": {
-        "http://api.marktplaats.nl/v1/docs/rels/parent_category": {
+        "http://api.marktplaats.nl/v1/docs/rels/parent-category": {
              "_links": {
                 "self": { "href": "/v1/categories/91" }
              },
@@ -89,6 +89,18 @@ This page should contain the following information
 *   A list of request methods (GET, PUT, POST etc) supported for this URI and for each method.
 *   A description of the responses you can expect from any of the given request methods. This description should contain
     the status code and a description of the links and embedded resources included in the response.
+
+Relation names
+--------------
+
+### Relation names are in English unless they represent a product or company name.
+
+The consumers of the API will almost certainly not all be Dutch so field names should be in English unless they
+represent a product or company name.
+
+### Words in relation names are separated by a dash `-`
+
+Relation names are used in URL and words are therefore separated by dash `-`.
 
 Field names
 -----------

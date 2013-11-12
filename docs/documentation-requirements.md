@@ -46,6 +46,7 @@ The following must be documented for each resource:
     * supported methods
     * whether it can be embedded
     * whether it is deprecated
+    * whether it supports zooming
 * A list of all fields with for each field:
     * name
     * description

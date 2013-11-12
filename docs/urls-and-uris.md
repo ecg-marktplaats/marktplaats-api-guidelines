@@ -324,7 +324,7 @@ Example :
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
-    Content-Type: application/javascript
+    Content-Type: application/hal+json;charset=UTF8
 
     {
         "_links": {

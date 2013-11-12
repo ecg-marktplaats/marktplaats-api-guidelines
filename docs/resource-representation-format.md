@@ -212,7 +212,7 @@ and [vnd.error](https://github.com/blongden/vnd.error) format.
 
 Here is an example request that produces an error response:
 
-    POST http://api.marktplaats.nl/v1/categories/95 HTTP/1.1
+    POST /v1/categories/95 HTTP/1.1
     Host: api.marktplaats.nl
     Accept-Language: nl, en
     If-Match: "qg7968osihugw"

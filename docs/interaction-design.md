@@ -59,7 +59,7 @@ server-owned collection.
 
 Example:
 
-    POST http://api.marktplaats.nl/v1/categories HTTP/1.1
+    POST /v1/categories HTTP/1.1
     Host: api.marktplaats.nl
     Accept-Language: nl, en
 
@@ -97,7 +97,7 @@ Clients use `PUT` when attempting to update all fields of an existing resource. 
 
 Example:
 
-    PUT http://api.marktplaats.nl/v1/categories/95 HTTP/1.1
+    PUT /v1/categories/95 HTTP/1.1
     Host: api.marktplaats.nl
     Accept-Language: nl, en
     If-Match: "qg7968osihugw"
@@ -141,7 +141,7 @@ to [RFC 6902](http://tools.ietf.org/html/rfc6902).
 
 Example:
 
-    PATCH http://api.marktplaats.nl/v1/categories/95 HTTP/1.1
+    PATCH /v1/categories/95 HTTP/1.1
     Host: api.marktplaats.nl
     Accept-Language: nl, en
     Content-Type: application/json-patch+json

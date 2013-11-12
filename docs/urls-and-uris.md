@@ -221,7 +221,7 @@ Some clients do not support all methods (e.g. `DELETE` or `PATCH` is not support
 
 Example:
 
-    POST http://api.marktplaats.nl/v1/categories/95?_method=PATCH HTTP/1.1
+    POST /v1/categories/95?_method=PATCH HTTP/1.1
     Host: api.marktplaats.nl
     Content-Type: application/json-patch+json
     If-Match: "abc123"

@@ -249,31 +249,31 @@ Here is an example request that produces an error response:
         "logref": "4298asfpohsa98yasohq97q3yff22",
         "errorCode" : "validation-failure",
         "message": "Validatie mislukt",
-        "messages": [
-            { "field": "is", "message": "Is geen geldig getal." },
-            { "field": "name", "message": "Een waarde is verplicht." },
-            { "field": "shortName", "message": "Is geen auto-merk." },
-            { "message": "Some error over multiple fields." }
+        "details": [
+            { "field": "is",        "message": "Is geen geldig getal.",  "code": "not-a-number" },
+            { "field": "name",      "message": "Minstens 15 karakters.", "code": "too-short", "value": 15 },
+            { "field": "shortName", "message": "Is geen auto-merk.",     "code": "not-a-car-brand" },
+            { "fields": ["field1", "field2"], "message": "Some error over multiple fields.", "code": "a-b-c" }
         ]
     }
 
-`$._link.help.href` *(required)* : A URL that refers to a help page. (See [documentation](documentation.md).)
+`_link.help.href` *(required)* : A URL that refers to a help page. (See [documentation](documentation.md).)
 
-`$.logref` *(required)* : An identifier that refers to the specific error on the server side for logging purposes
+`logref` *(required)* : An identifier that refers to the specific error on the server side for logging purposes
 (e.g. `RequestData.uniqueRequestId`).
 
-`$.message` *(required)* : A human readable message related to the current error which may be displayed to the user of
+`message` *(required)* : A human readable message related to the current error which may be displayed to the user of
 the api.
 
-`$.errorCode` *(required)* : An error code. The error code SHOULD be same as the last part of the help url and MUST
+`errorCode` *(required)* : An error code. The error code SHOULD be same as the last part of the help url and MUST
 consist (mostly) out of lower case letters. (Letters allow for easier documentation-lookup then just a numeric code.)
 
-`$.details` *(optional)* : Field by field error messages.
+`details` *(optional)* : Field by field error messages.
 
-`$.details[*].field` *(required)* : Name of the field that did not validate. Is only required when the error can be
+`details[*].field` *(required)* : Name of the field that did not validate. Is only required when the error can be
 subscribed to a particular field.
 
-`$.details[*].message` *(required)* : A human readable description of the message for the given field in error. Please
+`details[*].message` *(required)* : A human readable description of the message for the given field in error. Please
 make sure field contains a full sentence.
 
 All fields are string values.

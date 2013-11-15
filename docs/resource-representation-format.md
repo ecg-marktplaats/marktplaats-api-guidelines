@@ -247,11 +247,12 @@ Here is an example request that produces an error response:
             }
         },
         "logref": "4298asfpohsa98yasohq97q3yff22",
-        "errorCode" : "validation-failure",
+        "code" : "validation-failure",
         "message": "Validatie mislukt",
         "details": [
             { "field": "is",        "message": "Is geen geldig getal.",  "code": "not-a-number" },
-            { "field": "name",      "message": "Minstens 15 karakters.", "code": "too-short", "value": 15 },
+            { "field": "name",      "message": "Minstens 15 karakters.", "code": "too-short", "value": "15" },
+            { "field": "name",      "message": "'%' is niet toegestaan.","code": "pattern-did-not-match", "value": "[a-zA-Z0-9]{15,30}" },
             { "field": "shortName", "message": "Is geen auto-merk.",     "code": "not-a-car-brand" },
             { "fields": ["field1", "field2"], "message": "Some error over multiple fields.", "code": "a-b-c" }
         ]
@@ -265,16 +266,20 @@ Here is an example request that produces an error response:
 `message` *(required)* : A human readable message related to the current error which may be displayed to the user of
 the api.
 
-`errorCode` *(required)* : An error code. The error code SHOULD be same as the last part of the help url and MUST
+`code` *(required)* : An error code. The error code SHOULD be same as the last part of the help url and MUST
 consist (mostly) out of lower case letters. (Letters allow for easier documentation-lookup then just a numeric code.)
 
 `details` *(optional)* : Field by field error messages.
 
-`details[*].field` *(required)* : Name of the field that did not validate. Is only required when the error can be
-subscribed to a particular field.
+`details[*].field` or `details[*].fields` *(one is required)* : Name of the field(s) that did not validate.
 
 `details[*].message` *(required)* : A human readable description of the message for the given field in error. Please
 make sure field contains a full sentence.
+
+`details[*].code` *(required)* : A machine readable code for the error.
+
+`details[*].value` *(optional)* : An optional value which supports the machine readable code. The actual value and
+its format depends on the error code.
 
 All fields are string values.
 

@@ -37,6 +37,7 @@ The following must be documented for each resource:
 * URL template
 * supported methods
 * in which resources it can be embedded
+* whether ETag is supported
 * whether it is deprecated
 * For each linked resource:
     * name

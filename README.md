@@ -3,6 +3,12 @@ api-guidelines
 
 Guidelines for externally visible APIs.
 
+TODO:
+    * rate limiting
+    * security
+
+
+
 
 * [Introduction](docs/intro.md)
     * Principles

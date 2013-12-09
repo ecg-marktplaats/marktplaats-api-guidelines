@@ -29,13 +29,18 @@ and therefore a single digit should be enough for a long time. For clarity, the 
 
 ### The base URL is a HAL resource
 
+The base URL is a HAL resource with appropriate documentation links. It has content type  `application/hal+json`.
+However, do not confuse browsers, we serve the document with content type `application/json`.
+
+The resource MUST be encoded with UTF-8.
+
 For example:
 
     GET /v1 HTTP/1.1
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
-    Content-Type: application/hal+json;charset=UTF8
+    Content-Type: application/json
     ETag: "d9087df677dgh"
 
     {
@@ -132,7 +137,7 @@ Example :
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
-    Content-Type: application/hal+json
+    Content-Type: application/json
     {
         "_links": {
             "self": { "href": "/users" },
@@ -152,23 +157,23 @@ Example :
 
 ### The query component of a URI should be used to paginate collection or store results
 
-A REST API client should use the query component to paginate collection and store results with the pageSize and pageStartIndex parameters.
+A REST API client should use the query component to paginate collection and store results with the `offset` and `limit` parameters.
 
-The pageSize parameter specifies the maximum number of contained elements to return in the response.
-The pageStartIndex parameter specifies the zero-based index of the first element to return in the response.
+The `limit` parameter specifies the maximum number of contained elements to return in the response.
+The `offset` parameter specifies the zero-based index of the first element to return in the response.
 
 Example :
 
-    GET /v1/users?pageSize=2&pageStartIndex=0 HTTP/1.1
+    GET /v1/users?offset=0&limit=2 HTTP/1.1
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
-    Content-Type: application/hal+json
+    Content-Type: application/json
 
     {
         "_links": {
             "self": { "href": "/users" },
-            "next": { "href": "/users?pageSize=2&page1" },
+            "next": { "href": "/users?offset=0&limit=2" },
             "find": { "href": "/users{?id}", "templated": true }
         },
         "_embedded": {
@@ -239,7 +244,9 @@ You can send a `?_callback` parameter to any `GET` call to have the results wrap
 This is typically used when browsers want to embed marktplaats content in web pages by getting around cross domain
 issues. The response includes the same data output as the regular API, plus the relevant HTTP Header information.
 
-Example :
+The content type of the response MUST be `application/javascript`.
+
+Example:
 
     GET /v1/users?_callback=foo HTTP/1.1
     Host: api.marktplaats.nl
@@ -274,7 +281,7 @@ Example :
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
-    Content-Type: application/hal+json;charset=UTF8
+    Content-Type: application/json
     ETag: "7dsyiuh44aa"
 
     {
@@ -315,16 +322,18 @@ Example :
 
 ### <a name="_prettyprint"></a> Use the `_prettyprint` parameter to return a pretty printed response
 
-You can send a `?_prettyprint` parameter to any call to have the output formatted in a way  intended to make the
-content easier for people to view, read, and understand
+Implementation CAN support the `?_prettyprint` parameter to make it easier for people to view, read and understand
+resources. Formatting is enabled when the parameter is present and does not have the value `false`.
+
+Consider enabling pretty printing by default for documentation resources only (e.g. the `/` resource).
 
 Example :
 
-    GET /v1/categories/95?_prettyprint=true HTTP/1.1
+    GET /v1/categories/95?_prettyprint HTTP/1.1
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
-    Content-Type: application/hal+json;charset=UTF8
+    Content-Type: application/json
 
     {
         "_links": {

@@ -4,10 +4,13 @@ Resource representation format
 Resources
 ---------
 
-### Serialization format: hal+json;charset=UTF-8
+### Serialization format: HAL in UTF-8 encoding
 
-Non binary resources should use the [HAL](http://stateless.co/hal_specification.html) JSON mediatype as the
-serialization format and responses should be [UTF-8](http://en.wikipedia.org/wiki/UTF-8) encoded.
+Non binary resources SHOULD use the [HAL](http://stateless.co/hal_specification.html) JSON mediatype as the
+serialization format and responses SHOULD be encoded with [UTF-8](http://en.wikipedia.org/wiki/UTF-8).
+
+The proper content type for HAL documents is `application/hal+json`. However, do not confuse browsers, we serve the
+document with content type `application/json`.
 
 Example document :
 
@@ -142,7 +145,7 @@ See versioning.
 Field values
 ------------
 
-TODO: incorporate <https://developers.google.com/discovery/v1/type-format>.
+See also the list of supported field types: [documentation-requirements.md](#field-types).
 
 ### Structure field values
 
@@ -190,27 +193,25 @@ used currency unit for a given currency.
 ### All numbers are integers unless precision is not important
 
 Most numbers need to be precise, rounding due to using a floating point (64-bit IEEE754, or 32-bit IEEE754) can lead to
-unexpected errors. There are two options:
+unexpected errors. There are two allowed options:
 
 * represent the number in some exponent (e.g. in cm instead of m), this is required with a monetary amount
   (see previous rule),
 * represent the precise number as a string.
 
-The first option is preferred. However, for larger numbers (JSON does not support number above 2^52), the second option
-must be selected.
+The first option is preferred. However, for larger numbers (JSON does not support numbers above 2^52), the second option
+MUST be selected.
 
 There are few exceptions to this rule. Here is the list of known and allowed exceptions:
 
 * WGS84 coordinates
+* Rates or ratios that have a value between `0.0` and `1.0`.
 
-See also the list of supported field types: <https://developers.google.com/discovery/v1/type-format>.
-
-TODO: copy the list from google to our own docs
+See also the list of supported field types: [documentation-requirements.md](#field-types).
 
 ### Binary field values
 
-See also the list of supported field types: <https://developers.google.com/discovery/v1/type-format>.
-
+See the list of supported field types: [documentation-requirements.md](#field-types).
 
 
 Errors
@@ -237,7 +238,7 @@ Here is an example request that produces an error response:
 
 
     HTTP/1.1 400 Bad Request
-    Content-Type: application/hal+json
+    Content-Type: application/json
     Content-Language: nl
 
     {
@@ -257,6 +258,8 @@ Here is an example request that produces an error response:
             { "fields": ["field1", "field2"], "message": "Some error over multiple fields.", "code": "a-b-c" }
         ]
     }
+
+Response code is `400`, content type MUST be `application/json`, encoding MUST be UTF-8.
 
 `_link.help.href` *(required)* : A URL that refers to a help page. (See [documentation](documentation.md).)
 

@@ -18,7 +18,7 @@ Example :
     Host: api.marktplaats.nl
 
     HTTP/1.1 200 OK
-    Content-Type: application/hal+json;charset=UTF8
+    Content-Type: application/json
     ETag: "9asoaljnssyd"
 
     {
@@ -33,7 +33,9 @@ Example :
         "shortName": "Alpha romeo"
     }
 
-The `ETag` header should be sent in response to `GET` requests.
+### Resources with `ETag` support
+
+The `ETag` header MUST be sent in response to `GET` requests for resources with ETag support.
 
 The value of `ETag` is an opaque string that identifies a specific “version” of the representational state contained in
 the response’s entity (HTTP headers and body). The entity tag can be any string value, so long as it changes along with
@@ -47,9 +49,13 @@ Clients must save the `ETag` header’s value (if present) for use in future `PO
 value of the conditional `If-Match` request header. If the REST API concludes that the entity tag hasn’t changed, then
 it can process the requested change.
 
-The `ETag` header (and `If-match` headers for other methods) are required even though the resource might not support
-versioning. The major reason for this is that these headers can not be added later on while there are clients that do
-not support it. Secondly, it is always possible to calculate the etag value based on the content of the resource.
+### Resources without `ETag` support
+
+The `ETag` header MUST NOT be sent in response to `GET` requests for resources that do not support ETags.
+
+Requests for resources without `ETag` support that contain a `If-Match` or `If-Non-Match` header (or any other
+conditional header) MUST be responded to with a `400 Bad Request`. The body of the response must make clear that
+conditional headers are not allowed on resources that do not support it.
 
 ### `POST` must be used to create a new resource in a collection
 
@@ -72,7 +78,7 @@ Example:
 
     HTTP/1.1 201 Created
     Location: http://api.marktplaats.nl/v1/categories/95
-    Content-Type: application/hal+json;charset=UTF8
+    Content-Type: application/json
     E-Tag: "qg7968osihugw"
 
     {
@@ -112,7 +118,7 @@ Example:
 
     HTTP/1.1 200 OK
     Location: http://api.marktplaats.nl/v1/categories/95
-    Content-Type: application/hal+json;charset=UTF8
+    Content-Type: application/json
     E-Tag: "723nfhjasc"
 
     {
@@ -127,7 +133,8 @@ Example:
         "shortName": "BMW"
     }
 
-The `If-Match` header is required.
+The `If-Match` header is NOT allowed for resources that don't support ETag. It is optional (but strongly recommended)
+for resources that do support it.
 
 Body in the response is included by default. This can be overridden with the
 [`_body` parameter](/docs/base-url.md#_body).
@@ -155,7 +162,7 @@ Example:
 
     HTTP/1.1 200 OK
     Location: http://api.marktplaats.nl/v1/categories/95
-    Content-Type: application/hal+json;charset=UTF8
+    Content-Type: application/json
     E-Tag: "723nfhjasc"
 
     {
@@ -170,7 +177,10 @@ Example:
         "shortName": "BMW"
     }
 
-The `If-Match` header is required.
+Implementation are recommended to implement `replace` as `add` when the field is not present in the original representation.
+
+The `If-Match` header is NOT allowed for resources that don't support ETag. It is optional (but strongly recommended)
+for resources that do support it.
 
 The response codes for the `PATCH` method are similar to other HTTP methods except for `422 (Unprocessable Entity)`.
 Return this when the server cannot honor the request because it might result in a bad state for the resource.
@@ -201,7 +211,8 @@ Example:
 
     HTTP/1.1 204 No Content
 
-The `If-Match` header is required.
+The `If-Match` header is NOT allowed for resources that don't support ETag. It is optional (but strongly recommended)
+for resources that do support it.
 
 Clients that do not support the `DELETE` method may use the [`_method` parameter](/docs/base-url.md#_method).
 

@@ -223,6 +223,7 @@ Example:
 
 Some clients do not support all methods (e.g. `DELETE` or `PATCH` is not supported from Javascript in the browser), the
 `_method` url parameter can be used to mimic any request method.
+Instead of the `_method` parameter, we also should support setting the method using the request header `X-HTTP-METHOD-OVERRIDE` (optionally other headers, like `X-HTTP-METHOD` and `X-METHOD-OVERRIDE` may also be supported).
 
 Example:
 
@@ -313,6 +314,8 @@ TODO: look into <http://www.etsy.com/developers/documentation/getting_started/re
 
 The `_include` and `_exclude` parameters can be used to select fields. If both parameters are present, only the
 `_include` parameter is used.
+
+Both fields have a similar format. A list of comma separated field names are valid arguments for both `_include` and `_exclude`. 
 
 TODO: look into <http://www.etsy.com/developers/documentation/getting_started/resources> to allow pagination
 

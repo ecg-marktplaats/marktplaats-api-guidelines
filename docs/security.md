@@ -51,6 +51,10 @@ The Client credential grant enables the client to authenticate itself with the A
 
 In general, it is not preferred to have no authentication at all for any endpoint of your API, because it will be impossible to relate a call to a specific client and it opens up the API for misuse, because it will be impossible to do any rate limiting.
 
+#### Application specific tokens
+
+It may be desirable to allow an user of your website to create application specific tokens. This will allow the user to create a token for a specific application (or client). Your website will then present the user with an access_token which can be used to perform calls to the API. This is basically a way directly use your API, without the necessity to go through the entire authentication flow. This can be useful to lower the barrier for creating simple clients which are using your API. 
+
 ### Secure implementation of OAuth 2.0
 
 There are some things to take into consideration when implementing OAuth 2.0. It is recommended to at least apply the following rules to your implementation:

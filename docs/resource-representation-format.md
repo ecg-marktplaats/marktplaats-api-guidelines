@@ -154,6 +154,12 @@ might later move to a separate entity.
 
 TODO: discuss, this might make it harder for clients??
 
+### Field values that are optional
+
+When a field can be empty (or omitted) when creating a resource, it should be left out of the request. When returning a resource with optional fields, and there is no value for a given field, then the field should be left out entirely in case of a String, Numeric or Object value. In the case of an Array, an empty list may be returned.
+
+The rationale for leaving omitting the field when creating or updating a resource (POST, PUT or PATCH), is that it is not allowed to specify a key without a value. Theoretically, the value _null_ could be used, but this will only lead to confusion and complicate the parsing of the JSON object.
+
 ### Field values that represent a timestamp are in ISO 8601
 
 Timestamp values are represented using the [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format full syntax in UTC (`Z`)
@@ -300,4 +306,3 @@ from <http://i.stack.imgur.com/whhD1.png>.)
 
 It may be tempting to include a stack trace for easier support when something goes wrong. Don't do it! This kind of
 information is too valuable for hackers and MUST be avoided.
-

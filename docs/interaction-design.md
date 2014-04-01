@@ -89,8 +89,8 @@ Example:
         },
         "id": 95,
         "parentCategoryId": 91,
-        "name": "BMV",
-        "shortName": "BMV"
+        "name": "BMW",
+        "shortName": "BMW"
     }
 
 Body in the response is included by default. This can be overridden with the

@@ -103,3 +103,8 @@ TODO:
     * Field versioning
         * Clients should be able to cope with new attributes added to existing resources
 
+Changelog
+=========
+
+* 1-4-2014 - Added some remarks on optional fields in 'resource-representation'
+* 31-3-2014 - Added section on security

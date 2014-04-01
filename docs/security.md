@@ -47,13 +47,24 @@ In general, the minimum you need to support in you authentication flow should be
 
 The first three grants, Authorization code grant, Implicit grant and Resource owner password credentials grant, allows the client to authenticate against the API on behalf of the resource owner. For security reasons, the Authorization code grant is the most preferred way to achieve this.
 
+Implicit grant **should not be used**, because it is unsecure and vulnerable for XSS and CSRF attacks. Because this is a problem, the used Authorization Server should not support it, because if you support it your Authorization code grant is in theory not more safe than Implicit grant, unless you enforce the client to register the *response_type* with the *redirect_uri* and check for that. Without this check, it is trivial to change *response_type=code* to *response_type=token*, with all the negative consequences implied with the implicit grant as well.
+
 The Client credential grant enables the client to authenticate itself with the API without a resource owner. This is specifically useful to do 'service' calls to the API, which are not specific for a given user, or to allow a user of the client to access the API without having to authenticate explicitly. This can be useful to allow the client to give the user access to 'public' information (anonymous requests).
 
 In general, it is not preferred to have no authentication at all for any endpoint of your API, because it will be impossible to relate a call to a specific client and it opens up the API for misuse, because it will be impossible to do any rate limiting.
 
+#### Registration of Clients
+
+Before a client application can authenticate against the resource server, it is required that a client can be registered. Some recommendations to improve security of your application regarding registration of clients:
+
+* It is required that a client register at least one *request_uri*.
+* It is recommended that it is allowed to register multiple *request_uri* for a client and use it as a whitelist of allowed request_uri's.
+* When possible, allow the client to register the allowed scopes for each *request_uri* and verify these when authorizing a user.
+* When possible, register the allowed *response_type* (normally only *code* should be allowed) for each *request_uri*. This way, you prevent malicious clients from unauthorized use of resources on behalf of a resource owner.
+
 #### Application specific tokens
 
-It may be desirable to allow an user of your website to create application specific tokens. This will allow the user to create a token for a specific application (or client). Your website will then present the user with an access_token which can be used to perform calls to the API. This is basically a way directly use your API, without the necessity to go through the entire authentication flow. This can be useful to lower the barrier for creating simple clients which are using your API. 
+It may be desirable to allow an user of your website to create application specific tokens. This will allow the user to create a token for a specific application (or client). Your website will then present the user with an access_token which can be used to perform calls to the API. This is basically a way directly use your API, without the necessity to go through the entire authentication flow. This can be useful to lower the barrier for creating simple clients which are using your API.
 
 ### Secure implementation of OAuth 2.0
 

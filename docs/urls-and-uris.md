@@ -173,7 +173,7 @@ Example :
     {
         "_links": {
             "self": { "href": "/users" },
-            "next": { "href": "/users?offset=0&limit=2" },
+            "next": { "href": "/users?offset=1&limit=2" },
             "find": { "href": "/users{?id}", "templated": true }
         },
         "_embedded": {

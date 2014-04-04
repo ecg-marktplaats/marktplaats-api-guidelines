@@ -1,10 +1,13 @@
 Security
 ========
 
-## Authentication
+# Authentication
 
 
 Authentication should be done using OAuth 2.0. OAuth 2.0 does not prescribe exactly how it should be used, since it is basically a framework for authorization methods. However, there are some industry standards which are nowadays considered the default implementation of OAuth 2.0. Since we strive to a consistent and predictable API, this is the way OAuth 2.0 should be used in our API's.
+
+## OAuth 2
+
 
 ### What is OAuth 2.0
 
@@ -77,7 +80,14 @@ For Authentication Grant:
 
 ## Rate limiting
 
-Rate limiting should be part of the API. The number of request should be limited for a client as well for a resource owner. Exact details TBD.
+Rate limiting should be part of the API. Rate limiting can be done on client level, user level or both. Recommended is to at least implement rate limiting on client level. When a client exceeds the amount of allowed request, the API should respond with a 429 ('Too many requests') http code. The API should provide a ``Retry-After`` header where the value for this header is the number of seconds after which the client should be able to send successful requests again.
+
+Because we want our API's to be predictable and easy to use, the API should provide the following headers to inform the API client on its usage restrictions:
+
+* ``X-Rate-Limit-Limit`` - The rate limit ceiling for that given request.
+* ``X-RateLimit-Remaining`` - The number of requests left for the time window.
+* ``X-RateLimit-Reset`` - The remaining window before rate limit resets in UTC epoch seconds.
+
 
 ## General security advice
 

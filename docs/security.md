@@ -65,6 +65,16 @@ Before a client application can authenticate against the resource server, it is 
 * When possible, allow the client to register the allowed scopes for each *request_uri* and verify these when authorizing a user.
 * When possible, register the allowed *response_type* (normally only *code* should be allowed) for each *request_uri*. This way, you prevent malicious clients from unauthorized use of resources on behalf of a resource owner.
 
+#### Scope
+
+When registering a client, the OAuth server must support that the allowed *permission scopes* for a client can be specified. Permission scopes are basically rights which the client can request for the *resource owner* when authenticating agains the *resource server*.
+
+The following rules should be followed when defining scopes for an API:
+
+* Scopes have to be in lowercase
+* Underscores may be used to separate words in a scope. For example ``place_advertisement`` as a scope for placing advertisements.
+* Optionally, a colon can be used to indicate hierarchical permission scopes. For example, if there is a scope ``user`` to get access to the user details, an API may opt to support a subset of this permission scope. Such a subset can be a permission scope to get access to the email address of a user, in which situation this scope can be named ``user:email``. 
+
 #### Application specific tokens
 
 It may be desirable to allow an user of your website to create application specific tokens. This will allow the user to create a token for a specific application (or client). Your website will then present the user with an access_token which can be used to perform calls to the API. This is basically a way directly use your API, without the necessity to go through the entire authentication flow. This can be useful to lower the barrier for creating simple clients which are using your API.

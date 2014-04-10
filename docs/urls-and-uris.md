@@ -242,7 +242,7 @@ is interpreted as a `PATCH` request.
 ### <a name="_callback"></a> Use the `_callback` parameter to return a jsonp response
 
 You can send a `?_callback` parameter to any `GET` call to have the results wrapped in a JSON function.
-This is typically used when browsers want to embed marktplaats content in web pages by getting around cross domain
+This is typically used when browsers want to embed Marktplaats content in web pages by getting around cross domain
 issues. The response includes the same data output as the regular API, plus the relevant HTTP Header information.
 
 The content type of the response MUST be `application/javascript`.
@@ -273,7 +273,7 @@ Example:
 
 ### <a name="_expand"></a> Use the `_expand` parameter for zooming
 
-Zooming is an optional technique that allows linked resources to be embedded. The embedded resources are serializes as
+Zooming is an optional technique that allows linked resources to be embedded. The embedded resources are serialized as
 described by [HAL](http://stateless.co/hal_specification.html).
 
 Example :

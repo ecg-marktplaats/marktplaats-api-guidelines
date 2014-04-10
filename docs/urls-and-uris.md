@@ -30,7 +30,7 @@ and therefore a single digit should be enough for a long time. For clarity, the 
 ### The base URL is a HAL resource
 
 The base URL is a HAL resource with appropriate documentation links. It has content type  `application/hal+json`.
-However, do not confuse browsers, we serve the document with content type `application/json`.
+However, to not confuse browsers, we serve the document with content type `application/json`.
 
 The resource MUST be encoded with UTF-8.
 
@@ -48,7 +48,7 @@ For example:
             "self": { "href": "/" },
             "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
             "http://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" },
-            "http://api.marktplaats.nl/v1/docs/resources/listings": { "href": "/v1/listings" },
+            "http://api.marktplaats.nl/v1/docs/resources/advertisements": { "href": "/v1/advertisements" },
             "http://api.marktplaats.nl/v1/docs/resources/users": { "href": "/v1/users" }
         }
     }
@@ -61,7 +61,7 @@ URL and URI naming
 A URI representing a document resource should be named with a singular noun or noun phrase path segment.
 For example, the URI for a single seller profile document would have the singular form:
 
-    https://api.martkplaats.nl/v1/users/1/profile
+    https://api.marktplaats.nl/v1/users/1/profile
 
 
 ### Collections names should be a plural noun
@@ -69,7 +69,7 @@ For example, the URI for a single seller profile document would have the singula
 A URI identifying a store of resources should be named with a plural noun, or noun phrase, as its path segment. 
 The URI for a store of categories may use the plural noun form as follows:
 
-    https://api.martkplaats.nl/v1/categories
+    https://api.marktplaats.nl/v1/categories
 
 
 ### Forward slash separator (`/`) must be used to indicate a hierarchical relationship
@@ -77,7 +77,7 @@ The URI for a store of categories may use the plural noun form as follows:
 The forward slash (`/`) character is used in the path portion of the URI to indicate a hierarchical relationship between
 resources. For example:
 
-    https://api.martkplaats.nl/v1/categories/91/advertisements
+    https://api.marktplaats.nl/v1/categories/91/advertisements
 
 
 ### URIs should not have a trailing forward slash (`/`)
@@ -87,8 +87,8 @@ REST APIs should not expect a trailing slash and should not include them in the 
 
 Many web components and frameworks will treat the following two URIs equally:
 
-    https://api.martkplaats.nl/v1/categories/
-    https://api.martkplaats.nl/v1/categories
+    https://api.marktplaats.nl/v1/categories/
+    https://api.marktplaats.nl/v1/categories
 
 However, every character within a URI counts toward a resource’s unique identity.
 Two different URIs must map to two different resources.
@@ -106,7 +106,7 @@ To make your URIs easy for people to scan and interpret, use the hyphen (`-`) ch
 names in long path segments.
 Anywhere you would use a space or hyphen in English, you should use a hyphen in a URI. For example:
 
-    https://api.martkplaats.nl/v1/this-is-an-endpoint-with-a-large-name
+    https://api.marktplaats.nl/v1/this-is-an-endpoint-with-a-large-name
 
 
 ### URI paths must use lowercase letters

@@ -48,7 +48,7 @@ OAuth 2.0 describes four different authorization grants. An authorization grant 
 
 In general, the minimum you need to support in you authentication flow should be th Authorization code grant (3-legged OAuth 2.0).
 
-The first three grants, Authorization code grant, Implicit grant and Resource owner password credentials grant, allows the client to authenticate against the API on behalf of the resource owner. For security reasons, the Authorization code grant is the most preferred way to achieve this.
+The first three grants, Authorization code grant, Implicit grant and Resource owner password credentials grant, allow the client to authenticate against the API on behalf of the resource owner. For security reasons, the Authorization code grant is the most preferred way to achieve this.
 
 Implicit grant **should not be used**, because it is unsecure and vulnerable for XSS and CSRF attacks. Because this is a problem, the used Authorization Server should not support it, because if you support it your Authorization code grant is in theory not more safe than Implicit grant, unless you enforce the client to register the *response_type* with the *redirect_uri* and check for that. Without this check, it is trivial to change *response_type=code* to *response_type=token*, with all the negative consequences implied with the implicit grant as well.
 

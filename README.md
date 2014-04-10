@@ -20,14 +20,14 @@ TODO:
         * The base URL is a HAL resource.
     * URL and URI naming
         * Document names should be a singular noun.
-        * Collections names should be a plural noun.
+        * Collection names should be a plural noun.
         * Forward slash separator (`/`) must be used to indicate a hierarchical relationship.
         * URIs should not have a trailing forward slash (`/`).
         * Hyphens (`-`) should be used to improve the readability of URIs, not underscores (`_`).
         * URI paths must use lowercase letters
     * Query parameters
         * The query component of a URI may be used to filter collections or stores
-        * The query component of a URI should be used to paginate collection or store results
+        * The query component of a URI should be used to paginate collections or store results
         * Use the _body parameter to include/exclude a response body
         * Use POST with a _method url parameter to mimic other request methods
         * Use the _callback parameter to return a jsonp response

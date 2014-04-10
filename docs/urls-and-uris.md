@@ -307,7 +307,7 @@ Example :
         "shortName": "Alpha romeo"
     }
 
-TODO: look into <http://www.etsy.com/developers/documentation/getting_started/resources> to allow pagination
+TODO: look into <http://www.etsy.com/developers/documentation/getting_started/resources> to allow pagination.
 
 
 ### <a name="_include_exclude"></a> Use the `_include` and `_exclude` parameters for selecting fields

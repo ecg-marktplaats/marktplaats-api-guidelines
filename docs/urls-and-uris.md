@@ -92,7 +92,7 @@ Many web components and frameworks will treat the following two URIs equally:
 
 However, every character within a URI counts toward a resource’s unique identity.
 Two different URIs must map to two different resources.
-If the URIs differ, then so do the re- sources, and vice versa.
+If the URIs differ, then so do the resources, and vice versa.
 Therefore, a REST API must generate and communicate clean URIs and should be intolerant of any client’s attempts to
 identify a resource imprecisely.
 Redirects (e.g. 301 Moved Permanently) from one version to the other are not allowed. Some clients don't support
@@ -206,18 +206,18 @@ Parameter `_body` takes values `true` (the default) or `false`.
 
 Example:
 
-    POST http://api.marktplaats.nl/v1/categories?_body=false HTTP/1.1
+    POST http://api.marktplaats.nl/v1/users?_body=false HTTP/1.1
     Host: api.marktplaats.nl
 
     {
-        "parentCategoryId": 91,
-        "name": "BMW",
-        "shortName": "BMW"
+        "username": "testUser",
+        "zipcode": "1097DN",
+        "email": "test@marktplaats.nl"
     }
 
 
     HTTP/1.1 201 Created
-    Location: http://api.marktplaats.nl/v1/categories/95
+    Location: http://api.marktplaats.nl/v1/users/95
 
 ### <a name="_method"></a> Use `POST` with a `_method` url parameter to mimic other request methods
 
@@ -227,14 +227,14 @@ Instead of the `_method` parameter, we also should support setting the method us
 
 Example:
 
-    POST /v1/categories/95?_method=PATCH HTTP/1.1
+    POST /v1/advertisements/95?_method=PATCH HTTP/1.1
     Host: api.marktplaats.nl
     Content-Type: application/json-patch+json
     If-Match: "abc123"
 
     [
-        { "op": "replace", "path": "/name", "value": "BMW" },
-        { "op": "replace", "path": "/hostName", "value": "BMW" }
+        { "op": "replace", "path": "/title", "value": "new advertisement title" },
+        { "op": "replace", "path": "/price", "value": 9000 }
     ]
 
 is interpreted as a `PATCH` request.

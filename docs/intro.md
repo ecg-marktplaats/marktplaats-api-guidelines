@@ -4,7 +4,7 @@ Introduction
 Principles
 ----------
 
-The overarching theme for all following guidelines is "*No surprises*" since the users of the APIs can expect a certain
+The overarching theme for all following guidelines is "No surprises" since the users of the APIs can expect a certain
 behavior and continuity in our APIs.
 
 *   *Changes must never break existing applications*
@@ -13,7 +13,7 @@ behavior and continuity in our APIs.
 
 *   *Discovery*
     Having just the base URL, it should be possible *for a programmer* to discover all resources and their
-    documentation. (Level 3 of the Richardson Maturity Model). We do not believe in automatic discovery.
+    documentation. (Level 3 of the [Richardson Maturity Model](http://restcookbook.com/Miscellaneous/richardsonmaturitymodel/)). We do not believe in automatic discovery.
 
 *   *Consistency*
     These guidelines make it possible to make all our APIs consistent. Consistency should be found in all of these
@@ -38,4 +38,4 @@ behavior and continuity in our APIs.
     different tool chains.
 
 *   *Safe*
-    Any API should be safe, both for Ebay and its clients.
+    Any API should be safe, both for eBay and its clients.

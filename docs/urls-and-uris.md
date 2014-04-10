@@ -64,7 +64,7 @@ For example, the URI for a single seller profile document would have the singula
     https://api.marktplaats.nl/v1/users/1/profile
 
 
-### Collections names should be a plural noun
+### Collection names should be a plural noun
 
 A URI identifying a store of resources should be named with a plural noun, or noun phrase, as its path segment. 
 The URI for a store of categories may use the plural noun form as follows:
@@ -155,9 +155,9 @@ Example :
         "totalResults": 10
     }
 
-### The query component of a URI should be used to paginate collection or store results
+### The query component of a URI should be used to paginate collections or store results
 
-A REST API client should use the query component to paginate collection and store results with the `offset` and `limit` parameters.
+A REST API client should use the query component to paginate collections and store results with the `offset` and `limit` parameters.
 
 The `limit` parameter specifies the maximum number of contained elements to return in the response.
 The `offset` parameter specifies the zero-based index of the first element to return in the response.

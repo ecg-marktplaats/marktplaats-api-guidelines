@@ -6,10 +6,10 @@ Resources
 
 ### Serialization format: HAL in UTF-8 encoding
 
-Non binary resources SHOULD use the [HAL](http://stateless.co/hal_specification.html) JSON mediatype as the
+Non-binary resources SHOULD use the [HAL](http://stateless.co/hal_specification.html) JSON mediatype as the
 serialization format and responses SHOULD be encoded with [UTF-8](http://en.wikipedia.org/wiki/UTF-8).
 
-The proper content type for HAL documents is `application/hal+json`. However, do not confuse browsers, we serve the
+The proper content type for HAL documents is `application/hal+json`. However, to not confuse browsers, we serve the
 document with content type `application/json`.
 
 Example document :

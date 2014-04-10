@@ -177,7 +177,7 @@ Example:
         "shortName": "BMW"
     }
 
-Implementation are recommended to implement `replace` as `add` when the field is not present in the original representation.
+Implementations are recommended to implement `replace` as `add` when the field is not present in the original representation.
 
 The `If-Match` header is NOT allowed for resources that don't support ETag. It is optional (but strongly recommended)
 for resources that do support it.

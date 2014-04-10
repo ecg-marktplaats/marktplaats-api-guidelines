@@ -235,7 +235,7 @@ A REST API responds with the 201 status code whenever a collection creates, or a
 A 202 response indicates that the client’s request will be handled asynchronously. This response status code tells the client that the
 request appears valid, but it still may have problems once it’s finally processed.  A 202 response is typically used for actions that
 take a long while to process. When responding with a 202 header you may choose to include a link to a resource that can be used to
-track the status of your request in the response
+track the status of your request in the response.
 
 ### Rule: 204 (“No Content”) should be used when the response body is intentionally empty
 

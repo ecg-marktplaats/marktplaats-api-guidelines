@@ -10,3 +10,4 @@ TODO
 * Security (authenticatie, delegation, authorisatie)
 
 * JSONP
+* CORS?

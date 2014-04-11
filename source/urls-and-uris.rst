@@ -1,3 +1,7 @@
+.. index:: URLs and URIs
+
+.. _url-and-uris:
+
 URLs and URIs
 =============
 
@@ -6,35 +10,45 @@ Base URL
 
 Examples of good base URLs:
 
+.. code-block:: http
+
     https://api.marktplaats.nl/v1
     https://api.marktplaats.nl/subsystem/v1
 
 Not so good example:
 
+.. code-block:: http
+
     https://www.marktplaats.nl/api/subsystem/services/v1.2
 
 
-### Base URL should be short
+Base URL should be short
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 The base URL should be short and easy to remember. The longer the domain name and path, the harder it is to use.
 
-### Use https
+Use https
+^^^^^^^^^
 
 Https must be used. This solves a great deal of otherwise hard to tackle security problems.
 
-### Base URL includes a major version in path
+Base URL includes a major version in path
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The version in the URL is the escape route to introduce breaking changes to the API. This should not be taken lightly
-and therefore a single digit should be enough for a long time. For clarity, the version MUST be preceded by a `v`.
+and therefore a single digit should be enough for a long time. For clarity, the version MUST be preceded by a ``v``.
 
-### The base URL is a HAL resource
+The base URL is a HAL resource
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The base URL is a HAL resource with appropriate documentation links. It has content type  `application/hal+json`.
-However, to not confuse browsers, we serve the document with content type `application/json`.
+The base URL is a HAL resource with appropriate documentation links. It has content type  ``application/hal+json``.
+However, to not confuse browsers, we serve the document with content type ``application/json``.
 
 The resource MUST be encoded with UTF-8.
 
 For example:
+
+.. code-block:: javascript
 
     GET /v1 HTTP/1.1
     Host: api.marktplaats.nl
@@ -56,36 +70,48 @@ For example:
 URL and URI naming
 ------------------
 
-### Document names should be a singular noun
+Document names should be a singular noun
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A URI representing a document resource should be named with a singular noun or noun phrase path segment.
 For example, the URI for a single seller profile document would have the singular form:
 
+.. code-block:: http
+
     https://api.marktplaats.nl/v1/users/1/profile
 
 
-### Collection names should be a plural noun
+Collection names should be a plural noun
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A URI identifying a store of resources should be named with a plural noun, or noun phrase, as its path segment. 
+A URI identifying a store of resources should be named with a plural noun, or noun phrase, as its path segment.
 The URI for a store of categories may use the plural noun form as follows:
+
+.. code-block:: http
 
     https://api.marktplaats.nl/v1/categories
 
 
-### Forward slash separator (`/`) must be used to indicate a hierarchical relationship
+Forward slash separator (``/``) must be used to indicate a hierarchical relationship
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The forward slash (`/`) character is used in the path portion of the URI to indicate a hierarchical relationship between
+The forward slash (``/``) character is used in the path portion of the URI to indicate a hierarchical relationship between
 resources. For example:
+
+.. code-block:: http
 
     https://api.marktplaats.nl/v1/categories/91/advertisements
 
 
-### URIs should not have a trailing forward slash (`/`)
+URIs should not have a trailing forward slash (``/``)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As the last character within a URI’s path, a forward slash (`/`) adds no semantic value and may cause confusion.
+As the last character within a URI’s path, a forward slash (``/``) adds no semantic value and may cause confusion.
 REST APIs should not expect a trailing slash and should not include them in the links that they provide to clients.
 
 Many web components and frameworks will treat the following two URIs equally:
+
+.. code-block:: http
 
     https://api.marktplaats.nl/v1/categories/
     https://api.marktplaats.nl/v1/categories
@@ -98,22 +124,28 @@ identify a resource imprecisely.
 Redirects (e.g. 301 Moved Permanently) from one version to the other are not allowed. Some clients don't support
 redirects and we need to keep this consistent over our separate APIs.
 
-The root resource `/` is excluded from this rule.
+The root resource ``/`` is excluded from this rule.
 
-### Hyphens (`-`) should be used to improve the readability of URIs ,not underscores (`_`)
+Hyphens (``-``) should be used to improve the readability of URIs ,not underscores (``_``)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To make your URIs easy for people to scan and interpret, use the hyphen (`-`) character to improve the readability of
+To make your URIs easy for people to scan and interpret, use the hyphen (``-``) character to improve the readability of
 names in long path segments.
 Anywhere you would use a space or hyphen in English, you should use a hyphen in a URI. For example:
+
+.. code-block:: http
 
     https://api.marktplaats.nl/v1/this-is-an-endpoint-with-a-large-name
 
 
-### URI paths must use lowercase letters
+URI paths must use lowercase letters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Lowercase letters are preferred in URI paths since capital letters can sometimes cause problems.
-RFC 3986 defines URIs as case-sensitive except for the scheme and host components. 
+RFC 3986 defines URIs as case-sensitive except for the scheme and host components.
 For example:
+
+.. code-block:: http
 
     http://api.example.restapi.org/my-folder/my-doc
     HTTP://API.EXAMPLE.RESTAPI.ORG/my-folder/my-doc
@@ -127,11 +159,14 @@ Parameters inside the URI path are excluded from this rule.
 Query parameters
 ----------------
 
-### The query component of a URI should be used to filter collections or stores
+The query component of a URI should be used to filter collections or stores
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A URI’s query component is a natural fit for supplying search criteria to a collection or store.
 
 Example :
+
+.. code-block:: javascript
 
     GET /v1/users?casUser=true HTTP/1.1
     Host: api.marktplaats.nl
@@ -155,14 +190,17 @@ Example :
         "totalResults": 10
     }
 
-### The query component of a URI should be used to paginate collections or store results
+The query component of a URI should be used to paginate collections or store results
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A REST API client should use the query component to paginate collections and store results with the `offset` and `limit` parameters.
+A REST API client should use the query component to paginate collections and store results with the ``offset`` and ``limit`` parameters.
 
-The `limit` parameter specifies the maximum number of contained elements to return in the response.
-The `offset` parameter specifies the zero-based index of the first element to return in the response.
+The ``limit`` parameter specifies the maximum number of contained elements to return in the response.
+The ``offset`` parameter specifies the zero-based index of the first element to return in the response.
 
 Example :
+
+.. code-block:: javascript
 
     GET /v1/users?offset=0&limit=2 HTTP/1.1
     Host: api.marktplaats.nl
@@ -197,14 +235,20 @@ Example :
     }
 
 
-### <a name="_body"></a> Use the `_body` parameter to include/exclude a response body
 
-By default responses contain a body, even if it is mostly the same as what was posted. The `_body` parameter can be
+.. _body-parameter:
+
+Use the ``_body`` parameter to include/exclude a response body
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default responses contain a body, even if it is mostly the same as what was posted. The ``_body`` parameter can be
 used to change this behavior.
 
-Parameter `_body` takes values `true` (the default) or `false`.
+Parameter ``_body`` takes values ``true`` (the default) or ``false``.
 
 Example:
+
+.. code-block:: javascript
 
     POST http://api.marktplaats.nl/v1/users?_body=false HTTP/1.1
     Host: api.marktplaats.nl
@@ -219,13 +263,18 @@ Example:
     HTTP/1.1 201 Created
     Location: http://api.marktplaats.nl/v1/users/95
 
-### <a name="_method"></a> Use `POST` with a `_method` url parameter to mimic other request methods
+.. _method-parameter:
 
-Some clients do not support all methods (e.g. `DELETE` or `PATCH` is not supported from Javascript in the browser), the
-`_method` url parameter can be used to mimic any request method.
-Instead of the `_method` parameter, we also should support setting the method using the request header `X-HTTP-METHOD-OVERRIDE` (optionally other headers, like `X-HTTP-METHOD` and `X-METHOD-OVERRIDE` may also be supported).
+Use ``POST`` with a ``_method`` url parameter to mimic other request methods
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Some clients do not support all methods (e.g. ``DELETE`` or ``PATCH`` is not supported from Javascript in the browser), the
+``_method`` url parameter can be used to mimic any request method.
+Instead of the ``_method`` parameter, we also should support setting the method using the request header ``X-HTTP-METHOD-OVERRIDE`` (optionally other headers, like ``X-HTTP-METHOD`` and ``X-METHOD-OVERRIDE`` may also be supported).
 
 Example:
+
+.. code-block:: javascript
 
     POST /v1/advertisements/95?_method=PATCH HTTP/1.1
     Host: api.marktplaats.nl
@@ -237,17 +286,21 @@ Example:
         { "op": "replace", "path": "/price", "value": 9000 }
     ]
 
-is interpreted as a `PATCH` request.
+is interpreted as a ``PATCH`` request.
 
-### <a name="_callback"></a> Use the `_callback` parameter to return a jsonp response
+<a name="_callback"></a> Use the ``_callback`` parameter to return a jsonp response
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can send a `?_callback` parameter to any `GET` call to have the results wrapped in a JSON function.
+You can send a ``?_callback`` parameter to any ``GET`` call to have the results wrapped in a JSON function.
 This is typically used when browsers want to embed Marktplaats content in web pages by getting around cross domain
 issues. The response includes the same data output as the regular API, plus the relevant HTTP Header information.
 
-The content type of the response MUST be `application/javascript`.
+The content type of the response MUST be ``application/javascript``.
 
 Example:
+
+
+.. code-block:: javascript
 
     GET /v1/users?_callback=foo HTTP/1.1
     Host: api.marktplaats.nl
@@ -271,12 +324,16 @@ Example:
         "totalResults": 10
     })
 
-### <a name="_expand"></a> Use the `_expand` parameter for zooming
+<a name="_expand"></a> Use the ``_expand`` parameter for zooming
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Zooming is an optional technique that allows linked resources to be embedded. The embedded resources are serialized as
 described by [HAL](http://stateless.co/hal_specification.html).
 
 Example :
+
+
+.. code-block:: javascript
 
     GET /v1/categories/92?_expand=parent-category HTTP/1.1
     Host: api.marktplaats.nl
@@ -307,15 +364,19 @@ Example :
         "shortName": "Alpha romeo"
     }
 
+
 TODO: look into <http://www.etsy.com/developers/documentation/getting_started/resources> to allow pagination.
 
 
-### <a name="_include_exclude"></a> Use the `_include` and `_exclude` parameters for selecting fields
+.. _include-and-exclude-parameters:
 
-The `_include` and `_exclude` parameters can be used to select fields. If both parameters are present, only the
-`_include` parameter is used.
+Use the ``_include`` and ``_exclude`` parameters for selecting fields
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Both fields have a similar format. A list of comma separated field names are valid arguments for both `_include` and `_exclude`. 
+The ``_include`` and ``_exclude`` parameters can be used to select fields. If both parameters are present, only the
+``_include`` parameter is used.
+
+Both fields have a similar format. A list of comma separated field names are valid arguments for both ``_include`` and ``_exclude``.
 
 TODO: look into <http://www.etsy.com/developers/documentation/getting_started/resources> to allow pagination
 
@@ -323,14 +384,19 @@ Example :
 
     TODO
 
-### <a name="_prettyprint"></a> Use the `_prettyprint` parameter to return a pretty printed response
+.. _prettyprint-parameter:
 
-Implementation CAN support the `?_prettyprint` parameter to make it easier for people to view, read and understand
-resources. Formatting is enabled when the parameter is present and does not have the value `false`.
+Use the ``_prettyprint`` parameter to return a pretty printed response
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Consider enabling pretty printing by default for documentation resources only (e.g. the `/` resource).
+Implementation CAN support the ``?_prettyprint`` parameter to make it easier for people to view, read and understand
+resources. Formatting is enabled when the parameter is present and does not have the value ``false``.
+
+Consider enabling pretty printing by default for documentation resources only (e.g. the ``/`` resource).
 
 Example :
+
+.. code-block:: javascript
 
     GET /v1/categories/95?_prettyprint HTTP/1.1
     Host: api.marktplaats.nl

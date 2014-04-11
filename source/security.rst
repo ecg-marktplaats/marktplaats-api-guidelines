@@ -1,22 +1,25 @@
+.. index:: Security, OAuth
+
 Security
 ========
 
-# Authentication
-
+Authentication
+--------------
 
 Authentication should be done using OAuth 2.0. OAuth 2.0 does not prescribe exactly how it should be used, since it is basically a framework for authorization methods. However, there are some industry standards which are nowadays considered the default implementation of OAuth 2.0. Since we strive to a consistent and predictable API, this is the way OAuth 2.0 should be used in our API's.
 
-## OAuth 2
+OAuth 2
+-------
 
-
-### What is OAuth 2.0
-
+What is OAuth 2.0
+^^^^^^^^^^^^^^^^^
 
 OAuth 2.0 is an open authorization protocol which enables applications to
 access each others data. OAuth 2.0 specification replaces and obsoletes the
 OAuth 1.0 protocol and is *not* backward compatible with OAuth 1.0.
 
-### OAuth 2.0 Roles
+OAuth 2.0 Roles
+^^^^^^^^^^^^^^^
 
 OAuth 2.0 defines the following roles of users and applications:
 
@@ -37,7 +40,8 @@ OAuth 2.0 defines the following roles of users and applications:
   In this context *authorization server* is the server hosting authentication
   and token endpoints.
 
-### Support in our API's
+Support in our API's
+^^^^^^^^^^^^^^^^^^^^
 
 OAuth 2.0 describes four different authorization grants. An authorization grant is basically a certain way of performing the authentication of the user. Those four grant types are:
 
@@ -56,7 +60,8 @@ The Client credential grant enables the client to authenticate itself with the A
 
 In general, it is not preferred to have no authentication at all for any endpoint of your API, because it will be impossible to relate a call to a specific client and it opens up the API for misuse, because it will be impossible to do any rate limiting.
 
-#### Registration of Clients
+Registration of Clients
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 Before a client application can authenticate against the resource server, it is required that a client can be registered. Some recommendations to improve security of your application regarding registration of clients:
 
@@ -65,7 +70,8 @@ Before a client application can authenticate against the resource server, it is 
 * When possible, allow the client to register the allowed scopes for each *request_uri* and verify these when authorizing a user.
 * When possible, register the allowed *response_type* (normally only *code* should be allowed) for each *request_uri*. This way, you prevent malicious clients from unauthorized use of resources on behalf of a resource owner.
 
-#### Scope
+Scope
+^^^^^
 
 When registering a client, the OAuth server must support that the allowed *permission scopes* for a client can be specified. Permission scopes are basically rights which the client can request for the *resource owner* when authenticating agains the *resource server*.
 
@@ -73,13 +79,15 @@ The following rules should be followed when defining scopes for an API:
 
 * Scopes have to be in lowercase
 * Underscores may be used to separate words in a scope. For example ``place_advertisement`` as a scope for placing advertisements.
-* Optionally, a colon can be used to indicate hierarchical permission scopes. For example, if there is a scope ``user`` to get access to the user details, an API may opt to support a subset of this permission scope. Such a subset can be a permission scope to get access to the email address of a user, in which situation this scope can be named ``user:email``. 
+* Optionally, a colon can be used to indicate hierarchical permission scopes. For example, if there is a scope ``user`` to get access to the user details, an API may opt to support a subset of this permission scope. Such a subset can be a permission scope to get access to the email address of a user, in which situation this scope can be named ``user:email``.
 
-#### Application specific tokens
+Application specific tokens
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It may be desirable to allow an user of your website to create application specific tokens. This will allow the user to create a token for a specific application (or client). Your website will then present the user with an access_token which can be used to perform calls to the API. This is basically a way directly use your API, without the necessity to go through the entire authentication flow. This can be useful to lower the barrier for creating simple clients which are using your API.
 
-### Secure implementation of OAuth 2.0
+Secure implementation of OAuth 2.0
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are some things to take into consideration when implementing OAuth 2.0. It is recommended to at least apply the following rules to your implementation:
 
@@ -88,7 +96,8 @@ For Authentication Grant:
 * Strict checking of the *request_uri* when the client specifies a custom request_uri. The *request_uri* provided when requesting the *authentication_code* has to be exactly the same as the *request_uri* provided when requesting the *access_token*. The custom *request_uri* has to be on the same host as the *request_uri* provided when the client was registered.
 * Restrict expiration time of *access_token* and *refresh_token*. The *access_token* could best be compared to a password and should be treated as such. A recommended expire duration for the access_token is 5 minutes. The *refresh_token* could best be compared to a session id, and as such should have a restricted expiration time as well. A recommended expire duration for the *refresh_token* is 24 hours.
 
-## Rate limiting
+Rate limiting
+^^^^^^^^^^^^^
 
 Rate limiting should be part of the API. Rate limiting can be done on client level, user level or both. Recommended is to at least implement rate limiting on client level. When a client exceeds the amount of allowed request, the API should respond with a 429 ('Too many requests') http code. The API should provide a ``Retry-After`` header where the value for this header is the number of seconds after which the client should be able to send successful requests again.
 
@@ -99,7 +108,8 @@ Because we want our API's to be predictable and easy to use, the API should prov
 * ``X-RateLimit-Reset`` - The remaining window before rate limit resets in UTC epoch seconds.
 
 
-## General security advice
+General security advice
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Some general recommendations for building a secure API:
 

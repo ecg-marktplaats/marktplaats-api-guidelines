@@ -3,14 +3,11 @@ api-guidelines
 
 Guidelines for externally visible APIs.
 
-TODO:
-    * rate limiting
-    * security
+Go to [The documentation](source/index.rst)
 
 
 
-
-* [Introduction](docs/intro.md)
+* [Introduction](source/intro.rst)
     * Principles
 * [URLs and URIs](docs/urls-and-uris.md)
     * Base URL

@@ -7,6 +7,12 @@ Guidelines for externally visible APIs.
 
 Go to [The source](source/index.rst).
 
+
+Build the API Guidelines
+------------------------
+
+Edit the source and then do a `make clean; make html`. 
+
 Update rendered version
 -----------------------
 

@@ -291,6 +291,7 @@ Here is an example request that produces an error response:
             }
         },
         "logref": "4298asfpohsa98yasohq97q3yff22",
+        "statuscode": 400,
         "code" : "validation-failure",
         "message": "Validatie mislukt",
         "details": [
@@ -311,6 +312,8 @@ Response code is ``400``, content type MUST be ``application/json``, encoding MU
 
 ``message`` *(required)* : A human readable message related to the current error which may be displayed to the user of
 the api.
+
+``statuscode`` *(required)*: The HTTP Status code which is sent with this error. The reason to include this in the JSON as well, is because if you are using the API over JSONP for example, there is no easy way to get the error code. This is to make it more easy to use the API.
 
 ``code`` *(required)* : An error code. The error code SHOULD be same as the last part of the help url and MUST
 consist (mostly) out of lower case letters. (Letters allow for easier documentation-lookup then just a numeric code.)

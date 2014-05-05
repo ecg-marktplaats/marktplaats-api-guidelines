@@ -340,7 +340,7 @@ An appropriate status code should be used when serving an error resource
 When serving an error resource an appropriate status code MUST be used. E.g. 4xx for client errors and 5xx for
 processing errors.
 
-To determine which error code is appropriate, refer to the status codes section of this `image <whhD1.png>`_. (Copied
+To determine which error code is appropriate, refer to the status codes section of this `image <20-whhD1.png>`_. (Copied
 from http://i.stack.imgur.com/whhD1.png.)
 
 Do not include stacktraces in the error message

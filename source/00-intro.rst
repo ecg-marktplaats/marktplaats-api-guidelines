@@ -31,5 +31,5 @@ behavior and continuity in our APIs.
 *  **No technology enforced for the implementations**
     Though we can give some recommendations on tools and libraries for implementing the APIs, API implementers are not limited a specific language or tool chain. The APIs must be implementable (both client and server) with multiple different tool chains.
 
-*  **Safe**
-    Any API should be safe, both for eBay and its clients.
+*  **Secure**
+    Any API should be secure, both for eBay and its clients.

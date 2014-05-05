@@ -11,14 +11,14 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   intro
-   urls-and-uris
-   resource-representation-format
-   interaction-design
-   documentation-requirements
-   security
-   versioning
-   todo
+   00-intro
+   10-urls-and-uris
+   20-resource-representation-format
+   30-interaction-design
+   40-documentation-requirements
+   50-security
+   60-versioning
+   99-todo
 
 
 Indices and tables

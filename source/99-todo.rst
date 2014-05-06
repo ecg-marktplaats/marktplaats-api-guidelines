@@ -5,17 +5,24 @@ The following are tasks -priority ordered- that need to be done to complete the 
 Each task should be following with the plan and responsible to complete the task.
 
 * Complete this list
-  1. Just do it, A: Erik v. O.
+
+  #. Just do it, A: Erik v. O.
+
 * Consider using entity versions
-  1. Discuss with current stakeholders, A: Erik v.O., I: Frank S., Martin S./Jelmer K., ETA: 2014 wk. 19/20
+
+  #. Discuss with current stakeholders, A: Erik v.O., I: Frank S., Martin S./Jelmer K., ETA: 2014 wk. 19/20
+
 * Consider requiring schema.org or other naming conventions
-  1. Plan: prepare discussion by finding the relevant schema's, A: Erik v.O., ETA: 2014 wk. 19
-  1. Have discussion with stakeholders within ECG, A: Erik v.O., I: Ky, and people from versioning discussion.
+
+  #. Plan: prepare discussion by finding the relevant schema's, A: Erik v.O., ETA: 2014 wk. 19
+  #. Have discussion with stakeholders within ECG, A: Erik v.O., I: Ky, and people from versioning discussion.
+
 * Lots of little edits (see list below)
 * Much more details around security (authenticatie, delegation, authorisatie)
 * Add more clarity around having multiple APIs acting together as one
 * Consider adding information on testing
 * Define a change procedure for these guidelines.
+
 * JSONP
 * CORS?
 

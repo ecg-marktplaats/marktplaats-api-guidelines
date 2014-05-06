@@ -18,6 +18,7 @@ Contents:
    40-documentation-requirements
    50-security
    60-versioning
+   80-hal-and-our-deviations
    99-todo
 
 

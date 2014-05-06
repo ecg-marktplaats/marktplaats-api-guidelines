@@ -11,11 +11,7 @@ Resources
 Serialization format: HAL in UTF-8 encoding
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Non-binary resources SHOULD use the `HAL <http://stateless.co/hal_specification.html>`_ JSON mediatype as the
-serialization format and responses SHOULD be encoded with `UTF-8 <http://en.wikipedia.org/wiki/UTF-8>`_.
-
-The proper content type for HAL documents is ``application/hal+json``. However, to not confuse browsers, we serve the
-document with content type ``application/json``.
+*HAL* MUST be used as representation format for all non-binary resources. See deviations-from-hal_ for more information.
 
 Example document :
 
@@ -44,6 +40,32 @@ Also see these articles:
 
 * `HAL introduction <http://www.mwop.net/blog/2013-02-11-restful-apis-with-zf2-part-1.html>`_
 * `JSON linking with HAL <http://blog.stateless.co/post/13296666138/json-linking-with-hal>`_
+
+The base URL is a HAL resource
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The base URL is a HAL resource with appropriate documentation links.
+
+For example:
+
+.. code-block:: javascript
+
+    GET /v1 HTTP/1.1
+    Host: api.marktplaats.nl
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    ETag: "d9087df677dgh"
+
+    {
+        "_links": {
+            "self": { "href": "/" },
+            "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
+            "http://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" },
+            "http://api.marktplaats.nl/v1/docs/resources/advertisements": { "href": "/v1/advertisements" },
+            "http://api.marktplaats.nl/v1/docs/resources/users": { "href": "/v1/users" }
+        }
+    }
 
 
 Each resource should contain a 'self' link

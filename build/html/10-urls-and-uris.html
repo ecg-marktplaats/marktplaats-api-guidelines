@@ -18,20 +18,6 @@
 
   
   
-
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:'./',
-        VERSION:'0.1',
-        COLLAPSE_INDEX:false,
-        FILE_SUFFIX:'.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
     
 
   
@@ -39,39 +25,42 @@
   
   
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
   
     <link rel="top" title="eCG API Guidelines 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Resource representation format" href="resource-representation-format.html"/>
-        <link rel="prev" title="Introduction" href="intro.html"/> 
+        <link rel="next" title="Resource representation format" href="20-resource-representation-format.html"/>
+        <link rel="prev" title="Introduction" href="00-intro.html"/> 
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="icon icon-home"> eCG API Guidelines</a>
-        <form class="wy-form" action="search.html" method="get">
-  <input type="text" name="q" placeholder="Search docs" />
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
+        <a href="index.html" class="fa fa-home"> eCG API Guidelines</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
             <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="intro.html#principles">Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00-intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#principles">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#conventions">Conventions</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">URLs and URIs</a><ul>
@@ -80,40 +69,48 @@
 <li class="toctree-l2"><a class="reference internal" href="#query-parameters">Query parameters</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="resource-representation-format.html">Resource representation format</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="resource-representation-format.html#resources">Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource-representation-format.html#relation-names">Relation names</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource-representation-format.html#field-names">Field names</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource-representation-format.html#field-values">Field values</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resource-representation-format.html#errors">Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="20-resource-representation-format.html">Resource representation format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#relation-names">Relation names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-names">Field names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-values">Field values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#errors">Errors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="interaction-design.html">Interaction design</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="interaction-design.html#request-methods">Request methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interaction-design.html#status-codes">Status codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30-interaction-design.html">Interaction design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#request-methods">Request methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#status-codes">Status codes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="documentation-requirements.html">Documentation requirements</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#documentation-urls">Documentation URLs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#resource-documentation">Resource documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#document-link-relations">Document link relations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#getting-started-guide">Getting started guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#api-reference">API reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#example-code">Example code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#todo">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40-documentation-requirements.html">Documentation requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#documentation-urls">Documentation URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#resource-documentation">Resource documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#document-link-relations">Document link relations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#getting-started-guide">Getting started guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#api-reference">API reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#example-code">Example code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#todo">TODO</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#authentication">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="security.html#oauth-2">OAuth 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50-security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#oauth-2">OAuth 2</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="versioning.html">Versioning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="versioning.html#resource-versioning">Resource versioning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versioning.html#field-versioning">Field versioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="60-versioning.html">Versioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="60-versioning.html#resource-versioning">Resource versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="60-versioning.html#field-versioning">Field versioning</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="80-hal-and-our-deviations.html">HAL and our deviations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#content-type">Content-type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#json">JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="99-todo.html">TODO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="99-todo.html#lots-of-small-edits">Lots of small edits</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -124,23 +121,30 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top">
-        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
-        <a href="/">eCG API Guidelines</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">eCG API Guidelines</a>
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <ul class="wy-breadcrumbs">
-  <li><a href="index.html">Docs</a> &raquo;</li>
-  <li><a href="">URLs and URIs</a></li>
-  
-</ul>
-<hr/>
-
-          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>URLs and URIs</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/10-urls-and-uris.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
   <div class="section" id="urls-and-uris">
 <span id="url-and-uris"></span><span id="index-0"></span><h1>URLs and URIs<a class="headerlink" href="#urls-and-uris" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="base-url">
@@ -166,31 +170,6 @@ https://api.marktplaats.nl/subsystem/v1
 <h3>Base URL includes a major version in path<a class="headerlink" href="#base-url-includes-a-major-version-in-path" title="Permalink to this headline">¶</a></h3>
 <p>The version in the URL is the escape route to introduce breaking changes to the API. This should not be taken lightly
 and therefore a single digit should be enough for a long time. For clarity, the version MUST be preceded by a <tt class="docutils literal"><span class="pre">v</span></tt>.</p>
-</div>
-<div class="section" id="the-base-url-is-a-hal-resource">
-<h3>The base URL is a HAL resource<a class="headerlink" href="#the-base-url-is-a-hal-resource" title="Permalink to this headline">¶</a></h3>
-<p>The base URL is a HAL resource with appropriate documentation links. It has content type  <tt class="docutils literal"><span class="pre">application/hal+json</span></tt>.
-However, to not confuse browsers, we serve the document with content type <tt class="docutils literal"><span class="pre">application/json</span></tt>.</p>
-<p>The resource MUST be encoded with UTF-8.</p>
-<p>For example:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">GET</span> <span class="o">/</span><span class="nx">v1</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
-<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">marktplaats</span><span class="p">.</span><span class="nx">nl</span>
-
-<span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
-<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
-<span class="nx">ETag</span><span class="o">:</span> <span class="s2">&quot;d9087df677dgh&quot;</span>
-
-<span class="p">{</span>
-    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/advertisements&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/advertisements&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/users&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users&quot;</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="url-and-uri-naming">
@@ -479,25 +458,28 @@ resources. Formatting is enabled when the parameter is present and does not have
 </div>
 
 
+          </div>
           <footer>
   
-    <div class="rst-footer-buttons">
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="resource-representation-format.html" class="btn btn-neutral float-right" title="Resource representation format"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="20-resource-representation-format.html" class="btn btn-neutral float-right" title="Resource representation format"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="intro.html" class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="00-intro.html" class="btn btn-neutral" title="Introduction"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
 
   <hr/>
 
-  <p>
-      &copy; Copyright 2014, Marktplaats API Focus team.
-  </p>
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Marktplaats API Focus team.
+    </p>
+  </div>
 
-  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
         </div>
       </div>
@@ -506,6 +488,38 @@ resources. Formatting is enabled when the parameter is present and does not have
 
   </div>
   
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
 
 </body>
 </html>

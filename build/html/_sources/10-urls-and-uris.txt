@@ -38,35 +38,6 @@ Base URL includes a major version in path
 The version in the URL is the escape route to introduce breaking changes to the API. This should not be taken lightly
 and therefore a single digit should be enough for a long time. For clarity, the version MUST be preceded by a ``v``.
 
-The base URL is a HAL resource
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The base URL is a HAL resource with appropriate documentation links. It has content type  ``application/hal+json``.
-However, to not confuse browsers, we serve the document with content type ``application/json``.
-
-The resource MUST be encoded with UTF-8.
-
-For example:
-
-.. code-block:: javascript
-
-    GET /v1 HTTP/1.1
-    Host: api.marktplaats.nl
-
-    HTTP/1.1 200 OK
-    Content-Type: application/json
-    ETag: "d9087df677dgh"
-
-    {
-        "_links": {
-            "self": { "href": "/" },
-            "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
-            "http://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" },
-            "http://api.marktplaats.nl/v1/docs/resources/advertisements": { "href": "/v1/advertisements" },
-            "http://api.marktplaats.nl/v1/docs/resources/users": { "href": "/v1/users" }
-        }
-    }
-
 URL and URI naming
 ------------------
 

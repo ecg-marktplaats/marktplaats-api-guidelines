@@ -18,20 +18,6 @@
 
   
   
-
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:'./',
-        VERSION:'0.1',
-        COLLAPSE_INDEX:false,
-        FILE_SUFFIX:'.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
     
 
   
@@ -39,45 +25,48 @@
   
   
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
   
     <link rel="top" title="eCG API Guidelines 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Interaction design" href="interaction-design.html"/>
-        <link rel="prev" title="URLs and URIs" href="urls-and-uris.html"/> 
+        <link rel="next" title="Interaction design" href="30-interaction-design.html"/>
+        <link rel="prev" title="URLs and URIs" href="10-urls-and-uris.html"/> 
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav">
+<body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="icon icon-home"> eCG API Guidelines</a>
-        <form class="wy-form" action="search.html" method="get">
-  <input type="text" name="q" placeholder="Search docs" />
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
+        <a href="index.html" class="fa fa-home"> eCG API Guidelines</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
         
             <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="intro.html#principles">Principles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00-intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#principles">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#conventions">Conventions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="urls-and-uris.html">URLs and URIs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="urls-and-uris.html#base-url">Base URL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="urls-and-uris.html#url-and-uri-naming">URL and URI naming</a></li>
-<li class="toctree-l2"><a class="reference internal" href="urls-and-uris.html#query-parameters">Query parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="10-urls-and-uris.html">URLs and URIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#base-url">Base URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#url-and-uri-naming">URL and URI naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#query-parameters">Query parameters</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Resource representation format</a><ul>
@@ -88,32 +77,40 @@
 <li class="toctree-l2"><a class="reference internal" href="#errors">Errors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="interaction-design.html">Interaction design</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="interaction-design.html#request-methods">Request methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interaction-design.html#status-codes">Status codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="30-interaction-design.html">Interaction design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#request-methods">Request methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#status-codes">Status codes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="documentation-requirements.html">Documentation requirements</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#documentation-urls">Documentation URLs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#resource-documentation">Resource documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#document-link-relations">Document link relations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#getting-started-guide">Getting started guide</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#api-reference">API reference</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#example-code">Example code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="documentation-requirements.html#todo">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="40-documentation-requirements.html">Documentation requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#documentation-urls">Documentation URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#resource-documentation">Resource documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#document-link-relations">Document link relations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#getting-started-guide">Getting started guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#api-reference">API reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#example-code">Example code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#todo">TODO</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="security.html#authentication">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="security.html#oauth-2">OAuth 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="50-security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#oauth-2">OAuth 2</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="versioning.html">Versioning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="versioning.html#resource-versioning">Resource versioning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="versioning.html#field-versioning">Field versioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="60-versioning.html">Versioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="60-versioning.html#resource-versioning">Resource versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="60-versioning.html#field-versioning">Field versioning</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="todo.html">TODO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="80-hal-and-our-deviations.html">HAL and our deviations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#content-type">Content-type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#json">JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="99-todo.html">TODO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="99-todo.html#lots-of-small-edits">Lots of small edits</a></li>
+</ul>
+</li>
 </ul>
 
         
@@ -124,33 +121,37 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top">
-        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
-        <a href="/">eCG API Guidelines</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">eCG API Guidelines</a>
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <ul class="wy-breadcrumbs">
-  <li><a href="index.html">Docs</a> &raquo;</li>
-  <li><a href="">Resource representation format</a></li>
-  
-</ul>
-<hr/>
-
-          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Resource representation format</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/20-resource-representation-format.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
   <div class="section" id="resource-representation-format">
 <span id="index-0"></span><span id="id1"></span><h1>Resource representation format<a class="headerlink" href="#resource-representation-format" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="serialization-format-hal-in-utf-8-encoding">
 <h3>Serialization format: HAL in UTF-8 encoding<a class="headerlink" href="#serialization-format-hal-in-utf-8-encoding" title="Permalink to this headline">¶</a></h3>
-<p>Non-binary resources SHOULD use the <a class="reference external" href="http://stateless.co/hal_specification.html">HAL</a> JSON mediatype as the
-serialization format and responses SHOULD be encoded with <a class="reference external" href="http://en.wikipedia.org/wiki/UTF-8">UTF-8</a>.</p>
-<p>The proper content type for HAL documents is <tt class="docutils literal"><span class="pre">application/hal+json</span></tt>. However, to not confuse browsers, we serve the
-document with content type <tt class="docutils literal"><span class="pre">application/json</span></tt>.</p>
+<p><em>HAL</em> MUST be used as representation format for all non-binary resources. See <a class="reference internal" href="80-hal-and-our-deviations.html#hal-and-our-deviations"><em>HAL and our deviations</em></a> for more information.</p>
 <p>Example document :</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
  <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -177,6 +178,29 @@ document with content type <tt class="docutils literal"><span class="pre">applic
 <li><a class="reference external" href="http://www.mwop.net/blog/2013-02-11-restful-apis-with-zf2-part-1.html">HAL introduction</a></li>
 <li><a class="reference external" href="http://blog.stateless.co/post/13296666138/json-linking-with-hal">JSON linking with HAL</a></li>
 </ul>
+</div>
+<div class="section" id="the-base-url-is-a-hal-resource">
+<h3>The base URL is a HAL resource<a class="headerlink" href="#the-base-url-is-a-hal-resource" title="Permalink to this headline">¶</a></h3>
+<p>The base URL is a HAL resource with appropriate documentation links.</p>
+<p>For example:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">GET</span> <span class="o">/</span><span class="nx">v1</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">marktplaats</span><span class="p">.</span><span class="nx">nl</span>
+
+<span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
+<span class="nx">ETag</span><span class="o">:</span> <span class="s2">&quot;d9087df677dgh&quot;</span>
+
+<span class="p">{</span>
+    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/advertisements&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/advertisements&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/users&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users&quot;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="each-resource-should-contain-a-self-link">
 <h3>Each resource should contain a &#8216;self&#8217; link<a class="headerlink" href="#each-resource-should-contain-a-self-link" title="Permalink to this headline">¶</a></h3>
@@ -279,7 +303,7 @@ the resource&#8217;s state should not start with an underscore to prevent collis
 </div>
 <div class="section" id="field-values">
 <h2>Field values<a class="headerlink" href="#field-values" title="Permalink to this headline">¶</a></h2>
-<p>See also the list of supported field types: <a class="reference internal" href="documentation-requirements.html#field-types"><em>Field types</em></a></p>
+<p>See also the list of supported field types: <a class="reference internal" href="40-documentation-requirements.html#field-types"><em>Field types</em></a></p>
 <div class="section" id="structure-field-values">
 <h3>Structure field values<a class="headerlink" href="#structure-field-values" title="Permalink to this headline">¶</a></h3>
 <p>You are encouraged to represent complex fields with a JSON object. This allows for better composability, the struct
@@ -339,11 +363,11 @@ MUST be selected.</p>
 <li>WGS84 coordinates</li>
 <li>Rates or ratios that have a value between <tt class="docutils literal"><span class="pre">0.0</span></tt> and <tt class="docutils literal"><span class="pre">1.0</span></tt>.</li>
 </ul>
-<p>See also the list of supported field types: <a class="reference internal" href="documentation-requirements.html#field-types"><em>Field types</em></a></p>
+<p>See also the list of supported field types: <a class="reference internal" href="40-documentation-requirements.html#field-types"><em>Field types</em></a></p>
 </div>
 <div class="section" id="binary-field-values">
 <h3>Binary field values<a class="headerlink" href="#binary-field-values" title="Permalink to this headline">¶</a></h3>
-<p>See the list of supported field types: <a class="reference internal" href="documentation-requirements.html#field-types"><em>Field types</em></a></p>
+<p>See the list of supported field types: <a class="reference internal" href="40-documentation-requirements.html#field-types"><em>Field types</em></a></p>
 </div>
 </div>
 <div class="section" id="errors">
@@ -377,6 +401,7 @@ and <a class="reference external" href="https://github.com/blongden/vnd.error">v
         <span class="p">}</span>
     <span class="p">},</span>
     <span class="s2">&quot;logref&quot;</span><span class="o">:</span> <span class="s2">&quot;4298asfpohsa98yasohq97q3yff22&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;statuscode&quot;</span><span class="o">:</span> <span class="mi">400</span><span class="p">,</span>
     <span class="s2">&quot;code&quot;</span> <span class="o">:</span> <span class="s2">&quot;validation-failure&quot;</span><span class="p">,</span>
     <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Validatie mislukt&quot;</span><span class="p">,</span>
     <span class="s2">&quot;details&quot;</span><span class="o">:</span> <span class="p">[</span>
@@ -395,6 +420,7 @@ and <a class="reference external" href="https://github.com/blongden/vnd.error">v
 (e.g. <tt class="docutils literal"><span class="pre">RequestData.uniqueRequestId</span></tt>).</p>
 <p><tt class="docutils literal"><span class="pre">message</span></tt> <em>(required)</em> : A human readable message related to the current error which may be displayed to the user of
 the api.</p>
+<p><tt class="docutils literal"><span class="pre">statuscode</span></tt> <em>(required)</em>: The HTTP Status code which is sent with this error. The reason to include this in the JSON as well, is because if you are using the API over JSONP for example, there is no easy way to get the error code. This is to make it more easy to use the API.</p>
 <p><tt class="docutils literal"><span class="pre">code</span></tt> <em>(required)</em> : An error code. The error code SHOULD be same as the last part of the help url and MUST
 consist (mostly) out of lower case letters. (Letters allow for easier documentation-lookup then just a numeric code.)</p>
 <p><tt class="docutils literal"><span class="pre">details</span></tt> <em>(optional)</em> : Field by field error messages.</p>
@@ -411,7 +437,7 @@ its format depends on the error code.</p>
 <h3>An appropriate status code should be used when serving an error resource<a class="headerlink" href="#an-appropriate-status-code-should-be-used-when-serving-an-error-resource" title="Permalink to this headline">¶</a></h3>
 <p>When serving an error resource an appropriate status code MUST be used. E.g. 4xx for client errors and 5xx for
 processing errors.</p>
-<p>To determine which error code is appropriate, refer to the status codes section of this <a class="reference external" href="whhD1.png">image</a>. (Copied
+<p>To determine which error code is appropriate, refer to the status codes section of this <a class="reference external" href="20-whhD1.png">image</a>. (Copied
 from <a class="reference external" href="http://i.stack.imgur.com/whhD1.png">http://i.stack.imgur.com/whhD1.png</a>.)</p>
 </div>
 <div class="section" id="do-not-include-stacktraces-in-the-error-message">
@@ -423,25 +449,28 @@ information is too valuable for hackers and MUST be avoided.</p>
 </div>
 
 
+          </div>
           <footer>
   
-    <div class="rst-footer-buttons">
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="interaction-design.html" class="btn btn-neutral float-right" title="Interaction design"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="30-interaction-design.html" class="btn btn-neutral float-right" title="Interaction design"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="urls-and-uris.html" class="btn btn-neutral" title="URLs and URIs"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="10-urls-and-uris.html" class="btn btn-neutral" title="URLs and URIs"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
 
   <hr/>
 
-  <p>
-      &copy; Copyright 2014, Marktplaats API Focus team.
-  </p>
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Marktplaats API Focus team.
+    </p>
+  </div>
 
-  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
         </div>
       </div>
@@ -450,6 +479,38 @@ information is too valuable for hackers and MUST be avoided.</p>
 
   </div>
   
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
 
 </body>
 </html>

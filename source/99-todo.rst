@@ -6,15 +6,15 @@ Each task should be following with the plan and responsible to complete the task
 
 * Complete this list
 
-  #. Just do it, A: Erik v. O.
+  1. Just do it, A: Erik v. O.
 
 * Consider using entity versions
 
-  #. Discuss with current stakeholders, A: Erik v.O., I: Frank S., Martin S./Jelmer K., ETA: 2014 wk. 19/20
+  1. Discuss with current stakeholders, A: Erik v.O., I: Frank S., Martin S./Jelmer K., ETA: 2014 wk. 19/20
 
 * Consider requiring schema.org or other naming conventions
 
-  #. Plan: prepare discussion by finding the relevant schema's, A: Erik v.O., ETA: 2014 wk. 19
+  1. Plan: prepare discussion by finding the relevant schema's, A: Erik v.O., ETA: 2014 wk. 19
   #. Have discussion with stakeholders within ECG, A: Erik v.O., I: Ky, and people from versioning discussion.
 
 * Lots of little edits (see list below)
@@ -41,7 +41,7 @@ Lots of small edits
         PATCH/DELETE not being supported by browsers => Remove
         _include/ _exclude needs major revamp
         Clearer use of MUST/SHOULD/CAN (consistent)
-    - Add something about that RFC martin just mentioned (URL templates), MUST
+        Add something about that RFC martin just mentioned (URL templates), MUST
     Resource Format
         Remove serialization from URLs
         Language of errors more clear
@@ -53,18 +53,18 @@ Lots of small edits
         Add link to currying in HAL
         Clarfiy section on custom link relation types
         Fieldnames cannot be duplicate
-    - Come up with field-names standard
+        Come up with field-names standard
     Interaction
         OPTION / HEAD calls missing
         TRACE not supported (security)
         Resource without etag => clarify body response is an error response
-    - GZIP/Deflate
+        GZIP/Deflate
     Documentation Requirements
         Recommend order of headers, documentation tools
         Clean up stuff at the bottom
-    - Expand further
+        Expand further
     Versioning
-    - Requires follow-up
+        Requires follow-up
 
     Postponed:
 

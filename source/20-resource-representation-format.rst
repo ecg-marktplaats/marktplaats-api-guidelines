@@ -11,7 +11,7 @@ Resources
 Serialization format: HAL in UTF-8 encoding
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-*HAL* MUST be used as representation format for all non-binary resources. See :ref:`deviations-from-hal` for more information.
+*HAL* MUST be used as representation format for all non-binary resources. See :ref:`hal-and-our-deviations` for more information.
 
 Example document :
 

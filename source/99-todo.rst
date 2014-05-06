@@ -15,6 +15,7 @@ Each task should be following with the plan and responsible to complete the task
 * Much more details around security (authenticatie, delegation, authorisatie)
 * Add more clarity around having multiple APIs acting together as one
 * Consider adding information on testing
+* Define a change procedure for these guidelines.
 * JSONP
 * CORS?
 

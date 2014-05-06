@@ -18,10 +18,14 @@ Each task should be following with the plan and responsible to complete the task
   #. Have discussion with stakeholders within ECG, A: Erik v.O., I: Ky, and people from versioning discussion.
 
 * Lots of little edits (see list below)
-* Much more details around security (authenticatie, delegation, authorisatie)
+* Much more details around security (authentication, delegation, authorisation)
 * Add more clarity around having multiple APIs acting together as one
-* Consider adding information on testing
 * Define a change procedure for these guidelines.
+* Recommendations for (semi-)public developer portal.
+* Consider adding information on testing
+* Volume filtering.
+* Bulk endpoint for mobile optimizations.
+* Streaming endpoints.
 
 * JSONP
 * CORS?

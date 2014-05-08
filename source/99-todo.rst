@@ -19,7 +19,9 @@ Each task should be following with the plan and responsible to complete the task
 
 * Lots of little edits (see list below)
 * Much more details around security (authentication, delegation, authorisation)
+* Create a summary for the busy developer.
 * Add more clarity around having multiple APIs acting together as one
+* Add more stuff about non-json responses.
 * Define a change procedure for these guidelines.
 * Recommendations for (semi-)public developer portal.
 * Consider adding information on testing

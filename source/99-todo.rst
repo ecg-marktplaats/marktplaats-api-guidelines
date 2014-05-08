@@ -4,11 +4,7 @@ TODO
 The following are tasks -priority ordered- that need to be done to complete the API guidelines.
 Each task should be following with the plan and responsible to complete the task.
 
-* Complete this list
-
-  1. Just do it, A: Erik v. O.
-
-    * Consider using entity versions
+* Consider using entity versions
 
   1. Discuss with current stakeholders, A: Erik v.O., I: Frank S., Martin S./Jelmer K., ETA: 2014 wk. 19/20
 

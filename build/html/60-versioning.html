@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Versioning &mdash; eCG API Guidelines 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="eCG API Guidelines 0.1 documentation" href="index.html"/>
+        <link rel="next" title="HAL and our deviations" href="80-hal-and-our-deviations.html"/>
+        <link rel="prev" title="Security" href="50-security.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> eCG API Guidelines</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00-intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#principles">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#conventions">Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="10-urls-and-uris.html">URLs and URIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#base-url">Base URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#url-and-uri-naming">URL and URI naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#query-parameters">Query parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="20-resource-representation-format.html">Resource representation format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#relation-names">Relation names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-names">Field names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-values">Field values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="30-interaction-design.html">Interaction design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#request-methods">Request methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#status-codes">Status codes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="40-documentation-requirements.html">Documentation requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#documentation-urls">Documentation URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#resource-documentation">Resource documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#document-link-relations">Document link relations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#getting-started-guide">Getting started guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#api-reference">API reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#example-code">Example code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="50-security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#oauth-2">OAuth 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Versioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#resource-versioning">Resource versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#field-versioning">Field versioning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="80-hal-and-our-deviations.html">HAL and our deviations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#content-type">Content-type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#json">JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="99-todo.html">TODO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="99-todo.html#lots-of-small-edits">Lots of small edits</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">eCG API Guidelines</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Versioning</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/60-versioning.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="versioning">
+<span id="index-0"></span><span id="id1"></span><h1>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">¶</a></h1>
+<p>This document describes the allowed ways of changing an existing API.</p>
+<div class="section" id="resource-versioning">
+<h2>Resource versioning<a class="headerlink" href="#resource-versioning" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="change-the-major-version-in-the-base-url-only-as-a-last-resort">
+<h3>Change the major version in the base URL only as a last resort<a class="headerlink" href="#change-the-major-version-in-the-base-url-only-as-a-last-resort" title="Permalink to this headline">¶</a></h3>
+<p>Before:</p>
+<div class="highlight-http"><div class="highlight"><pre>http://api.marktplaats.nl/v1/categories/96
+</pre></div>
+</div>
+<p>After</p>
+<div class="highlight-http"><div class="highlight"><pre>http://api.marktplaats.nl/v2/categories/96
+</pre></div>
+</div>
+<p>Changing the major version SHOULD be done as little as possible. The old URL SHOULD be available for some time to allow
+all clients to update their code.</p>
+</div>
+<div class="section" id="clients-should-be-able-to-cope-with-new-link-relations-added-to-existing-resources">
+<h3>Clients should be able to cope with new link relations added to existing resources<a class="headerlink" href="#clients-should-be-able-to-cope-with-new-link-relations-added-to-existing-resources" title="Permalink to this headline">¶</a></h3>
+<p>Clients should be liberal in what they accept and conservative in what they send. And they should not break when a new
+link relation is added to an existing resource</p>
+</div>
+<div class="section" id="deprecate-old-links-when-replacing-them-with-newer-non-backwards-compatible-versions">
+<h3>Deprecate old links when replacing them with newer non backwards compatible versions<a class="headerlink" href="#deprecate-old-links-when-replacing-them-with-newer-non-backwards-compatible-versions" title="Permalink to this headline">¶</a></h3>
+<p>In case the link replaces an older link, the old link MUST be deprecated. The old link SHOULD stay around until all
+clients got the change to update their code.</p>
+<p>Before:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;deprecation&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories/deprecation&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/tags&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/tags&quot;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The deprecation attribute value of the link relation MUST point to a developer document that describes when and why
+the relation is deprecated.</p>
+</div>
+</div>
+<div class="section" id="field-versioning">
+<h2>Field versioning<a class="headerlink" href="#field-versioning" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="clients-should-be-able-to-cope-with-new-attributes-added-to-existing-resources">
+<h3>Clients should be able to cope with new attributes added to existing resources<a class="headerlink" href="#clients-should-be-able-to-cope-with-new-attributes-added-to-existing-resources" title="Permalink to this headline">¶</a></h3>
+<p>Clients should be liberal in what they accept and conservative in what they send. And they should not break when a new
+attribute is added to an existing resource</p>
+<p>In case the new field replaces another field, the old field SHOULD stay around until existing clients got a chance to
+change their code. Before the the older field is removed it SHOULD be deprecated.</p>
+<p>Deprecation example:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+     <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/92&quot;</span> <span class="p">},</span>
+     <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/categories&quot;</span> <span class="p">},</span>
+     <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/rels/parent-category&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;short-name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;_deprecation&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;short-name&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/category/short-name-deprecation&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="80-hal-and-our-deviations.html" class="btn btn-neutral float-right" title="HAL and our deviations"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="50-security.html" class="btn btn-neutral" title="Security"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Marktplaats API Focus team.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

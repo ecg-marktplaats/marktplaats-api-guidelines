@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>TODO &mdash; eCG API Guidelines 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="eCG API Guidelines 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="HAL and our deviations" href="80-hal-and-our-deviations.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> eCG API Guidelines</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00-intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#principles">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#conventions">Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="10-urls-and-uris.html">URLs and URIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#base-url">Base URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#url-and-uri-naming">URL and URI naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#query-parameters">Query parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="20-resource-representation-format.html">Resource representation format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#relation-names">Relation names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-names">Field names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-values">Field values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="30-interaction-design.html">Interaction design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#request-methods">Request methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#status-codes">Status codes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="40-documentation-requirements.html">Documentation requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#documentation-urls">Documentation URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#resource-documentation">Resource documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#document-link-relations">Document link relations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#getting-started-guide">Getting started guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#api-reference">API reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#example-code">Example code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="50-security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#oauth-2">OAuth 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="60-versioning.html">Versioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="60-versioning.html#resource-versioning">Resource versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="60-versioning.html#field-versioning">Field versioning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="80-hal-and-our-deviations.html">HAL and our deviations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#content-type">Content-type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#json">JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">TODO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lots-of-small-edits">Lots of small edits</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">eCG API Guidelines</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>TODO</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/99-todo.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="todo">
+<h1>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h1>
+<p>The following are tasks -priority ordered- that need to be done to complete the API guidelines.
+Each task should be following with the plan and responsible to complete the task.</p>
+<ul class="simple">
+<li>Complete this list<ol class="arabic">
+<li>Just do it, A: Erik v. O.</li>
+</ol>
+</li>
+<li>Consider using entity versions<ol class="arabic">
+<li>Discuss with current stakeholders, A: Erik v.O., I: Frank S., Martin S./Jelmer K., ETA: 2014 wk. 19/20</li>
+</ol>
+</li>
+<li>Consider requiring schema.org or other naming conventions<ol class="arabic">
+<li>Plan: prepare discussion by finding the relevant schema&#8217;s, A: Erik v.O., ETA: 2014 wk. 19</li>
+<li>Have discussion with stakeholders within ECG, A: Erik v.O., I: Ky, and people from versioning discussion.</li>
+</ol>
+</li>
+<li>Lots of little edits (see list below)</li>
+<li>Much more details around security (authentication, delegation, authorisation)</li>
+<li>Add more clarity around having multiple APIs acting together as one</li>
+<li>Define a change procedure for these guidelines.</li>
+<li>Recommendations for (semi-)public developer portal.</li>
+<li>Consider adding information on testing</li>
+<li>Volume filtering.</li>
+<li>Bulk endpoint for mobile optimizations.</li>
+<li>Streaming endpoints.</li>
+<li>JSONP</li>
+<li>CORS?</li>
+</ul>
+<div class="section" id="lots-of-small-edits">
+<h2>Lots of small edits<a class="headerlink" href="#lots-of-small-edits" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><dl class="docutils">
+<dt>URL, URI</dt>
+<dd>Documentation should point to HAL documentation
+underscore means meta parameters (reserved for API)
+X-HTTP-Method-override
+_body parameters applies to every call
+PATCH/DELETE not being supported by browsers =&gt; Remove
+_include/ _exclude needs major revamp
+Clearer use of MUST/SHOULD/CAN (consistent)
+Add something about that RFC martin just mentioned (URL templates), MUST</dd>
+<dt>Resource Format</dt>
+<dd>Remove serialization from URLs
+Language of errors more clear
+Add status code as field for errors
+_link.help.href is pointing to an invalid URL (and more URLs)
+Link to type table
+help.href vs describedby
+clarify the help page link
+Add link to currying in HAL
+Clarfiy section on custom link relation types
+Fieldnames cannot be duplicate
+Come up with field-names standard</dd>
+<dt>Interaction</dt>
+<dd>OPTION / HEAD calls missing
+TRACE not supported (security)
+Resource without etag =&gt; clarify body response is an error response
+GZIP/Deflate</dd>
+<dt>Documentation Requirements</dt>
+<dd>Recommend order of headers, documentation tools
+Clean up stuff at the bottom
+Expand further</dd>
+<dt>Versioning</dt>
+<dd>Requires follow-up</dd>
+</dl>
+<p>Postponed:</p>
+<p>DELETE call =&gt; No more fetch</p>
+<p>GLOBAL:</p>
+<p>HTTPS on all examples
+fix all todos
+Martin wants to re-do the documentation in RST</p>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="80-hal-and-our-deviations.html" class="btn btn-neutral" title="HAL and our deviations"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Marktplaats API Focus team.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

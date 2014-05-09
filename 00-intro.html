@@ -29,7 +29,7 @@
 
   
     <link rel="top" title="eCG API Guidelines 0.1 documentation" href="index.html"/>
-        <link rel="next" title="URLs and URIs" href="10-urls-and-uris.html"/>
+        <link rel="next" title="Principles" href="05-principles.html"/>
         <link rel="prev" title="Welcome to eCG API Guidelines’s documentation!" href="index.html"/> 
 
   
@@ -59,8 +59,13 @@
         
             <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#principles">Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview-for-the-busy-developer">Overview for the busy developer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advantages">Advantages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#conventions">Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-principles.html">Principles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-principles.html#technical-principles">Technical principles</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="10-urls-and-uris.html">URLs and URIs</a><ul>
@@ -147,54 +152,25 @@
             
   <div class="section" id="introduction">
 <span id="index-0"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="principles">
-<h2>Principles<a class="headerlink" href="#principles" title="Permalink to this headline">¶</a></h2>
-<p>The overarching theme for all following guidelines is &#8220;No surprises&#8221; since the users of the APIs can expect a certain
-behavior and continuity in our APIs.</p>
-<ul>
-<li><dl class="first docutils">
-<dt><strong>Changes must never break existing applications</strong></dt>
-<dd><p class="first last">We have no idea what our customers are using to talk to our API and if or when they are going to adapt to a change. This means that changes must be communicated properly and must be backwards compatible.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><strong>Discovery</strong></dt>
-<dd><p class="first last">Having just the base URL, it should be possible <em>for a programmer</em> to discover all resources and their documentation. (Level 3 of the <a class="reference external" href="http://restcookbook.com/Miscellaneous/richardsonmaturitymodel/">Richardson Maturity Model</a>. We do not believe in automatic discovery.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><strong>Consistency</strong></dt>
-<dd><p class="first">These guidelines make it possible to make all our APIs consistent. Consistency should be found in all of these aspects:</p>
+<p>This document describes the guidelines that new APIs in ECG SHOULD adhere to.</p>
+<p><strong>This is page is work in progress.</strong></p>
+<div class="section" id="overview-for-the-busy-developer">
+<h2>Overview for the busy developer<a class="headerlink" href="#overview-for-the-busy-developer" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Naming: URLs are structured the same way throughout all our APIs. Field names are always in camelCase and the same word is used for the same thing. For example, the postal code should not be called postcode, postalCode and zipCode.</li>
-<li>Data structures: We use the same representation for common data such as timestamps, or links to other resources.</li>
-<li>Authentication and authorization: We choose one authentication mechanism for all APIs instead of multiple different ones.</li>
-<li>Documentation: We choose one style and documentation format for all of our APIs to make all APIs look like one.</li>
+<li>HTTPS, JSON, UTF-8, HAL, TUK (The URL is King)</li>
+<li>HAL adds metadata to each resource to find:
+* related resources
+* potential actions
+* documentation</li>
+<li>optional ETAGs</li>
 </ul>
-<p class="last">Note that these guidelines sometimes contain arbitrary decisions that were made solely for consistency.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><strong>Community contributions are easy</strong></dt>
-<dd><p class="first last">Since we want other people to use our APIs we need to build a community around them to communicate with our users. This will help us to find bugs, inconsistencies and learn about usage and improvements.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><strong>No technology enforced for the implementations</strong></dt>
-<dd><p class="first last">Though we can give some recommendations on tools and libraries for implementing the APIs, API implementers are not limited a specific language or tool chain. The APIs must be implementable (both client and server) with multiple different tool chains.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><strong>Secure</strong></dt>
-<dd><p class="first last">Any API should be secure, both for eBay and its clients.</p>
-</dd>
-</dl>
-</li>
+</div>
+<div class="section" id="advantages">
+<h2>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Teams are free to chose their technology for the implementation.</li>
+<li>The guidelines enforce an API that can grow and stay relevant.</li>
+<li>The guidelines lower the amount of surprises which can speed up implementations.</li>
 </ul>
 </div>
 <div class="section" id="conventions">
@@ -209,7 +185,7 @@ behavior and continuity in our APIs.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="10-urls-and-uris.html" class="btn btn-neutral float-right" title="URLs and URIs"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="05-principles.html" class="btn btn-neutral float-right" title="Principles"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="Welcome to eCG API Guidelines’s documentation!"><span class="fa fa-arrow-circle-left"></span> Previous</a>

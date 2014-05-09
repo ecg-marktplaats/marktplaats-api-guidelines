@@ -5,6 +5,8 @@ Introduction
 
 This document describes the guidelines that new APIs in ECG SHOULD adhere to.
 
+**This is page is work in progress.**
+
 Overview for the busy developer
 -------------------------------
 

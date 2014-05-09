@@ -11,7 +11,8 @@ Go to [The source](source/index.rst).
 Build the API Guidelines
 ------------------------
 
-Edit the source and then do a `make clean; make html`. 
+Edit the source and then do:
+    git commit -a && make clean && make html && git checkout gh-pages && git merge -s subtree master && git push && git checkout master
 
 Update rendered version
 -----------------------

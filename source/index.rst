@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
 
    00-intro
+   05-principles
    10-urls-and-uris
    20-resource-representation-format
    30-interaction-design

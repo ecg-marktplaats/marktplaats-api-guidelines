@@ -1,0 +1,521 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Resource representation format &mdash; eCG API Guidelines 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="eCG API Guidelines 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Interaction design" href="30-interaction-design.html"/>
+        <link rel="prev" title="URLs and URIs" href="10-urls-and-uris.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> eCG API Guidelines</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00-intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#overview-for-the-busy-developer">Overview for the busy developer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#advantages">Advantages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#conventions">Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-principles.html">Principles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-principles.html#technical-principles">Technical principles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="10-urls-and-uris.html">URLs and URIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#base-url">Base URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#url-and-uri-naming">URL and URI naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#query-parameters">Query parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Resource representation format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#relation-names">Relation names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#field-names">Field names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#field-values">Field values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="30-interaction-design.html">Interaction design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#request-methods">Request methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#status-codes">Status codes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="40-documentation-requirements.html">Documentation requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#documentation-urls">Documentation URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#resource-documentation">Resource documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#document-link-relations">Document link relations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#getting-started-guide">Getting started guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#api-reference">API reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#example-code">Example code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="50-security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#oauth-2">OAuth 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="60-versioning.html">Versioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="60-versioning.html#resource-versioning">Resource versioning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="60-versioning.html#field-versioning">Field versioning</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="80-hal-and-our-deviations.html">HAL and our deviations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#content-type">Content-type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#json">JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="99-todo.html">TODO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="99-todo.html#lots-of-small-edits">Lots of small edits</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">eCG API Guidelines</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Resource representation format</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="_sources/20-resource-representation-format.txt" rel="nofollow"> View page source</a>
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            
+  <div class="section" id="resource-representation-format">
+<span id="index-0"></span><span id="id1"></span><h1>Resource representation format<a class="headerlink" href="#resource-representation-format" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="serialization-format-hal-in-utf-8-encoding">
+<h3>Serialization format: HAL in UTF-8 encoding<a class="headerlink" href="#serialization-format-hal-in-utf-8-encoding" title="Permalink to this headline">¶</a></h3>
+<p><em>HAL</em> MUST be used as representation format for all non-binary resources. See <a class="reference internal" href="80-hal-and-our-deviations.html#hal-and-our-deviations"><em>HAL and our deviations</em></a> for more information.</p>
+<p>Example document :</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+ <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/92&quot;</span> <span class="p">},</span>
+    <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/category&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/rels/parent-category&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;_embedded&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/rels/parent-category&quot;</span><span class="o">:</span> <span class="p">{</span>
+         <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Auto&#39;s&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;Auto&#39;s&quot;</span>
+    <span class="p">}</span>
+ <span class="p">},</span>
+ <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Also see these articles:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.mwop.net/blog/2013-02-11-restful-apis-with-zf2-part-1.html">HAL introduction</a></li>
+<li><a class="reference external" href="http://blog.stateless.co/post/13296666138/json-linking-with-hal">JSON linking with HAL</a></li>
+</ul>
+</div>
+<div class="section" id="the-base-url-is-a-hal-resource">
+<h3>The base URL is a HAL resource<a class="headerlink" href="#the-base-url-is-a-hal-resource" title="Permalink to this headline">¶</a></h3>
+<p>The base URL is a HAL resource with appropriate documentation links.</p>
+<p>For example:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">GET</span> <span class="o">/</span><span class="nx">v1</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">marktplaats</span><span class="p">.</span><span class="nx">nl</span>
+
+<span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
+<span class="nx">ETag</span><span class="o">:</span> <span class="s2">&quot;d9087df677dgh&quot;</span>
+
+<span class="p">{</span>
+    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/advertisements&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/advertisements&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/users&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users&quot;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="each-resource-should-contain-a-self-link">
+<h3>Each resource should contain a &#8216;self&#8217; link<a class="headerlink" href="#each-resource-should-contain-a-self-link" title="Permalink to this headline">¶</a></h3>
+<p>Each resource should have a self link :</p>
+<p>Example :</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;self&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;/v1/categories/1&quot;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="each-resource-should-contain-a-describedby-link">
+<h3>Each resource should contain a &#8216;describedby&#8217; link<a class="headerlink" href="#each-resource-should-contain-a-describedby-link" title="Permalink to this headline">¶</a></h3>
+<p>Each resource should have a <tt class="docutils literal"><span class="pre">describedby</span></tt> link :</p>
+<p>Example :</p>
+<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
+    <span class="nt">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;describedby&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/category&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="keep-collections-homogeneous">
+<h3>Keep collections homogeneous<a class="headerlink" href="#keep-collections-homogeneous" title="Permalink to this headline">¶</a></h3>
+<p>Depending on use cases, you can group resources into collections by using similarities (e.g. different types of
+listings in a single collection). However, no matter what criteria you choose for any collection, it is important to
+keep the representation homogeneous so that it is easy to use by clients.</p>
+<p>Design the representation of the collection such that members in a collection are structurally and syntactically
+similar.</p>
+</div>
+<div class="section" id="when-available-iana-registered-relation-types-should-be-used-as-link-relations">
+<h3>When available IANA registered relation types should be used as link relations<a class="headerlink" href="#when-available-iana-registered-relation-types-should-be-used-as-link-relations" title="Permalink to this headline">¶</a></h3>
+<p>A link relation is a descriptive attribute attached to a hyperlink in order to define the type of the link, or the
+relationship between the source and destination resources.</p>
+<p>A <a class="reference external" href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">standardized link relation</a> should be used when
+such a relation is available.</p>
+<p>Examples of commonly used IANA relation types are : <tt class="docutils literal"><span class="pre">self</span></tt>, <tt class="docutils literal"><span class="pre">first</span></tt>, <tt class="docutils literal"><span class="pre">prev</span></tt>, <tt class="docutils literal"><span class="pre">next</span></tt>, and <tt class="docutils literal"><span class="pre">last</span></tt>.</p>
+</div>
+<div class="section" id="custom-link-relation-types-should-be-uri-s-that-when-dereferenced-in-a-web-browser-provide-relevant-documentation-in-the-form-of-an-html-page">
+<h3>Custom link relation types should be uri&#8217;s that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page<a class="headerlink" href="#custom-link-relation-types-should-be-uri-s-that-when-dereferenced-in-a-web-browser-provide-relevant-documentation-in-the-form-of-an-html-page" title="Permalink to this headline">¶</a></h3>
+<p>In accordance with the <a class="reference external" href="http://tools.ietf.org/html/rfc5988">web linking RFC</a> custom link relation types should be uri&#8217;s
+that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page.</p>
+<p>This page should contain the following information</p>
+<ul class="simple">
+<li>A list of request methods (GET, PUT, POST etc) supported for this URI and for each method.</li>
+<li>A description of the responses you can expect from any of the given request methods. This description should contain
+the status code and a description of the links and embedded resources included in the response.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="relation-names">
+<h2>Relation names<a class="headerlink" href="#relation-names" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="relation-names-are-in-english-unless-they-represent-a-product-or-company-name">
+<h3>Relation names are in English unless they represent a product or company name.<a class="headerlink" href="#relation-names-are-in-english-unless-they-represent-a-product-or-company-name" title="Permalink to this headline">¶</a></h3>
+<p>The consumers of the API will almost certainly not all be Dutch so field names should be in English unless they
+represent a product or company name.</p>
+</div>
+<div class="section" id="words-in-relation-names-are-separated-by-a-dash">
+<h3>Words in relation names are separated by a dash <tt class="docutils literal"><span class="pre">-</span></tt><a class="headerlink" href="#words-in-relation-names-are-separated-by-a-dash" title="Permalink to this headline">¶</a></h3>
+<p>Relation names are used in URL and words are therefore separated by dash <tt class="docutils literal"><span class="pre">-</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="field-names">
+<h2>Field names<a class="headerlink" href="#field-names" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="field-names-are-in-english-unless-they-represent-a-product-or-company-name">
+<h3>Field names are in English unless they represent a product or company name.<a class="headerlink" href="#field-names-are-in-english-unless-they-represent-a-product-or-company-name" title="Permalink to this headline">¶</a></h3>
+<p>The consumers of the API will almost certainly not all be Dutch so field names should be in English unless they
+represent a product or company name.</p>
+</div>
+<div class="section" id="field-names-have-consistent-semantics-and-representation">
+<h3>Field names have consistent semantics and representation<a class="headerlink" href="#field-names-have-consistent-semantics-and-representation" title="Permalink to this headline">¶</a></h3>
+<p>When two fields have the same name (even if they are in different entities), they must mean the same thing and they must
+use the same representation.</p>
+<p>This rule does not apply to deprecated fields.</p>
+</div>
+<div class="section" id="field-names-are-in-camelcase-contain-only-latin-characters-a-z-a-z-0-9">
+<h3>Field names are in camelCase, contain only latin characters <tt class="docutils literal"><span class="pre">a</span></tt> - <tt class="docutils literal"><span class="pre">z</span></tt>, <tt class="docutils literal"><span class="pre">A</span></tt> - <tt class="docutils literal"><span class="pre">Z</span></tt>, <tt class="docutils literal"><span class="pre">0</span></tt> - <tt class="docutils literal"><span class="pre">9</span></tt>.<a class="headerlink" href="#field-names-are-in-camelcase-contain-only-latin-characters-a-z-a-z-0-9" title="Permalink to this headline">¶</a></h3>
+<p>Fields should only use alphanumeric characters and should use the camelCase notation.</p>
+<blockquote>
+<div>{ &#8220;asqEnabled&#8221; : true }    // correct
+{ &#8220;asq_enabled&#8221; : true }   // NOT correct
+{ &#8220;asq_enabled?&#8221; : true }  // NOT correct</div></blockquote>
+</div>
+<div class="section" id="field-names-start-with-a-lowercase-letter-a-z">
+<h3>Field names start with a lowercase letter, <tt class="docutils literal"><span class="pre">a</span></tt> - <tt class="docutils literal"><span class="pre">z</span></tt>.<a class="headerlink" href="#field-names-start-with-a-lowercase-letter-a-z" title="Permalink to this headline">¶</a></h3>
+<p>Fields should start with a lower case letter.</p>
+</div>
+<div class="section" id="field-names-starting-with-underscore-are-reserved-for-external-standards-e-g-hal">
+<h3>Field names starting with underscore &#8216;_&#8217; are reserved for external standards, e.g. Hal.<a class="headerlink" href="#field-names-starting-with-underscore-are-reserved-for-external-standards-e-g-hal" title="Permalink to this headline">¶</a></h3>
+<p>While HAL only reserves the names detailed in the specification (<tt class="docutils literal"><span class="pre">_links</span></tt> and <tt class="docutils literal"><span class="pre">_embedded</span></tt>) properties that represent
+the resource&#8217;s state should not start with an underscore to prevent collisions with future versions of the standard.</p>
+</div>
+<div class="section" id="field-deprecation">
+<h3>Field deprecation<a class="headerlink" href="#field-deprecation" title="Permalink to this headline">¶</a></h3>
+<p>See versioning.</p>
+</div>
+</div>
+<div class="section" id="field-values">
+<h2>Field values<a class="headerlink" href="#field-values" title="Permalink to this headline">¶</a></h2>
+<p>See also the list of supported field types: <a class="reference internal" href="40-documentation-requirements.html#field-types"><em>Field types</em></a></p>
+<div class="section" id="structure-field-values">
+<h3>Structure field values<a class="headerlink" href="#structure-field-values" title="Permalink to this headline">¶</a></h3>
+<p>You are encouraged to represent complex fields with a JSON object. This allows for better composability, the struct
+might later move to a separate entity.</p>
+<p>TODO: discuss, this might make it harder for clients??</p>
+</div>
+<div class="section" id="field-values-that-are-optional">
+<h3>Field values that are optional<a class="headerlink" href="#field-values-that-are-optional" title="Permalink to this headline">¶</a></h3>
+<p>When a field can be empty (or omitted) when creating a resource, it should be left out of the request. When returning a resource with optional fields, and there is no value for a given field, then the field should be left out entirely in case of a String, Numeric or Object value. In the case of an Array, an empty list may be returned.</p>
+<p>The rationale for leaving omitting the field when creating or updating a resource (POST, PUT or PATCH), is that it is not allowed to specify a key without a value. Theoretically, the value <tt class="docutils literal"><span class="pre">null</span></tt> could be used, but this will only lead to confusion and complicate the parsing of the JSON object.</p>
+</div>
+<div class="section" id="field-values-that-represent-a-timestamp-are-in-iso-8601">
+<h3>Field values that represent a timestamp are in ISO 8601<a class="headerlink" href="#field-values-that-represent-a-timestamp-are-in-iso-8601" title="Permalink to this headline">¶</a></h3>
+<p>Timestamp values are represented using the <a class="reference external" href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> format full syntax in UTC (<tt class="docutils literal"><span class="pre">Z</span></tt>)
+with milliseconds (e.g. <tt class="docutils literal"><span class="pre">2013-20-02T18:02:24.000Z</span></tt>).</p>
+<p>Some systems will store dates in a lower precision. For consistency even those dates are represented in the full format.
+However, clients should be prepared to see timestamps rounded, for example to the second.</p>
+</div>
+<div class="section" id="field-values-that-represent-a-date-are-in-iso-8601">
+<h3>Field values that represent a date are in ISO 8601<a class="headerlink" href="#field-values-that-represent-a-date-are-in-iso-8601" title="Permalink to this headline">¶</a></h3>
+<p>Date values are represented using the <a class="reference external" href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> in the format YYYY-MM-DD
+(eg. 2013-01-20 to represent january 20th 2013)</p>
+</div>
+<div class="section" id="field-values-that-represent-countries-are-in-iso-3166-1-alpha-2-format">
+<h3>Field values that represent countries are in ISO 3166-1 alpha-2 format<a class="headerlink" href="#field-values-that-represent-countries-are-in-iso-3166-1-alpha-2-format" title="Permalink to this headline">¶</a></h3>
+<p>Country codes are defined by the ISO 3166-1-alpha-2 code standard. You can find the complete list
+<a class="reference external" href="http://www.iso.org/iso/country_codes/iso_3166_code_lists/country_names_and_code_elements">here</a>. For example <tt class="docutils literal"><span class="pre">NL</span></tt>.</p>
+<p>The codes are case sensitive.</p>
+</div>
+<div class="section" id="field-values-that-represent-a-currency-are-in-iso-4217">
+<h3>Field values that represent a currency are in ISO 4217<a class="headerlink" href="#field-values-that-represent-a-currency-are-in-iso-4217" title="Permalink to this headline">¶</a></h3>
+<p>Currencies are encoded using the <a class="reference external" href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency format. For example <tt class="docutils literal"><span class="pre">EUR</span></tt>,
+and not <tt class="docutils literal"><span class="pre">€</span></tt>.</p>
+<p>The codes are case sensitive.</p>
+</div>
+<div class="section" id="all-money-types-are-integers-and-conform-to-its-smallest-currency-unit">
+<h3>All money types are integers and conform to its smallest currency unit<a class="headerlink" href="#all-money-types-are-integers-and-conform-to-its-smallest-currency-unit" title="Permalink to this headline">¶</a></h3>
+<p>All money types are integers and conform to its smallest <em>commonly used</em> currency unit. For example, if the currency of
+a payment is in euros (EUR), the values of money fields conform to euro cents. So an amount of EUR 9,95 is represented
+as <tt class="docutils literal"><span class="pre">995</span></tt>.</p>
+<p>See the currency exponent as defined by <a class="reference external" href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> to find the smallest commonly
+used currency unit for a given currency.</p>
+</div>
+<div class="section" id="all-numbers-are-integers-unless-precision-is-not-important">
+<h3>All numbers are integers unless precision is not important<a class="headerlink" href="#all-numbers-are-integers-unless-precision-is-not-important" title="Permalink to this headline">¶</a></h3>
+<p>Most numbers need to be precise, rounding due to using a floating point (64-bit IEEE754, or 32-bit IEEE754) can lead to
+unexpected errors. There are two allowed options:</p>
+<ul class="simple">
+<li>represent the number in some exponent (e.g. in cm instead of m), this is required with a monetary amount
+(see previous rule),</li>
+<li>represent the precise number as a string.</li>
+</ul>
+<p>The first option is preferred. However, for larger numbers (JSON does not support numbers above 2^52), the second option
+MUST be selected.</p>
+<p>There are few exceptions to this rule. Here is the list of known and allowed exceptions:</p>
+<ul class="simple">
+<li>WGS84 coordinates</li>
+<li>Rates or ratios that have a value between <tt class="docutils literal"><span class="pre">0.0</span></tt> and <tt class="docutils literal"><span class="pre">1.0</span></tt>.</li>
+</ul>
+<p>See also the list of supported field types: <a class="reference internal" href="40-documentation-requirements.html#field-types"><em>Field types</em></a></p>
+</div>
+<div class="section" id="binary-field-values">
+<h3>Binary field values<a class="headerlink" href="#binary-field-values" title="Permalink to this headline">¶</a></h3>
+<p>See the list of supported field types: <a class="reference internal" href="40-documentation-requirements.html#field-types"><em>Field types</em></a></p>
+</div>
+</div>
+<div class="section" id="errors">
+<h2>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h2>
+<p>This section was inspired by the article
+<a class="reference external" href="http://soabits.blogspot.dk/2013/05/error-handling-considerations-and-best.html">Error handling considerations and best practices</a>
+and <a class="reference external" href="https://github.com/blongden/vnd.error">vnd.error</a> format.</p>
+<div class="section" id="error-messages-follow-a-standard-format">
+<h3>Error messages follow a standard format<a class="headerlink" href="#error-messages-follow-a-standard-format" title="Permalink to this headline">¶</a></h3>
+<p>Here is an example request that produces an error response:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">POST</span> <span class="o">/</span><span class="nx">v1</span><span class="o">/</span><span class="nx">categories</span><span class="o">/</span><span class="mi">95</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">marktplaats</span><span class="p">.</span><span class="nx">nl</span>
+<span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">nl</span><span class="p">,</span> <span class="nx">en</span>
+<span class="nx">If</span><span class="o">-</span><span class="nx">Match</span><span class="o">:</span> <span class="s2">&quot;qg7968osihugw&quot;</span>
+
+<span class="p">{</span>
+    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;abc&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;parentCategoryId&quot;</span><span class="o">:</span> <span class="mi">91</span><span class="p">,</span>
+    <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;Walnoot&quot;</span>
+<span class="p">}</span>
+
+
+<span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">400</span> <span class="nx">Bad</span> <span class="nx">Request</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">nl</span>
+
+<span class="p">{</span>
+    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;help&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/errors/validation-failure&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;logref&quot;</span><span class="o">:</span> <span class="s2">&quot;4298asfpohsa98yasohq97q3yff22&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;statuscode&quot;</span><span class="o">:</span> <span class="mi">400</span><span class="p">,</span>
+    <span class="s2">&quot;code&quot;</span> <span class="o">:</span> <span class="s2">&quot;validation-failure&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Validatie mislukt&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;details&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span> <span class="s2">&quot;field&quot;</span><span class="o">:</span> <span class="s2">&quot;is&quot;</span><span class="p">,</span>        <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Is geen geldig getal.&quot;</span><span class="p">,</span>  <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;not-a-number&quot;</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="s2">&quot;field&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>      <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Minstens 15 karakters.&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;too-short&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;15&quot;</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="s2">&quot;field&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span>      <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;&#39;%&#39; is niet toegestaan.&quot;</span><span class="p">,</span><span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;pattern-did-not-match&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;[a-zA-Z0-9]{15,30}&quot;</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="s2">&quot;field&quot;</span><span class="o">:</span> <span class="s2">&quot;shortName&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Is geen auto-merk.&quot;</span><span class="p">,</span>     <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;not-a-car-brand&quot;</span> <span class="p">},</span>
+        <span class="p">{</span> <span class="s2">&quot;fields&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;field1&quot;</span><span class="p">,</span> <span class="s2">&quot;field2&quot;</span><span class="p">],</span> <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;Some error over multiple fields.&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="o">:</span> <span class="s2">&quot;a-b-c&quot;</span> <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Response code is <tt class="docutils literal"><span class="pre">400</span></tt>, content type MUST be <tt class="docutils literal"><span class="pre">application/json</span></tt>, encoding MUST be UTF-8.</p>
+<p><tt class="docutils literal"><span class="pre">_link.help.href</span></tt> <em>(required)</em> : A URL that refers to a help page. (See [documentation](documentation.md).)</p>
+<p><tt class="docutils literal"><span class="pre">logref</span></tt> <em>(required)</em> : An identifier that refers to the specific error on the server side for logging purposes
+(e.g. <tt class="docutils literal"><span class="pre">RequestData.uniqueRequestId</span></tt>).</p>
+<p><tt class="docutils literal"><span class="pre">message</span></tt> <em>(required)</em> : A human readable message related to the current error which may be displayed to the user of
+the api.</p>
+<p><tt class="docutils literal"><span class="pre">statuscode</span></tt> <em>(required)</em>: The HTTP Status code which is sent with this error. The reason to include this in the JSON as well, is because if you are using the API over JSONP for example, there is no easy way to get the error code. This is to make it more easy to use the API.</p>
+<p><tt class="docutils literal"><span class="pre">code</span></tt> <em>(required)</em> : An error code. The error code SHOULD be same as the last part of the help url and MUST
+consist (mostly) out of lower case letters. (Letters allow for easier documentation-lookup then just a numeric code.)</p>
+<p><tt class="docutils literal"><span class="pre">details</span></tt> <em>(optional)</em> : Field by field error messages.</p>
+<p><tt class="docutils literal"><span class="pre">details[*].field</span></tt> or <tt class="docutils literal"><span class="pre">details[*].fields</span></tt> <em>(one is required)</em> : Name of the field(s) that did not validate.</p>
+<p><tt class="docutils literal"><span class="pre">details[*].message</span></tt> <em>(required)</em> : A human readable description of the message for the given field in error. Please
+make sure field contains a full sentence.</p>
+<p><tt class="docutils literal"><span class="pre">details[*].code</span></tt> <em>(required)</em> : A machine readable code for the error.</p>
+<p><tt class="docutils literal"><span class="pre">details[*].value</span></tt> <em>(optional)</em> : An optional value which supports the machine readable code. The actual value and
+its format depends on the error code.</p>
+<p>All fields are string values.</p>
+<p>Both <tt class="docutils literal"><span class="pre">message</span></tt> fields are in the language as negotiated with the <tt class="docutils literal"><span class="pre">Accept-Language</span></tt> HTTP header.</p>
+</div>
+<div class="section" id="an-appropriate-status-code-should-be-used-when-serving-an-error-resource">
+<h3>An appropriate status code should be used when serving an error resource<a class="headerlink" href="#an-appropriate-status-code-should-be-used-when-serving-an-error-resource" title="Permalink to this headline">¶</a></h3>
+<p>When serving an error resource an appropriate status code MUST be used. E.g. 4xx for client errors and 5xx for
+processing errors.</p>
+<p>To determine which error code is appropriate, refer to the status codes section of this <a class="reference external" href="20-whhD1.png">image</a>. (Copied
+from <a class="reference external" href="http://i.stack.imgur.com/whhD1.png">http://i.stack.imgur.com/whhD1.png</a>.)</p>
+</div>
+<div class="section" id="do-not-include-stacktraces-in-the-error-message">
+<h3>Do not include stacktraces in the error message<a class="headerlink" href="#do-not-include-stacktraces-in-the-error-message" title="Permalink to this headline">¶</a></h3>
+<p>It may be tempting to include a stack trace for easier support when something goes wrong. Don&#8217;t do it! This kind of
+information is too valuable for hackers and MUST be avoided.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="30-interaction-design.html" class="btn btn-neutral float-right" title="Interaction design"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="10-urls-and-uris.html" class="btn btn-neutral" title="URLs and URIs"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014, Marktplaats API Focus team.
+    </p>
+  </div>
+
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

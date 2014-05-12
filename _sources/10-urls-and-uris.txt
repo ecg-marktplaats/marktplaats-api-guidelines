@@ -291,10 +291,10 @@ results in an ``400`` error response because the ``_method`` parameter contains 
 ``X-HTTP-METHOD-OVERRIDE`` header does contain a correct value.
 
 
-<a name="_callback"></a> The ``_callback`` parameter MAY be used to return a jsonp response
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The ``_callback`` parameter MAY be used to return a jsonp response
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A ``?_callback`` parameter MAY be used in any ``GET`` call to have the results wrapped in a JSON function.
+A ``_callback`` parameter MAY be used in any ``GET`` call to have the results wrapped in a JSON function.
 This is typically used when browsers want to embed content in web pages by getting around cross domain
 issues. The response includes the same data output as the regular API, plus the relevant HTTP Header information.
 
@@ -326,8 +326,8 @@ Example:
         "totalResults": 10
     })
 
-<a name="_expand"></a> The ``_expand`` parameter MAY be used for zooming
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The ``_expand`` parameter MAY be used for zooming
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Zooming is an optional technique that allows linked resources to be embedded. The embedded resources are serialized as
 described by [HAL](http://stateless.co/hal_specification.html).

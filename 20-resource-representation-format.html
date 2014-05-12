@@ -76,6 +76,8 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Resource representation format</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#binary-resources">Binary resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resource-collections">Resource collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#relation-names">Relation names</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#field-names">Field names</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#field-values">Field values</a></li>
@@ -111,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="80-hal-and-our-deviations.html">HAL and our deviations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#content-type">Content-type</a></li>
 <li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#field-names">Field names</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="99-todo.html">TODO</a><ul>
@@ -158,8 +161,12 @@
 <div class="section" id="serialization-format-hal-in-utf-8-encoding">
 <h3>Serialization format: HAL in UTF-8 encoding<a class="headerlink" href="#serialization-format-hal-in-utf-8-encoding" title="Permalink to this headline">¶</a></h3>
 <p><em>HAL</em> MUST be used as representation format for all non-binary resources. See <a class="reference internal" href="80-hal-and-our-deviations.html#hal-and-our-deviations"><em>HAL and our deviations</em></a> for more information.</p>
-<p>Example document :</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+<p>Example response:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
+<span class="nx">ETag</span><span class="o">:</span> <span class="s2">&quot;677d1d9085dah&quot;</span>
+
+<span class="p">{</span>
  <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/92&quot;</span> <span class="p">},</span>
     <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/category&quot;</span><span class="p">,</span>
@@ -208,49 +215,30 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="each-resource-should-contain-a-self-link">
-<h3>Each resource should contain a &#8216;self&#8217; link<a class="headerlink" href="#each-resource-should-contain-a-self-link" title="Permalink to this headline">¶</a></h3>
-<p>Each resource should have a self link :</p>
-<p>Example :</p>
+<div class="section" id="each-resource-should-contain-self-and-describedby-links">
+<h3>Each resource SHOULD contain <tt class="docutils literal"><span class="pre">self</span></tt> and <tt class="docutils literal"><span class="pre">describedby</span></tt> links<a class="headerlink" href="#each-resource-should-contain-self-and-describedby-links" title="Permalink to this headline">¶</a></h3>
+<p>Each resource SHOULD have <tt class="docutils literal"><span class="pre">self</span></tt> and <tt class="docutils literal"><span class="pre">describedby</span></tt> link as described by HAL.</p>
+<p>Example:</p>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;self&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;/v1/categories/1&quot;</span> <span class="p">}</span>
+        <span class="s2">&quot;describedby&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/category&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="each-resource-should-contain-a-describedby-link">
-<h3>Each resource should contain a &#8216;describedby&#8217; link<a class="headerlink" href="#each-resource-should-contain-a-describedby-link" title="Permalink to this headline">¶</a></h3>
-<p>Each resource should have a <tt class="docutils literal"><span class="pre">describedby</span></tt> link :</p>
-<p>Example :</p>
-<div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
-    <span class="nt">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;describedby&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/category&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="keep-collections-homogeneous">
-<h3>Keep collections homogeneous<a class="headerlink" href="#keep-collections-homogeneous" title="Permalink to this headline">¶</a></h3>
-<p>Depending on use cases, you can group resources into collections by using similarities (e.g. different types of
-listings in a single collection). However, no matter what criteria you choose for any collection, it is important to
-keep the representation homogeneous so that it is easy to use by clients.</p>
-<p>Design the representation of the collection such that members in a collection are structurally and syntactically
-similar.</p>
 </div>
 <div class="section" id="when-available-iana-registered-relation-types-should-be-used-as-link-relations">
-<h3>When available IANA registered relation types should be used as link relations<a class="headerlink" href="#when-available-iana-registered-relation-types-should-be-used-as-link-relations" title="Permalink to this headline">¶</a></h3>
+<h3>When available IANA registered relation types SHOULD be used as link relations<a class="headerlink" href="#when-available-iana-registered-relation-types-should-be-used-as-link-relations" title="Permalink to this headline">¶</a></h3>
 <p>A link relation is a descriptive attribute attached to a hyperlink in order to define the type of the link, or the
 relationship between the source and destination resources.</p>
-<p>A <a class="reference external" href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">standardized link relation</a> should be used when
+<p>A <a class="reference external" href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">standardized link relation</a> SHOULD be used when
 such a relation is available.</p>
 <p>Examples of commonly used IANA relation types are : <tt class="docutils literal"><span class="pre">self</span></tt>, <tt class="docutils literal"><span class="pre">first</span></tt>, <tt class="docutils literal"><span class="pre">prev</span></tt>, <tt class="docutils literal"><span class="pre">next</span></tt>, and <tt class="docutils literal"><span class="pre">last</span></tt>.</p>
 </div>
 <div class="section" id="custom-link-relation-types-should-be-uri-s-that-when-dereferenced-in-a-web-browser-provide-relevant-documentation-in-the-form-of-an-html-page">
-<h3>Custom link relation types should be uri&#8217;s that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page<a class="headerlink" href="#custom-link-relation-types-should-be-uri-s-that-when-dereferenced-in-a-web-browser-provide-relevant-documentation-in-the-form-of-an-html-page" title="Permalink to this headline">¶</a></h3>
-<p>In accordance with the <a class="reference external" href="http://tools.ietf.org/html/rfc5988">web linking RFC</a> custom link relation types should be uri&#8217;s
+<h3>Custom link relation types SHOULD be uri&#8217;s that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page<a class="headerlink" href="#custom-link-relation-types-should-be-uri-s-that-when-dereferenced-in-a-web-browser-provide-relevant-documentation-in-the-form-of-an-html-page" title="Permalink to this headline">¶</a></h3>
+<p>In accordance with the <a class="reference external" href="http://tools.ietf.org/html/rfc5988">web linking RFC</a> custom link relation types SHOULD be uri&#8217;s
 that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page.</p>
 <p>This page should contain the following information</p>
 <ul class="simple">
@@ -259,48 +247,68 @@ that when dereferenced in a web browser provide relevant documentation, in the f
 the status code and a description of the links and embedded resources included in the response.</li>
 </ul>
 </div>
+<div class="section" id="links-may-be-shortened-with-the-curie-syntax">
+<h3>Links MAY be shortened with the CURIE syntax<a class="headerlink" href="#links-may-be-shortened-with-the-curie-syntax" title="Permalink to this headline">¶</a></h3>
+<p>HAL allows <a class="reference external" href="http://tools.ietf.org/html/draft-kelly-json-hal-06#ref-W3C.NOTE-curie-20101216">CURIE syntax</a>. We allow it as well.</p>
+</div>
+</div>
+<div class="section" id="binary-resources">
+<h2>Binary resources<a class="headerlink" href="#binary-resources" title="Permalink to this headline">¶</a></h2>
+<p>Binary resources MAY use any format. Binary resources MUST be linked to from another HAL resource. The link
+is RECOMMENDED to be in the <tt class="docutils literal"><span class="pre">_links</span></tt> section but MAY be in any other field.</p>
+</div>
+<div class="section" id="resource-collections">
+<h2>Resource collections<a class="headerlink" href="#resource-collections" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="collections-must-be-homogeneous">
+<h3>Collections MUST be homogeneous<a class="headerlink" href="#collections-must-be-homogeneous" title="Permalink to this headline">¶</a></h3>
+<p>Depending on use cases, you can group resources into collections by using similarities (e.g. different types of
+listings in a single collection). However, no matter what criteria you choose for any collection, it is important to
+keep the representation homogeneous so that it is easy to use by clients.</p>
+<p>Design the representation of the collection such that members in a collection are structurally and syntactically
+similar.</p>
+</div>
+<div class="section" id="url-templates-are-recommended-in-links">
+<h3>URL templates are RECOMMENDED in Links<a class="headerlink" href="#url-templates-are-recommended-in-links" title="Permalink to this headline">¶</a></h3>
+<p>HAL allows for URI templates in links (section 5.1 in HAL specification). These are perfect to describe to links to
+items in a resource collection.</p>
+</div>
 </div>
 <div class="section" id="relation-names">
 <h2>Relation names<a class="headerlink" href="#relation-names" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="relation-names-are-in-english-unless-they-represent-a-product-or-company-name">
-<h3>Relation names are in English unless they represent a product or company name.<a class="headerlink" href="#relation-names-are-in-english-unless-they-represent-a-product-or-company-name" title="Permalink to this headline">¶</a></h3>
-<p>The consumers of the API will almost certainly not all be Dutch so field names should be in English unless they
-represent a product or company name.</p>
+<div class="section" id="relation-names-must-be-in-english-unless-they-represent-a-product-or-company-name">
+<h3>Relation names MUST be in English unless they represent a product or company name<a class="headerlink" href="#relation-names-must-be-in-english-unless-they-represent-a-product-or-company-name" title="Permalink to this headline">¶</a></h3>
+<p>The consumers of the API are developers which might come from any country. However, developer will for sure understand
+English. Product and company names are excluded from this rule.</p>
 </div>
-<div class="section" id="words-in-relation-names-are-separated-by-a-dash">
-<h3>Words in relation names are separated by a dash <tt class="docutils literal"><span class="pre">-</span></tt><a class="headerlink" href="#words-in-relation-names-are-separated-by-a-dash" title="Permalink to this headline">¶</a></h3>
-<p>Relation names are used in URL and words are therefore separated by dash <tt class="docutils literal"><span class="pre">-</span></tt>.</p>
+<div class="section" id="words-in-relation-names-must-be-separated-by-a-dash">
+<h3>Words in relation names MUST be separated by a dash <tt class="docutils literal"><span class="pre">-</span></tt><a class="headerlink" href="#words-in-relation-names-must-be-separated-by-a-dash" title="Permalink to this headline">¶</a></h3>
+<p>Relation names are used in URL and words MUST therefore be separated by dash <tt class="docutils literal"><span class="pre">-</span></tt>.</p>
 </div>
 </div>
 <div class="section" id="field-names">
 <h2>Field names<a class="headerlink" href="#field-names" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="field-names-are-in-english-unless-they-represent-a-product-or-company-name">
-<h3>Field names are in English unless they represent a product or company name.<a class="headerlink" href="#field-names-are-in-english-unless-they-represent-a-product-or-company-name" title="Permalink to this headline">¶</a></h3>
-<p>The consumers of the API will almost certainly not all be Dutch so field names should be in English unless they
-represent a product or company name.</p>
+<div class="section" id="field-names-must-be-in-english-unless-they-represent-a-product-or-company-name">
+<h3>Field names MUST be in English unless they represent a product or company name<a class="headerlink" href="#field-names-must-be-in-english-unless-they-represent-a-product-or-company-name" title="Permalink to this headline">¶</a></h3>
+<p>The consumers of the API are developers which might come from any country. However, developer will for sure understand
+English. Product and company names are excluded from this rule.</p>
 </div>
-<div class="section" id="field-names-have-consistent-semantics-and-representation">
-<h3>Field names have consistent semantics and representation<a class="headerlink" href="#field-names-have-consistent-semantics-and-representation" title="Permalink to this headline">¶</a></h3>
-<p>When two fields have the same name (even if they are in different entities), they must mean the same thing and they must
+<div class="section" id="field-names-must-have-consistent-semantics-and-representation">
+<h3>Field names MUST have consistent semantics and representation<a class="headerlink" href="#field-names-must-have-consistent-semantics-and-representation" title="Permalink to this headline">¶</a></h3>
+<p>When two fields have the same name (even if they are in different entities), they MUST mean the same thing and they MUST
 use the same representation.</p>
 <p>This rule does not apply to deprecated fields.</p>
 </div>
-<div class="section" id="field-names-are-in-camelcase-contain-only-latin-characters-a-z-a-z-0-9">
-<h3>Field names are in camelCase, contain only latin characters <tt class="docutils literal"><span class="pre">a</span></tt> - <tt class="docutils literal"><span class="pre">z</span></tt>, <tt class="docutils literal"><span class="pre">A</span></tt> - <tt class="docutils literal"><span class="pre">Z</span></tt>, <tt class="docutils literal"><span class="pre">0</span></tt> - <tt class="docutils literal"><span class="pre">9</span></tt>.<a class="headerlink" href="#field-names-are-in-camelcase-contain-only-latin-characters-a-z-a-z-0-9" title="Permalink to this headline">¶</a></h3>
-<p>Fields should only use alphanumeric characters and should use the camelCase notation.</p>
+<div class="section" id="field-names-must-use-camelcase-contain-only-latin-characters-a-z-a-z-0-9">
+<h3>Field names MUST use camelCase, contain only latin characters <tt class="docutils literal"><span class="pre">a</span></tt> - <tt class="docutils literal"><span class="pre">z</span></tt>, <tt class="docutils literal"><span class="pre">A</span></tt> - <tt class="docutils literal"><span class="pre">Z</span></tt>, <tt class="docutils literal"><span class="pre">0</span></tt> - <tt class="docutils literal"><span class="pre">9</span></tt><a class="headerlink" href="#field-names-must-use-camelcase-contain-only-latin-characters-a-z-a-z-0-9" title="Permalink to this headline">¶</a></h3>
+<p>Fields MUST use only alphanumeric characters and MUST use the camelCase notation.</p>
 <blockquote>
 <div>{ &#8220;asqEnabled&#8221; : true }    // correct
 { &#8220;asq_enabled&#8221; : true }   // NOT correct
 { &#8220;asq_enabled?&#8221; : true }  // NOT correct</div></blockquote>
 </div>
-<div class="section" id="field-names-start-with-a-lowercase-letter-a-z">
-<h3>Field names start with a lowercase letter, <tt class="docutils literal"><span class="pre">a</span></tt> - <tt class="docutils literal"><span class="pre">z</span></tt>.<a class="headerlink" href="#field-names-start-with-a-lowercase-letter-a-z" title="Permalink to this headline">¶</a></h3>
-<p>Fields should start with a lower case letter.</p>
-</div>
-<div class="section" id="field-names-starting-with-underscore-are-reserved-for-external-standards-e-g-hal">
-<h3>Field names starting with underscore &#8216;_&#8217; are reserved for external standards, e.g. Hal.<a class="headerlink" href="#field-names-starting-with-underscore-are-reserved-for-external-standards-e-g-hal" title="Permalink to this headline">¶</a></h3>
-<p>While HAL only reserves the names detailed in the specification (<tt class="docutils literal"><span class="pre">_links</span></tt> and <tt class="docutils literal"><span class="pre">_embedded</span></tt>) properties that represent
-the resource&#8217;s state should not start with an underscore to prevent collisions with future versions of the standard.</p>
+<div class="section" id="field-names-must-start-with-a-lowercase-letter-a-z">
+<h3>Field names MUST start with a lowercase letter, <tt class="docutils literal"><span class="pre">a</span></tt> - <tt class="docutils literal"><span class="pre">z</span></tt><a class="headerlink" href="#field-names-must-start-with-a-lowercase-letter-a-z" title="Permalink to this headline">¶</a></h3>
+<p>Fields MUST start with a lower case letter. In particular they MUST NOT start with an underscore <tt class="docutils literal"><span class="pre">_</span></tt>.</p>
 </div>
 <div class="section" id="field-deprecation">
 <h3>Field deprecation<a class="headerlink" href="#field-deprecation" title="Permalink to this headline">¶</a></h3>
@@ -309,16 +317,17 @@ the resource&#8217;s state should not start with an underscore to prevent collis
 </div>
 <div class="section" id="field-values">
 <h2>Field values<a class="headerlink" href="#field-values" title="Permalink to this headline">¶</a></h2>
-<p>See also the list of supported field types: <a class="reference internal" href="40-documentation-requirements.html#field-types"><em>Field types</em></a></p>
+<p>See the list of supported field types: <a class="reference internal" href="40-documentation-requirements.html#field-types"><em>Field types</em></a></p>
 <div class="section" id="structure-field-values">
 <h3>Structure field values<a class="headerlink" href="#structure-field-values" title="Permalink to this headline">¶</a></h3>
-<p>You are encouraged to represent complex fields with a JSON object. This allows for better composability, the struct
+<p>You are RECOMMENDED to represent complex fields with a JSON object. This allows for better composability, the struct
 might later move to a separate entity.</p>
-<p>TODO: discuss, this might make it harder for clients??</p>
 </div>
-<div class="section" id="field-values-that-are-optional">
-<h3>Field values that are optional<a class="headerlink" href="#field-values-that-are-optional" title="Permalink to this headline">¶</a></h3>
-<p>When a field can be empty (or omitted) when creating a resource, it should be left out of the request. When returning a resource with optional fields, and there is no value for a given field, then the field should be left out entirely in case of a String, Numeric or Object value. In the case of an Array, an empty list may be returned.</p>
+<div class="section" id="optional-fields-should-not-be-serialized-when-they-have-no-value">
+<h3>Optional fields SHOULD not be serialized when they have no value<a class="headerlink" href="#optional-fields-should-not-be-serialized-when-they-have-no-value" title="Permalink to this headline">¶</a></h3>
+<p>When an optional field has no value, it SHOULD be left out of the representation.
+When returning a resource with optional fields, and there is no value for a given field, then the field should be left
+out entirely in case of a String, Numeric or Object value. In the case of an Array, an empty list may be returned.</p>
 <p>The rationale for leaving omitting the field when creating or updating a resource (POST, PUT or PATCH), is that it is not allowed to specify a key without a value. Theoretically, the value <tt class="docutils literal"><span class="pre">null</span></tt> could be used, but this will only lead to confusion and complicate the parsing of the JSON object.</p>
 </div>
 <div class="section" id="field-values-that-represent-a-timestamp-are-in-iso-8601">

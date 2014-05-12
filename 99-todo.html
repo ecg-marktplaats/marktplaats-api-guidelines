@@ -75,6 +75,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="20-resource-representation-format.html">Resource representation format</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#binary-resources">Binary resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resource-collections">Resource collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#relation-names">Relation names</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-names">Field names</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-values">Field values</a></li>
@@ -110,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="80-hal-and-our-deviations.html">HAL and our deviations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#content-type">Content-type</a></li>
 <li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#field-names">Field names</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">TODO</a><ul>
@@ -155,10 +158,7 @@
 <p>The following are tasks -priority ordered- that need to be done to complete the API guidelines.
 Each task should be following with the plan and responsible to complete the task.</p>
 <ul class="simple">
-<li>Consider using entity versions<ol class="arabic">
-<li>Discuss with current stakeholders, A: Erik v.O., I: Frank S., Martin S./Jelmer K., ETA: 2014 wk. 19/20</li>
-</ol>
-</li>
+<li>✓ Consider using entity versions</li>
 <li>Consider requiring schema.org or other naming conventions<ol class="arabic">
 <li>Plan: prepare discussion by finding the relevant schema&#8217;s, A: Erik v.O., ETA: 2014 wk. 19</li>
 <li>Have discussion with stakeholders within ECG, A: Erik v.O., I: Ky, and people from versioning discussion.</li>
@@ -183,44 +183,44 @@ Each task should be following with the plan and responsible to complete the task
 <blockquote>
 <div><dl class="docutils">
 <dt>URL, URI</dt>
-<dd>_include/ _exclude needs major revamp
-Documentation should point to HAL documentation ✓
-underscore means meta parameters (reserved for API) ✓
-X-HTTP-Method-override ✓
-_body parameters applies to every call ✓
-PATCH/DELETE not being supported by browsers =&gt; Remove ✓
-Clearer use of MUST/SHOULD/CAN (consistent) ✓</dd>
+<dd>✓ Documentation should point to HAL documentation
+✓ underscore means meta parameters (reserved for API)
+✓ X-HTTP-Method-override
+✓ _body parameters applies to every call
+✓ PATCH/DELETE not being supported by browsers =&gt; Remove
+✓ Clearer use of MUST/SHOULD/CAN (consistent)
+✗ _include/ _exclude needs major revamp</dd>
 <dt>Resource Format</dt>
-<dd>Add something about that RFC martin just mentioned (URL templates), MUST
-Remove serialization from URLs
-Language of errors more clear
-Add status code as field for errors
-_link.help.href is pointing to an invalid URL (and more URLs)
-Link to type table
-help.href vs describedby
-clarify the help page link
-Add link to currying in HAL
-Clarfiy section on custom link relation types
-Fieldnames cannot be duplicate
-Come up with field-names standard</dd>
+<dd>✓ Add something about that RFC martin just mentioned (URL templates), MUST
+✓ Remove serialization from URLs
+✗ Language of errors more clear
+✗ Add status code as field for errors
+✗ _link.help.href is pointing to an invalid URL (and more URLs)
+✗ Link to type table
+✗ help.href vs describedby
+✗ clarify the help page link
+✓ Add link to currying in HAL
+✗ Clarify section on custom link relation types
+✗ Fieldnames cannot be duplicate
+✗ Come up with field-names standard</dd>
 <dt>Interaction</dt>
-<dd>OPTION / HEAD calls missing
-TRACE not supported (security)
-Resource without etag =&gt; clarify body response is an error response
-GZIP/Deflate</dd>
+<dd>✗ OPTION / HEAD calls missing
+✗ TRACE not supported (security)
+✗ Resource without etag =&gt; clarify body response is an error response
+✗ GZIP/Deflate</dd>
 <dt>Documentation Requirements</dt>
-<dd>Recommend order of headers, documentation tools
-Clean up stuff at the bottom
-Expand further</dd>
+<dd>✗ Recommend order of headers, documentation tools
+✗ Clean up stuff at the bottom
+✗ Expand further</dd>
 <dt>Versioning</dt>
-<dd>Requires follow-up</dd>
+<dd>✓ Requires follow-up</dd>
+<dt>Postponed:</dt>
+<dd>✗ DELETE call =&gt; No more fetch</dd>
+<dt>GLOBAL:</dt>
+<dd>✗ HTTPS on all examples
+✗ fix all todos
+✓ re-do the documentation in RST</dd>
 </dl>
-<p>Postponed:</p>
-<p>DELETE call =&gt; No more fetch</p>
-<p>GLOBAL:</p>
-<p>HTTPS on all examples
-fix all todos
-Martin wants to re-do the documentation in RST</p>
 </div></blockquote>
 </div>
 </div>

@@ -19,3 +19,10 @@ HAL allows any valid `JSON <http://tools.ietf.org/html/rfc7159>`_. We apply the 
 
 * `UTF-8 <http://en.wikipedia.org/wiki/UTF-8>`_ character encoding is REQUIRED.
 * To ensure interoperability member names MUST be unique in each JSON object, `see the rfc <http://tools.ietf.org/html/rfc7159#section-4>`_.
+
+Field names
+-----------
+
+HAL allows any field name to start with the underscore ``_`` character. We reserve the use of the underscore ``_``
+character for standardized field. This means that any field who's name starts with an underscore is defined in the
+HAL specification, or in these guidelines.

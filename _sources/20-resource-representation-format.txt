@@ -13,9 +13,13 @@ Serialization format: HAL in UTF-8 encoding
 
 *HAL* MUST be used as representation format for all non-binary resources. See :ref:`hal-and-our-deviations` for more information.
 
-Example document :
+Example response:
 
 .. code-block:: javascript
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    ETag: "677d1d9085dah"
 
     {
      "_links": {
@@ -68,62 +72,38 @@ For example:
     }
 
 
-Each resource should contain a 'self' link
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Each resource SHOULD contain ``self`` and ``describedby`` links
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each resource should have a self link :
+Each resource SHOULD have ``self`` and ``describedby`` link as described by HAL.
 
-Example :
+Example:
 
 .. code-block:: json
 
     {
         "_links": {
             "self": { "href": "/v1/categories/1" }
+            "describedby": "http://api.marktplaats.nl/v1/docs/resources/category"
         }
     }
 
-Each resource should contain a 'describedby' link
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Each resource should have a ``describedby`` link :
-
-Example :
-
-.. code-block:: json
-
-    {
-        "_links": {
-          "describedby": "http://api.marktplaats.nl/v1/docs/resources/category"
-        }
-    }
-
-Keep collections homogeneous
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Depending on use cases, you can group resources into collections by using similarities (e.g. different types of
-listings in a single collection). However, no matter what criteria you choose for any collection, it is important to
-keep the representation homogeneous so that it is easy to use by clients.
-
-Design the representation of the collection such that members in a collection are structurally and syntactically
-similar.
-
-When available IANA registered relation types should be used as link relations
+When available IANA registered relation types SHOULD be used as link relations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A link relation is a descriptive attribute attached to a hyperlink in order to define the type of the link, or the
 relationship between the source and destination resources.
 
-A `standardized link relation <http://www.iana.org/assignments/link-relations/link-relations.xhtml>`_ should be used when
+A `standardized link relation <http://www.iana.org/assignments/link-relations/link-relations.xhtml>`_ SHOULD be used when
 such a relation is available.
 
 Examples of commonly used IANA relation types are : ``self``, ``first``, ``prev``, ``next``, and ``last``.
 
 
-Custom link relation types should be uri's that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page
+Custom link relation types SHOULD be uri's that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In accordance with the `web linking RFC <http://tools.ietf.org/html/rfc5988>`_ custom link relation types should be uri's
+In accordance with the `web linking RFC <http://tools.ietf.org/html/rfc5988>`_ custom link relation types SHOULD be uri's
 that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page.
 
 This page should contain the following information
@@ -132,80 +112,103 @@ This page should contain the following information
 *   A description of the responses you can expect from any of the given request methods. This description should contain
     the status code and a description of the links and embedded resources included in the response.
 
+Links MAY be shortened with the CURIE syntax
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+HAL allows `CURIE syntax <http://tools.ietf.org/html/draft-kelly-json-hal-06#ref-W3C.NOTE-curie-20101216>`_. We allow it as well.
+
+Binary resources
+----------------
+
+Binary resources MAY use any format. Binary resources MUST be linked to from another HAL resource. The link
+is RECOMMENDED to be in the ``_links`` section but MAY be in any other field.
+
+Resource collections
+--------------------
+
+Collections MUST be homogeneous
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Depending on use cases, you can group resources into collections by using similarities (e.g. different types of
+listings in a single collection). However, no matter what criteria you choose for any collection, it is important to
+keep the representation homogeneous so that it is easy to use by clients.
+
+Design the representation of the collection such that members in a collection are structurally and syntactically
+similar.
+
+URL templates are RECOMMENDED in Links
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+HAL allows for URI templates in links (section 5.1 in HAL specification). These are perfect to describe to links to
+items in a resource collection.
+
 Relation names
 --------------
 
-Relation names are in English unless they represent a product or company name.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Relation names MUST be in English unless they represent a product or company name
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The consumers of the API will almost certainly not all be Dutch so field names should be in English unless they
-represent a product or company name.
+The consumers of the API are developers which might come from any country. However, developer will for sure understand
+English. Product and company names are excluded from this rule.
 
-Words in relation names are separated by a dash ``-``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Words in relation names MUST be separated by a dash ``-``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Relation names are used in URL and words are therefore separated by dash ``-``.
+Relation names are used in URL and words MUST therefore be separated by dash ``-``.
 
 Field names
 -----------
 
-Field names are in English unless they represent a product or company name.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Field names MUST be in English unless they represent a product or company name
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The consumers of the API will almost certainly not all be Dutch so field names should be in English unless they
-represent a product or company name.
+The consumers of the API are developers which might come from any country. However, developer will for sure understand
+English. Product and company names are excluded from this rule.
 
-Field names have consistent semantics and representation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Field names MUST have consistent semantics and representation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When two fields have the same name (even if they are in different entities), they must mean the same thing and they must
+When two fields have the same name (even if they are in different entities), they MUST mean the same thing and they MUST
 use the same representation.
 
 This rule does not apply to deprecated fields.
 
-Field names are in camelCase, contain only latin characters ``a`` - ``z``, ``A`` - ``Z``, ``0`` - ``9``.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Field names MUST use camelCase, contain only latin characters ``a`` - ``z``, ``A`` - ``Z``, ``0`` - ``9``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Fields should only use alphanumeric characters and should use the camelCase notation.
+Fields MUST use only alphanumeric characters and MUST use the camelCase notation.
 
     { "asqEnabled" : true }    // correct
     { "asq_enabled" : true }   // NOT correct
     { "asq_enabled?" : true }  // NOT correct
 
-Field names start with a lowercase letter, ``a`` - ``z``.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Field names MUST start with a lowercase letter, ``a`` - ``z``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Fields should start with a lower case letter.
-
-Field names starting with underscore '\_' are reserved for external standards, e.g. Hal.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-While HAL only reserves the names detailed in the specification (``_links`` and ``_embedded``) properties that represent
-the resource's state should not start with an underscore to prevent collisions with future versions of the standard.
+Fields MUST start with a lower case letter. In particular they MUST NOT start with an underscore ``_``.
 
 Field deprecation
 ^^^^^^^^^^^^^^^^^
 
 See versioning.
 
-
 Field values
 ------------
 
-See also the list of supported field types: :ref:`field-types`
+See the list of supported field types: :ref:`field-types`
 
 Structure field values
 ^^^^^^^^^^^^^^^^^^^^^^
 
-You are encouraged to represent complex fields with a JSON object. This allows for better composability, the struct
+You are RECOMMENDED to represent complex fields with a JSON object. This allows for better composability, the struct
 might later move to a separate entity.
 
-TODO: discuss, this might make it harder for clients??
+Optional fields SHOULD not be serialized when they have no value
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Field values that are optional
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-When a field can be empty (or omitted) when creating a resource, it should be left out of the request. When returning a resource with optional fields, and there is no value for a given field, then the field should be left out entirely in case of a String, Numeric or Object value. In the case of an Array, an empty list may be returned.
+When an optional field has no value, it SHOULD be left out of the representation.
+When returning a resource with optional fields, and there is no value for a given field, then the field should be left
+out entirely in case of a String, Numeric or Object value. In the case of an Array, an empty list may be returned.
 
 The rationale for leaving omitting the field when creating or updating a resource (POST, PUT or PATCH), is that it is not allowed to specify a key without a value. Theoretically, the value ``null`` could be used, but this will only lead to confusion and complicate the parsing of the JSON object.
 

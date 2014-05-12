@@ -76,6 +76,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="20-resource-representation-format.html">Resource representation format</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#binary-resources">Binary resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resource-collections">Resource collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#relation-names">Relation names</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-names">Field names</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-values">Field values</a></li>
@@ -111,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="80-hal-and-our-deviations.html">HAL and our deviations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#content-type">Content-type</a></li>
 <li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#field-names">Field names</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="99-todo.html">TODO</a><ul>
@@ -381,9 +384,9 @@ independent of the correctness of other available values.</p>
 <p>results in an <tt class="docutils literal"><span class="pre">400</span></tt> error response because the <tt class="docutils literal"><span class="pre">_method</span></tt> parameter contains an illegal method, even though the
 <tt class="docutils literal"><span class="pre">X-HTTP-METHOD-OVERRIDE</span></tt> header does contain a correct value.</p>
 </div>
-<div class="section" id="a-name-callback-a-the-callback-parameter-may-be-used-to-return-a-jsonp-response">
-<h3>&lt;a name=&#8221;_callback&#8221;&gt;&lt;/a&gt; The <tt class="docutils literal"><span class="pre">_callback</span></tt> parameter MAY be used to return a jsonp response<a class="headerlink" href="#a-name-callback-a-the-callback-parameter-may-be-used-to-return-a-jsonp-response" title="Permalink to this headline">¶</a></h3>
-<p>A <tt class="docutils literal"><span class="pre">?_callback</span></tt> parameter MAY be used in any <tt class="docutils literal"><span class="pre">GET</span></tt> call to have the results wrapped in a JSON function.
+<div class="section" id="the-callback-parameter-may-be-used-to-return-a-jsonp-response">
+<h3>The <tt class="docutils literal"><span class="pre">_callback</span></tt> parameter MAY be used to return a jsonp response<a class="headerlink" href="#the-callback-parameter-may-be-used-to-return-a-jsonp-response" title="Permalink to this headline">¶</a></h3>
+<p>A <tt class="docutils literal"><span class="pre">_callback</span></tt> parameter MAY be used in any <tt class="docutils literal"><span class="pre">GET</span></tt> call to have the results wrapped in a JSON function.
 This is typically used when browsers want to embed content in web pages by getting around cross domain
 issues. The response includes the same data output as the regular API, plus the relevant HTTP Header information.</p>
 <p>The content type of the response MUST be <tt class="docutils literal"><span class="pre">application/javascript</span></tt>.</p>
@@ -412,8 +415,8 @@ issues. The response includes the same data output as the regular API, plus the 
 </pre></div>
 </div>
 </div>
-<div class="section" id="a-name-expand-a-the-expand-parameter-may-be-used-for-zooming">
-<h3>&lt;a name=&#8221;_expand&#8221;&gt;&lt;/a&gt; The <tt class="docutils literal"><span class="pre">_expand</span></tt> parameter MAY be used for zooming<a class="headerlink" href="#a-name-expand-a-the-expand-parameter-may-be-used-for-zooming" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-expand-parameter-may-be-used-for-zooming">
+<h3>The <tt class="docutils literal"><span class="pre">_expand</span></tt> parameter MAY be used for zooming<a class="headerlink" href="#the-expand-parameter-may-be-used-for-zooming" title="Permalink to this headline">¶</a></h3>
 <p>Zooming is an optional technique that allows linked resources to be embedded. The embedded resources are serialized as
 described by [HAL](<a class="reference external" href="http://stateless.co/hal_specification.html">http://stateless.co/hal_specification.html</a>).</p>
 <p>Example :</p>

@@ -76,6 +76,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="20-resource-representation-format.html">Resource representation format</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#binary-resources">Binary resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resource-collections">Resource collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#relation-names">Relation names</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-names">Field names</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-values">Field values</a></li>
@@ -111,6 +113,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">HAL and our deviations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#content-type">Content-type</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#field-names">Field names</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="99-todo.html">TODO</a><ul>
@@ -165,6 +168,12 @@
 <li><a class="reference external" href="http://en.wikipedia.org/wiki/UTF-8">UTF-8</a> character encoding is REQUIRED.</li>
 <li>To ensure interoperability member names MUST be unique in each JSON object, <a class="reference external" href="http://tools.ietf.org/html/rfc7159#section-4">see the rfc</a>.</li>
 </ul>
+</div>
+<div class="section" id="field-names">
+<h2>Field names<a class="headerlink" href="#field-names" title="Permalink to this headline">¶</a></h2>
+<p>HAL allows any field name to start with the underscore <tt class="docutils literal"><span class="pre">_</span></tt> character. We reserve the use of the underscore <tt class="docutils literal"><span class="pre">_</span></tt>
+character for standardized field. This means that any field who&#8217;s name starts with an underscore is defined in the
+HAL specification, or in these guidelines.</p>
 </div>
 </div>
 

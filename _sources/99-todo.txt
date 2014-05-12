@@ -4,10 +4,7 @@ TODO
 The following are tasks -priority ordered- that need to be done to complete the API guidelines.
 Each task should be following with the plan and responsible to complete the task.
 
-* Consider using entity versions
-
-  1. Discuss with current stakeholders, A: Erik v.O., I: Frank S., Martin S./Jelmer K., ETA: 2014 wk. 19/20
-
+* ✓ Consider using entity versions
 * Consider requiring schema.org or other naming conventions
 
   1. Plan: prepare discussion by finding the relevant schema's, A: Erik v.O., ETA: 2014 wk. 19
@@ -32,45 +29,41 @@ Lots of small edits
 ~~~~~~~~~~~~~~~~~~~
 
     URL, URI
-        _include/ _exclude needs major revamp
-        Documentation should point to HAL documentation ✓
-        underscore means meta parameters (reserved for API) ✓
-        X-HTTP-Method-override ✓
-        _body parameters applies to every call ✓
-        PATCH/DELETE not being supported by browsers => Remove ✓
-        Clearer use of MUST/SHOULD/CAN (consistent) ✓
+        ✓ Documentation should point to HAL documentation
+        ✓ underscore means meta parameters (reserved for API)
+        ✓ X-HTTP-Method-override
+        ✓ _body parameters applies to every call
+        ✓ PATCH/DELETE not being supported by browsers => Remove
+        ✓ Clearer use of MUST/SHOULD/CAN (consistent)
+        ✗ _include/ _exclude needs major revamp
     Resource Format
-        Add something about that RFC martin just mentioned (URL templates), MUST
-        Remove serialization from URLs
-        Language of errors more clear
-        Add status code as field for errors
-        _link.help.href is pointing to an invalid URL (and more URLs)
-        Link to type table
-        help.href vs describedby
-        clarify the help page link
-        Add link to currying in HAL
-        Clarfiy section on custom link relation types
-        Fieldnames cannot be duplicate
-        Come up with field-names standard
+        ✓ Add something about that RFC martin just mentioned (URL templates), MUST
+        ✓ Remove serialization from URLs
+        ✗ Language of errors more clear
+        ✗ Add status code as field for errors
+        ✗ _link.help.href is pointing to an invalid URL (and more URLs)
+        ✗ Link to type table
+        ✗ help.href vs describedby
+        ✗ clarify the help page link
+        ✓ Add link to currying in HAL
+        ✗ Clarify section on custom link relation types
+        ✗ Fieldnames cannot be duplicate
+        ✗ Come up with field-names standard
     Interaction
-        OPTION / HEAD calls missing
-        TRACE not supported (security)
-        Resource without etag => clarify body response is an error response
-        GZIP/Deflate
+        ✗ OPTION / HEAD calls missing
+        ✗ TRACE not supported (security)
+        ✗ Resource without etag => clarify body response is an error response
+        ✗ GZIP/Deflate
     Documentation Requirements
-        Recommend order of headers, documentation tools
-        Clean up stuff at the bottom
-        Expand further
+        ✗ Recommend order of headers, documentation tools
+        ✗ Clean up stuff at the bottom
+        ✗ Expand further
     Versioning
-        Requires follow-up
-
+        ✓ Requires follow-up
     Postponed:
-
-    DELETE call => No more fetch
-
+        ✗ DELETE call => No more fetch
     GLOBAL:
-
-    HTTPS on all examples
-    fix all todos
-    Martin wants to re-do the documentation in RST
+        ✗ HTTPS on all examples
+        ✗ fix all todos
+        ✓ re-do the documentation in RST
 

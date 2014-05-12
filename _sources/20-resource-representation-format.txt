@@ -115,7 +115,7 @@ This page should contain the following information:
 *   A description of the responses you can expect from any of the allowed request methods. This description should contain
     the status code and a description of the links and embedded resources included in the response.
 
-See also `documentation requirements <documentation-requirements.rst`_.
+See also `documentation requirements <40-documentation-requirements.rst>`_.
 
 Custom link relations URIs MAY be shortened with the CURIE syntax
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -345,7 +345,7 @@ Here follows a description of the error format.
 
 Error responses MUST follow the same representation rules as other resources: HAL, JSON in UTF-8 and content-type MUST be ``application/json``.
 
-``_link.help.href`` *(REQUIRED)* : A URL that refers to a help page that can be used by the developer that uses the API. (See `documentation requirements <documentation-requirements.rst`_.)
+``_link.help.href`` *(REQUIRED)* : A URL that refers to a help page that can be used by the developer that uses the API. (See `documentation requirements <40-documentation-requirements.rst>`_.)
 Note that we're not using ``describedby`` (as in other HAL resource representations).
 
 ``logref`` *(REQUIRED)* : A unique identifier that can be used to find the error in the application logs on the server side (for example a request id).

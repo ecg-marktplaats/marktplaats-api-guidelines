@@ -2,8 +2,8 @@
 
 .. _versioning:
 
-Versioning side
-===============
+Versioning
+==========
 
 This document describes the allowed ways of changing an existing API.
 

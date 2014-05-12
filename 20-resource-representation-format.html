@@ -238,18 +238,22 @@ such a relation is available.</p>
 </div>
 <div class="section" id="custom-link-relation-types-should-be-uri-s-that-when-dereferenced-in-a-web-browser-provide-relevant-documentation-in-the-form-of-an-html-page">
 <h3>Custom link relation types SHOULD be uri&#8217;s that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page<a class="headerlink" href="#custom-link-relation-types-should-be-uri-s-that-when-dereferenced-in-a-web-browser-provide-relevant-documentation-in-the-form-of-an-html-page" title="Permalink to this headline">¶</a></h3>
-<p>In accordance with the <a class="reference external" href="http://tools.ietf.org/html/rfc5988">web linking RFC</a> custom link relation types SHOULD be uri&#8217;s
+<p>If no suitable IANA relation type is available, you can use a custom relation type. In accordance with the
+<a class="reference external" href="http://tools.ietf.org/html/rfc5988">web linking RFC</a> custom link relation types SHOULD be uri&#8217;s
 that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page.</p>
-<p>This page should contain the following information</p>
+<p>The references page is intended for the developer that is using the API.</p>
+<p>This page should contain the following information:</p>
 <ul class="simple">
-<li>A list of request methods (GET, PUT, POST etc) supported for this URI and for each method.</li>
-<li>A description of the responses you can expect from any of the given request methods. This description should contain
+<li>A list of request methods (GET, PUT, POST etc) supported for this URI.</li>
+<li>A description of the responses you can expect from any of the allowed request methods. This description should contain
 the status code and a description of the links and embedded resources included in the response.</li>
 </ul>
+<p>See also <a href="#id4"><span class="problematic" id="id5">`documentation requirements &lt;documentation-requirements.rst`_</span></a>.</p>
 </div>
-<div class="section" id="links-may-be-shortened-with-the-curie-syntax">
-<h3>Links MAY be shortened with the CURIE syntax<a class="headerlink" href="#links-may-be-shortened-with-the-curie-syntax" title="Permalink to this headline">¶</a></h3>
-<p>HAL allows <a class="reference external" href="http://tools.ietf.org/html/draft-kelly-json-hal-06#ref-W3C.NOTE-curie-20101216">CURIE syntax</a>. We allow it as well.</p>
+<div class="section" id="custom-link-relations-uris-may-be-shortened-with-the-curie-syntax">
+<h3>Custom link relations URIs MAY be shortened with the CURIE syntax<a class="headerlink" href="#custom-link-relations-uris-may-be-shortened-with-the-curie-syntax" title="Permalink to this headline">¶</a></h3>
+<p>HAL allows <a class="reference external" href="http://tools.ietf.org/html/draft-kelly-json-hal-06#ref-W3C.NOTE-curie-20101216">CURIE syntax</a> to shorten
+the URIs, we allow it as well. See the HAL specification for an example.</p>
 </div>
 </div>
 <div class="section" id="binary-resources">
@@ -429,36 +433,47 @@ and <a class="reference external" href="https://github.com/blongden/vnd.error">v
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Response code is <tt class="docutils literal"><span class="pre">400</span></tt>, content type MUST be <tt class="docutils literal"><span class="pre">application/json</span></tt>, encoding MUST be UTF-8.</p>
-<p><tt class="docutils literal"><span class="pre">_link.help.href</span></tt> <em>(required)</em> : A URL that refers to a help page. (See [documentation](documentation.md).)</p>
-<p><tt class="docutils literal"><span class="pre">logref</span></tt> <em>(required)</em> : An identifier that refers to the specific error on the server side for logging purposes
-(e.g. <tt class="docutils literal"><span class="pre">RequestData.uniqueRequestId</span></tt>).</p>
-<p><tt class="docutils literal"><span class="pre">message</span></tt> <em>(required)</em> : A human readable message related to the current error which may be displayed to the user of
-the api.</p>
-<p><tt class="docutils literal"><span class="pre">statuscode</span></tt> <em>(required)</em>: The HTTP Status code which is sent with this error. The reason to include this in the JSON as well, is because if you are using the API over JSONP for example, there is no easy way to get the error code. This is to make it more easy to use the API.</p>
-<p><tt class="docutils literal"><span class="pre">code</span></tt> <em>(required)</em> : An error code. The error code SHOULD be same as the last part of the help url and MUST
+<p>The error format supports the following features:</p>
+<ul class="simple">
+<li>It contains messages that are suitable for display <em>to a human</em> (in the correct <em>language</em>).</li>
+<li>It contains enough data to allow highlighting fields in a UI with relevant messages (again in the correct language).</li>
+<li>It contains enough information to allow for automated processing.</li>
+<li>It is suitable for JSONP.</li>
+</ul>
+<p>Here follows a description of the error format.</p>
+<p>Error responses MUST follow the same representation rules as other resources: HAL, JSON in UTF-8 and content-type MUST be <tt class="docutils literal"><span class="pre">application/json</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">_link.help.href</span></tt> <em>(REQUIRED)</em> : A URL that refers to a help page that can be used by the developer that uses the API. (See <a href="#id6"><span class="problematic" id="id7">`documentation requirements &lt;documentation-requirements.rst`_</span></a>.)
+Note that we&#8217;re not using <tt class="docutils literal"><span class="pre">describedby</span></tt> (as in other HAL resource representations).</p>
+<p><tt class="docutils literal"><span class="pre">logref</span></tt> <em>(REQUIRED)</em> : A unique identifier that can be used to find the error in the application logs on the server side (for example a request id).</p>
+<p><tt class="docutils literal"><span class="pre">message</span></tt> <em>(REQUIRED)</em> : A human readable message related to the current error which may be displayed to the user of the api. The language of the message
+SHOULD be selected from the <tt class="docutils literal"><span class="pre">Accept-Language</span></tt> header in the request (if present). If no language can be selected, there SHOULD be a fixed fall-back language.
+The selected language MUST be set in the <tt class="docutils literal"><span class="pre">Content-Language</span></tt> response header.</p>
+<p><tt class="docutils literal"><span class="pre">statuscode</span></tt> <em>(REQUIRED)</em>: MUST be the same as the HTTP Status code which is sent with this error. The reason to
+include this in the JSON as well, is because if you are using the API over JSONP for example, there is no easy way
+to get the error code. This is to make it more easy to use the API.</p>
+<p><tt class="docutils literal"><span class="pre">code</span></tt> <em>(REQUIRED)</em> : An error code. The error code SHOULD be same as the last part of the help url and SHOULD
 consist (mostly) out of lower case letters. (Letters allow for easier documentation-lookup then just a numeric code.)</p>
 <p><tt class="docutils literal"><span class="pre">details</span></tt> <em>(optional)</em> : Field by field error messages.</p>
-<p><tt class="docutils literal"><span class="pre">details[*].field</span></tt> or <tt class="docutils literal"><span class="pre">details[*].fields</span></tt> <em>(one is required)</em> : Name of the field(s) that did not validate.</p>
-<p><tt class="docutils literal"><span class="pre">details[*].message</span></tt> <em>(required)</em> : A human readable description of the message for the given field in error. Please
-make sure field contains a full sentence.</p>
-<p><tt class="docutils literal"><span class="pre">details[*].code</span></tt> <em>(required)</em> : A machine readable code for the error.</p>
+<p><tt class="docutils literal"><span class="pre">details[*].field</span></tt> or <tt class="docutils literal"><span class="pre">details[*].fields</span></tt> <em>(at least one is REQUIRED)</em> : Name of the field(s) that did not pass validation.</p>
+<p><tt class="docutils literal"><span class="pre">details[*].message</span></tt> <em>(REQUIRED)</em> : A human readable description of the message for the given field in error. Please
+make sure field contains a full sentence. The language SHOULD be the same as the language used in field <tt class="docutils literal"><span class="pre">message</span></tt> described above.</p>
+<p><tt class="docutils literal"><span class="pre">details[*].code</span></tt> <em>(REQUIRED)</em> : A machine readable code for the error. The code SHOULD consist (mostly) out of lower case
+letters.  (Letters allow for easier documentation-lookup then just a numeric code.)</p>
 <p><tt class="docutils literal"><span class="pre">details[*].value</span></tt> <em>(optional)</em> : An optional value which supports the machine readable code. The actual value and
 its format depends on the error code.</p>
-<p>All fields are string values.</p>
-<p>Both <tt class="docutils literal"><span class="pre">message</span></tt> fields are in the language as negotiated with the <tt class="docutils literal"><span class="pre">Accept-Language</span></tt> HTTP header.</p>
+<p>All fields MUST be string values.</p>
 </div>
-<div class="section" id="an-appropriate-status-code-should-be-used-when-serving-an-error-resource">
-<h3>An appropriate status code should be used when serving an error resource<a class="headerlink" href="#an-appropriate-status-code-should-be-used-when-serving-an-error-resource" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="an-appropriate-status-code-must-be-used-when-serving-an-error-resource">
+<h3>An appropriate status code MUST be used when serving an error resource<a class="headerlink" href="#an-appropriate-status-code-must-be-used-when-serving-an-error-resource" title="Permalink to this headline">¶</a></h3>
 <p>When serving an error resource an appropriate status code MUST be used. E.g. 4xx for client errors and 5xx for
 processing errors.</p>
 <p>To determine which error code is appropriate, refer to the status codes section of this <a class="reference external" href="20-whhD1.png">image</a>. (Copied
 from <a class="reference external" href="http://i.stack.imgur.com/whhD1.png">http://i.stack.imgur.com/whhD1.png</a>.)</p>
 </div>
-<div class="section" id="do-not-include-stacktraces-in-the-error-message">
-<h3>Do not include stacktraces in the error message<a class="headerlink" href="#do-not-include-stacktraces-in-the-error-message" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="stack-traces-must-not-be-included-in-the-error-message">
+<h3>Stack traces MUST NOT be included in the error message<a class="headerlink" href="#stack-traces-must-not-be-included-in-the-error-message" title="Permalink to this headline">¶</a></h3>
 <p>It may be tempting to include a stack trace for easier support when something goes wrong. Don&#8217;t do it! This kind of
-information is too valuable for hackers and MUST be avoided.</p>
+information is too valuable for hackers and it is therefore not allowed.</p>
 </div>
 </div>
 </div>

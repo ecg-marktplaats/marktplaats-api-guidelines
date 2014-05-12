@@ -103,19 +103,25 @@ Examples of commonly used IANA relation types are : ``self``, ``first``, ``prev`
 Custom link relation types SHOULD be uri's that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In accordance with the `web linking RFC <http://tools.ietf.org/html/rfc5988>`_ custom link relation types SHOULD be uri's
+If no suitable IANA relation type is available, you can use a custom relation type. In accordance with the
+`web linking RFC <http://tools.ietf.org/html/rfc5988>`_ custom link relation types SHOULD be uri's
 that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page.
 
-This page should contain the following information
+The references page is intended for the developer that is using the API.
 
-*   A list of request methods (GET, PUT, POST etc) supported for this URI and for each method.
-*   A description of the responses you can expect from any of the given request methods. This description should contain
+This page should contain the following information:
+
+*   A list of request methods (GET, PUT, POST etc) supported for this URI.
+*   A description of the responses you can expect from any of the allowed request methods. This description should contain
     the status code and a description of the links and embedded resources included in the response.
 
-Links MAY be shortened with the CURIE syntax
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+See also `documentation requirements <documentation-requirements.rst`_.
 
-HAL allows `CURIE syntax <http://tools.ietf.org/html/draft-kelly-json-hal-06#ref-W3C.NOTE-curie-20101216>`_. We allow it as well.
+Custom link relations URIs MAY be shortened with the CURIE syntax
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+HAL allows `CURIE syntax <http://tools.ietf.org/html/draft-kelly-json-hal-06#ref-W3C.NOTE-curie-20101216>`_ to shorten
+the URIs, we allow it as well. See the HAL specification for an example.
 
 Binary resources
 ----------------
@@ -328,39 +334,50 @@ Here is an example request that produces an error response:
         ]
     }
 
-Response code is ``400``, content type MUST be ``application/json``, encoding MUST be UTF-8.
+The error format supports the following features:
 
-``_link.help.href`` *(required)* : A URL that refers to a help page. (See [documentation](documentation.md).)
+* It contains messages that are suitable for display *to a human* (in the correct *language*).
+* It contains enough data to allow highlighting fields in a UI with relevant messages (again in the correct language).
+* It contains enough information to allow for automated processing.
+* It is suitable for JSONP.
 
-``logref`` *(required)* : An identifier that refers to the specific error on the server side for logging purposes
-(e.g. ``RequestData.uniqueRequestId``).
+Here follows a description of the error format.
 
-``message`` *(required)* : A human readable message related to the current error which may be displayed to the user of
-the api.
+Error responses MUST follow the same representation rules as other resources: HAL, JSON in UTF-8 and content-type MUST be ``application/json``.
 
-``statuscode`` *(required)*: The HTTP Status code which is sent with this error. The reason to include this in the JSON as well, is because if you are using the API over JSONP for example, there is no easy way to get the error code. This is to make it more easy to use the API.
+``_link.help.href`` *(REQUIRED)* : A URL that refers to a help page that can be used by the developer that uses the API. (See `documentation requirements <documentation-requirements.rst`_.)
+Note that we're not using ``describedby`` (as in other HAL resource representations).
 
-``code`` *(required)* : An error code. The error code SHOULD be same as the last part of the help url and MUST
+``logref`` *(REQUIRED)* : A unique identifier that can be used to find the error in the application logs on the server side (for example a request id).
+
+``message`` *(REQUIRED)* : A human readable message related to the current error which may be displayed to the user of the api. The language of the message
+SHOULD be selected from the ``Accept-Language`` header in the request (if present). If no language can be selected, there SHOULD be a fixed fall-back language.
+The selected language MUST be set in the ``Content-Language`` response header.
+
+``statuscode`` *(REQUIRED)*: MUST be the same as the HTTP Status code which is sent with this error. The reason to
+include this in the JSON as well, is because if you are using the API over JSONP for example, there is no easy way
+to get the error code. This is to make it more easy to use the API.
+
+``code`` *(REQUIRED)* : An error code. The error code SHOULD be same as the last part of the help url and SHOULD
 consist (mostly) out of lower case letters. (Letters allow for easier documentation-lookup then just a numeric code.)
 
 ``details`` *(optional)* : Field by field error messages.
 
-``details[*].field`` or ``details[*].fields`` *(one is required)* : Name of the field(s) that did not validate.
+``details[*].field`` or ``details[*].fields`` *(at least one is REQUIRED)* : Name of the field(s) that did not pass validation.
 
-``details[*].message`` *(required)* : A human readable description of the message for the given field in error. Please
-make sure field contains a full sentence.
+``details[*].message`` *(REQUIRED)* : A human readable description of the message for the given field in error. Please
+make sure field contains a full sentence. The language SHOULD be the same as the language used in field ``message`` described above.
 
-``details[*].code`` *(required)* : A machine readable code for the error.
+``details[*].code`` *(REQUIRED)* : A machine readable code for the error. The code SHOULD consist (mostly) out of lower case
+letters.  (Letters allow for easier documentation-lookup then just a numeric code.)
 
 ``details[*].value`` *(optional)* : An optional value which supports the machine readable code. The actual value and
 its format depends on the error code.
 
-All fields are string values.
+All fields MUST be string values.
 
-Both ``message`` fields are in the language as negotiated with the ``Accept-Language`` HTTP header.
-
-An appropriate status code should be used when serving an error resource
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+An appropriate status code MUST be used when serving an error resource
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When serving an error resource an appropriate status code MUST be used. E.g. 4xx for client errors and 5xx for
 processing errors.
@@ -368,8 +385,8 @@ processing errors.
 To determine which error code is appropriate, refer to the status codes section of this `image <20-whhD1.png>`_. (Copied
 from http://i.stack.imgur.com/whhD1.png.)
 
-Do not include stacktraces in the error message
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Stack traces MUST NOT be included in the error message
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It may be tempting to include a stack trace for easier support when something goes wrong. Don't do it! This kind of
-information is too valuable for hackers and MUST be avoided.
+information is too valuable for hackers and it is therefore not allowed.

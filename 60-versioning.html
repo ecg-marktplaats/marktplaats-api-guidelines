@@ -164,19 +164,21 @@
 <h2>1. Backward compatible changes<a class="headerlink" href="#backward-compatible-changes" title="Permalink to this headline">¶</a></h2>
 <p>The following changes are considered backward compatible:</p>
 <ul class="simple">
-<li>Add a new member to a JSON object.</li>
-<li>Change order of members in a JSON object.</li>
-<li>Add a new link in the <cite>_link</cite> section.</li>
-<li>Add a new member in the <cite>_embedded</cite> section.</li>
+<li>Add a new field to a JSON object.</li>
+<li>Change order of fields in a JSON object.</li>
+<li>Add a new link in the <tt class="docutils literal"><span class="pre">_link</span></tt> section.</li>
+<li>Add a new field in the <tt class="docutils literal"><span class="pre">_embedded</span></tt> section.</li>
 </ul>
+<p>(Note: these guidelines use the word <strong>field</strong> instead of the word <strong>member</strong> from the JSON specification.)</p>
 <p>The following applies to backward compatible changes:</p>
-<div class="section" id="use-deprecations-for-members-that-replace-another-member">
-<h3>Use deprecations for members that replace another member<a class="headerlink" href="#use-deprecations-for-members-that-replace-another-member" title="Permalink to this headline">¶</a></h3>
-<dl class="docutils">
-<dt>In case the new field replaces another field, the old field MUST stay around until the version changes (see section <cite>2. Resource representation changes</cite>).</dt>
-<dd>existing clients got a chance to</dd>
-</dl>
-<p>change their code. Before the the older field is removed it SHOULD be deprecated.</p>
+<div class="section" id="clients-must-be-assumed-to-cope-with-backward-compatible-changes">
+<h3>Clients MUST be assumed to cope with backward compatible changes<a class="headerlink" href="#clients-must-be-assumed-to-cope-with-backward-compatible-changes" title="Permalink to this headline">¶</a></h3>
+<p>Clients should be liberal in what they accept and conservative in what they send.</p>
+</div>
+<div class="section" id="do-not-remove-fields-when-it-will-be-replaced-by-another-field">
+<h3>Do not remove fields when it will be replaced by another field<a class="headerlink" href="#do-not-remove-fields-when-it-will-be-replaced-by-another-field" title="Permalink to this headline">¶</a></h3>
+<p>In case a new field will replace another field, the old field MUST stay around until the version changes
+(see section <a class="reference internal" href="#resource-representation-changes">2. Resource representation changes</a>). The field that will be removed MAY be deprecated.</p>
 <p>Deprecation example:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
   <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -194,9 +196,37 @@
 </pre></div>
 </div>
 </div>
-<div class="section" id="clients-must-be-assumed-to-cope-with-backward-compatible-changes">
-<h3>Clients MUST be assumed to cope with backward compatible changes<a class="headerlink" href="#clients-must-be-assumed-to-cope-with-backward-compatible-changes" title="Permalink to this headline">¶</a></h3>
-<p>Clients should be liberal in what they accept and conservative in what they send.</p>
+<div class="section" id="old-links-may-be-deprecated-when-it-will-be-replaced-with-a-newer-version">
+<h3>Old links MAY be deprecated when it will be replaced with a newer version<a class="headerlink" href="#old-links-may-be-deprecated-when-it-will-be-replaced-with-a-newer-version" title="Permalink to this headline">¶</a></h3>
+<p>In case a link replaces an older link, the old link MUST stay around until the version changes (see section
+<a class="reference internal" href="#resource-representation-changes">2. Resource representation changes</a>). The link that will be removed MAY be deprecated. The HAL specification
+describes how to deprecate a link. (See <a class="reference internal" href="80-hal-and-our-deviations.html#hal-and-our-deviations"><em>HAL and our deviations</em></a> for links to the specification.)</p>
+<p>Before:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After (in this example <em>tags</em> will replace <em>categories</em>):</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;deprecation&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories/deprecation&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/tags&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/tags&quot;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The deprecation attribute value of the link relation MUST point to a developer document that describes when and why
+the relation is deprecated.</p>
 </div>
 </div>
 <div class="section" id="resource-representation-changes">
@@ -220,39 +250,8 @@
 <li>Keep an old version of the implementation deployed separately on the old URL.</li>
 </ul>
 </li>
-<li>Consequence of this mechanism is that URLs identify resource representations, not resources. This is a conscious departure of REST.</li>
+<li>Consequence of this mechanism is that URLs identify resource representations, not resources. This is a conscious departure of REST principles.</li>
 </ul>
-<div class="section" id="old-links-must-be-deprecated-when-replacing-them-with-newer-non-backwards-compatible-versions">
-<h3>Old links MUST be deprecated when replacing them with newer non backwards compatible versions<a class="headerlink" href="#old-links-must-be-deprecated-when-replacing-them-with-newer-non-backwards-compatible-versions" title="Permalink to this headline">¶</a></h3>
-<p>In case the link replaces an older link, the old link MUST be deprecated. The old link SHOULD stay around until all
-clients got the change to update their code.</p>
-<p>Before:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>After:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
-    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span><span class="p">,</span>
-          <span class="s2">&quot;deprecation&quot;</span><span class="o">:</span> <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/categories/deprecation&quot;</span>
-        <span class="p">},</span>
-        <span class="s2">&quot;http://api.marktplaats.nl/v1/docs/resources/tags&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/tags&quot;</span> <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>The deprecation attribute value of the link relation MUST point to a developer document that describes when and why
-the relation is deprecated.</p>
-</div>
 </div>
 <div class="section" id="resource-behavior-changes">
 <h2>3. Resource behavior changes<a class="headerlink" href="#resource-behavior-changes" title="Permalink to this headline">¶</a></h2>

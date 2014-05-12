@@ -18,19 +18,25 @@ There are three different ways to change the API:
 
 The following changes are considered backward compatible:
 
-* Add a new member to a JSON object.
-* Change order of members in a JSON object.
-* Add a new link in the `_link` section.
-* Add a new member in the `_embedded` section.
+* Add a new field to a JSON object.
+* Change order of fields in a JSON object.
+* Add a new link in the ``_link`` section.
+* Add a new field in the ``_embedded`` section.
+
+(Note: these guidelines use the word **field** instead of the word **member** from the JSON specification.)
 
 The following applies to backward compatible changes:
 
-Use deprecations for members that replace another member
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Clients MUST be assumed to cope with backward compatible changes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In case the new field replaces another field, the old field MUST stay around until the version changes (see section `\2. Resource representation changes`).
-  existing clients got a chance to
-change their code. Before the the older field is removed it SHOULD be deprecated.
+Clients should be liberal in what they accept and conservative in what they send.
+
+Do not remove fields when it will be replaced by another field
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In case a new field will replace another field, the old field MUST stay around until the version changes
+(see section `\2. Resource representation changes`_). The field that will be removed MAY be deprecated.
 
 Deprecation example:
 
@@ -50,11 +56,43 @@ Deprecation example:
       }
     }
 
-Clients MUST be assumed to cope with backward compatible changes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Old links MAY be deprecated when it will be replaced with a newer version
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Clients should be liberal in what they accept and conservative in what they send.
+In case a link replaces an older link, the old link MUST stay around until the version changes (see section
+`\2. Resource representation changes`_). The link that will be removed MAY be deprecated. The HAL specification
+describes how to deprecate a link. (See :ref:`hal-and-our-deviations` for links to the specification.)
 
+Before:
+
+.. code-block:: javascript
+
+    {
+        "_links": {
+            "self": { "href": "/" },
+            "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
+            "http://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" }
+        }
+    }
+
+After (in this example *tags* will replace *categories*):
+
+.. code-block:: javascript
+
+    {
+        "_links": {
+            "self": { "href": "/" },
+            "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
+            "http://api.marktplaats.nl/v1/docs/resources/categories": {
+              "href": "/v1/categories",
+              "deprecation": "http://api.marktplaats.nl/v1/docs/resources/categories/deprecation"
+            },
+            "http://api.marktplaats.nl/v1/docs/resources/tags": { "href": "/v1/tags" }
+        }
+    }
+
+The deprecation attribute value of the link relation MUST point to a developer document that describes when and why
+the relation is deprecated.
 
 \2. Resource representation changes
 -----------------------------------
@@ -79,44 +117,7 @@ Side notes:
   * Support resources on old URL and new URL in the same implementation.
   * Keep an old version of the implementation deployed separately on the old URL.
 
-* Consequence of this mechanism is that URLs identify resource representations, not resources. This is a conscious departure of REST.
-
-Old links MUST be deprecated when replacing them with newer non backwards compatible versions
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-In case the link replaces an older link, the old link MUST be deprecated. The old link SHOULD stay around until all
-clients got the change to update their code.
-
-Before:
-
-.. code-block:: javascript
-
-    {
-        "_links": {
-            "self": { "href": "/" },
-            "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
-            "http://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" }
-        }
-    }
-
-After:
-
-.. code-block:: javascript
-
-    {
-        "_links": {
-            "self": { "href": "/" },
-            "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
-            "http://api.marktplaats.nl/v1/docs/resources/categories": {
-              "href": "/v1/categories",
-              "deprecation": "http://api.marktplaats.nl/v1/docs/resources/categories/deprecation"
-            },
-            "http://api.marktplaats.nl/v1/docs/resources/tags": { "href": "/v1/tags" }
-        }
-    }
-
-The deprecation attribute value of the link relation MUST point to a developer document that describes when and why
-the relation is deprecated.
+* Consequence of this mechanism is that URLs identify resource representations, not resources. This is a conscious departure of REST principles.
 
 
 \3. Resource behavior changes

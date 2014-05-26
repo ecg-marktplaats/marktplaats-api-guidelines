@@ -18,6 +18,20 @@
 
   
   
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'0.1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
     
 
   
@@ -25,6 +39,7 @@
   
   
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
   
@@ -32,29 +47,26 @@
         <link rel="next" title="Resource representation format" href="20-resource-representation-format.html"/>
         <link rel="prev" title="Principles" href="05-principles.html"/> 
 
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        <a href="index.html" class="fa fa-home"> eCG API Guidelines</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-    <input type="hidden" name="check_keywords" value="yes" />
-    <input type="hidden" name="area" value="default" />
-  </form>
-</div>
+        <a href="index.html" class="icon icon-home"> eCG API Guidelines</a>
+        <form class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
         
         
             <ul class="current">
@@ -76,6 +88,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="20-resource-representation-format.html">Resource representation format</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#binary-resources">Binary resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resource-collections">Resource collections</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#relation-names">Relation names</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-names">Field names</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-values">Field values</a></li>
@@ -102,7 +116,7 @@
 <li class="toctree-l2"><a class="reference internal" href="50-security.html#oauth-2">OAuth 2</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="60-versioning.html">Versioning side</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="60-versioning.html">Versioning</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="60-versioning.html#backward-compatible-changes">1. Backward compatible changes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="60-versioning.html#resource-representation-changes">2. Resource representation changes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="60-versioning.html#resource-behavior-changes">3. Resource behavior changes</a></li>
@@ -111,6 +125,7 @@
 <li class="toctree-l1"><a class="reference internal" href="80-hal-and-our-deviations.html">HAL and our deviations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#content-type">Content-type</a></li>
 <li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#field-names">Field names</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="99-todo.html">TODO</a><ul>
@@ -127,30 +142,23 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">eCG API Guidelines</a>
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">eCG API Guidelines</a>
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>URLs and URIs</li>
-      <li class="wy-breadcrumbs-aside">
-        
-          <a href="_sources/10-urls-and-uris.txt" rel="nofollow"> View page source</a>
-        
-      </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main">
-            
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">URLs and URIs</a></li>
+  
+</ul>
+<hr/>
+
+          
   <div class="section" id="urls-and-uris">
 <span id="url-and-uris"></span><span id="index-0"></span><h1>URLs and URIs<a class="headerlink" href="#urls-and-uris" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="base-url">
@@ -381,9 +389,9 @@ independent of the correctness of other available values.</p>
 <p>results in an <tt class="docutils literal"><span class="pre">400</span></tt> error response because the <tt class="docutils literal"><span class="pre">_method</span></tt> parameter contains an illegal method, even though the
 <tt class="docutils literal"><span class="pre">X-HTTP-METHOD-OVERRIDE</span></tt> header does contain a correct value.</p>
 </div>
-<div class="section" id="a-name-callback-a-the-callback-parameter-may-be-used-to-return-a-jsonp-response">
-<h3>&lt;a name=&#8221;_callback&#8221;&gt;&lt;/a&gt; The <tt class="docutils literal"><span class="pre">_callback</span></tt> parameter MAY be used to return a jsonp response<a class="headerlink" href="#a-name-callback-a-the-callback-parameter-may-be-used-to-return-a-jsonp-response" title="Permalink to this headline">¶</a></h3>
-<p>A <tt class="docutils literal"><span class="pre">?_callback</span></tt> parameter MAY be used in any <tt class="docutils literal"><span class="pre">GET</span></tt> call to have the results wrapped in a JSON function.
+<div class="section" id="the-callback-parameter-may-be-used-to-return-a-jsonp-response">
+<h3>The <tt class="docutils literal"><span class="pre">_callback</span></tt> parameter MAY be used to return a jsonp response<a class="headerlink" href="#the-callback-parameter-may-be-used-to-return-a-jsonp-response" title="Permalink to this headline">¶</a></h3>
+<p>A <tt class="docutils literal"><span class="pre">_callback</span></tt> parameter MAY be used in any <tt class="docutils literal"><span class="pre">GET</span></tt> call to have the results wrapped in a JSON function.
 This is typically used when browsers want to embed content in web pages by getting around cross domain
 issues. The response includes the same data output as the regular API, plus the relevant HTTP Header information.</p>
 <p>The content type of the response MUST be <tt class="docutils literal"><span class="pre">application/javascript</span></tt>.</p>
@@ -412,8 +420,8 @@ issues. The response includes the same data output as the regular API, plus the 
 </pre></div>
 </div>
 </div>
-<div class="section" id="a-name-expand-a-the-expand-parameter-may-be-used-for-zooming">
-<h3>&lt;a name=&#8221;_expand&#8221;&gt;&lt;/a&gt; The <tt class="docutils literal"><span class="pre">_expand</span></tt> parameter MAY be used for zooming<a class="headerlink" href="#a-name-expand-a-the-expand-parameter-may-be-used-for-zooming" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-expand-parameter-may-be-used-for-zooming">
+<h3>The <tt class="docutils literal"><span class="pre">_expand</span></tt> parameter MAY be used for zooming<a class="headerlink" href="#the-expand-parameter-may-be-used-for-zooming" title="Permalink to this headline">¶</a></h3>
 <p>Zooming is an optional technique that allows linked resources to be embedded. The embedded resources are serialized as
 described by [HAL](<a class="reference external" href="http://stateless.co/hal_specification.html">http://stateless.co/hal_specification.html</a>).</p>
 <p>Example :</p>
@@ -494,28 +502,25 @@ resources. Formatting SHOULD be enabled when the parameter is present and does n
 </div>
 
 
-          </div>
           <footer>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+    <div class="rst-footer-buttons">
       
-        <a href="20-resource-representation-format.html" class="btn btn-neutral float-right" title="Resource representation format"/>Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="20-resource-representation-format.html" class="btn btn-neutral float-right" title="Resource representation format"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="05-principles.html" class="btn btn-neutral" title="Principles"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="05-principles.html" class="btn btn-neutral" title="Principles"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
 
   <hr/>
 
-  <div role="contentinfo">
-    <p>
-        &copy; Copyright 2014, Marktplaats API Focus team.
-    </p>
-  </div>
+  <p>
+      &copy; Copyright 2014, ECG API Focus team.
+  </p>
 
-  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
+  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
 </footer>
         </div>
       </div>
@@ -524,38 +529,6 @@ resources. Formatting SHOULD be enabled when the parameter is present and does n
 
   </div>
   
-
-
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.1',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
-      });
-  </script>
-   
 
 </body>
 </html>

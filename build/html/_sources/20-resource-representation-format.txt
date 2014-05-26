@@ -13,9 +13,13 @@ Serialization format: HAL in UTF-8 encoding
 
 *HAL* MUST be used as representation format for all non-binary resources. See :ref:`hal-and-our-deviations` for more information.
 
-Example document :
+Example response:
 
 .. code-block:: javascript
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    ETag: "677d1d9085dah"
 
     {
      "_links": {
@@ -68,38 +72,68 @@ For example:
     }
 
 
-Each resource should contain a 'self' link
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Each resource SHOULD contain ``self`` and ``describedby`` links
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each resource should have a self link :
+Each resource SHOULD have ``self`` and ``describedby`` link as described by HAL.
 
-Example :
+Example:
 
 .. code-block:: json
 
     {
         "_links": {
             "self": { "href": "/v1/categories/1" }
+            "describedby": "http://api.marktplaats.nl/v1/docs/resources/category"
         }
     }
 
-Each resource should contain a 'describedby' link
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+When available IANA registered relation types SHOULD be used as link relations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each resource should have a ``describedby`` link :
+A link relation is a descriptive attribute attached to a hyperlink in order to define the type of the link, or the
+relationship between the source and destination resources.
 
-Example :
+A `standardized link relation <http://www.iana.org/assignments/link-relations/link-relations.xhtml>`_ SHOULD be used when
+such a relation is available.
 
-.. code-block:: json
+Examples of commonly used IANA relation types are : ``self``, ``first``, ``prev``, ``next``, and ``last``.
 
-    {
-        "_links": {
-          "describedby": "http://api.marktplaats.nl/v1/docs/resources/category"
-        }
-    }
 
-Keep collections homogeneous
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Custom link relation types SHOULD be uri's that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If no suitable IANA relation type is available, you can use a custom relation type. In accordance with the
+`web linking RFC <http://tools.ietf.org/html/rfc5988>`_ custom link relation types SHOULD be uri's
+that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page.
+
+The references page is intended for the developer that is using the API.
+
+This page should contain the following information:
+
+*   A list of request methods (GET, PUT, POST etc) supported for this URI.
+*   A description of the responses you can expect from any of the allowed request methods. This description should contain
+    the status code and a description of the links and embedded resources included in the response.
+
+See also `documentation requirements <40-documentation-requirements.rst>`_.
+
+Custom link relations URIs MAY be shortened with the CURIE syntax
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+HAL allows `CURIE syntax <http://tools.ietf.org/html/draft-kelly-json-hal-06#ref-W3C.NOTE-curie-20101216>`_ to shorten
+the URIs, we allow it as well. See the HAL specification for an example.
+
+Binary resources
+----------------
+
+Binary resources MAY use any format. Binary resources MUST be linked to from another HAL resource. The link
+is RECOMMENDED to be in the ``_links`` section but MAY be in any other field.
+
+Resource collections
+--------------------
+
+Collections MUST be homogeneous
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Depending on use cases, you can group resources into collections by using similarities (e.g. different types of
 listings in a single collection). However, no matter what criteria you choose for any collection, it is important to
@@ -108,104 +142,81 @@ keep the representation homogeneous so that it is easy to use by clients.
 Design the representation of the collection such that members in a collection are structurally and syntactically
 similar.
 
-When available IANA registered relation types should be used as link relations
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+URL templates are RECOMMENDED in Links
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A link relation is a descriptive attribute attached to a hyperlink in order to define the type of the link, or the
-relationship between the source and destination resources.
-
-A `standardized link relation <http://www.iana.org/assignments/link-relations/link-relations.xhtml>`_ should be used when
-such a relation is available.
-
-Examples of commonly used IANA relation types are : ``self``, ``first``, ``prev``, ``next``, and ``last``.
-
-
-Custom link relation types should be uri's that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-In accordance with the `web linking RFC <http://tools.ietf.org/html/rfc5988>`_ custom link relation types should be uri's
-that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page.
-
-This page should contain the following information
-
-*   A list of request methods (GET, PUT, POST etc) supported for this URI and for each method.
-*   A description of the responses you can expect from any of the given request methods. This description should contain
-    the status code and a description of the links and embedded resources included in the response.
+HAL allows for URI templates in links (section 5.1 in HAL specification). These are perfect to describe to links to
+items in a resource collection.
 
 Relation names
 --------------
 
-Relation names are in English unless they represent a product or company name.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Relation names MUST be in English unless they represent a product or company name
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The consumers of the API will almost certainly not all be Dutch so field names should be in English unless they
-represent a product or company name.
+The consumers of the API are developers which might come from any country. However, developer will for sure understand
+English. Product and company names are excluded from this rule.
 
-Words in relation names are separated by a dash ``-``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Words in relation names MUST be separated by a dash ``-``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Relation names are used in URL and words are therefore separated by dash ``-``.
+Relation names are used in URL and words MUST therefore be separated by dash ``-``.
 
 Field names
 -----------
 
-Field names are in English unless they represent a product or company name.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Field names MUST be in English unless they represent a product or company name
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The consumers of the API will almost certainly not all be Dutch so field names should be in English unless they
-represent a product or company name.
+The consumers of the API are developers which might come from any country. However, developer will for sure understand
+English. Product and company names are excluded from this rule.
 
-Field names have consistent semantics and representation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Field names MUST have consistent semantics and representation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When two fields have the same name (even if they are in different entities), they must mean the same thing and they must
+When two fields have the same name (even if they are in different entities), they MUST mean the same thing and they MUST
 use the same representation.
 
 This rule does not apply to deprecated fields.
 
-Field names are in camelCase, contain only latin characters ``a`` - ``z``, ``A`` - ``Z``, ``0`` - ``9``.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Field names MUST use camelCase, contain only latin characters ``a`` - ``z``, ``A`` - ``Z``, ``0`` - ``9``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Fields should only use alphanumeric characters and should use the camelCase notation.
+Fields MUST use only alphanumeric characters and MUST use the camelCase notation.
+
+.. code-block:: javascript
 
     { "asqEnabled" : true }    // correct
     { "asq_enabled" : true }   // NOT correct
     { "asq_enabled?" : true }  // NOT correct
 
-Field names start with a lowercase letter, ``a`` - ``z``.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Field names MUST start with a lowercase letter, ``a`` - ``z``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Fields should start with a lower case letter.
-
-Field names starting with underscore '\_' are reserved for external standards, e.g. Hal.
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-While HAL only reserves the names detailed in the specification (``_links`` and ``_embedded``) properties that represent
-the resource's state should not start with an underscore to prevent collisions with future versions of the standard.
+Fields MUST start with a lower case letter. In particular they MUST NOT start with an underscore ``_``.
 
 Field deprecation
 ^^^^^^^^^^^^^^^^^
 
 See versioning.
 
-
 Field values
 ------------
 
-See also the list of supported field types: :ref:`field-types`
+See the list of supported field types: :ref:`field-types`
 
 Structure field values
 ^^^^^^^^^^^^^^^^^^^^^^
 
-You are encouraged to represent complex fields with a JSON object. This allows for better composability, the struct
+You are RECOMMENDED to represent complex fields with a JSON object. This allows for better composability, the struct
 might later move to a separate entity.
 
-TODO: discuss, this might make it harder for clients??
+Optional fields SHOULD not be serialized when they have no value
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Field values that are optional
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-When a field can be empty (or omitted) when creating a resource, it should be left out of the request. When returning a resource with optional fields, and there is no value for a given field, then the field should be left out entirely in case of a String, Numeric or Object value. In the case of an Array, an empty list may be returned.
+When an optional field has no value, it SHOULD be left out of the representation.
+When returning a resource with optional fields, and there is no value for a given field, then the field should be left
+out entirely in case of a String, Numeric or Object value. In the case of an Array, an empty list may be returned.
 
 The rationale for leaving omitting the field when creating or updating a resource (POST, PUT or PATCH), is that it is not allowed to specify a key without a value. Theoretically, the value ``null`` could be used, but this will only lead to confusion and complicate the parsing of the JSON object.
 
@@ -325,39 +336,50 @@ Here is an example request that produces an error response:
         ]
     }
 
-Response code is ``400``, content type MUST be ``application/json``, encoding MUST be UTF-8.
+The error format supports the following features:
 
-``_link.help.href`` *(required)* : A URL that refers to a help page. (See [documentation](documentation.md).)
+* It contains messages that are suitable for display *to a human* (in the correct *language*).
+* It contains enough data to allow highlighting fields in a UI with relevant messages (again in the correct language).
+* It contains enough information to allow for automated processing.
+* It is suitable for JSONP.
 
-``logref`` *(required)* : An identifier that refers to the specific error on the server side for logging purposes
-(e.g. ``RequestData.uniqueRequestId``).
+Here follows a description of the error format.
 
-``message`` *(required)* : A human readable message related to the current error which may be displayed to the user of
-the api.
+Error responses MUST follow the same representation rules as other resources: HAL, JSON in UTF-8 and content-type MUST be ``application/json``.
 
-``statuscode`` *(required)*: The HTTP Status code which is sent with this error. The reason to include this in the JSON as well, is because if you are using the API over JSONP for example, there is no easy way to get the error code. This is to make it more easy to use the API.
+``_link.help.href`` *(REQUIRED)* : A URL that refers to a help page that can be used by the developer that uses the API. (See `documentation requirements <40-documentation-requirements.rst>`_.)
+Note that we're not using ``describedby`` (as in other HAL resource representations).
 
-``code`` *(required)* : An error code. The error code SHOULD be same as the last part of the help url and MUST
+``logref`` *(REQUIRED)* : A unique identifier that can be used to find the error in the application logs on the server side (for example a request id).
+
+``message`` *(REQUIRED)* : A human readable message related to the current error which may be displayed to the user of the api. The language of the message
+SHOULD be selected from the ``Accept-Language`` header in the request (if present). If no language can be selected, there SHOULD be a fixed fall-back language.
+The selected language MUST be set in the ``Content-Language`` response header.
+
+``statuscode`` *(REQUIRED)*: MUST be the same as the HTTP Status code which is sent with this error. The reason to
+include this in the JSON as well, is because if you are using the API over JSONP for example, there is no easy way
+to get the error code. This is to make it more easy to use the API.
+
+``code`` *(REQUIRED)* : An error code. The error code SHOULD be same as the last part of the help url and SHOULD
 consist (mostly) out of lower case letters. (Letters allow for easier documentation-lookup then just a numeric code.)
 
 ``details`` *(optional)* : Field by field error messages.
 
-``details[*].field`` or ``details[*].fields`` *(one is required)* : Name of the field(s) that did not validate.
+``details[*].field`` or ``details[*].fields`` *(at least one is REQUIRED)* : Name of the field(s) that did not pass validation.
 
-``details[*].message`` *(required)* : A human readable description of the message for the given field in error. Please
-make sure field contains a full sentence.
+``details[*].message`` *(REQUIRED)* : A human readable description of the message for the given field in error. Please
+make sure field contains a full sentence. The language SHOULD be the same as the language used in field ``message`` described above.
 
-``details[*].code`` *(required)* : A machine readable code for the error.
+``details[*].code`` *(REQUIRED)* : A machine readable code for the error. The code SHOULD consist (mostly) out of lower case
+letters.  (Letters allow for easier documentation-lookup then just a numeric code.)
 
 ``details[*].value`` *(optional)* : An optional value which supports the machine readable code. The actual value and
 its format depends on the error code.
 
-All fields are string values.
+All fields MUST be string values.
 
-Both ``message`` fields are in the language as negotiated with the ``Accept-Language`` HTTP header.
-
-An appropriate status code should be used when serving an error resource
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+An appropriate status code MUST be used when serving an error resource
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When serving an error resource an appropriate status code MUST be used. E.g. 4xx for client errors and 5xx for
 processing errors.
@@ -365,8 +387,8 @@ processing errors.
 To determine which error code is appropriate, refer to the status codes section of this `image <20-whhD1.png>`_. (Copied
 from http://i.stack.imgur.com/whhD1.png.)
 
-Do not include stacktraces in the error message
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Stack traces MUST NOT be included in the error message
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 It may be tempting to include a stack trace for easier support when something goes wrong. Don't do it! This kind of
-information is too valuable for hackers and MUST be avoided.
+information is too valuable for hackers and it is therefore not allowed.

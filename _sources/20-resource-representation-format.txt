@@ -184,6 +184,8 @@ Field names MUST use camelCase, contain only latin characters ``a`` - ``z``, ``A
 
 Fields MUST use only alphanumeric characters and MUST use the camelCase notation.
 
+.. code-block:: javascript
+
     { "asqEnabled" : true }    // correct
     { "asq_enabled" : true }   // NOT correct
     { "asq_enabled?" : true }  // NOT correct

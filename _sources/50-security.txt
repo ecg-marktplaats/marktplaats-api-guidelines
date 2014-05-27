@@ -113,4 +113,3 @@ General security advice
 Some general recommendations for building a secure API:
 
 * Don't expose e-mails in API. Only the e-mail of the resource owner should be accessible for the user of an API. Exposing e-mails of other users is a security risk.
-* TBD.

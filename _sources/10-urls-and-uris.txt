@@ -122,9 +122,9 @@ For example:
 
 .. code-block:: http
 
-    http://api.example.restapi.org/my-folder/my-doc
-    HTTP://API.EXAMPLE.RESTAPI.ORG/my-folder/my-doc
-    http://api.example.restapi.org/My-Folder/my-doc
+    https://api.example.restapi.org/my-folder/my-doc
+    HTTPS://API.EXAMPLE.RESTAPI.ORG/my-folder/my-doc
+    https://api.example.restapi.org/My-Folder/my-doc
 
 The first URL is fine and RFC3986 considers the second url to be identical to URL #1. But the third URL is not the same
 as URIs one and two, which may give unnecessary confusion.
@@ -153,7 +153,7 @@ Example :
             "self": { "href": "/users" },
         },
         "_embedded": {
-            "http://api.marktplaats.nl/v1/rels/user": [{
+            "https://api.marktplaats.nl/v1/rels/user": [{
                "_links": {
                  "self": { "href": "/users/2" },
                },
@@ -190,7 +190,7 @@ Example :
             "find": { "href": "/users{?id}", "templated": true }
         },
         "_embedded": {
-            "http://api.marktplaats.nl/v1/rels/user": [{
+            "https://api.marktplaats.nl/v1/rels/user": [{
                "_links": {
                  "self": { "href": "/users/1" },
                },
@@ -225,7 +225,7 @@ Example:
 
 .. code-block:: javascript
 
-    POST http://api.marktplaats.nl/v1/users?_body=false HTTP/1.1
+    POST https://api.marktplaats.nl/v1/users?_body=false HTTP/1.1
     Host: api.marktplaats.nl
 
     {
@@ -236,7 +236,7 @@ Example:
 
 
     HTTP/1.1 201 Created
-    Location: http://api.marktplaats.nl/v1/users/95
+    Location: https://api.marktplaats.nl/v1/users/95
 
 Note: the ``_body`` parameter SHOULD be supported by each method on each entity.
 
@@ -314,7 +314,7 @@ Example:
             "self": { "href": "/users" },
         },
         "_embedded": {
-            "http://api.marktplaats.nl/v1/rels/user": [{
+            "https://api.marktplaats.nl/v1/rels/user": [{
                "_links": {
                  "self": { "href": "/users/2" },
                },
@@ -346,11 +346,11 @@ Example :
     {
         "_links": {
             "self": { "href": "/v1/categories/92" },
-            "describedby": { "href": "http://api.marktplaats.nl/v1/docs/resources/category" },
-            "http://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
+            "describedby": { "href": "https://api.marktplaats.nl/v1/docs/resources/category" },
+            "https://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
         },
         "_embedded": {
-            "http://api.marktplaats.nl/v1/rels/parent-category": [{
+            "https://api.marktplaats.nl/v1/rels/parent-category": [{
                "_links": {
                  "self": { "href": "/v1/categories/91" },
                },
@@ -408,8 +408,8 @@ Example :
     {
         "_links": {
             "self": { "href": "/v1/categories/95" },
-            "describedby": { "href": "http://api.marktplaats.nl/v1/docs/resources/category" },
-            "http://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
+            "describedby": { "href": "https://api.marktplaats.nl/v1/docs/resources/category" },
+            "https://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
         },
         "id": 95,
         "parentCategoryId": 91,

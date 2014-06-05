@@ -62,7 +62,7 @@ Lots of small edits
     Postponed:
         * ✗ DELETE call => No more fetch
     GLOBAL:
-        * ✗ HTTPS on all examples
+        * ✓ HTTPS on all examples
         * ✗ fix all todos
         * ✓ re-do the documentation in RST
 

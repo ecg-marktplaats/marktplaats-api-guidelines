@@ -30,8 +30,8 @@ Example :
     {
         "_links": {
             "self": { "href": "/v1/categories/92" },
-            "describedby": { "href": "http://api.marktplaats.nl/v1/docs/resources/category" },
-            "http://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
+            "describedby": { "href": "https://api.marktplaats.nl/v1/docs/resources/category" },
+            "https://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
         },
         "id": 92,
         "parentCategoryId": 91,
@@ -89,15 +89,15 @@ Example:
 
 
     HTTP/1.1 201 Created
-    Location: http://api.marktplaats.nl/v1/categories/95
+    Location: https://api.marktplaats.nl/v1/categories/95
     Content-Type: application/json
     E-Tag: "qg7968osihugw"
 
     {
         "_links": {
             "self": { "href": "/v1/categories/95" },
-            "describedby": { "href": "http://api.marktplaats.nl/v1/docs/resources/category" },
-            "http://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
+            "describedby": { "href": "https://api.marktplaats.nl/v1/docs/resources/category" },
+            "https://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
         },
         "id": 95,
         "parentCategoryId": 91,
@@ -132,15 +132,15 @@ Example:
 
 
     HTTP/1.1 200 OK
-    Location: http://api.marktplaats.nl/v1/categories/95
+    Location: https://api.marktplaats.nl/v1/categories/95
     Content-Type: application/json
     E-Tag: "723nfhjasc"
 
     {
         "_links": {
             "self": { "href": "/v1/categories/95" },
-            "describedby": { "href": "http://api.marktplaats.nl/v1/docs/resources/category" },
-            "http://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
+            "describedby": { "href": "https://api.marktplaats.nl/v1/docs/resources/category" },
+            "https://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
         },
         "id": 95,
         "parentCategoryId": 91,
@@ -179,15 +179,15 @@ Example:
 
 
     HTTP/1.1 200 OK
-    Location: http://api.marktplaats.nl/v1/categories/95
+    Location: https://api.marktplaats.nl/v1/categories/95
     Content-Type: application/json
     E-Tag: "723nfhjasc"
 
     {
         "_links": {
             "self": { "href": "/v1/categories/95" },
-            "describedby": { "href": "http://api.marktplaats.nl/v1/docs/resources/category" },
-            "http://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
+            "describedby": { "href": "https://api.marktplaats.nl/v1/docs/resources/category" },
+            "https://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
         },
         "id": 95,
         "parentCategoryId": 91,
@@ -225,7 +225,7 @@ Example:
 
 .. code-block:: javascript
 
-    DELETE http://api.marktplaats.nl/v1/categories/92
+    DELETE https://api.marktplaats.nl/v1/categories/92
     Host: api.marktplaats.nl
     Accept-Language: nl, en
     If-Match: "9iurffjkqe"

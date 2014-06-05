@@ -24,11 +24,11 @@ Example response:
     {
      "_links": {
         "self": { "href": "/v1/categories/92" },
-        "describedby": "http://api.marktplaats.nl/v1/docs/resources/category",
-        "http://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
+        "describedby": "https://api.marktplaats.nl/v1/docs/resources/category",
+        "https://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
      },
      "_embedded": {
-        "http://api.marktplaats.nl/v1/docs/rels/parent-category": {
+        "https://api.marktplaats.nl/v1/docs/rels/parent-category": {
              "_links": {
                 "self": { "href": "/v1/categories/91" }
              },
@@ -64,10 +64,10 @@ For example:
     {
         "_links": {
             "self": { "href": "/" },
-            "describedby": { "href": "http://api.marktplaats.nl/v1/docs" },
-            "http://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" },
-            "http://api.marktplaats.nl/v1/docs/resources/advertisements": { "href": "/v1/advertisements" },
-            "http://api.marktplaats.nl/v1/docs/resources/users": { "href": "/v1/users" }
+            "describedby": { "href": "https://api.marktplaats.nl/v1/docs" },
+            "https://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" },
+            "https://api.marktplaats.nl/v1/docs/resources/advertisements": { "href": "/v1/advertisements" },
+            "https://api.marktplaats.nl/v1/docs/resources/users": { "href": "/v1/users" }
         }
     }
 
@@ -84,7 +84,7 @@ Example:
     {
         "_links": {
             "self": { "href": "/v1/categories/1" }
-            "describedby": "http://api.marktplaats.nl/v1/docs/resources/category"
+            "describedby": "https://api.marktplaats.nl/v1/docs/resources/category"
         }
     }
 
@@ -320,7 +320,7 @@ Here is an example request that produces an error response:
     {
         "_links": {
             "help": {
-              "href": "http://api.marktplaats.nl/v1/docs/errors/validation-failure"
+              "href": "https://api.marktplaats.nl/v1/docs/errors/validation-failure"
             }
         },
         "logref": "4298asfpohsa98yasohq97q3yff22",

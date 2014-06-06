@@ -1,0 +1,132 @@
+.. index:: Versioning
+
+.. _versioning:
+
+Versioning
+==========
+
+This document describes the allowed ways of changing an existing API.
+
+There are three different ways to change the API:
+
+1. Backward compatible ➜ API version does not changed.
+2. Representation of resource(s) changes ➜ minor version number increase.
+3. A resource changes behavior ➜ major version number increase.
+
+\1. Backward compatible changes
+-------------------------------
+
+The following changes are considered backward compatible:
+
+* Add a new field to a JSON object.
+* Change order of fields in a JSON object.
+* Add a new link in the ``_link`` section.
+* Add a new field in the ``_embedded`` section.
+
+(Note: these guidelines use the word **field** instead of the word **member** from the JSON specification.)
+
+The following applies to backward compatible changes:
+
+Clients MUST be assumed to cope with backward compatible changes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Clients should be liberal in what they accept and conservative in what they send.
+
+Do not remove fields when it will be replaced by another field
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In case a new field will replace another field, the old field MUST stay around until the version changes
+(see section `\2. Resource representation changes`_). The field that will be removed MAY be deprecated.
+
+Deprecation example:
+
+.. code-block:: javascript
+
+    {
+      "_links": {
+         "self": { "href": "/v1/categories/92" },
+         "describedby": { "href": "https://api.marktplaats.nl/v1/docs/categories" },
+         "https://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
+      },
+      "name": "Alpha romeo",
+      "short-name": "Alpha romeo",
+      "shortName": "Alpha romeo",
+      "_deprecation": {
+        "short-name": "https://api.marktplaats.nl/v1/docs/resources/category/short-name-deprecation"
+      }
+    }
+
+Old links MAY be deprecated when it will be replaced with a newer version
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In case a link replaces an older link, the old link MUST stay around until the version changes (see section
+`\2. Resource representation changes`_). The link that will be removed MAY be deprecated. The HAL specification
+describes how to deprecate a link. (See :ref:`hal-and-our-deviations` for links to the specification.)
+
+Before:
+
+.. code-block:: javascript
+
+    {
+        "_links": {
+            "self": { "href": "/" },
+            "describedby": { "href": "https://api.marktplaats.nl/v1/docs" },
+            "https://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" }
+        }
+    }
+
+After (in this example *tags* will replace *categories*):
+
+.. code-block:: javascript
+
+    {
+        "_links": {
+            "self": { "href": "/" },
+            "describedby": { "href": "https://api.marktplaats.nl/v1/docs" },
+            "https://api.marktplaats.nl/v1/docs/resources/categories": {
+              "href": "/v1/categories",
+              "deprecation": "https://api.marktplaats.nl/v1/docs/resources/categories/deprecation"
+            },
+            "https://api.marktplaats.nl/v1/docs/resources/tags": { "href": "/v1/tags" }
+        }
+    }
+
+The deprecation attribute value of the link relation MUST point to a developer document that describes when and why
+the relation is deprecated.
+
+\2. Resource representation changes
+-----------------------------------
+
+Changing the representation of a resource in a non-backward compatible way SHOULD not happen often, perhaps once a year.
+
+The base URL MUST change as follows:
+
+* `https://host/base-url/v1` ➜ `https://host/base-url/v1.1` (no minor version yet)
+* `https://host/base-url/v1.1` ➜ `https://host/base-url/v1.2` (minor version increased)
+
+Notes:
+
+* The base URL for all resources MUST change at the same time, also for resources that did not change.
+* All references (inside the resources) MUST use the updated base URL.
+* The old version MUST be available for a grace period. The grace period is RECOMMENDED to be 6 months.
+
+Side notes:
+
+* To keep an older version available there are basically 2 options:
+
+  * Support resources on old URL and new URL in the same implementation.
+  * Keep an old version of the implementation deployed separately on the old URL.
+
+* Consequence of this mechanism is that URLs identify resource representations, not resources. This is a conscious departure of REST principles.
+
+
+\3. Resource behavior changes
+-----------------------------
+
+Changing the behavior of your resources SHOULD only be used as a last resort.
+
+The base URL MUST change as follows:
+
+* `https://host/base-url/v1` ➜ `https://host/base-url/v2` (no minor version yet)
+* `https://host/base-url/v1.1` ➜ `https://host/base-url/v2` (major version increased, no minor version)
+

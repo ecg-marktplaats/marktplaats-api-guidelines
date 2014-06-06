@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Versioning &mdash; eCG API Guidelines 0.1 documentation</title>
+  
+
+  
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  
+  
+
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'0.1',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+    <link rel="top" title="eCG API Guidelines 0.1 documentation" href="index.html"/>
+        <link rel="next" title="HAL and our deviations" href="80-hal-and-our-deviations.html"/>
+        <link rel="prev" title="Security" href="50-security.html"/> 
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="icon icon-home"> eCG API Guidelines</a>
+        <form class="wy-form" action="search.html" method="get">
+  <input type="text" name="q" placeholder="Search docs" />
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix">
+        
+        
+            <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="00-intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#overview-for-the-busy-developer">Overview for the busy developer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#advantages">Advantages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="00-intro.html#conventions">Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-principles.html">Principles</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-principles.html#technical-principles">Technical principles</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="10-urls-and-uris.html">URLs and URIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#base-url">Base URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#url-and-uri-naming">URL and URI naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#query-parameters">Query parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="20-resource-representation-format.html">Resource representation format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#binary-resources">Binary resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resource-collections">Resource collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#relation-names">Relation names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-names">Field names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-values">Field values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#errors">Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="30-interaction-design.html">Interaction design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#request-methods">Request methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#status-codes">Status codes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="40-documentation-requirements.html">Documentation requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#documentation-urls">Documentation URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#resource-documentation">Resource documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#document-link-relations">Document link relations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#getting-started-guide">Getting started guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#api-reference">API reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#example-code">Example code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#todo">TODO</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="50-security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#authentication">Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#oauth-2">OAuth 2</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Versioning</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#backward-compatible-changes">1. Backward compatible changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resource-representation-changes">2. Resource representation changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resource-behavior-changes">3. Resource behavior changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="80-hal-and-our-deviations.html">HAL and our deviations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#content-type">Content-type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#field-names">Field names</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="99-todo.html">TODO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="99-todo.html#lots-of-small-edits">Lots of small edits</a></li>
+</ul>
+</li>
+</ul>
+
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/">eCG API Guidelines</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <ul class="wy-breadcrumbs">
+  <li><a href="index.html">Docs</a> &raquo;</li>
+  <li><a href="">Versioning</a></li>
+  
+</ul>
+<hr/>
+
+          
+  <div class="section" id="versioning">
+<span id="index-0"></span><span id="id1"></span><h1>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">¶</a></h1>
+<p>This document describes the allowed ways of changing an existing API.</p>
+<p>There are three different ways to change the API:</p>
+<ol class="arabic simple">
+<li>Backward compatible ➜ API version does not changed.</li>
+<li>Representation of resource(s) changes ➜ minor version number increase.</li>
+<li>A resource changes behavior ➜ major version number increase.</li>
+</ol>
+<div class="section" id="backward-compatible-changes">
+<h2>1. Backward compatible changes<a class="headerlink" href="#backward-compatible-changes" title="Permalink to this headline">¶</a></h2>
+<p>The following changes are considered backward compatible:</p>
+<ul class="simple">
+<li>Add a new field to a JSON object.</li>
+<li>Change order of fields in a JSON object.</li>
+<li>Add a new link in the <tt class="docutils literal"><span class="pre">_link</span></tt> section.</li>
+<li>Add a new field in the <tt class="docutils literal"><span class="pre">_embedded</span></tt> section.</li>
+</ul>
+<p>(Note: these guidelines use the word <strong>field</strong> instead of the word <strong>member</strong> from the JSON specification.)</p>
+<p>The following applies to backward compatible changes:</p>
+<div class="section" id="clients-must-be-assumed-to-cope-with-backward-compatible-changes">
+<h3>Clients MUST be assumed to cope with backward compatible changes<a class="headerlink" href="#clients-must-be-assumed-to-cope-with-backward-compatible-changes" title="Permalink to this headline">¶</a></h3>
+<p>Clients should be liberal in what they accept and conservative in what they send.</p>
+</div>
+<div class="section" id="do-not-remove-fields-when-it-will-be-replaced-by-another-field">
+<h3>Do not remove fields when it will be replaced by another field<a class="headerlink" href="#do-not-remove-fields-when-it-will-be-replaced-by-another-field" title="Permalink to this headline">¶</a></h3>
+<p>In case a new field will replace another field, the old field MUST stay around until the version changes
+(see section <a class="reference internal" href="#resource-representation-changes">2. Resource representation changes</a>). The field that will be removed MAY be deprecated.</p>
+<p>Deprecation example:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+     <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/92&quot;</span> <span class="p">},</span>
+     <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/categories&quot;</span> <span class="p">},</span>
+     <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/rels/parent-category&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;short-name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;_deprecation&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;short-name&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/resources/category/short-name-deprecation&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="old-links-may-be-deprecated-when-it-will-be-replaced-with-a-newer-version">
+<h3>Old links MAY be deprecated when it will be replaced with a newer version<a class="headerlink" href="#old-links-may-be-deprecated-when-it-will-be-replaced-with-a-newer-version" title="Permalink to this headline">¶</a></h3>
+<p>In case a link replaces an older link, the old link MUST stay around until the version changes (see section
+<a class="reference internal" href="#resource-representation-changes">2. Resource representation changes</a>). The link that will be removed MAY be deprecated. The HAL specification
+describes how to deprecate a link. (See <a class="reference internal" href="80-hal-and-our-deviations.html#hal-and-our-deviations"><em>HAL and our deviations</em></a> for links to the specification.)</p>
+<p>Before:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.marktplaats.nl/v1/docs&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>After (in this example <em>tags</em> will replace <em>categories</em>):</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.marktplaats.nl/v1/docs&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span>
+          <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;deprecation&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/resources/categories/deprecation&quot;</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/resources/tags&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/tags&quot;</span> <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The deprecation attribute value of the link relation MUST point to a developer document that describes when and why
+the relation is deprecated.</p>
+</div>
+</div>
+<div class="section" id="resource-representation-changes">
+<h2>2. Resource representation changes<a class="headerlink" href="#resource-representation-changes" title="Permalink to this headline">¶</a></h2>
+<p>Changing the representation of a resource in a non-backward compatible way SHOULD not happen often, perhaps once a year.</p>
+<p>The base URL MUST change as follows:</p>
+<ul class="simple">
+<li><cite>https://host/base-url/v1</cite> ➜ <cite>https://host/base-url/v1.1</cite> (no minor version yet)</li>
+<li><cite>https://host/base-url/v1.1</cite> ➜ <cite>https://host/base-url/v1.2</cite> (minor version increased)</li>
+</ul>
+<p>Notes:</p>
+<ul class="simple">
+<li>The base URL for all resources MUST change at the same time, also for resources that did not change.</li>
+<li>All references (inside the resources) MUST use the updated base URL.</li>
+<li>The old version MUST be available for a grace period. The grace period is RECOMMENDED to be 6 months.</li>
+</ul>
+<p>Side notes:</p>
+<ul class="simple">
+<li>To keep an older version available there are basically 2 options:<ul>
+<li>Support resources on old URL and new URL in the same implementation.</li>
+<li>Keep an old version of the implementation deployed separately on the old URL.</li>
+</ul>
+</li>
+<li>Consequence of this mechanism is that URLs identify resource representations, not resources. This is a conscious departure of REST principles.</li>
+</ul>
+</div>
+<div class="section" id="resource-behavior-changes">
+<h2>3. Resource behavior changes<a class="headerlink" href="#resource-behavior-changes" title="Permalink to this headline">¶</a></h2>
+<p>Changing the behavior of your resources SHOULD only be used as a last resort.</p>
+<p>The base URL MUST change as follows:</p>
+<ul class="simple">
+<li><cite>https://host/base-url/v1</cite> ➜ <cite>https://host/base-url/v2</cite> (no minor version yet)</li>
+<li><cite>https://host/base-url/v1.1</cite> ➜ <cite>https://host/base-url/v2</cite> (major version increased, no minor version)</li>
+</ul>
+</div>
+</div>
+
+
+          <footer>
+  
+    <div class="rst-footer-buttons">
+      
+        <a href="80-hal-and-our-deviations.html" class="btn btn-neutral float-right" title="HAL and our deviations"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="50-security.html" class="btn btn-neutral" title="Security"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <p>
+      &copy; Copyright 2014, ECG API Focus team.
+  </p>
+
+  <a href="https://www.github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="http://readthedocs.org">Read the Docs</a>
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+</body>
+</html>

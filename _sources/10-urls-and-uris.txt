@@ -236,7 +236,7 @@ Example:
 
 
     HTTP/1.1 201 Created
-    Location: https://api.marktplaats.nl/v1/users/95
+    Location: /v1/users/95
 
 Note: the ``_body`` parameter SHOULD be supported by each method on each entity.
 

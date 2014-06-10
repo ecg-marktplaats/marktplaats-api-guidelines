@@ -215,35 +215,37 @@ conditional headers are not allowed on resources that do not support it.</p>
 The <tt class="docutils literal"><span class="pre">POST</span></tt> request’s body contains the <strong>suggested</strong> state representation of the new resource to be added to the
 server-owned collection.</p>
 <p>Example:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">POST</span> <span class="o">/</span><span class="nx">v1</span><span class="o">/</span><span class="nx">categories</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
-<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">marktplaats</span><span class="p">.</span><span class="nx">nl</span>
-<span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">nl</span><span class="p">,</span> <span class="nx">en</span>
+<div class="highlight-javascript"><div class="highlight"><pre>POST /v1/categories HTTP/1.1
+Host: api.marktplaats.nl
+Accept-Language: nl, en
 
-<span class="p">{</span>
-    <span class="s2">&quot;parentCategoryId&quot;</span><span class="o">:</span> <span class="mi">91</span><span class="p">,</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span>
-<span class="p">}</span>
+{
+    &quot;parentCategoryId&quot;: 91,
+    &quot;name&quot;: &quot;BMW&quot;,
+    &quot;shortName&quot;: &quot;BMW&quot;
+}
 
 
-<span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="nx">Created</span>
-<span class="nx">Location</span><span class="o">:</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//api.marktplaats.nl/v1/categories/95</span>
-<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
-<span class="nx">E</span><span class="o">-</span><span class="nx">Tag</span><span class="o">:</span> <span class="s2">&quot;qg7968osihugw&quot;</span>
+HTTP/1.1 201 Created
+Location: /v1/categories/95
+Content-Type: application/json
+E-Tag: &quot;qg7968osihugw&quot;
 
-<span class="p">{</span>
-    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/95&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/resources/category&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/rels/parent-category&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">95</span><span class="p">,</span>
-    <span class="s2">&quot;parentCategoryId&quot;</span><span class="o">:</span> <span class="mi">91</span><span class="p">,</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span>
-<span class="p">}</span>
+{
+    &quot;_links&quot;: {
+        &quot;self&quot;: { &quot;href&quot;: &quot;/v1/categories/95&quot; },
+        &quot;describedby&quot;: { &quot;href&quot;: &quot;https://api.marktplaats.nl/v1/docs/resources/category&quot; },
+        &quot;https://api.marktplaats.nl/v1/docs/rels/parent-category&quot;: { &quot;href&quot;: &quot;/v1/categories/91&quot; }
+    },
+    &quot;id&quot;: 95,
+    &quot;parentCategoryId&quot;: 91,
+    &quot;name&quot;: &quot;BMW&quot;,
+    &quot;shortName&quot;: &quot;BMW&quot;
+}
 </pre></div>
 </div>
+<p>Note the use of response code <tt class="docutils literal"><span class="pre">201</span> <span class="pre">Created</span></tt> and the REQUIRED presence of a <tt class="docutils literal"><span class="pre">Location</span></tt> header. The value of the
+header MUST be the same as the <tt class="docutils literal"><span class="pre">href</span></tt> of the <tt class="docutils literal"><span class="pre">self</span></tt> link in the response.</p>
 <p>Body in the response is included by default. This can be overridden with the
 <a class="reference internal" href="10-urls-and-uris.html#body-parameter"><em>body parameter</em></a></p>
 </div>
@@ -252,78 +254,80 @@ server-owned collection.</p>
 <p>Clients use <tt class="docutils literal"><span class="pre">PUT</span></tt> when attempting to update all fields of an existing resource. The request body contains the
 <strong>suggested</strong> state representation of the resource.</p>
 <p>Example:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">PUT</span> <span class="o">/</span><span class="nx">v1</span><span class="o">/</span><span class="nx">categories</span><span class="o">/</span><span class="mi">95</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
-<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">marktplaats</span><span class="p">.</span><span class="nx">nl</span>
-<span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">nl</span><span class="p">,</span> <span class="nx">en</span>
-<span class="nx">If</span><span class="o">-</span><span class="nx">Match</span><span class="o">:</span> <span class="s2">&quot;qg7968osihugw&quot;</span>
+<div class="highlight-javascript"><div class="highlight"><pre>PUT /v1/categories/95 HTTP/1.1
+Host: api.marktplaats.nl
+Accept-Language: nl, en
+If-Match: &quot;qg7968osihugw&quot;
 
-<span class="p">{</span>
-    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">95</span><span class="p">,</span>
-    <span class="s2">&quot;parentCategoryId&quot;</span><span class="o">:</span> <span class="mi">91</span><span class="p">,</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span>
-<span class="p">}</span>
+{
+    &quot;id&quot;: 95,
+    &quot;parentCategoryId&quot;: 91,
+    &quot;name&quot;: &quot;BMW&quot;,
+    &quot;shortName&quot;: &quot;BMW&quot;
+}
 
 
-<span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
-<span class="nx">Location</span><span class="o">:</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//api.marktplaats.nl/v1/categories/95</span>
-<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
-<span class="nx">E</span><span class="o">-</span><span class="nx">Tag</span><span class="o">:</span> <span class="s2">&quot;723nfhjasc&quot;</span>
+HTTP/1.1 200 OK
+Location: /v1/categories/95
+Content-Type: application/json
+E-Tag: &quot;723nfhjasc&quot;
 
-<span class="p">{</span>
-    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/95&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/resources/category&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/rels/parent-category&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">95</span><span class="p">,</span>
-    <span class="s2">&quot;parentCategoryId&quot;</span><span class="o">:</span> <span class="mi">91</span><span class="p">,</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span>
-<span class="p">}</span>
+{
+    &quot;_links&quot;: {
+        &quot;self&quot;: { &quot;href&quot;: &quot;/v1/categories/95&quot; },
+        &quot;describedby&quot;: { &quot;href&quot;: &quot;https://api.marktplaats.nl/v1/docs/resources/category&quot; },
+        &quot;https://api.marktplaats.nl/v1/docs/rels/parent-category&quot;: { &quot;href&quot;: &quot;/v1/categories/91&quot; }
+    },
+    &quot;id&quot;: 95,
+    &quot;parentCategoryId&quot;: 91,
+    &quot;name&quot;: &quot;BMW&quot;,
+    &quot;shortName&quot;: &quot;BMW&quot;
+}
 </pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">If-Match</span></tt> header is NOT allowed for resources that don&#8217;t support ETag. It is optional (but strongly recommended)
 for resources that do support it.</p>
 <p>The server SHOULD accept the resource representation exactly as it was retrieved by a client with a GET request. When
-this is supported immutable properties MUST be ignored unless they have been changed.</p>
+this is supported immutable properties MUST be ignored.</p>
 <p>Body in the response is included by default. This can be overridden with the
 <a class="reference internal" href="10-urls-and-uris.html#body-parameter"><em>body parameter</em></a></p>
 <p>Clients that do not support the <tt class="docutils literal"><span class="pre">PUT</span></tt> method may use the <a class="reference internal" href="10-urls-and-uris.html#method-parameter"><em>method-parameter</em></a></p>
+<p>The presence of a <tt class="docutils literal"><span class="pre">Location</span></tt> header is RECOMMENDED. The value of the header MUST be the same as the <tt class="docutils literal"><span class="pre">href</span></tt> of
+the <tt class="docutils literal"><span class="pre">self</span></tt> link in the response.</p>
 </div>
 <div class="section" id="patch-must-be-used-to-partially-update-a-resource">
 <h3><tt class="docutils literal"><span class="pre">PATCH</span></tt> must be used to partially update a resource<a class="headerlink" href="#patch-must-be-used-to-partially-update-a-resource" title="Permalink to this headline">¶</a></h3>
 <p>Clients use <tt class="docutils literal"><span class="pre">PATCH</span></tt> when attempting to partially update an existing resource. The request body contains values according
 to <a class="reference external" href="http://tools.ietf.org/html/rfc6902">RFC 6902</a>.</p>
 <p>Example:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">PATCH</span> <span class="o">/</span><span class="nx">v1</span><span class="o">/</span><span class="nx">categories</span><span class="o">/</span><span class="mi">95</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
-<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">marktplaats</span><span class="p">.</span><span class="nx">nl</span>
-<span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">nl</span><span class="p">,</span> <span class="nx">en</span>
-<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span><span class="o">-</span><span class="nx">patch</span><span class="o">+</span><span class="nx">json</span>
-<span class="nx">If</span><span class="o">-</span><span class="nx">Match</span><span class="o">:</span> <span class="s2">&quot;qg7968osihugw&quot;</span>
+<div class="highlight-javascript"><div class="highlight"><pre>PATCH /v1/categories/95 HTTP/1.1
+Host: api.marktplaats.nl
+Accept-Language: nl, en
+Content-Type: application/json-patch+json
+If-Match: &quot;qg7968osihugw&quot;
 
-<span class="p">[</span>
-    <span class="p">{</span> <span class="s2">&quot;op&quot;</span><span class="o">:</span> <span class="s2">&quot;replace&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="o">:</span> <span class="s2">&quot;/name&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span> <span class="p">},</span>
-    <span class="p">{</span> <span class="s2">&quot;op&quot;</span><span class="o">:</span> <span class="s2">&quot;replace&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="o">:</span> <span class="s2">&quot;/hostName&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span> <span class="p">}</span>
-<span class="p">]</span>
+[
+    { &quot;op&quot;: &quot;replace&quot;, &quot;path&quot;: &quot;/name&quot;, &quot;value&quot;: &quot;BMW&quot; },
+    { &quot;op&quot;: &quot;replace&quot;, &quot;path&quot;: &quot;/hostName&quot;, &quot;value&quot;: &quot;BMW&quot; }
+]
 
 
-<span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
-<span class="nx">Location</span><span class="o">:</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//api.marktplaats.nl/v1/categories/95</span>
-<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
-<span class="nx">E</span><span class="o">-</span><span class="nx">Tag</span><span class="o">:</span> <span class="s2">&quot;723nfhjasc&quot;</span>
+HTTP/1.1 200 OK
+Location: /v1/categories/95
+Content-Type: application/json
+E-Tag: &quot;723nfhjasc&quot;
 
-<span class="p">{</span>
-    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/95&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/resources/category&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/rels/parent-category&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">95</span><span class="p">,</span>
-    <span class="s2">&quot;parentCategoryId&quot;</span><span class="o">:</span> <span class="mi">91</span><span class="p">,</span>
-    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;BMW&quot;</span>
-<span class="p">}</span>
+{
+    &quot;_links&quot;: {
+        &quot;self&quot;: { &quot;href&quot;: &quot;/v1/categories/95&quot; },
+        &quot;describedby&quot;: { &quot;href&quot;: &quot;https://api.marktplaats.nl/v1/docs/resources/category&quot; },
+        &quot;https://api.marktplaats.nl/v1/docs/rels/parent-category&quot;: { &quot;href&quot;: &quot;/v1/categories/91&quot; }
+    },
+    &quot;id&quot;: 95,
+    &quot;parentCategoryId&quot;: 91,
+    &quot;name&quot;: &quot;BMW&quot;,
+    &quot;shortName&quot;: &quot;BMW&quot;
+}
 </pre></div>
 </div>
 <p>Implementations are recommended to implement <tt class="docutils literal"><span class="pre">replace</span></tt> as <tt class="docutils literal"><span class="pre">add</span></tt> when the field is not present in the original representation.</p>
@@ -334,6 +338,8 @@ Return this when the server cannot honor the request because it might result in 
 <p>Body in the response is included by default. This can be overridden with the
 [<cite>_body</cite> parameter](/docs/base-url.md#_body).</p>
 <p>Clients that do not support the <tt class="docutils literal"><span class="pre">PATCH</span></tt> method may use the <a class="reference internal" href="10-urls-and-uris.html#method-parameter"><em>method-parameter</em></a>.</p>
+<p>The presence of a <tt class="docutils literal"><span class="pre">Location</span></tt> header is RECOMMENDED. The value of the header MUST be the same as the <tt class="docutils literal"><span class="pre">href</span></tt> of
+the <tt class="docutils literal"><span class="pre">self</span></tt> link in the response.</p>
 </div>
 <div class="section" id="delete-must-be-used-to-remove-a-resource-from-its-parent">
 <h3>DELETE must be used to remove a resource from its parent<a class="headerlink" href="#delete-must-be-used-to-remove-a-resource-from-its-parent" title="Permalink to this headline">¶</a></h3>

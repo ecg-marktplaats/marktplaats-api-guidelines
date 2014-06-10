@@ -89,7 +89,7 @@ Example:
 
 
     HTTP/1.1 201 Created
-    Location: https://api.marktplaats.nl/v1/categories/95
+    Location: /v1/categories/95
     Content-Type: application/json
     E-Tag: "qg7968osihugw"
 
@@ -105,8 +105,12 @@ Example:
         "shortName": "BMW"
     }
 
+Note the use of response code ``201 Created`` and the REQUIRED presence of a ``Location`` header. The value of the
+header MUST be the same as the ``href`` of the ``self`` link in the response.
+
 Body in the response is included by default. This can be overridden with the
 :ref:`body parameter <body-parameter>`
+
 
 ``PUT`` must be used to completely update a resource
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -132,7 +136,7 @@ Example:
 
 
     HTTP/1.1 200 OK
-    Location: https://api.marktplaats.nl/v1/categories/95
+    Location: /v1/categories/95
     Content-Type: application/json
     E-Tag: "723nfhjasc"
 
@@ -152,12 +156,16 @@ The ``If-Match`` header is NOT allowed for resources that don't support ETag. It
 for resources that do support it.
 
 The server SHOULD accept the resource representation exactly as it was retrieved by a client with a GET request. When
-this is supported immutable properties MUST be ignored unless they have been changed.
+this is supported immutable properties MUST be ignored.
 
 Body in the response is included by default. This can be overridden with the
 :ref:`body parameter <body-parameter>`
 
 Clients that do not support the ``PUT`` method may use the :ref:`method-parameter <method-parameter>`
+
+The presence of a ``Location`` header is RECOMMENDED. The value of the header MUST be the same as the ``href`` of
+the ``self`` link in the response.
+
 
 ``PATCH`` must be used to partially update a resource
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -182,7 +190,7 @@ Example:
 
 
     HTTP/1.1 200 OK
-    Location: https://api.marktplaats.nl/v1/categories/95
+    Location: /v1/categories/95
     Content-Type: application/json
     E-Tag: "723nfhjasc"
 
@@ -210,6 +218,9 @@ Body in the response is included by default. This can be overridden with the
 [`_body` parameter](/docs/base-url.md#_body).
 
 Clients that do not support the ``PATCH`` method may use the :ref:`method-parameter <method-parameter>`.
+
+The presence of a ``Location`` header is RECOMMENDED. The value of the header MUST be the same as the ``href`` of
+the ``self`` link in the response.
 
 DELETE must be used to remove a resource from its parent
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

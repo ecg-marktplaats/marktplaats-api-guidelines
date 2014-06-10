@@ -332,18 +332,18 @@ The <tt class="docutils literal"><span class="pre">offset</span></tt> parameter 
 used to change this behavior.</p>
 <p>Parameter <tt class="docutils literal"><span class="pre">_body</span></tt> takes values <tt class="docutils literal"><span class="pre">true</span></tt> (the default) or <tt class="docutils literal"><span class="pre">false</span></tt>.</p>
 <p>Example:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">POST</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//api.marktplaats.nl/v1/users?_body=false HTTP/1.1</span>
-<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">marktplaats</span><span class="p">.</span><span class="nx">nl</span>
+<div class="highlight-javascript"><div class="highlight"><pre>POST https://api.marktplaats.nl/v1/users?_body=false HTTP/1.1
+Host: api.marktplaats.nl
 
-<span class="p">{</span>
-    <span class="s2">&quot;username&quot;</span><span class="o">:</span> <span class="s2">&quot;testUser&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;zipcode&quot;</span><span class="o">:</span> <span class="s2">&quot;1097DN&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;test@marktplaats.nl&quot;</span>
-<span class="p">}</span>
+{
+    &quot;username&quot;: &quot;testUser&quot;,
+    &quot;zipcode&quot;: &quot;1097DN&quot;,
+    &quot;email&quot;: &quot;test@marktplaats.nl&quot;
+}
 
 
-<span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">201</span> <span class="nx">Created</span>
-<span class="nx">Location</span><span class="o">:</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//api.marktplaats.nl/v1/users/95</span>
+HTTP/1.1 201 Created
+Location: /v1/users/95
 </pre></div>
 </div>
 <p>Note: the <tt class="docutils literal"><span class="pre">_body</span></tt> parameter SHOULD be supported by each method on each entity.</p>

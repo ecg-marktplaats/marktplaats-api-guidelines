@@ -170,7 +170,7 @@ form.
 A client’s GET request message may contain headers but no body.</p>
 <p>Example :</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="nx">GET</span> <span class="o">/</span><span class="nx">v1</span><span class="o">/</span><span class="nx">categories</span><span class="o">/</span><span class="mi">92</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
-<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">marktplaats</span><span class="p">.</span><span class="nx">nl</span>
+<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">platform</span><span class="p">.</span><span class="nx">com</span>
 
 <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
 <span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
@@ -179,8 +179,8 @@ A client’s GET request message may contain headers but no body.</p>
 <span class="p">{</span>
     <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/92&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/resources/category&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;https://api.marktplaats.nl/v1/docs/rels/parent-category&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
+        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.platform.com/v1/docs/resources/category&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;https://api.platform.com/v1/docs/rels/parent-category&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
     <span class="p">},</span>
     <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="mi">92</span><span class="p">,</span>
     <span class="s2">&quot;parentCategoryId&quot;</span><span class="o">:</span> <span class="mi">91</span><span class="p">,</span>
@@ -216,7 +216,7 @@ The <tt class="docutils literal"><span class="pre">POST</span></tt> request’s 
 server-owned collection.</p>
 <p>Example:</p>
 <div class="highlight-javascript"><div class="highlight"><pre>POST /v1/categories HTTP/1.1
-Host: api.marktplaats.nl
+Host: api.platform.com
 Accept-Language: nl, en
 
 {
@@ -234,8 +234,8 @@ E-Tag: &quot;qg7968osihugw&quot;
 {
     &quot;_links&quot;: {
         &quot;self&quot;: { &quot;href&quot;: &quot;/v1/categories/95&quot; },
-        &quot;describedby&quot;: { &quot;href&quot;: &quot;https://api.marktplaats.nl/v1/docs/resources/category&quot; },
-        &quot;https://api.marktplaats.nl/v1/docs/rels/parent-category&quot;: { &quot;href&quot;: &quot;/v1/categories/91&quot; }
+        &quot;describedby&quot;: { &quot;href&quot;: &quot;https://api.platform.com/v1/docs/resources/category&quot; },
+        &quot;https://api.platform.com/v1/docs/rels/parent-category&quot;: { &quot;href&quot;: &quot;/v1/categories/91&quot; }
     },
     &quot;id&quot;: 95,
     &quot;parentCategoryId&quot;: 91,
@@ -255,7 +255,7 @@ header MUST be the same as the <tt class="docutils literal"><span class="pre">hr
 <strong>suggested</strong> state representation of the resource.</p>
 <p>Example:</p>
 <div class="highlight-javascript"><div class="highlight"><pre>PUT /v1/categories/95 HTTP/1.1
-Host: api.marktplaats.nl
+Host: api.platform.com
 Accept-Language: nl, en
 If-Match: &quot;qg7968osihugw&quot;
 
@@ -275,8 +275,8 @@ E-Tag: &quot;723nfhjasc&quot;
 {
     &quot;_links&quot;: {
         &quot;self&quot;: { &quot;href&quot;: &quot;/v1/categories/95&quot; },
-        &quot;describedby&quot;: { &quot;href&quot;: &quot;https://api.marktplaats.nl/v1/docs/resources/category&quot; },
-        &quot;https://api.marktplaats.nl/v1/docs/rels/parent-category&quot;: { &quot;href&quot;: &quot;/v1/categories/91&quot; }
+        &quot;describedby&quot;: { &quot;href&quot;: &quot;https://api.platform.com/v1/docs/resources/category&quot; },
+        &quot;https://api.platform.com/v1/docs/rels/parent-category&quot;: { &quot;href&quot;: &quot;/v1/categories/91&quot; }
     },
     &quot;id&quot;: 95,
     &quot;parentCategoryId&quot;: 91,
@@ -301,7 +301,7 @@ the <tt class="docutils literal"><span class="pre">self</span></tt> link in the 
 to <a class="reference external" href="http://tools.ietf.org/html/rfc6902">RFC 6902</a>.</p>
 <p>Example:</p>
 <div class="highlight-javascript"><div class="highlight"><pre>PATCH /v1/categories/95 HTTP/1.1
-Host: api.marktplaats.nl
+Host: api.platform.com
 Accept-Language: nl, en
 Content-Type: application/json-patch+json
 If-Match: &quot;qg7968osihugw&quot;
@@ -320,8 +320,8 @@ E-Tag: &quot;723nfhjasc&quot;
 {
     &quot;_links&quot;: {
         &quot;self&quot;: { &quot;href&quot;: &quot;/v1/categories/95&quot; },
-        &quot;describedby&quot;: { &quot;href&quot;: &quot;https://api.marktplaats.nl/v1/docs/resources/category&quot; },
-        &quot;https://api.marktplaats.nl/v1/docs/rels/parent-category&quot;: { &quot;href&quot;: &quot;/v1/categories/91&quot; }
+        &quot;describedby&quot;: { &quot;href&quot;: &quot;https://api.platform.com/v1/docs/resources/category&quot; },
+        &quot;https://api.platform.com/v1/docs/rels/parent-category&quot;: { &quot;href&quot;: &quot;/v1/categories/91&quot; }
     },
     &quot;id&quot;: 95,
     &quot;parentCategoryId&quot;: 91,
@@ -351,8 +351,8 @@ a 404 (“Not Found”) status returned by the API.</p>
 <p>The DELETE method is idempotent. This implies that the server must return a response indicating success even if the
 server deleted the resource in a previous request.</p>
 <p>Example:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">DELETE</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//api.marktplaats.nl/v1/categories/92</span>
-<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">marktplaats</span><span class="p">.</span><span class="nx">nl</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">DELETE</span> <span class="nx">https</span><span class="o">:</span><span class="c1">//api.platform.com/v1/categories/92</span>
+<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">platform</span><span class="p">.</span><span class="nx">com</span>
 <span class="nx">Accept</span><span class="o">-</span><span class="nx">Language</span><span class="o">:</span> <span class="nx">nl</span><span class="p">,</span> <span class="nx">en</span>
 <span class="nx">If</span><span class="o">-</span><span class="nx">Match</span><span class="o">:</span> <span class="s2">&quot;9iurffjkqe&quot;</span>
 

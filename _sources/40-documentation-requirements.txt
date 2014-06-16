@@ -18,17 +18,17 @@ Documentation MAY live on ``http`` instead of ``https``.
 Documentation URLs
 ^^^^^^^^^^^^^^^^^^
 
-Documentation should live at the following URLs (assuming `https://api.marktplaats.nl/v1/docs/` as documentation base
+Documentation should live at the following URLs (assuming `https://api.platform.com/v1/docs/` as documentation base
 URL):
 
-Resources: ``https://api.marktplaats.nl/v1/docs/resources/{resource-name}``
-Relations: ``https://api.marktplaats.nl/v1/docs/rels/{relation-name}``
+Resources: ``https://api.platform.com/v1/docs/resources/{resource-name}``
+Relations: ``https://api.platform.com/v1/docs/rels/{relation-name}``
 
 Further documentation (e.g. deprecations) should go below those. For example:
 
-Resource deprecation: ``https://api.marktplaats.nl/v1/docs/rels/{relation-name}/deprecation``
-Resource other: ``https://api.marktplaats.nl/v1/docs/rels/{relation-name}/{detail-subject}``
-Field deprecation: ``https://api.marktplaats.nl/v1/docs/resources/{resource-name}/{field-name}-deprecation``
+Resource deprecation: ``https://api.platform.com/v1/docs/rels/{relation-name}/deprecation``
+Resource other: ``https://api.platform.com/v1/docs/rels/{relation-name}/{detail-subject}``
+Field deprecation: ``https://api.platform.com/v1/docs/resources/{resource-name}/{field-name}-deprecation``
 
 Resource documentation
 ----------------------

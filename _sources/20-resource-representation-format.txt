@@ -24,11 +24,11 @@ Example response:
     {
      "_links": {
         "self": { "href": "/v1/categories/92" },
-        "describedby": "https://api.marktplaats.nl/v1/docs/resources/category",
-        "https://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
+        "describedby": "https://api.platform.com/v1/docs/resources/category",
+        "https://api.platform.com/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
      },
      "_embedded": {
-        "https://api.marktplaats.nl/v1/docs/rels/parent-category": {
+        "https://api.platform.com/v1/docs/rels/parent-category": {
              "_links": {
                 "self": { "href": "/v1/categories/91" }
              },
@@ -55,7 +55,7 @@ For example:
 .. code-block:: javascript
 
     GET /v1 HTTP/1.1
-    Host: api.marktplaats.nl
+    Host: api.platform.com
 
     HTTP/1.1 200 OK
     Content-Type: application/json
@@ -64,10 +64,10 @@ For example:
     {
         "_links": {
             "self": { "href": "/" },
-            "describedby": { "href": "https://api.marktplaats.nl/v1/docs" },
-            "https://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" },
-            "https://api.marktplaats.nl/v1/docs/resources/advertisements": { "href": "/v1/advertisements" },
-            "https://api.marktplaats.nl/v1/docs/resources/users": { "href": "/v1/users" }
+            "describedby": { "href": "https://api.platform.com/v1/docs" },
+            "https://api.platform.com/v1/docs/resources/categories": { "href": "/v1/categories" },
+            "https://api.platform.com/v1/docs/resources/advertisements": { "href": "/v1/advertisements" },
+            "https://api.platform.com/v1/docs/resources/users": { "href": "/v1/users" }
         }
     }
 
@@ -84,7 +84,7 @@ Example:
     {
         "_links": {
             "self": { "href": "/v1/categories/1" }
-            "describedby": "https://api.marktplaats.nl/v1/docs/resources/category"
+            "describedby": "https://api.platform.com/v1/docs/resources/category"
         }
     }
 
@@ -147,6 +147,71 @@ URL templates are RECOMMENDED in Links
 
 HAL allows for URI templates in links (section 5.1 in HAL specification). These are perfect to describe to links to
 items in a resource collection.
+
+Pagination of collection resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As described in `The query component of a URI SHOULD be used to paginate collections or store results`_:ref query
+parameters ``offset`` and ``limit`` are used to paginate collections.
+
+The ``offset`` parameter specifies the 0 based index of the first element to return in the response.
+The ``limit`` parameter specifies the maximum number of contained elements to return in the response.
+
+Example:
+
+.. code-block:: javascript
+
+    GET /v1/users?offset=0&limit=2 HTTP/1.1
+    Host: api.platform.com
+
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
+    {
+        "_links": {
+            "self": { "href": "/v1/users?offset=0&limit=2" },
+            "item": { "href": "/v1/users{?id}", "templated": true },
+            "next": { "href": "/v1/users?offset=2&limit=2" },
+            "last": { "href": "/v1/users?offset=8&limit=2" },
+            "curies": ...TODO...
+        },
+        "_embedded": {
+            "mp:users": [{
+               "_links": {
+                 "self": { "href": "/v1/users/1" },
+               },
+               "sellername": "Robin",
+               "email": "1@platform.com",
+               "casUser" : false
+             },{
+               "_links": {
+                 "self": { "href": "/users/2" },
+               },
+               "name": "Richard",
+               "email": "2@platform.com",
+               "casUser" : true
+            }]
+        },
+        "totalCount": 10
+    }
+
+The link relation ``item`` MUST be included to define links to separate items in the resource.
+
+The link relations ``first``, ``prev``, ``next`` and ``last`` SHOULD be added to enable automated pagination, for
+example with the HAL Browser.
+
+For collection resources that can be embedded in a single page, the ``first``, ``prev``, ``next`` and ``last`` links
+SHOULD NOT be included. The ``first` and ``prev`` links SHOULD NOT be included on the first page. The ``next`` and
+``last`` links SHOULD NOT be included on the last page.
+
+Total size of the collection SHOULD be included as property "totalCount". The value MUST be the exact size.
+
+
+Pagination of embedded collection resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO!
 
 Relation names
 --------------
@@ -211,7 +276,7 @@ Structure field values
 You are RECOMMENDED to represent complex fields with a JSON object. This allows for better composability, the struct
 might later move to a separate entity.
 
-Optional fields SHOULD not be serialized when they have no value
+Optional fields SHOULD NOT be serialized when they have no value
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When an optional field has no value, it SHOULD be left out of the representation.
@@ -302,7 +367,7 @@ Here is an example request that produces an error response:
 .. code-block:: javascript
 
     POST /v1/categories/95 HTTP/1.1
-    Host: api.marktplaats.nl
+    Host: api.platform.com
     Accept-Language: nl, en
     If-Match: "qg7968osihugw"
 
@@ -320,7 +385,7 @@ Here is an example request that produces an error response:
     {
         "_links": {
             "help": {
-              "href": "https://api.marktplaats.nl/v1/docs/errors/validation-failure"
+              "href": "https://api.platform.com/v1/docs/errors/validation-failure"
             }
         },
         "logref": "4298asfpohsa98yasohq97q3yff22",

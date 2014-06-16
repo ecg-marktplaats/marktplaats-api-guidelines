@@ -12,14 +12,14 @@ Examples of good base URLs:
 
 .. code-block:: http
 
-    https://api.marktplaats.nl/v1
-    https://api.marktplaats.nl/subsystem/v1.1
+    https://api.platform.com/v1
+    https://api.platform.com/subsystem/v1.1
 
 Not so good example (see rules below why):
 
 .. code-block:: http
 
-    http://open.prod.marktplaats.nl/api/subsystem/services/1.2.4
+    http://open.prod.platform.com/api/subsystem/services/1.2.4
 
 
 Base URL should be short
@@ -56,42 +56,42 @@ For example, the URI for a single seller profile document would have the singula
 
 .. code-block:: http
 
-    https://api.marktplaats.nl/v1/users/1/profile
+    https://api.platform.com/v1/users/1/profile
 
 
 Collection names SHOULD be a plural noun
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A URI identifying a store of resources SHOULD be named with a plural noun, or noun phrase, as its path segment.
-For example, the URI for a store of categories may use the plural noun form as follows:
+A URI identifying a collection of resources SHOULD be named with a plural noun, or noun phrase, as its path segment.
+For example, the URI for a collection of categories may use the plural noun form as follows:
 
 .. code-block:: http
 
-    https://api.marktplaats.nl/v1/categories
+    https://api.platform.com/v1/categories
 
 
 Forward slash separator (``/``) MUST be used to indicate a hierarchical relationship
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The forward slash (``/``) character MUST be used in the path portion of the URI to indicate a hierarchical relationship between resources. For example:
 
 .. code-block:: http
 
-    https://api.marktplaats.nl/v1/categories/91/advertisements
+    https://api.platform.com/v1/categories/91/advertisements
 
 
-URIs SHOULD not have a trailing forward slash (``/``)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+URIs SHOULD NOT have a trailing forward slash (``/``)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As the last character within a URI’s path, a forward slash (``/``) adds no semantic value and may cause confusion.
-REST APIs should not expect a trailing slash and SHOULD not include them in the links that they provide to clients.
+REST APIs should not expect a trailing slash and SHOULD NOT include them in the links that they provide to clients.
 
 Many web components and frameworks will treat the following two URIs equally:
 
 .. code-block:: http
 
-    https://api.marktplaats.nl/v1/categories/
-    https://api.marktplaats.nl/v1/categories
+    https://api.platform.com/v1/categories/
+    https://api.platform.com/v1/categories
 
 However, every character within a URI counts toward a resource’s unique identity.
 Two different URIs must map to two different resources. If the URIs differ, then so do the resources, and vice versa.
@@ -102,7 +102,7 @@ Redirects (e.g. 301 Moved Permanently) from one version to the other MUST NOT be
 redirects and we need to keep this consistent over our separate APIs.
 
 Hyphens (``-``) SHOULD be used to improve the readability of URIs, not underscores (``_``)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To make your URIs easy for people to scan and interpret, use the hyphen (``-``) character to improve the readability of
 names in long path segments.
@@ -110,11 +110,11 @@ Anywhere you would use a space or hyphen in English, you should use a hyphen in 
 
 .. code-block:: http
 
-    https://api.marktplaats.nl/v1/this-is-an-endpoint-with-a-large-name
+    https://api.platform.com/v1/this-is-an-endpoint-with-a-large-name
 
 
 URI paths MUST use lowercase letters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Lowercase letters are preferred in URI paths since capital letters can sometimes cause problems.
 RFC 3986 defines URIs as case-sensitive except for the scheme and host components.
@@ -134,87 +134,252 @@ Parameters inside the URI path are excluded from this rule.
 Query parameters
 ----------------
 
-The query component of a URI SHOULD be used to filter collections or stores
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The query component of a URI SHOULD be used to filter collections
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A URI’s query component is a natural fit for supplying search criteria to a collection or store.
+A URI’s query component is a natural fit for supplying search criteria to a collection.
 
 Example :
 
 .. code-block:: javascript
 
     GET /v1/users?casUser=true HTTP/1.1
-    Host: api.marktplaats.nl
+    Host: api.platform.com
+
 
     HTTP/1.1 200 OK
     Content-Type: application/json
+
     {
         "_links": {
-            "self": { "href": "/users" },
+            "self": { "href": "/v1/users" },
+            "curies": [
+              {
+                "href": "/v1/docs/rels/{rel}.html",
+                "templated": true,
+                "name": "ec"
+              }
+            ]
         },
         "_embedded": {
-            "https://api.marktplaats.nl/v1/rels/user": [{
+            "ec:user": [{
                "_links": {
-                 "self": { "href": "/users/2" },
+                 "self": { "href": "/v1/users/2" },
                },
+               "id": 2,
                "name": "Richard",
-               "email": "2@marktplaats.nl",
-               "casUser" : true
+               "email": "2@platform.com",
+               "casUser": true
             }]
         },
         "totalResults": 10
     }
 
-The query component of a URI SHOULD be used to paginate collections or store results
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Query parameters ``offset`` and ``limit`` SHOULD be used to paginate collections results
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A REST API client SHOULD use the query component to paginate collections and store results with the ``offset`` and ``limit`` parameters.
+A REST API client SHOULD use query parameters ``offset`` and ``limit`` to paginate collections.
 
+The ``offset`` parameter specifies the 0 based index of the first element to return in the response.
 The ``limit`` parameter specifies the maximum number of contained elements to return in the response.
-The ``offset`` parameter specifies the zero-based index of the first element to return in the response.
 
-Example :
+Example:
 
 .. code-block:: javascript
 
     GET /v1/users?offset=0&limit=2 HTTP/1.1
-    Host: api.marktplaats.nl
+    Host: api.platform.com
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
+    {  /* See section `resource representation format` for an example. */ }
+
+Note that ``offset`` and ``limit`` are only used for collection resources. Pagination of embedded (linked)
+collections is done with the ``_expand`` query parameter.
+
+
+The ``_expand`` parameter MAY be used for zooming
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Zooming is an optional technique that allows linked resources to be embedded. The embedded resources are serialized as
+described by HAL.
+
+The full syntax for the ``_expand`` parameter is:
+
+.. code-block:: javascript
+
+    <basic_expand> = <relation name>[:<offset>:<limit>][(<include field>{,<include field>})]
+
+    <rel_expand> = <basic_expand>{/<basic_expand>}
+
+    _expand = <rel_expand>{,<rel_expand>}
+
+Where ``[...]`` indicates an optional clause and ``{s...}`` indicates an optional repeating clause with ``s`` as separator.
+
+
+Here are some example:
+
+.. code-block:: javascript
+
+    _expand=ec:parent-category
+    _expand=ec:parent-category/ec:parent-category
+    _expand=ec:parent-category,ec:child-categories:0:10
+    _expand=ec:parent-category/ec:parent-category,ec:child-categories:0:10/ec:child-categories:0:10
+    _expand=ec:parent-category(name,shortName)
+
+*Relation name*
+
+The relation name can be quite long, for example ``https://api.platform.com/v1/docs/rels/users`` and can contain
+many separator characters. Therefor the relation name MUST be shortened with HAL's
+`curie syntax <http://www.w3.org/TR/2010/NOTE-curie-20101216/>`_. Clients can obtain the correct prefix by getting
+the non-expanded resource first and inspect the ``curies`` secion inside the ``_links`` section. Implementations are
+RECOMMENDED to verify the prefix but are free to ignore it.
+
+*Offset and limit*
+
+When the relation refers to a collection, the ``offset`` and ``limit`` parameters SHOULD be used for pagination. Offset
+specifies the 0 based index of the first element to return in the response. Limit specifies the maximum number of
+contained elements to return in the response.
+
+*Nesting expansion*
+
+An embedded resource can be further expended by adding a slash (``/``) and another expand clause.
+
+*Multiple expansions*
+
+Multiple embedded resources can be expanded by adding a comma (``,``) and another expand clause. It is not possible to expand
+multiple embedded resources in an embedded resource.
+
+*Implementation considerations*
+
+Documentation MUST specify exactly what parts of the ``_expand`` parameter are supported. It is not expected that
+implementations support expansion in a generic way.
+
+*Example*
+
+Full example for a simple expansion (expand parent category in a category resource):
+
+.. code-block:: javascript
+
+    GET /v1/categories/92?_expand=ec:parent-category HTTP/1.1
+    Host: api.platform.com
 
     HTTP/1.1 200 OK
     Content-Type: application/json
 
     {
         "_links": {
-            "self": { "href": "/users" },
-            "next": { "href": "/users?offset=1&limit=2" },
-            "find": { "href": "/users{?id}", "templated": true }
+            "self": { "href": "/v1/categories/92" },
+            "curies": [
+              {
+                "href": "/v1/docs/rels/{rel}.html",
+                "templated": true,
+                "name": "ec"
+              }
+            ],
+            "ec:parent-category": { "href": "/v1/categories/91" }
         },
         "_embedded": {
-            "https://api.marktplaats.nl/v1/rels/user": [{
+            "ec:parent-category": [{
                "_links": {
-                 "self": { "href": "/users/1" },
+                 "self": { "href": "/v1/categories/91" },
                },
-               "sellername": "Robin",
-               "email": "1@marktplaats.nl",
-               "casUser" : false
-             },{
-               "_links": {
-                 "self": { "href": "/users/2" },
-               },
-               "name": "Richard",
-               "email": "2@marktplaats.nl",
-               "casUser" : true
+               "id": 91,
+               "name": "Auto's, motors en andere voertuigen",
+               "shortName": "Auto's"
             }]
         },
-        "totalResults": 10
+        "id": 92,
+        "parentCategoryId": 91,
+        "name": "Alpha romeo",
+        "shortName": "Alpha romeo"
     }
 
+A full example for a linked collection resource (expand messages in a conversation resource):
 
+.. code-block:: javascript
+
+    GET /v1/conversations/1234?_expand=ec:messages:0:10
+    Host: api.platform.com
+
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
+    {
+      "_links": {
+        "self": {
+          "href": "/v1/conversations/1234?_expand=mc:messages:0:10"
+        },
+        "curies": [
+          {
+            "href": "/v1/docs/rels/{rel}.html",
+            "templated": true,
+            "name": "ec"
+          }
+        ],
+        "ec:messages": {
+          "href": "/v1/conversations/1234/messages",
+          "title": "The messages in this conversation."
+        }
+      },
+      "_embedded": {
+        "ec:messages": {
+          "_embedded": {
+            "ec:message": [
+              {
+                "_links": {
+                  "self": {
+                    "href": "/v1/conversations/1234/messages/79p8233c8"
+                  }
+                },
+                "id": "79p8233c8",
+                "from": "b.q0282bxpw61q0@mail.platform.com",
+                "to": "a.joup3go87dhjs@mail.platform.com",
+                "body": "Thanks!"
+              },
+              {
+                "_links": {
+                  "self": {
+                    "href": "/v1/conversations/1234/messages/12211aad9"
+                  }
+                },
+                "id": "12211aad9",
+                "from": "a.joup3go87dhjs@mail.platform.com",
+                "to": "b.q0282bxpw61q0@mail.platform.com",
+                "body": "Hi, there.\n\nBla die bla die bla bla bla."
+              }
+            ],
+            "offset": 0,
+            "limit": 10,
+            "totalCount": 25
+          }
+        }
+      },
+      "id": "1234",
+      "more": "conversation properties"
+    }
+
+.. _include-and-exclude-parameters:
+
+The ``_include`` and ``_exclude`` query parameters MAY be used for selecting fields
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``_include`` and ``_exclude`` parameters MAY be used to select fields. If both parameters are present, only the
+``_include`` parameter MUST be used.
+
+Both fields have a similar format. A list of comma separated field names are valid arguments for both ``_include`` and ``_exclude``.
+
+Nested fields may be specified with a ``/`` character. E.g. ``seller/name`` identifies the ``name`` field inside the
+``seller`` field.
+
+Note that ``_include`` and ``_exclude`` only work on the fields of the requested resource, and not on embedded resources.
 
 .. _body-parameter:
 
-The ``_body`` parameter SHOULD be used to include/exclude a response body
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The ``_body`` query parameter SHOULD be used to include/exclude a response body
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 By default responses contain a body, even if it is mostly the same as what was posted. The ``_body`` parameter SHOULD be
 used to change this behavior.
@@ -225,20 +390,78 @@ Example:
 
 .. code-block:: javascript
 
-    POST https://api.marktplaats.nl/v1/users?_body=false HTTP/1.1
-    Host: api.marktplaats.nl
+    POST https://api.platform.com/v1/users?_body=false HTTP/1.1
+    Host: api.platform.com
 
     {
         "username": "testUser",
         "zipcode": "1097DN",
-        "email": "test@marktplaats.nl"
+        "email": "test@platform.com"
     }
 
 
     HTTP/1.1 201 Created
     Location: /v1/users/95
 
-Note: the ``_body`` parameter SHOULD be supported by each method on each entity.
+Note: the ``_body`` parameter SHOULD be supported by each method on each resource.
+
+The ``_nohlinks`` query parameter SHOULD be used to exclude HAL's ``_links`` field
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+By default responses contain one or more ``_links`` sections. The information in the ``_links`` section is normally
+only used for discovery purposes and could be discarded for automated clients. The ``_nohlinks`` query parameter
+SHOULD be used to exclude the ``_links`` fields.
+
+HAL's ``_links`` fields are exclude when the parameter is present (if it has a value it will be ignored).
+
+For example the representation
+
+.. code-block:: javascript
+
+    {
+        "_links": {
+            "self": { "href": "/v1/users" },
+            "curies": [
+              {
+                "href": "/v1/docs/rels/{rel}.html",
+                "templated": true,
+                "name": "ec"
+              }
+            ]
+        },
+        "_embedded": {
+            "ec:user": [{
+               "_links": {
+                 "self": { "href": "/v1/users/2" },
+               },
+               "id": 2,
+               "name": "Richard",
+               "email": "2@platform.com",
+               "casUser": true
+            }]
+        },
+        "totalResults": 10
+    }
+
+will be shortened to:
+
+.. code-block:: javascript
+
+    {
+        "_embedded": {
+            "ec:user": [{
+               "id": 2,
+               "name": "Richard",
+               "email": "2@platform.com",
+               "casUser": true
+            }]
+        },
+        "totalResults": 10
+    }
+
+Note: the ``_nohlinks`` parameter SHOULD be supported by each method on each resource.
+
+Note that curie syntax may be used inside the representation, even though the curie definition is no longer present.
 
 .. _method-parameter:
 
@@ -261,7 +484,7 @@ Example:
 .. code-block:: javascript
 
     POST /v1/advertisements/95?_method=PATCH HTTP/1.1
-    Host: api.marktplaats.nl
+    Host: api.platform.com
     Content-Type: application/json-patch+json
     If-Match: "abc123"
 
@@ -277,7 +500,7 @@ A failure example:
 .. code-block:: javascript
 
     POST /v1/advertisements/95?_method=BLABLA HTTP/1.1
-    Host: api.marktplaats.nl
+    Host: api.platform.com
     X-HTTP-METHOD-OVERRIDE: PATCH
     Content-Type: application/json-patch+json
     If-Match: "abc123"
@@ -291,10 +514,10 @@ results in an ``400`` error response because the ``_method`` parameter contains 
 ``X-HTTP-METHOD-OVERRIDE`` header does contain a correct value.
 
 
-The ``_callback`` parameter MAY be used to return a jsonp response
+The ``_callback`` parameter MAY be used to return a JSONP response
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-A ``_callback`` parameter MAY be used in any ``GET`` call to have the results wrapped in a JSON function.
+A ``_callback`` parameter MAY be used in any ``GET`` call to have the results wrapped in a javascript function.
 This is typically used when browsers want to embed content in web pages by getting around cross domain
 issues. The response includes the same data output as the regular API, plus the relevant HTTP Header information.
 
@@ -304,86 +527,20 @@ Example:
 
 .. code-block:: javascript
 
-    GET /v1/users?_callback=foo HTTP/1.1
-    Host: api.marktplaats.nl
+    GET /v1/users/2?_callback=foo HTTP/1.1
+    Host: api.platform.com
 
     HTTP/1.1 200 OK
     Content-Type: application/javascript
-    foo({
-        "_links": {
-            "self": { "href": "/users" },
-        },
-        "_embedded": {
-            "https://api.marktplaats.nl/v1/rels/user": [{
-               "_links": {
-                 "self": { "href": "/users/2" },
-               },
-               "name": "Richard",
-               "email": "2@marktplaats.nl",
-               "casUser" : true
-            }]
-        },
-        "totalResults": 10
-    })
-
-The ``_expand`` parameter MAY be used for zooming
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Zooming is an optional technique that allows linked resources to be embedded. The embedded resources are serialized as
-described by [HAL](http://stateless.co/hal_specification.html).
-
-Example :
-
-.. code-block:: javascript
-
-    GET /v1/categories/92?_expand=parent-category HTTP/1.1
-    Host: api.marktplaats.nl
-
-    HTTP/1.1 200 OK
-    Content-Type: application/json
-    ETag: "7dsyiuh44aa"
-
-    {
-        "_links": {
-            "self": { "href": "/v1/categories/92" },
-            "describedby": { "href": "https://api.marktplaats.nl/v1/docs/resources/category" },
-            "https://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
-        },
-        "_embedded": {
-            "https://api.marktplaats.nl/v1/rels/parent-category": [{
-               "_links": {
-                 "self": { "href": "/v1/categories/91" },
-               },
-               "id": 91,
-               "name": "Auto's, motors en andere voertuigen",
-               "shortName": "Auto's"
-            }]
-        },
-        "id": 92,
-        "parentCategoryId": 91,
-        "name": "Alpha romeo",
-        "shortName": "Alpha romeo"
-    }
-
-
-TODO: look into <http://www.etsy.com/developers/documentation/getting_started/resources> to allow pagination.
-
-
-.. _include-and-exclude-parameters:
-
-The ``_include`` and ``_exclude`` parameters MAY be used for selecting fields
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The ``_include`` and ``_exclude`` parameters MAY be used to select fields. If both parameters are present, only the
-``_include`` parameter MUST be used.
-
-Both fields have a similar format. A list of comma separated field names are valid arguments for both ``_include`` and ``_exclude``.
-
-TODO: look into <http://www.etsy.com/developers/documentation/getting_started/resources> to allow pagination
-
-Example :
-
-    TODO
+    foo(
+        {
+            "_links": {
+                "self": { "href": "/v1/users/2" }, ...
+            },
+            "name": "Richard",
+            "email": "r2@hotmail.com"
+        }
+    )
 
 .. _prettyprint-parameter:
 
@@ -400,16 +557,14 @@ Example :
 .. code-block:: javascript
 
     GET /v1/categories/95?_prettyprint HTTP/1.1
-    Host: api.marktplaats.nl
+    Host: api.platform.com
 
     HTTP/1.1 200 OK
     Content-Type: application/json
 
     {
         "_links": {
-            "self": { "href": "/v1/categories/95" },
-            "describedby": { "href": "https://api.marktplaats.nl/v1/docs/resources/category" },
-            "https://api.marktplaats.nl/v1/docs/rels/parent_category": { "href": "/v1/categories/91" }
+            "self": { "href": "/v1/categories/95" }, ...
         },
         "id": 95,
         "parentCategoryId": 91,
@@ -422,4 +577,4 @@ Use of underscore character
 
 The underscore character is used to clearly identify shared URL parameters. The underscore is nicely consistent with how it is used in HAL resource representations.
 
-Parameter names MUST not start with an underscore unless they are described in these guidelines.
+Parameter names MUST NOT start with an underscore unless they are described in these guidelines.

@@ -45,14 +45,14 @@ Deprecation example:
     {
       "_links": {
          "self": { "href": "/v1/categories/92" },
-         "describedby": { "href": "https://api.marktplaats.nl/v1/docs/categories" },
-         "https://api.marktplaats.nl/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
+         "describedby": { "href": "https://api.platform.com/v1/docs/categories" },
+         "https://api.platform.com/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
       },
       "name": "Alpha romeo",
       "short-name": "Alpha romeo",
       "shortName": "Alpha romeo",
       "_deprecation": {
-        "short-name": "https://api.marktplaats.nl/v1/docs/resources/category/short-name-deprecation"
+        "short-name": "https://api.platform.com/v1/docs/resources/category/short-name-deprecation"
       }
     }
 
@@ -70,8 +70,8 @@ Before:
     {
         "_links": {
             "self": { "href": "/" },
-            "describedby": { "href": "https://api.marktplaats.nl/v1/docs" },
-            "https://api.marktplaats.nl/v1/docs/resources/categories": { "href": "/v1/categories" }
+            "describedby": { "href": "https://api.platform.com/v1/docs" },
+            "https://api.platform.com/v1/docs/resources/categories": { "href": "/v1/categories" }
         }
     }
 
@@ -82,12 +82,12 @@ After (in this example *tags* will replace *categories*):
     {
         "_links": {
             "self": { "href": "/" },
-            "describedby": { "href": "https://api.marktplaats.nl/v1/docs" },
-            "https://api.marktplaats.nl/v1/docs/resources/categories": {
+            "describedby": { "href": "https://api.platform.com/v1/docs" },
+            "https://api.platform.com/v1/docs/resources/categories": {
               "href": "/v1/categories",
-              "deprecation": "https://api.marktplaats.nl/v1/docs/resources/categories/deprecation"
+              "deprecation": "https://api.platform.com/v1/docs/resources/categories/deprecation"
             },
-            "https://api.marktplaats.nl/v1/docs/resources/tags": { "href": "/v1/tags" }
+            "https://api.platform.com/v1/docs/resources/tags": { "href": "/v1/tags" }
         }
     }
 
@@ -97,7 +97,7 @@ the relation is deprecated.
 \2. Resource representation changes
 -----------------------------------
 
-Changing the representation of a resource in a non-backward compatible way SHOULD not happen often, perhaps once a year.
+Changing the representation of a resource in a non-backward compatible way SHOULD NOT happen often, perhaps once a year.
 
 The base URL MUST change as follows:
 

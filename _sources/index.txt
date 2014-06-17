@@ -6,6 +6,8 @@
 Welcome to eCG API Guidelines's documentation!
 ==============================================
 
+The sources of these guidelines are in `Github <https://github.scm.corp.ebay.com/ecg-api/api-guidelines>`_.
+
 Contents:
 
 .. toctree::

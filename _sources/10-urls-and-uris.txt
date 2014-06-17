@@ -299,7 +299,8 @@ Full example for a simple expansion (expand parent category in a category resour
         "shortName": "Alpha romeo"
     }
 
-A full example for a linked collection resource (expand messages in a conversation resource):
+An example for a linked collection resource (expand messages in a conversation resource).
+See `chapter 20 <representation-of-embedded-collection-resource>`_ for the full representation.
 
 .. code-block:: javascript
 
@@ -311,7 +312,6 @@ A full example for a linked collection resource (expand messages in a conversati
     Content-Type: application/json
 
     {
-      /** See `chapter 20 <representation-of-embedded-collection-resource>`_ for the full representation. **/
       "_links": { ... },
       "_embedded": {
         "ec:messages": {

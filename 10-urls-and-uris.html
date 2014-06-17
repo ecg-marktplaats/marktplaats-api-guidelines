@@ -390,7 +390,8 @@ implementations support expansion in a generic way.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>A full example for a linked collection resource (expand messages in a conversation resource):</p>
+<p>An example for a linked collection resource (expand messages in a conversation resource).
+See <a class="reference external" href="representation-of-embedded-collection-resource">chapter 20</a> for the full representation.</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="nx">GET</span> <span class="o">/</span><span class="nx">v1</span><span class="o">/</span><span class="nx">conversations</span><span class="o">/</span><span class="mi">1234</span><span class="o">?</span><span class="nx">_expand</span><span class="o">=</span><span class="nx">ec</span><span class="o">:</span><span class="nx">messages</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="mi">10</span>
 <span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">platform</span><span class="p">.</span><span class="nx">com</span>
 
@@ -399,7 +400,6 @@ implementations support expansion in a generic way.</p>
 <span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
 
 <span class="p">{</span>
-  <span class="cm">/** See `chapter 20 &lt;representation-of-embedded-collection-resource&gt;`_ for the full representation. **/</span>
   <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
   <span class="s2">&quot;_embedded&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;ec:messages&quot;</span><span class="o">:</span> <span class="p">{</span>

@@ -81,11 +81,11 @@ The following field types are in use (inspired by but not the same as https://de
 
   * - any
     - --
-    - The property may have any type. Defined by the JSON Schema spec.
+    - The field may have any type. Defined by the JSON Schema spec.
 
   * - array
     - --
-    - A JavaScript array of values. The items property indicates the schema for the array values. Defined by the JSON Schema spec.
+    - A JavaScript array of values. The items field indicates the schema for the array values. Defined by the JSON Schema spec.
 
   * - boolean
     - --

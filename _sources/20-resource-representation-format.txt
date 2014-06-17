@@ -9,35 +9,37 @@ Resources
 ---------
 
 Serialization format: HAL in UTF-8 encoding
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 *HAL* MUST be used as representation format for all non-binary resources. See :ref:`hal-and-our-deviations` for more information.
 
-Example response:
+Example representation of a category resource with an expanded (embedded) parent category:
 
 .. code-block:: javascript
 
-    HTTP/1.1 200 OK
-    Content-Type: application/json
-    ETag: "677d1d9085dah"
-
     {
-     "_links": {
+      "_links": {
         "self": { "href": "/v1/categories/92" },
-        "describedby": "https://api.platform.com/v1/docs/resources/category",
-        "https://api.platform.com/v1/docs/rels/parent-category": { "href": "/v1/categories/91" }
-     },
-     "_embedded": {
-        "https://api.platform.com/v1/docs/rels/parent-category": {
-             "_links": {
-                "self": { "href": "/v1/categories/91" }
-             },
-             "name": "Auto's",
-             "shortName": "Auto's"
-        }
-     },
-     "name": "Alpha romeo",
-     "shortName": "Alpha romeo"
+        "curies": [
+          {
+            "href": "/v1/docs/rels/{rel}.html",
+            "templated": true,
+            "name": "ec"
+          }
+        ],
+        "ec:parent-category": { "href": "/v1/categories/91" }
+      },
+      "_embedded": {
+         "ec:parent-category": {
+           "_links": {
+             "self": { "href": "/v1/categories/91" }
+           },
+           "name": "Auto's",
+           "shortName": "Auto's"
+         }
+      },
+      "name": "Alpha romeo",
+      "shortName": "Alpha romeo"
     }
 
 Also see these articles:
@@ -62,20 +64,31 @@ For example:
     ETag: "d9087df677dgh"
 
     {
-        "_links": {
-            "self": { "href": "/" },
-            "describedby": { "href": "https://api.platform.com/v1/docs" },
-            "https://api.platform.com/v1/docs/resources/categories": { "href": "/v1/categories" },
-            "https://api.platform.com/v1/docs/resources/advertisements": { "href": "/v1/advertisements" },
-            "https://api.platform.com/v1/docs/resources/users": { "href": "/v1/users" }
-        }
+      "_links": {
+        "self": { "href": "/v1" },
+        "curies": [
+          {
+            "href": "/v1/docs/rels/{rel}.html",
+            "templated": true,
+            "name": "ec"
+          }
+        ],
+        "ec:categories": { "href": "/v1/categories" },
+        "ec:advertisements": { "href": "/v1/advertisements" },
+        "ec:users": { "href": "/v1/users" }
+      },
+      "message": "A welcome message targeted at client developers. See documentation at http://.../v1/docs."
     }
 
+It is possible and RECOMMENDED to add more meta-data to the links, for example a title. See the HAL specification or
+existing implementations of these guidelines.
 
-Each resource SHOULD contain ``self`` and ``describedby`` links
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Adding a welcome message in the ``message`` field is RECOMMENDED.
 
-Each resource SHOULD have ``self`` and ``describedby`` link as described by HAL.
+Each resource SHOULD contain a ``self`` link
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Each resource SHOULD have a ``self`` link as described by HAL.
 
 Example:
 
@@ -84,7 +97,6 @@ Example:
     {
         "_links": {
             "self": { "href": "/v1/categories/1" }
-            "describedby": "https://api.platform.com/v1/docs/resources/category"
         }
     }
 
@@ -97,13 +109,13 @@ relationship between the source and destination resources.
 A `standardized link relation <http://www.iana.org/assignments/link-relations/link-relations.xhtml>`_ SHOULD be used when
 such a relation is available.
 
-Examples of commonly used IANA relation types are : ``self``, ``first``, ``prev``, ``next``, and ``last``.
+Examples of commonly used IANA relation types are : ``self``, ``item``, ``first``, ``prev``, ``next``, and ``last``.
 
 
 Custom link relation types SHOULD be uri's that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If no suitable IANA relation type is available, you can use a custom relation type. In accordance with the
+If no suitable IANA relation type is available, you SHOULD use a custom relation type. In accordance with the
 `web linking RFC <http://tools.ietf.org/html/rfc5988>`_ custom link relation types SHOULD be uri's
 that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page.
 
@@ -117,11 +129,11 @@ This page should contain the following information:
 
 See also `documentation requirements <40-documentation-requirements.rst>`_.
 
-Custom link relations URIs MAY be shortened with the CURIE syntax
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Curies SHOULD be used to improve readability of custom relation URIs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-HAL allows `CURIE syntax <http://tools.ietf.org/html/draft-kelly-json-hal-06#ref-W3C.NOTE-curie-20101216>`_ to shorten
-the URIs, we allow it as well. See the HAL specification for an example.
+`Curies <http://www.w3.org/TR/2010/NOTE-curie-20101216/>`_, as allowed by HAL, SHOULD be used to improve readability
+of relations. A side effect is that it also reduces the representation's size.
 
 Binary resources
 ----------------
@@ -148,14 +160,30 @@ URL templates are RECOMMENDED in Links
 HAL allows for URI templates in links (section 5.1 in HAL specification). These are perfect to describe to links to
 items in a resource collection.
 
-Pagination of collection resources
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _representation-of-collection-resource:
 
-As described in `The query component of a URI SHOULD be used to paginate collections or store results`_:ref query
+Representation and pagination of collection resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As described in the section on :ref:`paginate collections results <pagination-parameters>` query
 parameters ``offset`` and ``limit`` are used to paginate collections.
 
-The ``offset`` parameter specifies the 0 based index of the first element to return in the response.
-The ``limit`` parameter specifies the maximum number of contained elements to return in the response.
+When ``offset`` is not specified it SHOULD get a default value of ``0``.
+When ``limit`` is not specified it SHOULD get a default value that makes sense for a client developer that
+is exploring the API.
+
+The link relation ``item`` MUST be included to define links to separate items in the resource.
+
+The link relations ``first``, ``prev``, ``next`` and ``last`` SHOULD be added to enable automated pagination, for
+example with the HAL Browser.
+
+For collection resources that can be embedded in a single page, the ``first``, ``prev``, ``next`` and ``last`` links
+SHOULD NOT be included. The ``first`` and ``prev`` links SHOULD NOT be included on the first page. The ``next`` and
+``last`` links SHOULD NOT be included on the last page.
+
+The actual values for offset and limit MUST be included in the fields ``offset`` and ``limit``.
+
+Total size of the collection SHOULD be included as field ``totalCount``. When included, the value MUST be the exact size.
 
 Example:
 
@@ -171,47 +199,121 @@ Example:
     {
         "_links": {
             "self": { "href": "/v1/users?offset=0&limit=2" },
+            "curies": [
+              {
+                "href": "/v1/docs/rels/{rel}.html",
+                "templated": true,
+                "name": "mc"
+              }
+            ],
             "item": { "href": "/v1/users{?id}", "templated": true },
             "next": { "href": "/v1/users?offset=2&limit=2" },
-            "last": { "href": "/v1/users?offset=8&limit=2" },
-            "curies": ...TODO...
+            "last": { "href": "/v1/users?offset=8&limit=2" }
         },
         "_embedded": {
-            "mp:users": [{
-               "_links": {
-                 "self": { "href": "/v1/users/1" },
-               },
-               "sellername": "Robin",
-               "email": "1@platform.com",
-               "casUser" : false
-             },{
-               "_links": {
-                 "self": { "href": "/users/2" },
-               },
-               "name": "Richard",
-               "email": "2@platform.com",
-               "casUser" : true
-            }]
+            "mp:user": [
+                {
+                   "_links": {
+                     "self": { "href": "/v1/users/1" }
+                   },
+                   "sellername": "Robin",
+                   "email": "1@hotmail.com"
+                 },{
+                   "_links": {
+                     "self": { "href": "/users/2" },
+                   },
+                   "name": "Richard",
+                   "email": "2@gmail.com"
+                }
+            ]
         },
+        "offset": 0,
+        "limit": 10,
         "totalCount": 10
     }
 
-The link relation ``item`` MUST be included to define links to separate items in the resource.
+.. _representation-of-embedded-collection-resource:
 
-The link relations ``first``, ``prev``, ``next`` and ``last`` SHOULD be added to enable automated pagination, for
-example with the HAL Browser.
+Representation and pagination of embedded collection resources
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For collection resources that can be embedded in a single page, the ``first``, ``prev``, ``next`` and ``last`` links
-SHOULD NOT be included. The ``first` and ``prev`` links SHOULD NOT be included on the first page. The ``next`` and
-``last`` links SHOULD NOT be included on the last page.
+As described in the section on :ref:`zooming and expansion <expand-parameter>`_ query
+parameters ``_extend`` is used to paginate collections.
 
-Total size of the collection SHOULD be included as property "totalCount". The value MUST be the exact size.
+The ``offset``, ``limit`` parts of the ``_extend`` query parameter MUST be interpreted as in the
+`previous section <_representation-of-collection-resource>`_.
+
+Embedded collections MUST be extended with fields ``offset``, ``limit`` and ``totalCount`` as described in the
+`previous section <_representation-of-collection-resource>`_. The additional link relations that are described there
+('item', 'next', etc.) do not need be included.
+
+A full example for a linked collection resource (expand messages in a conversation resource):
+
+.. code-block:: javascript
+
+    GET /v1/conversations/1234?_expand=ec:messages:0:10
+    Host: api.platform.com
 
 
-Pagination of embedded collection resources
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    HTTP/1.1 200 OK
+    Content-Type: application/json
 
-TODO!
+    {
+      "_links": {
+        "self": {
+          "href": "/v1/conversations/1234?_expand=mc:messages:0:10"
+        },
+        "curies": [
+          {
+            "href": "/v1/docs/rels/{rel}.html",
+            "templated": true,
+            "name": "ec"
+          }
+        ],
+        "ec:messages": {
+          "href": "/v1/conversations/1234/messages",
+          "title": "The messages in this conversation."
+        }
+      },
+      "_embedded": {
+        "ec:messages": {
+          "offset": 0,
+          "limit": 10,
+          "totalCount": 25,
+          "_embedded": {
+            "ec:message": [
+              {
+                "_links": {
+                  "self": {
+                    "href": "/v1/conversations/1234/messages/79p8233c8"
+                  }
+                },
+                "id": "79p8233c8",
+                "from": "b.q0282bxpw61q0@mail.platform.com",
+                "to": "a.joup3go87dhjs@mail.platform.com",
+                "body": "Thanks!"
+              },
+              {
+                "_links": {
+                  "self": {
+                    "href": "/v1/conversations/1234/messages/12211aad9"
+                  }
+                },
+                "id": "12211aad9",
+                "from": "a.joup3go87dhjs@mail.platform.com",
+                "to": "b.q0282bxpw61q0@mail.platform.com",
+                "body": "Hi!"
+              }
+            ]
+          }
+        }
+      },
+      "id": "1234",
+      "more": "conversation fields"
+    }
+
+Note that the expanded resource collection ``ec:messages`` is a single element in the top-level field ``_embedded``.
+Inside the collection there is another ``_embedded`` field to contain the separate items of the collection.
 
 Relation names
 --------------
@@ -285,6 +387,8 @@ out entirely in case of a String, Numeric or Object value. In the case of an Arr
 
 The rationale for leaving omitting the field when creating or updating a resource (POST, PUT or PATCH), is that it is not allowed to specify a key without a value. Theoretically, the value ``null`` could be used, but this will only lead to confusion and complicate the parsing of the JSON object.
 
+You are RECOMMENDED to design each field such that it always have a value.
+
 Field values that represent a timestamp are in ISO 8601
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -297,8 +401,8 @@ However, clients should be prepared to see timestamps rounded, for example to th
 Field values that represent a date are in ISO 8601
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Date values are represented using the `ISO 8601 <http://en.wikipedia.org/wiki/ISO_8601>`_ in the format YYYY-MM-DD
-(eg. 2013-01-20 to represent january 20th 2013)
+Date values are represented using the `ISO 8601 <http://en.wikipedia.org/wiki/ISO_8601>`_ in the format ``YYYY-MM-DD``
+(eg. ``2013-01-20`` to represent January 20th 2013).
 
 Field values that represent countries are in ISO 3166-1 alpha-2 format
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -316,8 +420,8 @@ and not ``€``.
 
 The codes are case sensitive.
 
-All money types are integers and conform to its smallest currency unit
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+All monetary amounts are represented as integers in its smallest currency unit
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 All money types are integers and conform to its smallest *commonly used* currency unit. For example, if the currency of
 a payment is in euros (EUR), the values of money fields conform to euro cents. So an amount of EUR 9,95 is represented
@@ -329,10 +433,10 @@ used currency unit for a given currency.
 All numbers are integers unless precision is not important
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Most numbers need to be precise, rounding due to using a floating point (64-bit IEEE754, or 32-bit IEEE754) can lead to
-unexpected errors. There are two allowed options:
+Most numbers need to be precise. Rounding due to using a floating point (64-bit IEEE754, or 32-bit IEEE754) can lead to
+unexpected errors. There are 2 allowed representations for numbers:
 
-* represent the number in some exponent (e.g. in cm instead of m), this is required with a monetary amount
+* represent the number in some exponent (e.g. in cm instead of m), this is REQUIRED for monetary amounts
   (see previous rule),
 * represent the precise number as a string.
 
@@ -341,7 +445,7 @@ MUST be selected.
 
 There are few exceptions to this rule. Here is the list of known and allowed exceptions:
 
-* WGS84 coordinates
+* Coordinates as described by WGS84 (or other geographic coordinate systems that use floating point numbers).
 * Rates or ratios that have a value between ``0.0`` and ``1.0``.
 
 See also the list of supported field types: :ref:`field-types`
@@ -385,7 +489,7 @@ Here is an example request that produces an error response:
     {
         "_links": {
             "help": {
-              "href": "https://api.platform.com/v1/docs/errors/validation-failure"
+              "href": "/v1/docs/errors/validation-failure"
             }
         },
         "logref": "4298asfpohsa98yasohq97q3yff22",

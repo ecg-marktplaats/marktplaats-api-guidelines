@@ -156,7 +156,7 @@ The ``If-Match`` header is NOT allowed for resources that don't support ETag. It
 for resources that do support it.
 
 The server SHOULD accept the resource representation exactly as it was retrieved by a client with a GET request. When
-this is supported immutable properties MUST be ignored.
+this is supported immutable fields MUST be ignored.
 
 Body in the response is included by default. This can be overridden with the
 :ref:`body parameter <body-parameter>`

@@ -297,7 +297,7 @@ as URIs one and two, which may give unnecessary confusion.</p>
 </div>
 </div>
 <div class="section" id="query-parameters-offset-and-limit-should-be-used-to-paginate-collections-results">
-<h3>Query parameters <tt class="docutils literal"><span class="pre">offset</span></tt> and <tt class="docutils literal"><span class="pre">limit</span></tt> SHOULD be used to paginate collections results<a class="headerlink" href="#query-parameters-offset-and-limit-should-be-used-to-paginate-collections-results" title="Permalink to this headline">¶</a></h3>
+<span id="pagination-parameters"></span><h3>Query parameters <tt class="docutils literal"><span class="pre">offset</span></tt> and <tt class="docutils literal"><span class="pre">limit</span></tt> SHOULD be used to paginate collections results<a class="headerlink" href="#query-parameters-offset-and-limit-should-be-used-to-paginate-collections-results" title="Permalink to this headline">¶</a></h3>
 <p>A REST API client SHOULD use query parameters <tt class="docutils literal"><span class="pre">offset</span></tt> and <tt class="docutils literal"><span class="pre">limit</span></tt> to paginate collections.</p>
 <p>The <tt class="docutils literal"><span class="pre">offset</span></tt> parameter specifies the 0 based index of the first element to return in the response.
 The <tt class="docutils literal"><span class="pre">limit</span></tt> parameter specifies the maximum number of contained elements to return in the response.</p>
@@ -315,7 +315,7 @@ The <tt class="docutils literal"><span class="pre">limit</span></tt> parameter s
 collections is done with the <tt class="docutils literal"><span class="pre">_expand</span></tt> query parameter.</p>
 </div>
 <div class="section" id="the-expand-parameter-may-be-used-for-zooming">
-<h3>The <tt class="docutils literal"><span class="pre">_expand</span></tt> parameter MAY be used for zooming<a class="headerlink" href="#the-expand-parameter-may-be-used-for-zooming" title="Permalink to this headline">¶</a></h3>
+<span id="expand-parameter"></span><h3>The <tt class="docutils literal"><span class="pre">_expand</span></tt> parameter MAY be used for zooming<a class="headerlink" href="#the-expand-parameter-may-be-used-for-zooming" title="Permalink to this headline">¶</a></h3>
 <p>Zooming is an optional technique that allows linked resources to be embedded. The embedded resources are serialized as
 described by HAL.</p>
 <p>The full syntax for the <tt class="docutils literal"><span class="pre">_expand</span></tt> parameter is:</p>
@@ -327,7 +327,7 @@ _expand = &lt;rel_expand&gt;{,&lt;rel_expand&gt;}
 </pre></div>
 </div>
 <p>Where <tt class="docutils literal"><span class="pre">[...]</span></tt> indicates an optional clause and <tt class="docutils literal"><span class="pre">{s...}</span></tt> indicates an optional repeating clause with <tt class="docutils literal"><span class="pre">s</span></tt> as separator.</p>
-<p>Here are some example:</p>
+<p>Here are some examples:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="nx">_expand</span><span class="o">=</span><span class="nx">ec</span><span class="o">:</span><span class="nx">parent</span><span class="o">-</span><span class="nx">category</span>
 <span class="nx">_expand</span><span class="o">=</span><span class="nx">ec</span><span class="o">:</span><span class="nx">parent</span><span class="o">-</span><span class="nx">category</span><span class="o">/</span><span class="nx">ec</span><span class="o">:</span><span class="nx">parent</span><span class="o">-</span><span class="nx">category</span>
 <span class="nx">_expand</span><span class="o">=</span><span class="nx">ec</span><span class="o">:</span><span class="nx">parent</span><span class="o">-</span><span class="nx">category</span><span class="p">,</span><span class="nx">ec</span><span class="o">:</span><span class="nx">child</span><span class="o">-</span><span class="nx">categories</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="mi">10</span>
@@ -399,48 +399,14 @@ implementations support expansion in a generic way.</p>
 <span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
 
 <span class="p">{</span>
-  <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/conversations/1234?_expand=mc:messages:0:10&quot;</span>
-    <span class="p">},</span>
-    <span class="s2">&quot;curies&quot;</span><span class="o">:</span> <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/docs/rels/{rel}.html&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;templated&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ec&quot;</span>
-      <span class="p">}</span>
-    <span class="p">],</span>
-    <span class="s2">&quot;ec:messages&quot;</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/conversations/1234/messages&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;The messages in this conversation.&quot;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
+  <span class="cm">/** See `chapter 20 &lt;representation-of-embedded-collection-resource&gt;`_ for the full representation. **/</span>
+  <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
   <span class="s2">&quot;_embedded&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;ec:messages&quot;</span><span class="o">:</span> <span class="p">{</span>
       <span class="s2">&quot;_embedded&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;ec:message&quot;</span><span class="o">:</span> <span class="p">[</span>
-          <span class="p">{</span>
-            <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-              <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/conversations/1234/messages/79p8233c8&quot;</span>
-              <span class="p">}</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;79p8233c8&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;from&quot;</span><span class="o">:</span> <span class="s2">&quot;b.q0282bxpw61q0@mail.platform.com&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;to&quot;</span><span class="o">:</span> <span class="s2">&quot;a.joup3go87dhjs@mail.platform.com&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;body&quot;</span><span class="o">:</span> <span class="s2">&quot;Thanks!&quot;</span>
-          <span class="p">},</span>
-          <span class="p">{</span>
-            <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-              <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span>
-                <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/conversations/1234/messages/12211aad9&quot;</span>
-              <span class="p">}</span>
-            <span class="p">},</span>
-            <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;12211aad9&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;from&quot;</span><span class="o">:</span> <span class="s2">&quot;a.joup3go87dhjs@mail.platform.com&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;to&quot;</span><span class="o">:</span> <span class="s2">&quot;b.q0282bxpw61q0@mail.platform.com&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;body&quot;</span><span class="o">:</span> <span class="s2">&quot;Hi, there.\n\nBla die bla die bla bla bla.&quot;</span>
-          <span class="p">}</span>
+          <span class="p">{</span> <span class="p">...</span> <span class="nx">message</span> <span class="nx">fields</span> <span class="p">...</span> <span class="p">},</span>
+          <span class="p">{</span> <span class="p">...</span> <span class="nx">message</span> <span class="nx">fields</span> <span class="p">...</span> <span class="p">}</span>
         <span class="p">],</span>
         <span class="s2">&quot;offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
         <span class="s2">&quot;limit&quot;</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
@@ -449,7 +415,7 @@ implementations support expansion in a generic way.</p>
     <span class="p">}</span>
   <span class="p">},</span>
   <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1234&quot;</span><span class="p">,</span>
-  <span class="s2">&quot;more&quot;</span><span class="o">:</span> <span class="s2">&quot;conversation properties&quot;</span>
+  <span class="p">...</span> <span class="nx">more</span> <span class="nx">conversation</span> <span class="nx">fields</span> <span class="p">...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -485,12 +451,13 @@ Location: /v1/users/95
 </div>
 <p>Note: the <tt class="docutils literal"><span class="pre">_body</span></tt> parameter SHOULD be supported by each method on each resource.</p>
 </div>
-<div class="section" id="the-nohlinks-query-parameter-should-be-used-to-exclude-hal-s-links-field">
-<h3>The <tt class="docutils literal"><span class="pre">_nohlinks</span></tt> query parameter SHOULD be used to exclude HAL&#8217;s <tt class="docutils literal"><span class="pre">_links</span></tt> field<a class="headerlink" href="#the-nohlinks-query-parameter-should-be-used-to-exclude-hal-s-links-field" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-links-query-parameter-should-be-used-to-exclude-hal-s-links-field">
+<h3>The <tt class="docutils literal"><span class="pre">_links</span></tt> query parameter SHOULD be used to exclude HAL&#8217;s <tt class="docutils literal"><span class="pre">_links</span></tt> field<a class="headerlink" href="#the-links-query-parameter-should-be-used-to-exclude-hal-s-links-field" title="Permalink to this headline">¶</a></h3>
 <p>By default responses contain one or more <tt class="docutils literal"><span class="pre">_links</span></tt> sections. The information in the <tt class="docutils literal"><span class="pre">_links</span></tt> section is normally
-only used for discovery purposes and could be discarded for automated clients. The <tt class="docutils literal"><span class="pre">_nohlinks</span></tt> query parameter
+only used for discovery purposes and could be discarded for automated clients. The <tt class="docutils literal"><span class="pre">_links</span></tt> query parameter
 SHOULD be used to exclude the <tt class="docutils literal"><span class="pre">_links</span></tt> fields.</p>
-<p>HAL&#8217;s <tt class="docutils literal"><span class="pre">_links</span></tt> fields are exclude when the parameter is present (if it has a value it will be ignored).</p>
+<p>Parameter <tt class="docutils literal"><span class="pre">_links</span></tt> takes values <tt class="docutils literal"><span class="pre">true</span></tt> (the default) or <tt class="docutils literal"><span class="pre">false</span></tt>.</p>
+<p>HAL&#8217;s <tt class="docutils literal"><span class="pre">_links</span></tt> fields are exclude when the parameter is present and has value false.</p>
 <p>For example the representation</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
     <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -532,8 +499,9 @@ SHOULD be used to exclude the <tt class="docutils literal"><span class="pre">_li
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Note: the <tt class="docutils literal"><span class="pre">_nohlinks</span></tt> parameter SHOULD be supported by each method on each resource.</p>
-<p>Note that curie syntax may be used inside the representation, even though the curie definition is no longer present.</p>
+<p>Note: the <tt class="docutils literal"><span class="pre">_links</span></tt> parameter SHOULD be supported by each method on each resource.</p>
+<p>Note that curie syntax may be used inside the representation (<tt class="docutils literal"><span class="pre">ec:user</span></tt> in the example), even though the curie
+definition is no longer present.</p>
 </div>
 <div class="section" id="mimicking-request-methods">
 <span id="method-parameter"></span><h3>Mimicking request methods<a class="headerlink" href="#mimicking-request-methods" title="Permalink to this headline">¶</a></h3>

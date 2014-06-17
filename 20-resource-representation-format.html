@@ -166,28 +166,30 @@
 <div class="section" id="serialization-format-hal-in-utf-8-encoding">
 <h3>Serialization format: HAL in UTF-8 encoding<a class="headerlink" href="#serialization-format-hal-in-utf-8-encoding" title="Permalink to this headline">¶</a></h3>
 <p><em>HAL</em> MUST be used as representation format for all non-binary resources. See <a class="reference internal" href="80-hal-and-our-deviations.html#hal-and-our-deviations"><em>HAL and our deviations</em></a> for more information.</p>
-<p>Example response:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
-<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
-<span class="nx">ETag</span><span class="o">:</span> <span class="s2">&quot;677d1d9085dah&quot;</span>
-
-<span class="p">{</span>
- <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+<p>Example representation of a category resource with an expanded (embedded) parent category:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/92&quot;</span> <span class="p">},</span>
-    <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.platform.com/v1/docs/resources/category&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;https://api.platform.com/v1/docs/rels/parent-category&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
- <span class="p">},</span>
- <span class="s2">&quot;_embedded&quot;</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s2">&quot;https://api.platform.com/v1/docs/rels/parent-category&quot;</span><span class="o">:</span> <span class="p">{</span>
-         <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
-         <span class="p">},</span>
-         <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Auto&#39;s&quot;</span><span class="p">,</span>
-         <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;Auto&#39;s&quot;</span>
-    <span class="p">}</span>
- <span class="p">},</span>
- <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span><span class="p">,</span>
- <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span>
+    <span class="s2">&quot;curies&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/docs/rels/{rel}.html&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;templated&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ec&quot;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;ec:parent-category&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;_embedded&quot;</span><span class="o">:</span> <span class="p">{</span>
+     <span class="s2">&quot;ec:parent-category&quot;</span><span class="o">:</span> <span class="p">{</span>
+       <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+         <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories/91&quot;</span> <span class="p">}</span>
+       <span class="p">},</span>
+       <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Auto&#39;s&quot;</span><span class="p">,</span>
+       <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;Auto&#39;s&quot;</span>
+     <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;shortName&quot;</span><span class="o">:</span> <span class="s2">&quot;Alpha romeo&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -209,25 +211,34 @@
 <span class="nx">ETag</span><span class="o">:</span> <span class="s2">&quot;d9087df677dgh&quot;</span>
 
 <span class="p">{</span>
-    <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;describedby&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.platform.com/v1/docs&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;https://api.platform.com/v1/docs/resources/categories&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;https://api.platform.com/v1/docs/resources/advertisements&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/advertisements&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;https://api.platform.com/v1/docs/resources/users&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users&quot;</span> <span class="p">}</span>
-    <span class="p">}</span>
+  <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1&quot;</span> <span class="p">},</span>
+    <span class="s2">&quot;curies&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/docs/rels/{rel}.html&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;templated&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ec&quot;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;ec:categories&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/categories&quot;</span> <span class="p">},</span>
+    <span class="s2">&quot;ec:advertisements&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/advertisements&quot;</span> <span class="p">},</span>
+    <span class="s2">&quot;ec:users&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users&quot;</span> <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;message&quot;</span><span class="o">:</span> <span class="s2">&quot;A welcome message targeted at client developers. See documentation at http://.../v1/docs.&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>It is possible and RECOMMENDED to add more meta-data to the links, for example a title. See the HAL specification or
+existing implementations of these guidelines.</p>
+<p>Adding a welcome message in the <tt class="docutils literal"><span class="pre">message</span></tt> field is RECOMMENDED.</p>
 </div>
-<div class="section" id="each-resource-should-contain-self-and-describedby-links">
-<h3>Each resource SHOULD contain <tt class="docutils literal"><span class="pre">self</span></tt> and <tt class="docutils literal"><span class="pre">describedby</span></tt> links<a class="headerlink" href="#each-resource-should-contain-self-and-describedby-links" title="Permalink to this headline">¶</a></h3>
-<p>Each resource SHOULD have <tt class="docutils literal"><span class="pre">self</span></tt> and <tt class="docutils literal"><span class="pre">describedby</span></tt> link as described by HAL.</p>
+<div class="section" id="each-resource-should-contain-a-self-link">
+<h3>Each resource SHOULD contain a <tt class="docutils literal"><span class="pre">self</span></tt> link<a class="headerlink" href="#each-resource-should-contain-a-self-link" title="Permalink to this headline">¶</a></h3>
+<p>Each resource SHOULD have a <tt class="docutils literal"><span class="pre">self</span></tt> link as described by HAL.</p>
 <p>Example:</p>
 <div class="highlight-json"><div class="highlight"><pre><span class="p">{</span>
     <span class="nt">&quot;_links&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;self&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;/v1/categories/1&quot;</span> <span class="p">}</span>
-        <span class="s2">&quot;describedby&quot;</span><span class="p">:</span> <span class="s2">&quot;https://api.platform.com/v1/docs/resources/category&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -239,11 +250,11 @@
 relationship between the source and destination resources.</p>
 <p>A <a class="reference external" href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">standardized link relation</a> SHOULD be used when
 such a relation is available.</p>
-<p>Examples of commonly used IANA relation types are : <tt class="docutils literal"><span class="pre">self</span></tt>, <tt class="docutils literal"><span class="pre">first</span></tt>, <tt class="docutils literal"><span class="pre">prev</span></tt>, <tt class="docutils literal"><span class="pre">next</span></tt>, and <tt class="docutils literal"><span class="pre">last</span></tt>.</p>
+<p>Examples of commonly used IANA relation types are : <tt class="docutils literal"><span class="pre">self</span></tt>, <tt class="docutils literal"><span class="pre">item</span></tt>, <tt class="docutils literal"><span class="pre">first</span></tt>, <tt class="docutils literal"><span class="pre">prev</span></tt>, <tt class="docutils literal"><span class="pre">next</span></tt>, and <tt class="docutils literal"><span class="pre">last</span></tt>.</p>
 </div>
 <div class="section" id="custom-link-relation-types-should-be-uri-s-that-when-dereferenced-in-a-web-browser-provide-relevant-documentation-in-the-form-of-an-html-page">
 <h3>Custom link relation types SHOULD be uri&#8217;s that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page<a class="headerlink" href="#custom-link-relation-types-should-be-uri-s-that-when-dereferenced-in-a-web-browser-provide-relevant-documentation-in-the-form-of-an-html-page" title="Permalink to this headline">¶</a></h3>
-<p>If no suitable IANA relation type is available, you can use a custom relation type. In accordance with the
+<p>If no suitable IANA relation type is available, you SHOULD use a custom relation type. In accordance with the
 <a class="reference external" href="http://tools.ietf.org/html/rfc5988">web linking RFC</a> custom link relation types SHOULD be uri&#8217;s
 that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page.</p>
 <p>The references page is intended for the developer that is using the API.</p>
@@ -255,10 +266,10 @@ the status code and a description of the links and embedded resources included i
 </ul>
 <p>See also <a class="reference external" href="40-documentation-requirements.rst">documentation requirements</a>.</p>
 </div>
-<div class="section" id="custom-link-relations-uris-may-be-shortened-with-the-curie-syntax">
-<h3>Custom link relations URIs MAY be shortened with the CURIE syntax<a class="headerlink" href="#custom-link-relations-uris-may-be-shortened-with-the-curie-syntax" title="Permalink to this headline">¶</a></h3>
-<p>HAL allows <a class="reference external" href="http://tools.ietf.org/html/draft-kelly-json-hal-06#ref-W3C.NOTE-curie-20101216">CURIE syntax</a> to shorten
-the URIs, we allow it as well. See the HAL specification for an example.</p>
+<div class="section" id="curies-should-be-used-to-improve-readability-of-custom-relation-uris">
+<h3>Curies SHOULD be used to improve readability of custom relation URIs<a class="headerlink" href="#curies-should-be-used-to-improve-readability-of-custom-relation-uris" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://www.w3.org/TR/2010/NOTE-curie-20101216/">Curies</a>, as allowed by HAL, SHOULD be used to improve readability
+of relations. A side effect is that it also reduces the representation&#8217;s size.</p>
 </div>
 </div>
 <div class="section" id="binary-resources">
@@ -281,12 +292,21 @@ similar.</p>
 <p>HAL allows for URI templates in links (section 5.1 in HAL specification). These are perfect to describe to links to
 items in a resource collection.</p>
 </div>
-<div class="section" id="pagination-of-collection-resources">
-<h3>Pagination of collection resources<a class="headerlink" href="#pagination-of-collection-resources" title="Permalink to this headline">¶</a></h3>
-<p>As described in <a href="#id5"><span class="problematic" id="id6">`The query component of a URI SHOULD be used to paginate collections or store results`_</span></a>:ref query
+<div class="section" id="representation-and-pagination-of-collection-resources">
+<span id="representation-of-collection-resource"></span><h3>Representation and pagination of collection resources<a class="headerlink" href="#representation-and-pagination-of-collection-resources" title="Permalink to this headline">¶</a></h3>
+<p>As described in the section on <a class="reference internal" href="10-urls-and-uris.html#pagination-parameters"><em>paginate collections results</em></a> query
 parameters <tt class="docutils literal"><span class="pre">offset</span></tt> and <tt class="docutils literal"><span class="pre">limit</span></tt> are used to paginate collections.</p>
-<p>The <tt class="docutils literal"><span class="pre">offset</span></tt> parameter specifies the 0 based index of the first element to return in the response.
-The <tt class="docutils literal"><span class="pre">limit</span></tt> parameter specifies the maximum number of contained elements to return in the response.</p>
+<p>When <tt class="docutils literal"><span class="pre">offset</span></tt> is not specified it SHOULD get a default value of <tt class="docutils literal"><span class="pre">0</span></tt>.
+When <tt class="docutils literal"><span class="pre">limit</span></tt> is not specified it SHOULD get a default value that makes sense for a client developer that
+is exploring the API.</p>
+<p>The link relation <tt class="docutils literal"><span class="pre">item</span></tt> MUST be included to define links to separate items in the resource.</p>
+<p>The link relations <tt class="docutils literal"><span class="pre">first</span></tt>, <tt class="docutils literal"><span class="pre">prev</span></tt>, <tt class="docutils literal"><span class="pre">next</span></tt> and <tt class="docutils literal"><span class="pre">last</span></tt> SHOULD be added to enable automated pagination, for
+example with the HAL Browser.</p>
+<p>For collection resources that can be embedded in a single page, the <tt class="docutils literal"><span class="pre">first</span></tt>, <tt class="docutils literal"><span class="pre">prev</span></tt>, <tt class="docutils literal"><span class="pre">next</span></tt> and <tt class="docutils literal"><span class="pre">last</span></tt> links
+SHOULD NOT be included. The <tt class="docutils literal"><span class="pre">first</span></tt> and <tt class="docutils literal"><span class="pre">prev</span></tt> links SHOULD NOT be included on the first page. The <tt class="docutils literal"><span class="pre">next</span></tt> and
+<tt class="docutils literal"><span class="pre">last</span></tt> links SHOULD NOT be included on the last page.</p>
+<p>The actual values for offset and limit MUST be included in the fields <tt class="docutils literal"><span class="pre">offset</span></tt> and <tt class="docutils literal"><span class="pre">limit</span></tt>.</p>
+<p>Total size of the collection SHOULD be included as field <tt class="docutils literal"><span class="pre">totalCount</span></tt>. When included, the value MUST be the exact size.</p>
 <p>Example:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="nx">GET</span> <span class="o">/</span><span class="nx">v1</span><span class="o">/</span><span class="nx">users</span><span class="o">?</span><span class="nx">offset</span><span class="o">=</span><span class="mi">0</span><span class="o">&amp;</span><span class="nx">limit</span><span class="o">=</span><span class="mi">2</span> <span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
 <span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">platform</span><span class="p">.</span><span class="nx">com</span>
@@ -298,43 +318,115 @@ The <tt class="docutils literal"><span class="pre">limit</span></tt> parameter s
 <span class="p">{</span>
     <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users?offset=0&amp;limit=2&quot;</span> <span class="p">},</span>
+        <span class="s2">&quot;curies&quot;</span><span class="o">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/docs/rels/{rel}.html&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;templated&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;mc&quot;</span>
+          <span class="p">}</span>
+        <span class="p">],</span>
         <span class="s2">&quot;item&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users{?id}&quot;</span><span class="p">,</span> <span class="s2">&quot;templated&quot;</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
         <span class="s2">&quot;next&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users?offset=2&amp;limit=2&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;last&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users?offset=8&amp;limit=2&quot;</span> <span class="p">},</span>
-        <span class="s2">&quot;curies&quot;</span><span class="o">:</span> <span class="p">...</span><span class="nx">TODO</span><span class="p">...</span>
+        <span class="s2">&quot;last&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users?offset=8&amp;limit=2&quot;</span> <span class="p">}</span>
     <span class="p">},</span>
     <span class="s2">&quot;_embedded&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;mp:users&quot;</span><span class="o">:</span> <span class="p">[{</span>
-           <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-             <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users/1&quot;</span> <span class="p">},</span>
-           <span class="p">},</span>
-           <span class="s2">&quot;sellername&quot;</span><span class="o">:</span> <span class="s2">&quot;Robin&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;1@platform.com&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;casUser&quot;</span> <span class="o">:</span> <span class="kc">false</span>
-         <span class="p">},{</span>
-           <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
-             <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/users/2&quot;</span> <span class="p">},</span>
-           <span class="p">},</span>
-           <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Richard&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;2@platform.com&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;casUser&quot;</span> <span class="o">:</span> <span class="kc">true</span>
-        <span class="p">}]</span>
+        <span class="s2">&quot;mp:user&quot;</span><span class="o">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+               <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+                 <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users/1&quot;</span> <span class="p">}</span>
+               <span class="p">},</span>
+               <span class="s2">&quot;sellername&quot;</span><span class="o">:</span> <span class="s2">&quot;Robin&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;1@hotmail.com&quot;</span>
+             <span class="p">},{</span>
+               <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+                 <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/users/2&quot;</span> <span class="p">},</span>
+               <span class="p">},</span>
+               <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Richard&quot;</span><span class="p">,</span>
+               <span class="s2">&quot;email&quot;</span><span class="o">:</span> <span class="s2">&quot;2@gmail.com&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
     <span class="p">},</span>
+    <span class="s2">&quot;offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;limit&quot;</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
     <span class="s2">&quot;totalCount&quot;</span><span class="o">:</span> <span class="mi">10</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The link relation <tt class="docutils literal"><span class="pre">item</span></tt> MUST be included to define links to separate items in the resource.</p>
-<p>The link relations <tt class="docutils literal"><span class="pre">first</span></tt>, <tt class="docutils literal"><span class="pre">prev</span></tt>, <tt class="docutils literal"><span class="pre">next</span></tt> and <tt class="docutils literal"><span class="pre">last</span></tt> SHOULD be added to enable automated pagination, for
-example with the HAL Browser.</p>
-<p>For collection resources that can be embedded in a single page, the <tt class="docutils literal"><span class="pre">first</span></tt>, <tt class="docutils literal"><span class="pre">prev</span></tt>, <tt class="docutils literal"><span class="pre">next</span></tt> and <tt class="docutils literal"><span class="pre">last</span></tt> links
-SHOULD NOT be included. The <tt class="docutils literal"><span class="pre">first`</span> <span class="pre">and</span> <span class="pre">``prev</span></tt> links SHOULD NOT be included on the first page. The <tt class="docutils literal"><span class="pre">next</span></tt> and
-<tt class="docutils literal"><span class="pre">last</span></tt> links SHOULD NOT be included on the last page.</p>
-<p>Total size of the collection SHOULD be included as property &#8220;totalCount&#8221;. The value MUST be the exact size.</p>
 </div>
-<div class="section" id="pagination-of-embedded-collection-resources">
-<h3>Pagination of embedded collection resources<a class="headerlink" href="#pagination-of-embedded-collection-resources" title="Permalink to this headline">¶</a></h3>
-<p>TODO!</p>
+<div class="section" id="representation-and-pagination-of-embedded-collection-resources">
+<span id="representation-of-embedded-collection-resource"></span><h3>Representation and pagination of embedded collection resources<a class="headerlink" href="#representation-and-pagination-of-embedded-collection-resources" title="Permalink to this headline">¶</a></h3>
+<p>As described in the section on <a href="#id2"><span class="problematic" id="id3">:ref:`zooming and expansion &lt;expand-parameter&gt;`_</span></a> query
+parameters <tt class="docutils literal"><span class="pre">_extend</span></tt> is used to paginate collections.</p>
+<p>The <tt class="docutils literal"><span class="pre">offset</span></tt>, <tt class="docutils literal"><span class="pre">limit</span></tt> parts of the <tt class="docutils literal"><span class="pre">_extend</span></tt> query parameter MUST be interpreted as in the
+<a class="reference external" href="_representation-of-collection-resource">previous section</a>.</p>
+<p>Embedded collections MUST be extended with fields <tt class="docutils literal"><span class="pre">offset</span></tt>, <tt class="docutils literal"><span class="pre">limit</span></tt> and <tt class="docutils literal"><span class="pre">totalCount</span></tt> as described in the
+<a class="reference external" href="_representation-of-collection-resource">previous section</a>. The additional link relations that are described there
+(&#8216;item&#8217;, &#8216;next&#8217;, etc.) do not need be included.</p>
+<p>A full example for a linked collection resource (expand messages in a conversation resource):</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">GET</span> <span class="o">/</span><span class="nx">v1</span><span class="o">/</span><span class="nx">conversations</span><span class="o">/</span><span class="mi">1234</span><span class="o">?</span><span class="nx">_expand</span><span class="o">=</span><span class="nx">ec</span><span class="o">:</span><span class="nx">messages</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="mi">10</span>
+<span class="nx">Host</span><span class="o">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">platform</span><span class="p">.</span><span class="nx">com</span>
+
+
+<span class="nx">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
+<span class="nx">Content</span><span class="o">-</span><span class="nx">Type</span><span class="o">:</span> <span class="nx">application</span><span class="o">/</span><span class="nx">json</span>
+
+<span class="p">{</span>
+  <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/conversations/1234?_expand=mc:messages:0:10&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;curies&quot;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/docs/rels/{rel}.html&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;templated&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;ec&quot;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;ec:messages&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/conversations/1234/messages&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;The messages in this conversation.&quot;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;_embedded&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;ec:messages&quot;</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;offset&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&quot;limit&quot;</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="s2">&quot;totalCount&quot;</span><span class="o">:</span> <span class="mi">25</span><span class="p">,</span>
+      <span class="s2">&quot;_embedded&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;ec:message&quot;</span><span class="o">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/conversations/1234/messages/79p8233c8&quot;</span>
+              <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;79p8233c8&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;from&quot;</span><span class="o">:</span> <span class="s2">&quot;b.q0282bxpw61q0@mail.platform.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;to&quot;</span><span class="o">:</span> <span class="s2">&quot;a.joup3go87dhjs@mail.platform.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;body&quot;</span><span class="o">:</span> <span class="s2">&quot;Thanks!&quot;</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
+              <span class="s2">&quot;self&quot;</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/conversations/1234/messages/12211aad9&quot;</span>
+              <span class="p">}</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;12211aad9&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;from&quot;</span><span class="o">:</span> <span class="s2">&quot;a.joup3go87dhjs@mail.platform.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;to&quot;</span><span class="o">:</span> <span class="s2">&quot;b.q0282bxpw61q0@mail.platform.com&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;body&quot;</span><span class="o">:</span> <span class="s2">&quot;Hi!&quot;</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="s2">&quot;1234&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;more&quot;</span><span class="o">:</span> <span class="s2">&quot;conversation fields&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that the expanded resource collection <tt class="docutils literal"><span class="pre">ec:messages</span></tt> is a single element in the top-level field <tt class="docutils literal"><span class="pre">_embedded</span></tt>.
+Inside the collection there is another <tt class="docutils literal"><span class="pre">_embedded</span></tt> field to contain the separate items of the collection.</p>
 </div>
 </div>
 <div class="section" id="relation-names">
@@ -394,6 +486,7 @@ might later move to a separate entity.</p>
 When returning a resource with optional fields, and there is no value for a given field, then the field should be left
 out entirely in case of a String, Numeric or Object value. In the case of an Array, an empty list may be returned.</p>
 <p>The rationale for leaving omitting the field when creating or updating a resource (POST, PUT or PATCH), is that it is not allowed to specify a key without a value. Theoretically, the value <tt class="docutils literal"><span class="pre">null</span></tt> could be used, but this will only lead to confusion and complicate the parsing of the JSON object.</p>
+<p>You are RECOMMENDED to design each field such that it always have a value.</p>
 </div>
 <div class="section" id="field-values-that-represent-a-timestamp-are-in-iso-8601">
 <h3>Field values that represent a timestamp are in ISO 8601<a class="headerlink" href="#field-values-that-represent-a-timestamp-are-in-iso-8601" title="Permalink to this headline">¶</a></h3>
@@ -404,8 +497,8 @@ However, clients should be prepared to see timestamps rounded, for example to th
 </div>
 <div class="section" id="field-values-that-represent-a-date-are-in-iso-8601">
 <h3>Field values that represent a date are in ISO 8601<a class="headerlink" href="#field-values-that-represent-a-date-are-in-iso-8601" title="Permalink to this headline">¶</a></h3>
-<p>Date values are represented using the <a class="reference external" href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> in the format YYYY-MM-DD
-(eg. 2013-01-20 to represent january 20th 2013)</p>
+<p>Date values are represented using the <a class="reference external" href="http://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> in the format <tt class="docutils literal"><span class="pre">YYYY-MM-DD</span></tt>
+(eg. <tt class="docutils literal"><span class="pre">2013-01-20</span></tt> to represent January 20th 2013).</p>
 </div>
 <div class="section" id="field-values-that-represent-countries-are-in-iso-3166-1-alpha-2-format">
 <h3>Field values that represent countries are in ISO 3166-1 alpha-2 format<a class="headerlink" href="#field-values-that-represent-countries-are-in-iso-3166-1-alpha-2-format" title="Permalink to this headline">¶</a></h3>
@@ -419,8 +512,8 @@ However, clients should be prepared to see timestamps rounded, for example to th
 and not <tt class="docutils literal"><span class="pre">€</span></tt>.</p>
 <p>The codes are case sensitive.</p>
 </div>
-<div class="section" id="all-money-types-are-integers-and-conform-to-its-smallest-currency-unit">
-<h3>All money types are integers and conform to its smallest currency unit<a class="headerlink" href="#all-money-types-are-integers-and-conform-to-its-smallest-currency-unit" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="all-monetary-amounts-are-represented-as-integers-in-its-smallest-currency-unit">
+<h3>All monetary amounts are represented as integers in its smallest currency unit<a class="headerlink" href="#all-monetary-amounts-are-represented-as-integers-in-its-smallest-currency-unit" title="Permalink to this headline">¶</a></h3>
 <p>All money types are integers and conform to its smallest <em>commonly used</em> currency unit. For example, if the currency of
 a payment is in euros (EUR), the values of money fields conform to euro cents. So an amount of EUR 9,95 is represented
 as <tt class="docutils literal"><span class="pre">995</span></tt>.</p>
@@ -429,10 +522,10 @@ used currency unit for a given currency.</p>
 </div>
 <div class="section" id="all-numbers-are-integers-unless-precision-is-not-important">
 <h3>All numbers are integers unless precision is not important<a class="headerlink" href="#all-numbers-are-integers-unless-precision-is-not-important" title="Permalink to this headline">¶</a></h3>
-<p>Most numbers need to be precise, rounding due to using a floating point (64-bit IEEE754, or 32-bit IEEE754) can lead to
-unexpected errors. There are two allowed options:</p>
+<p>Most numbers need to be precise. Rounding due to using a floating point (64-bit IEEE754, or 32-bit IEEE754) can lead to
+unexpected errors. There are 2 allowed representations for numbers:</p>
 <ul class="simple">
-<li>represent the number in some exponent (e.g. in cm instead of m), this is required with a monetary amount
+<li>represent the number in some exponent (e.g. in cm instead of m), this is REQUIRED for monetary amounts
 (see previous rule),</li>
 <li>represent the precise number as a string.</li>
 </ul>
@@ -440,7 +533,7 @@ unexpected errors. There are two allowed options:</p>
 MUST be selected.</p>
 <p>There are few exceptions to this rule. Here is the list of known and allowed exceptions:</p>
 <ul class="simple">
-<li>WGS84 coordinates</li>
+<li>Coordinates as described by WGS84 (or other geographic coordinate systems that use floating point numbers).</li>
 <li>Rates or ratios that have a value between <tt class="docutils literal"><span class="pre">0.0</span></tt> and <tt class="docutils literal"><span class="pre">1.0</span></tt>.</li>
 </ul>
 <p>See also the list of supported field types: <a class="reference internal" href="40-documentation-requirements.html#field-types"><em>Field types</em></a></p>
@@ -477,7 +570,7 @@ and <a class="reference external" href="https://github.com/blongden/vnd.error">v
 <span class="p">{</span>
     <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;help&quot;</span><span class="o">:</span> <span class="p">{</span>
-          <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.platform.com/v1/docs/errors/validation-failure&quot;</span>
+          <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/docs/errors/validation-failure&quot;</span>
         <span class="p">}</span>
     <span class="p">},</span>
     <span class="s2">&quot;logref&quot;</span><span class="o">:</span> <span class="s2">&quot;4298asfpohsa98yasohq97q3yff22&quot;</span><span class="p">,</span>

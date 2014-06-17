@@ -175,6 +175,8 @@ Example :
         "totalResults": 10
     }
 
+.. _pagination-parameters:
+
 Query parameters ``offset`` and ``limit`` SHOULD be used to paginate collections results
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -198,6 +200,7 @@ Example:
 Note that ``offset`` and ``limit`` are only used for collection resources. Pagination of embedded (linked)
 collections is done with the ``_expand`` query parameter.
 
+.. _expand-parameter:
 
 The ``_expand`` parameter MAY be used for zooming
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -218,7 +221,7 @@ The full syntax for the ``_expand`` parameter is:
 Where ``[...]`` indicates an optional clause and ``{s...}`` indicates an optional repeating clause with ``s`` as separator.
 
 
-Here are some example:
+Here are some examples:
 
 .. code-block:: javascript
 
@@ -308,48 +311,14 @@ A full example for a linked collection resource (expand messages in a conversati
     Content-Type: application/json
 
     {
-      "_links": {
-        "self": {
-          "href": "/v1/conversations/1234?_expand=mc:messages:0:10"
-        },
-        "curies": [
-          {
-            "href": "/v1/docs/rels/{rel}.html",
-            "templated": true,
-            "name": "ec"
-          }
-        ],
-        "ec:messages": {
-          "href": "/v1/conversations/1234/messages",
-          "title": "The messages in this conversation."
-        }
-      },
+      /** See `chapter 20 <representation-of-embedded-collection-resource>`_ for the full representation. **/
+      "_links": { ... },
       "_embedded": {
         "ec:messages": {
           "_embedded": {
             "ec:message": [
-              {
-                "_links": {
-                  "self": {
-                    "href": "/v1/conversations/1234/messages/79p8233c8"
-                  }
-                },
-                "id": "79p8233c8",
-                "from": "b.q0282bxpw61q0@mail.platform.com",
-                "to": "a.joup3go87dhjs@mail.platform.com",
-                "body": "Thanks!"
-              },
-              {
-                "_links": {
-                  "self": {
-                    "href": "/v1/conversations/1234/messages/12211aad9"
-                  }
-                },
-                "id": "12211aad9",
-                "from": "a.joup3go87dhjs@mail.platform.com",
-                "to": "b.q0282bxpw61q0@mail.platform.com",
-                "body": "Hi, there.\n\nBla die bla die bla bla bla."
-              }
+              { ... message fields ... },
+              { ... message fields ... }
             ],
             "offset": 0,
             "limit": 10,
@@ -358,7 +327,7 @@ A full example for a linked collection resource (expand messages in a conversati
         }
       },
       "id": "1234",
-      "more": "conversation properties"
+      ... more conversation fields ...
     }
 
 .. _include-and-exclude-parameters:
@@ -405,14 +374,16 @@ Example:
 
 Note: the ``_body`` parameter SHOULD be supported by each method on each resource.
 
-The ``_nohlinks`` query parameter SHOULD be used to exclude HAL's ``_links`` field
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The ``_links`` query parameter SHOULD be used to exclude HAL's ``_links`` field
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 By default responses contain one or more ``_links`` sections. The information in the ``_links`` section is normally
-only used for discovery purposes and could be discarded for automated clients. The ``_nohlinks`` query parameter
+only used for discovery purposes and could be discarded for automated clients. The ``_links`` query parameter
 SHOULD be used to exclude the ``_links`` fields.
 
-HAL's ``_links`` fields are exclude when the parameter is present (if it has a value it will be ignored).
+Parameter ``_links`` takes values ``true`` (the default) or ``false``.
+
+HAL's ``_links`` fields are exclude when the parameter is present and has value false.
 
 For example the representation
 
@@ -459,9 +430,10 @@ will be shortened to:
         "totalResults": 10
     }
 
-Note: the ``_nohlinks`` parameter SHOULD be supported by each method on each resource.
+Note: the ``_links`` parameter SHOULD be supported by each method on each resource.
 
-Note that curie syntax may be used inside the representation, even though the curie definition is no longer present.
+Note that curie syntax may be used inside the representation (``ec:user`` in the example), even though the curie
+definition is no longer present.
 
 .. _method-parameter:
 

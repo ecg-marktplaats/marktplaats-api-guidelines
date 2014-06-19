@@ -3,11 +3,6 @@
 Introduction
 ============
 
-This document describes the guidelines that new APIs in ECG SHOULD adhere to.
-
-.. note:: 
-    This page is work in progress.
-
 Overview for the busy developer
 -------------------------------
 
@@ -17,7 +12,29 @@ Overview for the busy developer
   * potential actions
   * documentation
 * optional ETAGs
+* pre-defined query parameters like ``offset``, ``limit``, ``_expand``, ``_body`` and ``_links``
+* pagination always looks the same
+* required field types, for example ISO 8601 (dates), ISO 4217 (money)
+* definition of error responses
 
+History
+-------
+
+At Marktplaats developers were not so happy with previous API developments. The SOAP API was intimately tied to
+the database schema and didn't actually follow any SOAP standard. An attempt to re-create it in Scala failed on the
+fact that it was too much work.
+
+Then there was an eCG wide initiative called 'Common API'. At Marktplaats it was deemed too restrictive. It required
+the use of Java, and it was not possible/easy to extend it (for example with JSON responses).
+
+With this background developers sat together end of 2013 to come up with a new set of guidelines. The focus would be
+on freedom of changing the API over time and freedom of implementation choice. It should be applicable to any use case
+while still being friendly for mobile applications.
+
+After the API focus team was done, the first implementation would be the new Marktplaats API. Work on this started in
+2014Q2. At about the same time, the CAS team started to change their API to match.
+
+To surprise of the team, the guidelines were quickly promoted to an eCG standard with backing from our CTO Brent McLean.
 
 Advantages
 ----------
@@ -25,6 +42,18 @@ Advantages
 * Teams are free to chose their technology for the implementation.
 * The guidelines enforce an API that can grow and stay relevant.
 * The guidelines lower the amount of surprises which can speed up implementations.
+
+The future
+----------
+
+The guidelines currently are currently missing a few important ingredients which can be added in the future:
+
+* Bulk/batch API, making it possible to do multiple API requests in one HTTP request.
+* Volume limitations.
+* Streaming API.
+* A change-the-guidelines process.
+
+For more see the TODO chapter.
 
 Conventions
 -----------

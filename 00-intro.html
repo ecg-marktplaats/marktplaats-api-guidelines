@@ -72,7 +72,9 @@
             <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview-for-the-busy-developer">Overview for the busy developer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#history">History</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#advantages">Advantages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-future">The future</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#conventions">Conventions</a></li>
 </ul>
 </li>
@@ -161,11 +163,6 @@
           
   <div class="section" id="introduction">
 <span id="index-0"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>This document describes the guidelines that new APIs in ECG SHOULD adhere to.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This page is work in progress.</p>
-</div>
 <div class="section" id="overview-for-the-busy-developer">
 <h2>Overview for the busy developer<a class="headerlink" href="#overview-for-the-busy-developer" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -175,7 +172,25 @@
 * potential actions
 * documentation</li>
 <li>optional ETAGs</li>
+<li>pre-defined query parameters like <tt class="docutils literal"><span class="pre">offset</span></tt>, <tt class="docutils literal"><span class="pre">limit</span></tt>, <tt class="docutils literal"><span class="pre">_expand</span></tt>, <tt class="docutils literal"><span class="pre">_body</span></tt> and <tt class="docutils literal"><span class="pre">_links</span></tt></li>
+<li>pagination always looks the same</li>
+<li>required field types, for example ISO 8601 (dates), ISO 4217 (money)</li>
+<li>definition of error responses</li>
 </ul>
+</div>
+<div class="section" id="history">
+<h2>History<a class="headerlink" href="#history" title="Permalink to this headline">¶</a></h2>
+<p>At Marktplaats developers were not so happy with previous API developments. The SOAP API was intimately tied to
+the database schema and didn&#8217;t actually follow any SOAP standard. An attempt to re-create it in Scala failed on the
+fact that it was too much work.</p>
+<p>Then there was an eCG wide initiative called &#8216;Common API&#8217;. At Marktplaats it was deemed too restrictive. It required
+the use of Java, and it was not possible/easy to extend it (for example with JSON responses).</p>
+<p>With this background developers sat together end of 2013 to come up with a new set of guidelines. The focus would be
+on freedom of changing the API over time and freedom of implementation choice. It should be applicable to any use case
+while still being friendly for mobile applications.</p>
+<p>After the API focus team was done, the first implementation would be the new Marktplaats API. Work on this started in
+2014Q2. At about the same time, the CAS team started to change their API to match.</p>
+<p>To surprise of the team, the guidelines were quickly promoted to an eCG standard with backing from our CTO Brent McLean.</p>
 </div>
 <div class="section" id="advantages">
 <h2>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">¶</a></h2>
@@ -184,6 +199,17 @@
 <li>The guidelines enforce an API that can grow and stay relevant.</li>
 <li>The guidelines lower the amount of surprises which can speed up implementations.</li>
 </ul>
+</div>
+<div class="section" id="the-future">
+<h2>The future<a class="headerlink" href="#the-future" title="Permalink to this headline">¶</a></h2>
+<p>The guidelines currently are currently missing a few important ingredients which can be added in the future:</p>
+<ul class="simple">
+<li>Bulk/batch API, making it possible to do multiple API requests in one HTTP request.</li>
+<li>Volume limitations.</li>
+<li>Streaming API.</li>
+<li>A change-the-guidelines process.</li>
+</ul>
+<p>For more see the TODO chapter.</p>
 </div>
 <div class="section" id="conventions">
 <h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>

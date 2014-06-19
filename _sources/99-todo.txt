@@ -5,11 +5,8 @@ The following are tasks -priority ordered- that need to be done to complete the 
 Each task should be following with the plan and responsible to complete the task.
 
 * ✓ Consider using entity versions
-* ✗ Consider requiring schema.org or other naming conventions
-
-  1. Plan: prepare discussion by finding the relevant schema's, A: Erik v.O., ETA: 2014 wk. 19
-  #. Have discussion with stakeholders within ECG, A: Erik v.O., I: Ky, and people from versioning discussion.
-
+* ✓ Consider requiring schema.org  (decision: schema.org not suitable)
+* ✗ Consider requiring another naming conventions
 * ✗ Lots of little edits (see list below)
 * ✗ Much more details around security (authentication, delegation, authorisation)
 * ✗ Create a summary for the busy developer.
@@ -34,7 +31,7 @@ Lots of small edits
         * ✓ _body parameters applies to every call
         * ✓ PATCH/DELETE not being supported by browsers => Remove
         * ✓ Clearer use of MUST/SHOULD/CAN (consistent)
-        * ✗ _include/ _exclude needs major revamp
+        * ✓ _include/ _exclude needs major revamp
     Resource Format
         * ✓ Add something about that RFC martin just mentioned (URL templates), MUST
         * ✓ Remove serialization from URLs
@@ -56,7 +53,7 @@ Lots of small edits
     Documentation Requirements
         * ✗ Recommend order of headers, documentation tools
         * ✗ Clean up stuff at the bottom
-        * ✗ Expand further
+        * ✓ Expand further
     Versioning
         * ✓ Requires follow-up
     Postponed:

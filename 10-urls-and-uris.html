@@ -257,6 +257,16 @@ https://api.example.restapi.org/My-Folder/my-doc
 as URIs one and two, which may give unnecessary confusion.</p>
 <p>Parameters inside the URI path are excluded from this rule.</p>
 </div>
+<div class="section" id="actions">
+<h3>Actions<a class="headerlink" href="#actions" title="Permalink to this headline">¶</a></h3>
+<p>Though it SHOULD be avoided, in some cases it is simply not possible to mold an action into REST&#8217;s resource model.
+In those cases an action can be made available on a resource. To clearly indicate that a URL indicates an action
+instead of a sub-resource, action URLs MUST contain the path segment <tt class="docutils literal"><span class="pre">/actions/</span></tt> in front of the action name.</p>
+<p>For example:</p>
+<div class="highlight-http"><div class="highlight"><pre>https://api.example.restapi.org/v1/message/1234/actions/mark-as-read
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="query-parameters">
 <h2>Query parameters<a class="headerlink" href="#query-parameters" title="Permalink to this headline">¶</a></h2>

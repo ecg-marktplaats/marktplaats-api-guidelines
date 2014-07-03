@@ -131,6 +131,20 @@ as URIs one and two, which may give unnecessary confusion.
 
 Parameters inside the URI path are excluded from this rule.
 
+Actions
+^^^^^^^
+
+Though it SHOULD be avoided, in some cases it is simply not possible to mold an action into REST's resource model.
+In those cases an action can be made available on a resource. To clearly indicate that a URL indicates an action
+instead of a sub-resource, action URLs MUST contain the path segment ``/actions/`` in front of the action name.
+
+For example:
+
+.. code-block:: http
+
+    https://api.example.restapi.org/v1/message/1234/actions/mark-as-read
+
+
 Query parameters
 ----------------
 

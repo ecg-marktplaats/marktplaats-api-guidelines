@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>TODO &mdash; eCG API Guidelines 0.1 documentation</title>
+  <title>Webhooks &mdash; eCG API Guidelines 0.1 documentation</title>
   
 
   
@@ -44,7 +44,8 @@
 
   
     <link rel="top" title="eCG API Guidelines 0.1 documentation" href="index.html"/>
-        <link rel="prev" title="HAL and our deviations" href="80-hal-and-our-deviations.html"/> 
+        <link rel="next" title="Documentation requirements" href="40-documentation-requirements.html"/>
+        <link rel="prev" title="Interaction design" href="30-interaction-design.html"/> 
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
@@ -102,12 +103,12 @@
 <li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#status-codes">Status codes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="90-webhooks.html">Webhooks</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="90-webhooks.html#it-should-be-possible-to-programmatically-register-webhooks-via-the-api">It should be possible to programmatically register webhooks via the api</a></li>
-<li class="toctree-l2"><a class="reference internal" href="90-webhooks.html#webhooks-may-be-registered-on-all-resource-types">Webhooks may be registered on all resource types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="90-webhooks.html#the-body-of-a-callback-must-be-a-hal-resource">The body of a callback must be a HAL resource</a></li>
-<li class="toctree-l2"><a class="reference internal" href="90-webhooks.html#http-callbacks-should-be-signed">HTTP callbacks should be signed</a></li>
-<li class="toctree-l2"><a class="reference internal" href="90-webhooks.html#events-pushed-to-the-consumers-may-additionally-be-exposed-in-a-collection-resource">Events pushed to the consumers may additionally be exposed in a collection resource</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Webhooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#it-should-be-possible-to-programmatically-register-webhooks-via-the-api">It should be possible to programmatically register webhooks via the api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webhooks-may-be-registered-on-all-resource-types">Webhooks may be registered on all resource types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-body-of-a-callback-must-be-a-hal-resource">The body of a callback must be a HAL resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#http-callbacks-should-be-signed">HTTP callbacks should be signed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#events-pushed-to-the-consumers-may-additionally-be-exposed-in-a-collection-resource">Events pushed to the consumers may additionally be exposed in a collection resource</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="40-documentation-requirements.html">Documentation requirements</a><ul>
@@ -137,8 +138,8 @@
 <li class="toctree-l2"><a class="reference internal" href="80-hal-and-our-deviations.html#field-names">Field names</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">TODO</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#lots-of-small-edits">Lots of small edits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99-todo.html">TODO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="99-todo.html#lots-of-small-edits">Lots of small edits</a></li>
 </ul>
 </li>
 </ul>
@@ -162,99 +163,93 @@
         <div class="rst-content">
           <ul class="wy-breadcrumbs">
   <li><a href="index.html">Docs</a> &raquo;</li>
-  <li><a href="">TODO</a></li>
+  <li><a href="">Webhooks</a></li>
   
 </ul>
 <hr/>
 
           
-  <div class="section" id="todo">
-<h1>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h1>
-<p>The following are tasks -priority ordered- that need to be done to complete the API guidelines.
-Each task should be following with the plan and responsible to complete the task.</p>
-<ul class="simple">
-<li>✓ Consider using entity versions</li>
-<li>✓ Consider requiring schema.org  (decision: schema.org not suitable)</li>
-<li>✗ Consider requiring another naming conventions</li>
-<li>✗ Lots of little edits (see list below)</li>
-<li>✗ Much more details around security (authentication, delegation, authorisation)</li>
-<li>✗ Create a summary for the busy developer.</li>
-<li>✗ Add more clarity around having multiple APIs acting together as one</li>
-<li>✗ Add more stuff about non-json responses.</li>
-<li>✗ Define a change procedure for these guidelines.</li>
-<li>✗ Recommendations for (semi-)public developer portal.</li>
-<li>✗ Consider adding information on testing</li>
-<li>✗ Volume filtering.</li>
-<li>✗ Bulk endpoint for mobile optimizations.</li>
-<li>✗ Streaming endpoints.</li>
-<li>✗ JSONP</li>
-<li>✗ CORS?</li>
-</ul>
-<div class="section" id="lots-of-small-edits">
-<h2>Lots of small edits<a class="headerlink" href="#lots-of-small-edits" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><dl class="docutils">
-<dt>URL, URI</dt>
-<dd><ul class="first last simple">
-<li>✓ Documentation should point to HAL documentation</li>
-<li>✓ underscore means meta parameters (reserved for API)</li>
-<li>✓ X-HTTP-Method-override</li>
-<li>✓ _body parameters applies to every call</li>
-<li>✓ PATCH/DELETE not being supported by browsers =&gt; Remove</li>
-<li>✓ Clearer use of MUST/SHOULD/CAN (consistent)</li>
-<li>✓ _include/ _exclude needs major revamp</li>
-</ul>
-</dd>
-<dt>Resource Format</dt>
-<dd><ul class="first last simple">
-<li>✓ Add something about that RFC martin just mentioned (URL templates), MUST</li>
-<li>✓ Remove serialization from URLs</li>
-<li>✓ Language of errors more clear</li>
-<li>✓ Add status code as field for errors</li>
-<li>? _link.help.href is pointing to an invalid URL (and more URLs)</li>
-<li>✓ Link to type table</li>
-<li>? help.href vs describedby, don&#8217;t know why. For now just documented that it is so.</li>
-<li>✓ clarify the help page link</li>
-<li>✓ Add link to currying in HAL</li>
-<li>✓ Clarify section on custom link relation types</li>
-<li>✓ Fieldnames cannot be duplicate</li>
-<li>✗ Come up with field-names standard</li>
-</ul>
-</dd>
-<dt>Interaction</dt>
-<dd><ul class="first last simple">
-<li>✗ OPTION / HEAD calls missing</li>
-<li>✗ TRACE not supported (security)</li>
-<li>✗ Resource without etag =&gt; clarify body response is an error response</li>
-<li>✗ GZIP/Deflate</li>
-</ul>
-</dd>
-<dt>Documentation Requirements</dt>
-<dd><ul class="first last simple">
-<li>✗ Recommend order of headers, documentation tools</li>
-<li>✗ Clean up stuff at the bottom</li>
-<li>✓ Expand further</li>
-</ul>
-</dd>
-<dt>Versioning</dt>
-<dd><ul class="first last simple">
-<li>✓ Requires follow-up</li>
-</ul>
-</dd>
-<dt>Postponed:</dt>
-<dd><ul class="first last simple">
-<li>✗ DELETE call =&gt; No more fetch</li>
-</ul>
-</dd>
-<dt>GLOBAL:</dt>
-<dd><ul class="first last simple">
-<li>✓ HTTPS on all examples</li>
-<li>✗ fix all todos</li>
-<li>✓ re-do the documentation in RST</li>
-</ul>
-</dd>
-</dl>
-</div></blockquote>
+  <span class="target" id="index-0"></span><div class="section" id="webhooks">
+<h1>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h1>
+<p>The concept of a WebHook is simple. A WebHook is an HTTP callback: an HTTP POST that occurs when something happens; a simple event-notification via HTTP POST.
+A web application implementing WebHooks will POST a message to a URL when certain things happen.
+When a web application enables users to register their own URLs, the users can then extend, customize, and integrate that application with their own custom extensions or even with other applications around the web.
+For the user, WebHooks are a way to receive valuable information when it happens, rather than continually polling for that data and receiving nothing valuable most of the time</p>
+<div class="section" id="it-should-be-possible-to-programmatically-register-webhooks-via-the-api">
+<h2>It should be possible to programmatically register webhooks via the api<a class="headerlink" href="#it-should-be-possible-to-programmatically-register-webhooks-via-the-api" title="Permalink to this headline">¶</a></h2>
+<p>It SHOULD be possible to programmatically add, update and list webhooks by issueing POST, PUT and GET request against a resource collection containing webhooks.
+The name of this collection SHOULD be hooks.</p>
+<p>Example :</p>
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/v1/hooks</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.provider.com</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+  <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.consumer.com/callback/url&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;events&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;transactionStatusChanged&quot;</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;secret&quot;</span><span class="p">:</span> <span class="s2">&quot;very_s3cr3t&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;active&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="webhooks-may-be-registered-on-all-resource-types">
+<h2>Webhooks may be registered on all resource types<a class="headerlink" href="#webhooks-may-be-registered-on-all-resource-types" title="Permalink to this headline">¶</a></h2>
+<p>Webhooks MAY be registered on individual resources such as advertisement entities, resource collections, such as a list of advertisements or on the
+on the api root resource. This will ensure that consumers have fine grained control over what updates they are interested in</p>
+</div>
+<div class="section" id="the-body-of-a-callback-must-be-a-hal-resource">
+<h2>The body of a callback must be a HAL resource<a class="headerlink" href="#the-body-of-a-callback-must-be-a-hal-resource" title="Permalink to this headline">¶</a></h2>
+<p>The body of a callback must be a HAL resource and follow the rules defined resource representation format section of this document
+Example :</p>
+<div class="highlight-http"><div class="highlight"><pre>POST /callback/url HTTP/1.1
+Host: api.consumer.com
+Content-Type: application/json
+X-Ecg-Signature: b613679a0814d9ec772f95d778c35fc5ff1697c493715653c6c712144292c5ad
+
+{
+  &quot;_links&quot;:{
+    &quot;curies&quot;:[
+      {
+         &quot;href&quot;: &quot;/v1/docs/rels/{rel}.html&quot;,
+         &quot;templated&quot;: true,
+         &quot;name&quot;: &quot;ec&quot;
+      }
+    ]
+  },
+  &quot;_embedded&quot;: {
+      &quot;ec:transaction&quot;: {
+          &quot;_links&quot;: {
+              &quot;self&quot;: { &quot;href&quot;: &quot; /v1/advertisements/m123456789/transactions/123&quot; }
+          },
+          &quot;transactionId&quot;: 2
+
+          .. rest of the fields go here
+      }
+  },
+  &quot;eventType&quot;: &quot;transactionStatusChanged&quot;,
+  &quot;created&quot;: &quot;2014-07-03T15:14:06Z&quot;,
+  &quot;eventData&quot;: {
+      &quot;transactionId&quot;: 2,
+      &quot;oldStatus&quot;: &quot;unpaid&quot;,
+      &quot;newStatus&quot;: &quot;paid&quot;
+  }
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="http-callbacks-should-be-signed">
+<h2>HTTP callbacks should be signed<a class="headerlink" href="#http-callbacks-should-be-signed" title="Permalink to this headline">¶</a></h2>
+<p>HTTP callbacks SHOULD be signed so that the consumer can validate the message&#8217;s authenticity. The signature MUST be sent as a request header with the name X-Ecg-Signature
+The signature MUST be a HMAC-SHA-256 hex digest of the payload, using the hook’s secret as the key. This secret have been provided as part of the hook&#8217;s registration.</p>
+</div>
+<div class="section" id="events-pushed-to-the-consumers-may-additionally-be-exposed-in-a-collection-resource">
+<h2>Events pushed to the consumers may additionally be exposed in a collection resource<a class="headerlink" href="#events-pushed-to-the-consumers-may-additionally-be-exposed-in-a-collection-resource" title="Permalink to this headline">¶</a></h2>
+<p>The events that are posted to the the registered consumer MAY also be exposed as a resource collection in the API.
+The name of this collection resource SHOULD be events. and this collection MUST be exposed on the same level as the hooks resource
+When events are exposed in such a fashion then the events resources posted to the callback url MUST contain a self link</p>
 </div>
 </div>
 
@@ -263,8 +258,10 @@ Each task should be following with the plan and responsible to complete the task
   
     <div class="rst-footer-buttons">
       
+        <a href="40-documentation-requirements.html" class="btn btn-neutral float-right" title="Documentation requirements"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="80-hal-and-our-deviations.html" class="btn btn-neutral" title="HAL and our deviations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="30-interaction-design.html" class="btn btn-neutral" title="Interaction design"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   

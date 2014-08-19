@@ -44,7 +44,7 @@
 
   
     <link rel="top" title="eCG API Guidelines 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Documentation requirements" href="40-documentation-requirements.html"/>
+        <link rel="next" title="Webhooks" href="90-webhooks.html"/>
         <link rel="prev" title="Resource representation format" href="20-resource-representation-format.html"/> 
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
@@ -101,6 +101,14 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Interaction design</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#request-methods">Request methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#status-codes">Status codes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="90-webhooks.html">Webhooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="90-webhooks.html#it-should-be-possible-to-programmatically-register-webhooks-via-the-api">It should be possible to programmatically register webhooks via the api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="90-webhooks.html#webhooks-may-be-registered-on-all-resource-types">Webhooks may be registered on all resource types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="90-webhooks.html#the-body-of-a-callback-must-be-a-hal-resource">The body of a callback must be a HAL resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="90-webhooks.html#http-callbacks-should-be-signed">HTTP callbacks should be signed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="90-webhooks.html#events-pushed-to-the-consumers-may-additionally-be-exposed-in-a-collection-resource">Events pushed to the consumers may additionally be exposed in a collection resource</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="40-documentation-requirements.html">Documentation requirements</a><ul>
@@ -466,7 +474,7 @@ A 500 error is never the client’s fault and therefore it is reasonable for the
   
     <div class="rst-footer-buttons">
       
-        <a href="40-documentation-requirements.html" class="btn btn-neutral float-right" title="Documentation requirements"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="90-webhooks.html" class="btn btn-neutral float-right" title="Webhooks"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="20-resource-representation-format.html" class="btn btn-neutral" title="Resource representation format"><span class="icon icon-circle-arrow-left"></span> Previous</a>

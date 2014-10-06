@@ -166,7 +166,7 @@ Example :
 
     {
         "_links": {
-            "self": { "href": "/v1/users" },
+            "self": { "href": "/v1/users?casUser=true" },
             "curies": [
               {
                 "href": "/v1/docs/rels/{rel}.html",
@@ -298,14 +298,14 @@ Full example for a simple expansion (expand parent category in a category resour
             "ec:parent-category": { "href": "/v1/categories/91" }
         },
         "_embedded": {
-            "ec:parent-category": [{
+            "ec:parent-category": {
                "_links": {
                  "self": { "href": "/v1/categories/91" },
                },
                "id": 91,
                "name": "Auto's, motors en andere voertuigen",
                "shortName": "Auto's"
-            }]
+            }
         },
         "id": 92,
         "parentCategoryId": 91,

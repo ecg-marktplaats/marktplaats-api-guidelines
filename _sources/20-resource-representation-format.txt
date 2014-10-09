@@ -127,7 +127,7 @@ This page should contain the following information:
 *   A description of the responses you can expect from any of the allowed request methods. This description should contain
     the status code and a description of the links and embedded resources included in the response.
 
-See also `documentation requirements <40-documentation-requirements.rst>`_.
+See also :ref:`documentation`.
 
 Curies SHOULD be used to improve readability of custom relation URIs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -203,7 +203,7 @@ Example:
               {
                 "href": "/v1/docs/rels/{rel}.html",
                 "templated": true,
-                "name": "mc"
+                "name": "mp"
               }
             ],
             "item": { "href": "/v1/users{?id}", "templated": true },
@@ -237,14 +237,14 @@ Example:
 Representation and pagination of embedded collection resources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-As described in the section on :ref:`zooming and expansion <expand-parameter>`_ query
-parameters ``_extend`` is used to paginate collections.
+As described in the section on :ref:`zooming and expansion <expand-parameter>`, query
+parameter ``_expand`` is used to paginate collections.
 
 The ``offset``, ``limit`` parts of the ``_extend`` query parameter MUST be interpreted as in the
-`previous section <_representation-of-collection-resource>`_.
+:ref:`paginate collections results <pagination-parameters>`.
 
 Embedded collections MUST be extended with fields ``offset``, ``limit`` and ``totalCount`` as described in the
-`previous section <_representation-of-collection-resource>`_. The additional link relations that are described there
+:ref:`paginate collections results <pagination-parameters>`. The additional link relations that are described there
 ('item', 'next', etc.) do not need be included.
 
 A full example for a linked collection resource (expand messages in a conversation resource):
@@ -329,6 +329,8 @@ Words in relation names MUST be separated by a dash ``-``
 
 Relation names are used in URL and words MUST therefore be separated by dash ``-``.
 
+.. _field-names:
+
 Field names
 -----------
 
@@ -365,7 +367,7 @@ Fields MUST start with a lower case letter. In particular they MUST NOT start wi
 Field deprecation
 ^^^^^^^^^^^^^^^^^
 
-See versioning.
+See :ref:`versioning`.
 
 Field values
 ------------
@@ -516,7 +518,7 @@ Here follows a description of the error format.
 
 Error responses MUST follow the same representation rules as other resources: HAL, JSON in UTF-8 and content-type MUST be ``application/json``.
 
-``_link.help.href`` *(REQUIRED)* : A URL that refers to a help page that can be used by the developer that uses the API. (See `documentation requirements <40-documentation-requirements.rst>`_.)
+``_link.help.href`` *(REQUIRED)* : A URL that refers to a help page that can be used by the developer that uses the API. (See :ref:`documentation`.)
 Note that we're not using ``describedby`` (as in other HAL resource representations).
 
 ``logref`` *(REQUIRED)* : A unique identifier that can be used to find the error in the application logs on the server side (for example a request id).
@@ -553,8 +555,11 @@ An appropriate status code MUST be used when serving an error resource
 When serving an error resource an appropriate status code MUST be used. E.g. 4xx for client errors and 5xx for
 processing errors.
 
-To determine which error code is appropriate, refer to the status codes section of this `image <20-whhD1.png>`_. (Copied
-from http://i.stack.imgur.com/whhD1.png.)
+To determine which error code is appropriate, refer to the status codes section of this
+
+.. image:: 20-whhD1.png
+
+(Copied from http://i.stack.imgur.com/whhD1.png.)
 
 Stack traces MUST NOT be included in the error message
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

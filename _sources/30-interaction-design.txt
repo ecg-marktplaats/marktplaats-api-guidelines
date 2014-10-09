@@ -215,7 +215,7 @@ The response codes for the ``PATCH`` method are similar to other HTTP methods ex
 Return this when the server cannot honor the request because it might result in a bad state for the resource.
 
 Body in the response is included by default. This can be overridden with the
-[`_body` parameter](/docs/base-url.md#_body).
+:ref:`body parameter <body-parameter>`.
 
 Clients that do not support the ``PATCH`` method may use the :ref:`method-parameter <method-parameter>`.
 

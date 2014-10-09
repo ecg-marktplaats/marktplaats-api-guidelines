@@ -24,5 +24,5 @@ Field names
 -----------
 
 HAL allows any field name to start with the underscore ``_`` character. We reserve the use of the underscore ``_``
-character for standardized field. This means that any field who's name starts with an underscore is defined in the
+character for standardized field. This means that any field which name starts with an underscore is defined in the
 HAL specification, or in these guidelines.

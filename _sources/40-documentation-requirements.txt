@@ -38,7 +38,7 @@ Contents
 
 The following must be documented for each resource:
 
-* name
+* :ref:`name <field-names>`
 * description
 * URL template
 * supported methods
@@ -46,7 +46,7 @@ The following must be documented for each resource:
 * whether ETag is supported
 * whether it is deprecated
 * For each linked resource:
-    * name
+    * :ref:`name <field-names>`
     * description
     * URL template
     * link to resource documentation
@@ -55,7 +55,7 @@ The following must be documented for each resource:
     * whether it is deprecated
     * whether it supports zooming
 * A list of all fields with for each field:
-    * name
+    * :ref:`name <field-names>`
     * description
     * type value (see section [field types](#field-types))
     * format value (see section [field types](#field-types))

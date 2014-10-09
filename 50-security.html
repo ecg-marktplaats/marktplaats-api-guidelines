@@ -205,7 +205,7 @@ and token endpoints.</li>
 <li>Resource owner password credentials grant</li>
 <li>Client credentials grant</li>
 </ol>
-<p>In general, the minimum you need to support in you authentication flow should be th Authorization code grant (3-legged OAuth 2.0).</p>
+<p>In general, the minimum you need to support in you authentication flow should be the Authorization code grant (3-legged OAuth 2.0).</p>
 <p>The first three grants, Authorization code grant, Implicit grant and Resource owner password credentials grant, allow the client to authenticate against the API on behalf of the resource owner. For security reasons, the Authorization code grant is the most preferred way to achieve this.</p>
 <p>Implicit grant <strong>should not be used</strong>, because it is unsecure and vulnerable for XSS and CSRF attacks. Because this is a problem, the used Authorization Server should not support it, because if you support it your Authorization code grant is in theory not more safe than Implicit grant, unless you enforce the client to register the <em>response_type</em> with the <em>redirect_uri</em> and check for that. Without this check, it is trivial to change <em>response_type=code</em> to <em>response_type=token</em>, with all the negative consequences implied with the implicit grant as well.</p>
 <p>The Client credential grant enables the client to authenticate itself with the API without a resource owner. This is specifically useful to do &#8216;service&#8217; calls to the API, which are not specific for a given user, or to allow a user of the client to access the API without having to authenticate explicitly. This can be useful to allow the client to give the user access to &#8216;public&#8217; information (anonymous requests).</p>

@@ -193,24 +193,24 @@ and therefore a single digit should be enough for a long time.</p>
 </div>
 <div class="section" id="base-url-s-version-number-may-include-a-minor-version">
 <h3>Base URL&#8217;s version number MAY include a minor version<a class="headerlink" href="#base-url-s-version-number-may-include-a-minor-version" title="Permalink to this headline">¶</a></h3>
-<p>See <a class="reference external" href="60-versioning.rst">versioning</a> for more information on when to use a minor version.</p>
+<p>See <a class="reference internal" href="60-versioning.html#versioning"><em>Versioning</em></a> for more information on when to use a minor version.</p>
 </div>
 </div>
 <div class="section" id="url-and-uri-naming">
 <h2>URL and URI naming<a class="headerlink" href="#url-and-uri-naming" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="document-names-should-be-a-singular-noun">
-<h3>Document names SHOULD be a singular noun<a class="headerlink" href="#document-names-should-be-a-singular-noun" title="Permalink to this headline">¶</a></h3>
-<p>A URI representing a document resource SHOULD be named with a singular noun or noun phrase path segment.
-For example, the URI for a single seller profile document would have the singular form:</p>
-<div class="highlight-http"><div class="highlight"><pre>https://api.platform.com/v1/users/1/profile
-</pre></div>
-</div>
-</div>
 <div class="section" id="collection-names-should-be-a-plural-noun">
 <h3>Collection names SHOULD be a plural noun<a class="headerlink" href="#collection-names-should-be-a-plural-noun" title="Permalink to this headline">¶</a></h3>
 <p>A URI identifying a collection of resources SHOULD be named with a plural noun, or noun phrase, as its path segment.
 For example, the URI for a collection of categories may use the plural noun form as follows:</p>
 <div class="highlight-http"><div class="highlight"><pre>https://api.platform.com/v1/categories
+</pre></div>
+</div>
+</div>
+<div class="section" id="document-names-should-be-a-singular-noun">
+<h3>Document names SHOULD be a singular noun<a class="headerlink" href="#document-names-should-be-a-singular-noun" title="Permalink to this headline">¶</a></h3>
+<p>A URI representing a document resource SHOULD be named with a singular noun or noun phrase path segment.
+For example, the URI for a single seller profile document would have the singular form:</p>
+<div class="highlight-http"><div class="highlight"><pre>https://api.platform.com/v1/users/1/profile
 </pre></div>
 </div>
 </div>
@@ -354,14 +354,14 @@ _expand = &lt;rel_expand&gt;{,&lt;rel_expand&gt;}
 <p>The relation name can be quite long, for example <tt class="docutils literal"><span class="pre">https://api.platform.com/v1/docs/rels/users</span></tt> and can contain
 many separator characters. Therefor the relation name MUST be shortened with HAL&#8217;s
 <a class="reference external" href="http://www.w3.org/TR/2010/NOTE-curie-20101216/">curie syntax</a>. Clients can obtain the correct prefix by getting
-the non-expanded resource first and inspect the <tt class="docutils literal"><span class="pre">curies</span></tt> secion inside the <tt class="docutils literal"><span class="pre">_links</span></tt> section. Implementations are
+the non-expanded resource first and inspect the <tt class="docutils literal"><span class="pre">curies</span></tt> section inside the <tt class="docutils literal"><span class="pre">_links</span></tt> section. Implementations are
 RECOMMENDED to verify the prefix but are free to ignore it.</p>
 <p><em>Offset and limit</em></p>
 <p>When the relation refers to a collection, the <tt class="docutils literal"><span class="pre">offset</span></tt> and <tt class="docutils literal"><span class="pre">limit</span></tt> parameters SHOULD be used for pagination. Offset
 specifies the 0 based index of the first element to return in the response. Limit specifies the maximum number of
 contained elements to return in the response.</p>
 <p><em>Nesting expansion</em></p>
-<p>An embedded resource can be further expended by adding a slash (<tt class="docutils literal"><span class="pre">/</span></tt>) and another expand clause.</p>
+<p>An embedded resource can be further expanded by adding a slash (<tt class="docutils literal"><span class="pre">/</span></tt>) and another expand clause.</p>
 <p><em>Multiple expansions</em></p>
 <p>Multiple embedded resources can be expanded by adding a comma (<tt class="docutils literal"><span class="pre">,</span></tt>) and another expand clause. It is not possible to expand
 multiple embedded resources in an embedded resource.</p>

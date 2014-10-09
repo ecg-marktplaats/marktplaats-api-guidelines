@@ -164,8 +164,8 @@
 </div>
           <div role="main">
             
-  <span class="target" id="index-0"></span><div class="section" id="webhooks">
-<h1>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="webhooks">
+<span id="web-hooks"></span><span id="index-0"></span><h1>Webhooks<a class="headerlink" href="#webhooks" title="Permalink to this headline">¶</a></h1>
 <p>The concept of a WebHook is simple. A WebHook is an HTTP callback: an HTTP POST that occurs when something happens; a simple event-notification via HTTP POST.
 A web application implementing WebHooks will POST a message to a URL when certain things happen.
 When a web application enables users to register their own URLs, the users can then extend, customize, and integrate that application with their own custom extensions or even with other applications around the web.
@@ -243,8 +243,8 @@ The signature MUST be a HMAC-SHA-256 hex digest of the payload, using the hook�
 <div class="section" id="events-pushed-to-the-consumers-may-additionally-be-exposed-in-a-collection-resource">
 <h2>Events pushed to the consumers may additionally be exposed in a collection resource<a class="headerlink" href="#events-pushed-to-the-consumers-may-additionally-be-exposed-in-a-collection-resource" title="Permalink to this headline">¶</a></h2>
 <p>The events that are posted to the the registered consumer MAY also be exposed as a resource collection in the API.
-The name of this collection resource SHOULD be events. and this collection MUST be exposed on the same level as the hooks resource
-When events are exposed in such a fashion then the events resources posted to the callback url MUST contain a self link</p>
+The name of this collection resource SHOULD be events, and this collection MUST be exposed on the same level as the hooks resource.
+When events are exposed in such a fashion then the events resources posted to the callback url MUST contain a self link.</p>
 </div>
 </div>
 

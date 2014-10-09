@@ -43,21 +43,10 @@ For clarity, the version MUST be preceded by a ``v``.
 Base URL's version number MAY include a minor version
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-See `versioning <60-versioning.rst>`_ for more information on when to use a minor version.
+See :ref:`versioning` for more information on when to use a minor version.
 
 URL and URI naming
 ------------------
-
-Document names SHOULD be a singular noun
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-A URI representing a document resource SHOULD be named with a singular noun or noun phrase path segment.
-For example, the URI for a single seller profile document would have the singular form:
-
-.. code-block:: http
-
-    https://api.platform.com/v1/users/1/profile
-
 
 Collection names SHOULD be a plural noun
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -68,6 +57,17 @@ For example, the URI for a collection of categories may use the plural noun form
 .. code-block:: http
 
     https://api.platform.com/v1/categories
+
+
+Document names SHOULD be a singular noun
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A URI representing a document resource SHOULD be named with a singular noun or noun phrase path segment.
+For example, the URI for a single seller profile document would have the singular form:
+
+.. code-block:: http
+
+    https://api.platform.com/v1/users/1/profile
 
 
 Forward slash separator (``/``) MUST be used to indicate a hierarchical relationship
@@ -250,7 +250,7 @@ Here are some examples:
 The relation name can be quite long, for example ``https://api.platform.com/v1/docs/rels/users`` and can contain
 many separator characters. Therefor the relation name MUST be shortened with HAL's
 `curie syntax <http://www.w3.org/TR/2010/NOTE-curie-20101216/>`_. Clients can obtain the correct prefix by getting
-the non-expanded resource first and inspect the ``curies`` secion inside the ``_links`` section. Implementations are
+the non-expanded resource first and inspect the ``curies`` section inside the ``_links`` section. Implementations are
 RECOMMENDED to verify the prefix but are free to ignore it.
 
 *Offset and limit*
@@ -261,7 +261,7 @@ contained elements to return in the response.
 
 *Nesting expansion*
 
-An embedded resource can be further expended by adding a slash (``/``) and another expand clause.
+An embedded resource can be further expanded by adding a slash (``/``) and another expand clause.
 
 *Multiple expansions*
 

@@ -269,7 +269,7 @@ that when dereferenced in a web browser provide relevant documentation, in the f
 <li>A description of the responses you can expect from any of the allowed request methods. This description should contain
 the status code and a description of the links and embedded resources included in the response.</li>
 </ul>
-<p>See also <a class="reference external" href="40-documentation-requirements.rst">documentation requirements</a>.</p>
+<p>See also <a class="reference internal" href="40-documentation-requirements.html#documentation"><em>Documentation requirements</em></a>.</p>
 </div>
 <div class="section" id="curies-should-be-used-to-improve-readability-of-custom-relation-uris">
 <h3>Curies SHOULD be used to improve readability of custom relation URIs<a class="headerlink" href="#curies-should-be-used-to-improve-readability-of-custom-relation-uris" title="Permalink to this headline">¶</a></h3>
@@ -327,7 +327,7 @@ SHOULD NOT be included. The <tt class="docutils literal"><span class="pre">first
           <span class="p">{</span>
             <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/docs/rels/{rel}.html&quot;</span><span class="p">,</span>
             <span class="s2">&quot;templated&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-            <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;mc&quot;</span>
+            <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;mp&quot;</span>
           <span class="p">}</span>
         <span class="p">],</span>
         <span class="s2">&quot;item&quot;</span><span class="o">:</span> <span class="p">{</span> <span class="s2">&quot;href&quot;</span><span class="o">:</span> <span class="s2">&quot;/v1/users{?id}&quot;</span><span class="p">,</span> <span class="s2">&quot;templated&quot;</span><span class="o">:</span> <span class="kc">true</span> <span class="p">},</span>
@@ -360,12 +360,12 @@ SHOULD NOT be included. The <tt class="docutils literal"><span class="pre">first
 </div>
 <div class="section" id="representation-and-pagination-of-embedded-collection-resources">
 <span id="representation-of-embedded-collection-resource"></span><h3>Representation and pagination of embedded collection resources<a class="headerlink" href="#representation-and-pagination-of-embedded-collection-resources" title="Permalink to this headline">¶</a></h3>
-<p>As described in the section on <a href="#id2"><span class="problematic" id="id3">:ref:`zooming and expansion &lt;expand-parameter&gt;`_</span></a> query
-parameters <tt class="docutils literal"><span class="pre">_extend</span></tt> is used to paginate collections.</p>
+<p>As described in the section on <a class="reference internal" href="10-urls-and-uris.html#expand-parameter"><em>zooming and expansion</em></a>, query
+parameter <tt class="docutils literal"><span class="pre">_expand</span></tt> is used to paginate collections.</p>
 <p>The <tt class="docutils literal"><span class="pre">offset</span></tt>, <tt class="docutils literal"><span class="pre">limit</span></tt> parts of the <tt class="docutils literal"><span class="pre">_extend</span></tt> query parameter MUST be interpreted as in the
-<a class="reference external" href="_representation-of-collection-resource">previous section</a>.</p>
+<a class="reference internal" href="10-urls-and-uris.html#pagination-parameters"><em>paginate collections results</em></a>.</p>
 <p>Embedded collections MUST be extended with fields <tt class="docutils literal"><span class="pre">offset</span></tt>, <tt class="docutils literal"><span class="pre">limit</span></tt> and <tt class="docutils literal"><span class="pre">totalCount</span></tt> as described in the
-<a class="reference external" href="_representation-of-collection-resource">previous section</a>. The additional link relations that are described there
+<a class="reference internal" href="10-urls-and-uris.html#pagination-parameters"><em>paginate collections results</em></a>. The additional link relations that are described there
 (&#8216;item&#8217;, &#8216;next&#8217;, etc.) do not need be included.</p>
 <p>A full example for a linked collection resource (expand messages in a conversation resource):</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="nx">GET</span> <span class="o">/</span><span class="nx">v1</span><span class="o">/</span><span class="nx">conversations</span><span class="o">/</span><span class="mi">1234</span><span class="o">?</span><span class="nx">_expand</span><span class="o">=</span><span class="nx">ec</span><span class="o">:</span><span class="nx">messages</span><span class="o">:</span><span class="mi">0</span><span class="o">:</span><span class="mi">10</span>
@@ -447,7 +447,7 @@ English. Product and company names are excluded from this rule.</p>
 </div>
 </div>
 <div class="section" id="field-names">
-<h2>Field names<a class="headerlink" href="#field-names" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Field names<a class="headerlink" href="#field-names" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="field-names-must-be-in-english-unless-they-represent-a-product-or-company-name">
 <h3>Field names MUST be in English unless they represent a product or company name<a class="headerlink" href="#field-names-must-be-in-english-unless-they-represent-a-product-or-company-name" title="Permalink to this headline">¶</a></h3>
 <p>The consumers of the API are developers which might come from any country. However, developer will for sure understand
@@ -474,7 +474,7 @@ use the same representation.</p>
 </div>
 <div class="section" id="field-deprecation">
 <h3>Field deprecation<a class="headerlink" href="#field-deprecation" title="Permalink to this headline">¶</a></h3>
-<p>See versioning.</p>
+<p>See <a class="reference internal" href="60-versioning.html#versioning"><em>Versioning</em></a>.</p>
 </div>
 </div>
 <div class="section" id="field-values">
@@ -601,7 +601,7 @@ and <a class="reference external" href="https://github.com/blongden/vnd.error">v
 </ul>
 <p>Here follows a description of the error format.</p>
 <p>Error responses MUST follow the same representation rules as other resources: HAL, JSON in UTF-8 and content-type MUST be <tt class="docutils literal"><span class="pre">application/json</span></tt>.</p>
-<p><tt class="docutils literal"><span class="pre">_link.help.href</span></tt> <em>(REQUIRED)</em> : A URL that refers to a help page that can be used by the developer that uses the API. (See <a class="reference external" href="40-documentation-requirements.rst">documentation requirements</a>.)
+<p><tt class="docutils literal"><span class="pre">_link.help.href</span></tt> <em>(REQUIRED)</em> : A URL that refers to a help page that can be used by the developer that uses the API. (See <a class="reference internal" href="40-documentation-requirements.html#documentation"><em>Documentation requirements</em></a>.)
 Note that we&#8217;re not using <tt class="docutils literal"><span class="pre">describedby</span></tt> (as in other HAL resource representations).</p>
 <p><tt class="docutils literal"><span class="pre">logref</span></tt> <em>(REQUIRED)</em> : A unique identifier that can be used to find the error in the application logs on the server side (for example a request id).</p>
 <p><tt class="docutils literal"><span class="pre">message</span></tt> <em>(REQUIRED)</em> : A human readable message related to the current error which may be displayed to the user of the api. The language of the message
@@ -626,8 +626,9 @@ its format depends on the error code.</p>
 <h3>An appropriate status code MUST be used when serving an error resource<a class="headerlink" href="#an-appropriate-status-code-must-be-used-when-serving-an-error-resource" title="Permalink to this headline">¶</a></h3>
 <p>When serving an error resource an appropriate status code MUST be used. E.g. 4xx for client errors and 5xx for
 processing errors.</p>
-<p>To determine which error code is appropriate, refer to the status codes section of this <a class="reference external" href="20-whhD1.png">image</a>. (Copied
-from <a class="reference external" href="http://i.stack.imgur.com/whhD1.png">http://i.stack.imgur.com/whhD1.png</a>.)</p>
+<p>To determine which error code is appropriate, refer to the status codes section of this</p>
+<img alt="_images/20-whhD1.png" src="_images/20-whhD1.png" />
+<p>(Copied from <a class="reference external" href="http://i.stack.imgur.com/whhD1.png">http://i.stack.imgur.com/whhD1.png</a>.)</p>
 </div>
 <div class="section" id="stack-traces-must-not-be-included-in-the-error-message">
 <h3>Stack traces MUST NOT be included in the error message<a class="headerlink" href="#stack-traces-must-not-be-included-in-the-error-message" title="Permalink to this headline">¶</a></h3>

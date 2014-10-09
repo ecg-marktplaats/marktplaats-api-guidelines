@@ -1,6 +1,6 @@
 .. index:: Webhooks
 
-.. _web-hooks
+.. _web-hooks:
 
 
 Webhooks
@@ -95,6 +95,6 @@ Events pushed to the consumers may additionally be exposed in a collection resou
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The events that are posted to the the registered consumer MAY also be exposed as a resource collection in the API.
-The name of this collection resource SHOULD be events. and this collection MUST be exposed on the same level as the hooks resource
-When events are exposed in such a fashion then the events resources posted to the callback url MUST contain a self link
+The name of this collection resource SHOULD be events, and this collection MUST be exposed on the same level as the hooks resource.
+When events are exposed in such a fashion then the events resources posted to the callback url MUST contain a self link.
 

@@ -49,7 +49,7 @@ OAuth 2.0 describes four different authorization grants. An authorization grant 
 3. Resource owner password credentials grant
 4. Client credentials grant
 
-In general, the minimum you need to support in you authentication flow should be th Authorization code grant (3-legged OAuth 2.0).
+In general, the minimum you need to support in you authentication flow should be the Authorization code grant (3-legged OAuth 2.0).
 
 The first three grants, Authorization code grant, Implicit grant and Resource owner password credentials grant, allow the client to authenticate against the API on behalf of the resource owner. For security reasons, the Authorization code grant is the most preferred way to achieve this.
 

@@ -61,6 +61,7 @@ The following must be documented for each resource:
     * format value (see section [field types](#field-types))
     * required?
     * writable?
+    * modifiable?
 
 For each deprecation the document MUST describe when the relation/resource/field will no longer be supported.
 

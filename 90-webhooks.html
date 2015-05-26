@@ -175,18 +175,18 @@ For the user, WebHooks are a way to receive valuable information when it happens
 <p>It SHOULD be possible to programmatically add, update and list webhooks by issueing POST, PUT and GET request against a resource collection containing webhooks.
 The name of this collection SHOULD be hooks.</p>
 <p>Example :</p>
-<div class="highlight-http"><div class="highlight"><pre>POST /v1/hooks HTTP/1.1
-Host: api.provider.com
-Content-Type: application/json
+<div class="highlight-http"><div class="highlight"><pre><span class="nf">POST</span> <span class="nn">/v1/hooks</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">api.provider.com</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
 
-{
-  &quot;url&quot;: &quot;http://api.consumer.com/callback/url&quot;,
-  &quot;events&quot;: [
-    &quot;transactionStatusChanged&quot;
-  ],
-  &quot;secret&quot;: &quot;very_s3cr3t&quot;,
-  &quot;active&quot;: true
-}
+<span class="p">{</span>
+  <span class="nt">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://api.consumer.com/callback/url&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;events&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;transactionStatusChanged&quot;</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;secret&quot;</span><span class="p">:</span> <span class="s2">&quot;very_s3cr3t&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;active&quot;</span><span class="p">:</span> <span class="kc">true</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>

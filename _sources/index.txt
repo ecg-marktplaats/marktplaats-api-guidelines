@@ -18,7 +18,7 @@ The reason for these guidelines can be summarized by:
     There is no time to quickly build an API.
 
 APIs are a weird thing. Unlike our webapps they need to be stable for a long time. Your customers will give up after
-the n :sup:`th` incompatible change. Your coders will give up after having to hack in the n :sup:`th` feature.
+the n`th`:sup: incompatible change. Your coders will give up after having to hack in the n`th`:sup: feature.
 
 These guidelines make sure that the API you develop has a clear backward-compatible path towards change and growth.
 Adhering to the guidelines makes it possible to work agile again. In addition, the guidelines makes a small selection

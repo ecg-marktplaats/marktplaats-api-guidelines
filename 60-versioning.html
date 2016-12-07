@@ -5,7 +5,6 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Versioning &mdash; eCG API Guidelines 0.1 documentation</title>
@@ -15,6 +14,7 @@
   
 
   
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   
   
@@ -28,14 +28,12 @@
   
 
   
-
-  
     <link rel="top" title="eCG API Guidelines 0.1 documentation" href="index.html"/>
         <link rel="next" title="HAL and our deviations" href="80-hal-and-our-deviations.html"/>
         <link rel="prev" title="Security" href="50-security.html"/> 
 
   
-  <script src="_static/js/modernizr.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 
 </head>
 
@@ -46,32 +44,20 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-nav-search">
-        
-
-        
-          <a href="index.html" class="icon icon-home"> eCG API Guidelines
-        
-
-        
-        </a>
-
-        
-<div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+        <a href="index.html" class="fa fa-home"> eCG API Guidelines</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
         
-          
-          
-              <ul class="current">
+        
+            <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="00-intro.html">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="00-intro.html#overview-for-the-busy-developer">Overview for the busy developer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="00-intro.html#history">History</a></li>
@@ -85,117 +71,24 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="10-urls-and-uris.html">URLs and URIs</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#base-url">Base URL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#base-url-should-be-short">Base URL should be short</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#https-must-be-used">Https MUST be used</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#base-url-must-end-in-a-version-number">Base URL MUST end in a version number</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#base-url-s-version-number-may-include-a-minor-version">Base URL&#8217;s version number MAY include a minor version</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#url-and-uri-naming">URL and URI naming</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#collection-names-should-be-a-plural-noun">Collection names SHOULD be a plural noun</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#document-names-should-be-a-singular-noun">Document names SHOULD be a singular noun</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#forward-slash-separator-must-be-used-to-indicate-a-hierarchical-relationship">Forward slash separator (<code class="docutils literal"><span class="pre">/</span></code>) MUST be used to indicate a hierarchical relationship</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#uris-should-not-have-a-trailing-forward-slash">URIs SHOULD NOT have a trailing forward slash (<code class="docutils literal"><span class="pre">/</span></code>)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#hyphens-should-be-used-to-improve-the-readability-of-uris-not-underscores">Hyphens (<code class="docutils literal"><span class="pre">-</span></code>) SHOULD be used to improve the readability of URIs, not underscores (<code class="docutils literal"><span class="pre">_</span></code>)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#uri-paths-must-use-lowercase-letters">URI paths MUST use lowercase letters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#actions">Actions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#query-parameters">Query parameters</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#the-query-component-of-a-uri-should-be-used-to-filter-collections">The query component of a URI SHOULD be used to filter collections</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#query-parameters-offset-and-limit-should-be-used-to-paginate-collections-results">Query parameters <code class="docutils literal"><span class="pre">offset</span></code> and <code class="docutils literal"><span class="pre">limit</span></code> SHOULD be used to paginate collections results</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#the-expand-parameter-may-be-used-for-zooming">The <code class="docutils literal"><span class="pre">_expand</span></code> parameter MAY be used for zooming</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#the-include-and-exclude-query-parameters-may-be-used-for-selecting-fields">The <code class="docutils literal"><span class="pre">_include</span></code> and <code class="docutils literal"><span class="pre">_exclude</span></code> query parameters MAY be used for selecting fields</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#the-body-query-parameter-should-be-used-to-include-exclude-a-response-body">The <code class="docutils literal"><span class="pre">_body</span></code> query parameter SHOULD be used to include/exclude a response body</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#the-links-query-parameter-should-be-used-to-exclude-hal-s-links-field">The <code class="docutils literal"><span class="pre">_links</span></code> query parameter SHOULD be used to exclude HAL&#8217;s <code class="docutils literal"><span class="pre">_links</span></code> field</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#mimicking-request-methods">Mimicking request methods</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#the-callback-parameter-may-be-used-to-return-a-jsonp-response">The <code class="docutils literal"><span class="pre">_callback</span></code> parameter MAY be used to return a JSONP response</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#the-prettyprint-parameter-may-be-used-to-pretty-print-the-response">The <code class="docutils literal"><span class="pre">_prettyprint</span></code> parameter MAY be used to pretty print the response</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10-urls-and-uris.html#use-of-underscore-character">Use of underscore character</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#base-url">Base URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#url-and-uri-naming">URL and URI naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-urls-and-uris.html#query-parameters">Query parameters</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="20-resource-representation-format.html">Resource representation format</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resources">Resources</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#serialization-format-hal-in-utf-8-encoding">Serialization format: HAL in UTF-8 encoding</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#the-base-url-is-a-hal-resource">The base URL is a HAL resource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#each-resource-should-contain-a-self-link">Each resource SHOULD contain a <code class="docutils literal"><span class="pre">self</span></code> link</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#when-available-iana-registered-relation-types-should-be-used-as-link-relations">When available IANA registered relation types SHOULD be used as link relations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#custom-link-relation-types-should-be-uri-s-that-when-dereferenced-in-a-web-browser-provide-relevant-documentation-in-the-form-of-an-html-page">Custom link relation types SHOULD be uri&#8217;s that when dereferenced in a web browser provide relevant documentation, in the form of an HTML page</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#curies-should-be-used-to-improve-readability-of-custom-relation-uris">Curies SHOULD be used to improve readability of custom relation URIs</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resources">Resources</a></li>
 <li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#binary-resources">Binary resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resource-collections">Resource collections</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#collections-must-be-homogeneous">Collections MUST be homogeneous</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#url-templates-are-recommended-in-links">URL templates are RECOMMENDED in Links</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#representation-and-pagination-of-collection-resources">Representation and pagination of collection resources</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#representation-and-pagination-of-embedded-collection-resources">Representation and pagination of embedded collection resources</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#relation-names">Relation names</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#relation-names-must-be-in-english-unless-they-represent-a-product-or-company-name">Relation names MUST be in English unless they represent a product or company name</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#words-in-relation-names-must-be-separated-by-a-dash">Words in relation names MUST be separated by a dash <code class="docutils literal"><span class="pre">-</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-names">Field names</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#field-names-must-be-in-english-unless-they-represent-a-product-or-company-name">Field names MUST be in English unless they represent a product or company name</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#field-names-must-have-consistent-semantics-and-representation">Field names MUST have consistent semantics and representation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#field-names-must-use-camelcase-contain-only-latin-characters-a-z-a-z-0-9">Field names MUST use camelCase, contain only latin characters <code class="docutils literal"><span class="pre">a</span></code> - <code class="docutils literal"><span class="pre">z</span></code>, <code class="docutils literal"><span class="pre">A</span></code> - <code class="docutils literal"><span class="pre">Z</span></code>, <code class="docutils literal"><span class="pre">0</span></code> - <code class="docutils literal"><span class="pre">9</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#field-names-must-start-with-a-lowercase-letter-a-z">Field names MUST start with a lowercase letter, <code class="docutils literal"><span class="pre">a</span></code> - <code class="docutils literal"><span class="pre">z</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#field-deprecation">Field deprecation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-values">Field values</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#structure-field-values">Structure field values</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#optional-fields-should-not-be-serialized-when-they-have-no-value">Optional fields SHOULD NOT be serialized when they have no value</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#field-values-that-represent-a-timestamp-are-in-iso-8601">Field values that represent a timestamp are in ISO 8601</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#field-values-that-represent-a-date-are-in-iso-8601">Field values that represent a date are in ISO 8601</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#field-values-that-represent-countries-are-in-iso-3166-1-alpha-2-format">Field values that represent countries are in ISO 3166-1 alpha-2 format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#field-values-that-represent-a-currency-are-in-iso-4217">Field values that represent a currency are in ISO 4217</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#all-monetary-amounts-are-represented-as-integers-in-its-smallest-currency-unit">All monetary amounts are represented as integers in its smallest currency unit</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#all-numbers-are-integers-unless-precision-is-not-important">All numbers are integers unless precision is not important</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#binary-field-values">Binary field values</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#errors">Errors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#error-messages-follow-a-standard-format">Error messages follow a standard format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#an-appropriate-status-code-must-be-used-when-serving-an-error-resource">An appropriate status code MUST be used when serving an error resource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="20-resource-representation-format.html#stack-traces-must-not-be-included-in-the-error-message">Stack traces MUST NOT be included in the error message</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#resource-collections">Resource collections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#relation-names">Relation names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-names">Field names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#field-values">Field values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="20-resource-representation-format.html#errors">Errors</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="30-interaction-design.html">Interaction design</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#request-methods">Request methods</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#resources-with-etag-support">Resources with <code class="docutils literal"><span class="pre">ETag</span></code> support</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#resources-without-etag-support">Resources without <code class="docutils literal"><span class="pre">ETag</span></code> support</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#post-must-be-used-to-create-a-new-resource-in-a-collection">POST must be used to create a new resource in a collection</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#put-must-be-used-to-completely-update-a-resource"><code class="docutils literal"><span class="pre">PUT</span></code> must be used to completely update a resource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#patch-must-be-used-to-partially-update-a-resource"><code class="docutils literal"><span class="pre">PATCH</span></code> must be used to partially update a resource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#delete-must-be-used-to-remove-a-resource-from-its-parent">DELETE must be used to remove a resource from its parent</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#status-codes">Status codes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#ok-should-be-used-to-indicate-nonspecific-success">200 (“OK”) should be used to indicate nonspecific success</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#created-must-be-used-to-indicate-successful-resource-creation">201 (“Created”) must be used to indicate successful resource creation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#accepted-must-be-used-to-indicate-successful-start-of-anasynchronous-action">202 (“Accepted”) must be used to indicate successful start of anasynchronous action</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#rule-204-no-content-should-be-used-when-the-response-body-is-intentionally-empty">Rule: 204 (“No Content”) should be used when the response body is intentionally empty</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#moved-permanently-should-be-used-to-relocate-resources">301 (“Moved Permanently”) should be used to relocate resources</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#found-should-not-be-used">302 (“Found”) should not be used</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#see-other-should-be-used-to-refer-the-client-to-a-different-uri">303 (“See Other”) should be used to refer the client to a different URI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#bad-request-may-be-used-to-indicate-nonspecific-failure">400 (“Bad Request”) may be used to indicate nonspecific failure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#unauthorized-must-be-used-when-there-is-a-problem-with-the-clients-credentials">401 (“Unauthorized”) must be used when there is a problem with the client’s credentials</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#forbidden-should-be-used-to-forbid-access-regardless-of-authorization-state">403 (“Forbidden”) should be used to forbid access regardless of authorization state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#not-found-must-be-used-when-a-clients-uri-cannot-be-mapped-to-a-resource">404 (“Not Found”) must be used when a client’s URI cannot be mapped to a resource</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#method-not-allowed-must-be-used-when-the-http-method-is-not-supported">405 (“Method Not Allowed”) must be used when the HTTP method is not supported</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#conflict-should-be-used-to-indicate-a-violation-of-resource-state">409 (“Conflict”) should be used to indicate a violation of resource state</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#precondition-failed-should-be-used-to-support-conditional-operations">412 (“Precondition Failed”) should be used to support conditional operations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="30-interaction-design.html#internal-server-error-should-be-used-to-indicate-api-malfunction">500 (“Internal Server Error”) should be used to indicate API malfunction</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#request-methods">Request methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="30-interaction-design.html#status-codes">Status codes</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="90-webhooks.html">Webhooks</a><ul>
@@ -207,16 +100,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="40-documentation-requirements.html">Documentation requirements</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#documentation-urls">Documentation URLs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="40-documentation-requirements.html#documentation-base-url">Documentation base URL</a></li>
-<li class="toctree-l3"><a class="reference internal" href="40-documentation-requirements.html#id1">Documentation URLs</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#resource-documentation">Resource documentation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="40-documentation-requirements.html#contents">Contents</a></li>
-<li class="toctree-l3"><a class="reference internal" href="40-documentation-requirements.html#field-types">Field types</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#documentation-urls">Documentation URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#resource-documentation">Resource documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#document-link-relations">Document link relations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#getting-started-guide">Getting started guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="40-documentation-requirements.html#api-reference">API reference</a></li>
@@ -226,27 +111,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="50-security.html">Security</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="50-security.html#authentication">Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="50-security.html#oauth-2">OAuth 2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="50-security.html#what-is-oauth-2-0">What is OAuth 2.0</a></li>
-<li class="toctree-l3"><a class="reference internal" href="50-security.html#oauth-2-0-roles">OAuth 2.0 Roles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="50-security.html#support-in-our-api-s">Support in our API&#8217;s</a></li>
-<li class="toctree-l3"><a class="reference internal" href="50-security.html#registration-of-clients">Registration of Clients</a></li>
-<li class="toctree-l3"><a class="reference internal" href="50-security.html#scope">Scope</a></li>
-<li class="toctree-l3"><a class="reference internal" href="50-security.html#application-specific-tokens">Application specific tokens</a></li>
-<li class="toctree-l3"><a class="reference internal" href="50-security.html#secure-implementation-of-oauth-2-0">Secure implementation of OAuth 2.0</a></li>
-<li class="toctree-l3"><a class="reference internal" href="50-security.html#rate-limiting">Rate limiting</a></li>
-<li class="toctree-l3"><a class="reference internal" href="50-security.html#general-security-advice">General security advice</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="50-security.html#oauth-2">OAuth 2</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Versioning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#backward-compatible-changes">1. Backward compatible changes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#clients-must-be-assumed-to-cope-with-backward-compatible-changes">Clients MUST be assumed to cope with backward compatible changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#do-not-remove-fields-when-it-will-be-replaced-by-another-field">Do not remove fields when it will be replaced by another field</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#old-links-may-be-deprecated-when-it-will-be-replaced-with-a-newer-version">Old links MAY be deprecated when it will be replaced with a newer version</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#backward-compatible-changes">1. Backward compatible changes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resource-representation-changes">2. Resource representation changes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resource-behavior-changes">3. Resource behavior changes</a></li>
 </ul>
@@ -263,7 +132,6 @@
 </li>
 </ul>
 
-          
         
       </div>
       &nbsp;
@@ -288,15 +156,13 @@
     <li>Versioning</li>
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/60-versioning.txt" rel="nofollow"> View page source</a>
-          
+          <a href="_sources/60-versioning.txt" rel="nofollow"> View page source</a>
         
       </li>
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main">
             
   <div class="section" id="versioning">
 <span id="index-0"></span><span id="id1"></span><h1>Versioning<a class="headerlink" href="#versioning" title="Permalink to this headline">¶</a></h1>
@@ -313,8 +179,8 @@
 <ul class="simple">
 <li>Add a new field to a JSON object.</li>
 <li>Change order of fields in a JSON object.</li>
-<li>Add a new link in the <code class="docutils literal"><span class="pre">_link</span></code> section.</li>
-<li>Add a new field in the <code class="docutils literal"><span class="pre">_embedded</span></code> section.</li>
+<li>Add a new link in the <tt class="docutils literal"><span class="pre">_link</span></tt> section.</li>
+<li>Add a new field in the <tt class="docutils literal"><span class="pre">_embedded</span></tt> section.</li>
 </ul>
 <p>(Note: these guidelines use the word <strong>field</strong> instead of the word <strong>member</strong> from the JSON specification.)</p>
 <p>The following applies to backward compatible changes:</p>
@@ -347,7 +213,7 @@
 <h3>Old links MAY be deprecated when it will be replaced with a newer version<a class="headerlink" href="#old-links-may-be-deprecated-when-it-will-be-replaced-with-a-newer-version" title="Permalink to this headline">¶</a></h3>
 <p>In case a link replaces an older link, the old link MUST stay around until the version changes (see section
 <a class="reference internal" href="#resource-representation-changes">2. Resource representation changes</a>). The link that will be removed MAY be deprecated. The HAL specification
-describes how to deprecate a link. (See <a class="reference internal" href="80-hal-and-our-deviations.html#hal-and-our-deviations"><span>HAL and our deviations</span></a> for links to the specification.)</p>
+describes how to deprecate a link. (See <a class="reference internal" href="80-hal-and-our-deviations.html#hal-and-our-deviations"><em>HAL and our deviations</em></a> for links to the specification.)</p>
 <p>Before:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="p">{</span>
     <span class="s2">&quot;_links&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -417,10 +283,10 @@ the relation is deprecated.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="80-hal-and-our-deviations.html" class="btn btn-neutral float-right" title="HAL and our deviations" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="80-hal-and-our-deviations.html" class="btn btn-neutral float-right" title="HAL and our deviations"/>Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="50-security.html" class="btn btn-neutral" title="Security" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="50-security.html" class="btn btn-neutral" title="Security"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -432,10 +298,9 @@ the relation is deprecated.</p>
         &copy; Copyright 2014, ECG API Focus team.
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
+  <a href="https://github.com/snide/sphinx_rtd_theme">Sphinx theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>
 </footer>
-
         </div>
       </div>
 

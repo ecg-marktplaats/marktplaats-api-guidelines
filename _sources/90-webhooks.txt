@@ -88,7 +88,7 @@ HTTP callbacks should be signed
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 HTTP callbacks SHOULD be signed so that the consumer can validate the message's authenticity. The signature MUST be sent as a request header with the name X-Ecg-Signature
-The signature MUST be a HMAC-SHA-256 hex digest of the payload, using the hook’s secret as the key. This secret have been provided as part of the hook's registration.
+The signature MUST be a HMAC-SHA-256 hex digest of the payload, using the hook’s secret as the key. This secret has been provided as part of the hook's registration.
 
 
 Events pushed to the consumers may additionally be exposed in a collection resource

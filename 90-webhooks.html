@@ -238,7 +238,7 @@ X-Ecg-Signature: b613679a0814d9ec772f95d778c35fc5ff1697c493715653c6c712144292c5a
 <div class="section" id="http-callbacks-should-be-signed">
 <h2>HTTP callbacks should be signed<a class="headerlink" href="#http-callbacks-should-be-signed" title="Permalink to this headline">¶</a></h2>
 <p>HTTP callbacks SHOULD be signed so that the consumer can validate the message&#8217;s authenticity. The signature MUST be sent as a request header with the name X-Ecg-Signature
-The signature MUST be a HMAC-SHA-256 hex digest of the payload, using the hook’s secret as the key. This secret have been provided as part of the hook&#8217;s registration.</p>
+The signature MUST be a HMAC-SHA-256 hex digest of the payload, using the hook’s secret as the key. This secret has been provided as part of the hook&#8217;s registration.</p>
 </div>
 <div class="section" id="events-pushed-to-the-consumers-may-additionally-be-exposed-in-a-collection-resource">
 <h2>Events pushed to the consumers may additionally be exposed in a collection resource<a class="headerlink" href="#events-pushed-to-the-consumers-may-additionally-be-exposed-in-a-collection-resource" title="Permalink to this headline">¶</a></h2>

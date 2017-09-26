@@ -8,7 +8,7 @@ Welcome to eCG API Guidelines's documentation!
 
 These documents describes the guidelines that *new* APIs in ECG MUST adhere to.
 
-The sources of these guidelines are in `Github <https://github.scm.corp.ebay.com/ecg-api/api-guidelines>`_.
+The sources of these guidelines are in `Ebay's Github <https://github.corp.ebay.com/ecg-api/api-guidelines>`_.
 
 Why?
 ^^^^

@@ -267,8 +267,8 @@ Unlike the 204 status code, a 200 response should include a response body.
 
 A REST API responds with the 201 status code whenever a collection creates, or a store adds, a new resource at the client’s request.
 
-202 (“Accepted”) must be used to indicate successful start of anasynchronous action
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+202 (“Accepted”) must be used to indicate successful start of an asynchronous action
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A 202 response indicates that the client’s request will be handled asynchronously. This response status code tells the client that the
 request appears valid, but it still may have problems once it’s finally processed.  A 202 response is typically used for actions that

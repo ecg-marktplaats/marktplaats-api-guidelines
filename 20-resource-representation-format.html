@@ -491,7 +491,7 @@ might later move to a separate entity.</p>
 When returning a resource with optional fields, and there is no value for a given field, then the field should be left
 out entirely in case of a String, Numeric or Object value. In the case of an Array, an empty list may be returned.</p>
 <p>The rationale for leaving omitting the field when creating or updating a resource (POST, PUT or PATCH), is that it is not allowed to specify a key without a value. Theoretically, the value <tt class="docutils literal"><span class="pre">null</span></tt> could be used, but this will only lead to confusion and complicate the parsing of the JSON object.</p>
-<p>You are RECOMMENDED to design each field such that it always have a value.</p>
+<p>You are RECOMMENDED to design each field such that it always has a value.</p>
 </div>
 <div class="section" id="field-values-that-represent-a-timestamp-are-in-iso-8601">
 <h3>Field values that represent a timestamp are in ISO 8601<a class="headerlink" href="#field-values-that-represent-a-timestamp-are-in-iso-8601" title="Permalink to this headline">¶</a></h3>

@@ -389,7 +389,7 @@ out entirely in case of a String, Numeric or Object value. In the case of an Arr
 
 The rationale for leaving omitting the field when creating or updating a resource (POST, PUT or PATCH), is that it is not allowed to specify a key without a value. Theoretically, the value ``null`` could be used, but this will only lead to confusion and complicate the parsing of the JSON object.
 
-You are RECOMMENDED to design each field such that it always have a value.
+You are RECOMMENDED to design each field such that it always has a value.
 
 Field values that represent a timestamp are in ISO 8601
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
